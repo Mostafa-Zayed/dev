@@ -30,11 +30,13 @@ class ModulesController extends Controller
      */
     public function index()
     {
+        
         if (! auth()->user()->can('manage_modules')) {
             abort(403, 'Unauthorized action.');
         }
 
         $notAllowed = $this->moduleUtil->notAllowedInDemo();
+        
         if (! empty($notAllowed)) {
             return $notAllowed;
         }

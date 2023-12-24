@@ -131,4 +131,7 @@ LANG = {
 'settings': '设置',
 'advance_payment_cannot_be_more_than_once': '不能多次选择预付款',
 'not_connected_to_a_network': '您没有连接到网络',
+'enter_pin_here': '在这里输入PIN',
+'authentication_failed': '认证失败！',
+'authentication_successfull': '认证成功',
 };

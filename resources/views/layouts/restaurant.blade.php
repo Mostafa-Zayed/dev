@@ -66,7 +66,7 @@
         </div>
 
         @include('layouts.partials.javascripts')
-        <script src="{{ asset('js/restaurant.js?v=' . $asset_v) }}"></script>
+        <script src="{{ asset('js/restaurant.js') }}"></script>
         <div class="modal fade view_modal" tabindex="-1" role="dialog" 
         aria-labelledby="gridSystemModalLabel"></div>
     </body>

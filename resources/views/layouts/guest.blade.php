@@ -12,10 +12,10 @@
 
     <title>@yield('title')</title> 
 
-    <link rel="stylesheet" href="{{ asset('css/vendor.css?v='.$asset_v) }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
 
     <!-- app css -->
-    <link rel="stylesheet" href="{{ asset('css/app.css?v='.$asset_v) }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -36,8 +36,8 @@
     <![endif]-->
 
     <!-- jQuery 2.2.3 -->
-    <script src="{{ asset('js/vendor.js?v=' . $asset_v) }}"></script>
-    <script src="{{ asset('js/functions.js?v=' . $asset_v) }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
     @yield('javascript')
 </body>
 

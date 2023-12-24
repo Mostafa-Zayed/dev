@@ -388,6 +388,7 @@ class Util
     public function notAllowedInDemo()
     {
         //Disable in demo
+        
         if (config('app.env') == 'demo') {
             $output = [
                 'success' => 0,

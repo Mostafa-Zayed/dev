@@ -54,7 +54,7 @@
         @include('layouts.partials.javascripts')
 
     <!-- Scripts -->
-    <script src="{{ asset('js/login.js?v=' . $asset_v) }}"></script>
+    <script src="{{ asset('js/login.js') }}"></script>
     @yield('javascript')
     </body>
 </html>

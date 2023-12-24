@@ -111,4 +111,7 @@ LANG = {
 "last_year": "Afgelopen jaar", 
 "last_financial_year": "Laatste boekjaar", 
 "this_month_last_year": "Deze maand vorig jaar", 
+'enter_pin_here': 'Voer Pin Hier In',
+'authentication_failed': 'Authenticatie mislukt!',
+'authentication_successfull': 'Authenticatie succesvol'
 };

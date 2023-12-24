@@ -101,16 +101,16 @@
             @endif
 
             <audio id="success-audio">
-              <source src="{{ asset('/audio/success.ogg?v=' . $asset_v) }}" type="audio/ogg">
-              <source src="{{ asset('/audio/success.mp3?v=' . $asset_v) }}" type="audio/mpeg">
+              <source src="{{ asset('/audio/success.ogg') }}" type="audio/ogg">
+              <source src="{{ asset('/audio/success.mp3') }}" type="audio/mpeg">
             </audio>
             <audio id="error-audio">
-              <source src="{{ asset('/audio/error.ogg?v=' . $asset_v) }}" type="audio/ogg">
-              <source src="{{ asset('/audio/error.mp3?v=' . $asset_v) }}" type="audio/mpeg">
+              <source src="{{ asset('/audio/error.ogg') }}" type="audio/ogg">
+              <source src="{{ asset('/audio/error.mp3') }}" type="audio/mpeg">
             </audio>
             <audio id="warning-audio">
-              <source src="{{ asset('/audio/warning.ogg?v=' . $asset_v) }}" type="audio/ogg">
-              <source src="{{ asset('/audio/warning.mp3?v=' . $asset_v) }}" type="audio/mpeg">
+              <source src="{{ asset('/audio/warning.ogg') }}" type="audio/ogg">
+              <source src="{{ asset('/audio/warning.mp3') }}" type="audio/mpeg">
             </audio>
         </div>
 

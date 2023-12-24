@@ -33,7 +33,13 @@ $(document).ready(function() {
 
         //Set default invoice scheme for location
         if ($('#invoice_scheme_id').length) {
-            let invoice_scheme_id = $(this).find(':selected').data('default_invoice_scheme_id');
+            if($('input[name="is_direct_sale"]').length > 0){
+                //default scheme for sale screen
+                var invoice_scheme_id = $(this).find(':selected').data('default_sale_invoice_scheme_id');
+            } else {
+                var invoice_scheme_id =  $(this).find(':selected').data('default_invoice_scheme_id');
+            }
+            
             $("#invoice_scheme_id").val(invoice_scheme_id).change();
         }
 
@@ -900,6 +906,7 @@ $(document).ready(function() {
             .filter(':visible:first')
             .focus()
             .select();
+            // $('.select2-selection__rendered').css('padding-right', '150px');
     });
 
     $(document).on('shown.bs.modal', '.row_edit_product_price_model', function() {
@@ -1942,6 +1949,9 @@ function reset_pos_form(){
 	if($('input#is_recurring').length > 0){
 		$('input#is_recurring').iCheck('update');
 	};
+    if($('input#is_kitchen_order').length > 0){
+		$('input#is_kitchen_order').iCheck('update');
+	};
     if($('#invoice_layout_id').length > 0){
         $('#invoice_layout_id').trigger('change');
     };
@@ -2976,3 +2986,50 @@ $(document).on('hidden.bs.modal', '.view_modal', function(){
     }
     service_staff_availability_interval = null;
 });
+
+
+$(document).on('change', '#res_waiter_id', function(e){
+    var is_enable = $(this).find('option:selected').data('is_enable');
+
+    if(is_enable){
+        swal({
+            text: LANG.enter_pin_here,
+            buttons: true,
+            dangerMode: true,
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: LANG.enter_pin_here,
+                    type: "password",
+                },
+            },
+        })
+        .then((inputValue) => {
+            if (inputValue !== null) {
+                    $.ajax({
+                        method: 'get',
+                        url: '/modules/data/check-staff-pin',
+                        dataType: 'json',
+                        data: {
+                        service_staff_pin: inputValue,
+                        user_id : $("#res_waiter_id").val(),
+                        },
+                        success: (result) => {
+
+                            if (result == false) {
+                                toastr.error(LANG.authentication_failed);
+                                $("#res_waiter_id").val('');
+                            } else {
+                                // AJAX request succeeded, resolve
+                                toastr.success(LANG.authentication_successfull);
+                            }
+                        },
+                    });
+            } else {
+                // Handle the "Cancel" action
+                $("#res_waiter_id").val('');
+            }
+        });
+        
+    }
+})
