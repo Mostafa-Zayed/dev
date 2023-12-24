@@ -79,6 +79,7 @@ Route::get('/',[WebsiteController::class,'index'])->name('welcome');
 include_once 'install_r.php';
 
 Route::middleware(['setData'])->group(function () {
+    //tesging now git
     // Route::get('/', function () {
     //     return view('welcome');
     // });
