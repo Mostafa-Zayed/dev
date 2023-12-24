@@ -1,13 +1,13 @@
-<link rel="stylesheet" href="{{ asset('css/vendor.css?v='.$asset_v) }}">
+<link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
 
 @if( in_array(session()->get('user.language', config('app.locale')), config('constants.langs_rtl')) )
-	<link rel="stylesheet" href="{{ asset('css/rtl.css?v='.$asset_v) }}">
+	<link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
 @endif
 
 @yield('css')
 
 <!-- app css -->
-<link rel="stylesheet" href="{{ asset('css/app.css?v='.$asset_v) }}">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 @if(isset($pos_layout) && $pos_layout)
 	<style type="text/css">
