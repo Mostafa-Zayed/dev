@@ -61,6 +61,8 @@ use App\Http\Controllers\VariationTemplateController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RevieweController;
+use App\Http\Controllers\FrontEndController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,8 +76,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('reviews',[RevieweController::class,'index'])->name('reviews.index');
+Route::get('contacts',[FrontEndController::class,'contact'])->name('contact');
+Route::get('blog',[FrontEndController::class,'blog'])->name('blog');
+Route::get('features',[FrontEndController::class,'features'])->name('features');
+Route::get('faqs',[FrontEndController::class,'faqs'])->name('faqs');
+Route::get('about-us',[FrontEndController::class,'about'])->name('about');
+Route::post('send-message',[FrontEndController::class,'sendMessage'])->name('send-message');
+Route::get('envents',[FrontEndController::class,'events'])->name('events');
 
-Route::get('/',[WebsiteController::class,'index'])->name('welcome');
+Route::get('/',[FrontEndController::class,'index'])->name('welcome');
 include_once 'install_r.php';
 
 Route::middleware(['setData'])->group(function () {
@@ -134,7 +144,7 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
 
     Route::resource('brands', BrandController::class);
 
-    Route::resource('payment-account', 'PaymentAccountController');
+    // Route::resource('payment-account', 'PaymentAccountController');
 
     Route::resource('tax-rates', TaxRateController::class);
 

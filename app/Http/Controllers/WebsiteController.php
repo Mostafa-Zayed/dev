@@ -7,6 +7,8 @@ use App\Utils\BusinessUtil;
 use App\System;
 use App\Utils\ModuleUtil;
 use App\Utils\RestaurantUtil;
+use Modules\Website\Entities\WebsiteFeature;
+
 class WebsiteController extends Controller
 {
     protected $businessUtil;
@@ -42,6 +44,8 @@ class WebsiteController extends Controller
 
     public function index()
     {
+        $features = WebsiteFeature::get();
+        // $how_works = 
         return view('welcome');
     }
 

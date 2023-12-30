@@ -1,9 +1,7 @@
-@extends('website::layouts.master')
+@extends('layouts.app')
+
+@section('title', __('crm::lang.crm'))
 
 @section('content')
-    <h1>Hello World</h1>
-
-    <p>
-        This view is loaded from module: {!! config('website.name') !!}
-    </p>
+@include('website::layouts.nav')
 @endsection
