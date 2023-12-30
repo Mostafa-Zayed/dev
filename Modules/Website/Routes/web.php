@@ -18,4 +18,5 @@ Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(fun
     Route::post('/install', [Modules\Website\Http\Controllers\InstallController::class, 'install']);
     Route::get('/install/uninstall', [Modules\Website\Http\Controllers\InstallController::class, 'uninstall']);
     Route::get('/install/update', [Modules\Website\Http\Controllers\InstallController::class, 'update']);
+    //test
 });
