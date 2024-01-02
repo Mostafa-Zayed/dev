@@ -16,14 +16,14 @@ class FrontEndController extends Controller
 {
     public function index()
     {
-        $sliders = WebsiteSlider::get();
-        $features = WebsiteFeature::get();
-        $works    = WebsiteWork::get();
-        $screenShots = WebsiteScreenshot::get();
-        $reviews     = WebsiteTestmonial::get();
-        $partners    = WebsitePartner::get();
-        $questions   = WebsiteQuestion::get();
-        $posts       = WebsitePost::get();
+        // $sliders = WebsiteSlider::get();
+        // $features = WebsiteFeature::get();
+        // $works    = WebsiteWork::get();
+        // $screenShots = WebsiteScreenshot::get();
+        // $reviews     = WebsiteTestmonial::get();
+        // $partners    = WebsitePartner::get();
+        // $questions   = WebsiteQuestion::get();
+        // $posts       = WebsitePost::get();
         return view('welcome');
     }
 }
