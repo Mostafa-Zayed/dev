@@ -100,4 +100,10 @@ if (! function_exists('str_ordinal')) {
 
         return number_format($number).$suffix;
     }
+
+    if (!function_exists('languages')) {
+        function languages() {
+          return ['ar', 'en'];
+        }
+      }
 }

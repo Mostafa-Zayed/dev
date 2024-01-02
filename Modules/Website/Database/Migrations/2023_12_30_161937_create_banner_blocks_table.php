@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('website_works', function (Blueprint $table) {
+        Schema::create('banner_blocks', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->text('description');
-            $table->string('image');
-            $table->boolean('status')->default(true);
-            $table->boolean('is_home')->default(true);
+
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('website_works');
+        Schema::dropIfExists('banner_blocks');
     }
 };

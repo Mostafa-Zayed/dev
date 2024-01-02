@@ -559,6 +559,64 @@ $(document).ready(function() {
             height:250
         });
     }
+
+    if ($('textarea#section_features_description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_features_description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#section_features_description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_features_description_en',
+            height:250
+        });
+    }
+
+    if ($('textarea#section_work_description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_work_description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#section_work_description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_work_description_en',
+            height:250
+        });
+    }
+
+    
+    if ($('textarea#section_screenshot_description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_screenshot_description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#section_screenshot_description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_screenshot_description_en',
+            height:250
+        });
+    }
+
+    
+    if ($('textarea#section_packages_description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_packages_description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#section_packages_description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_packages_description_en',
+            height:250
+        });
+    }
 });
 
 function toggle_dsp_input() {

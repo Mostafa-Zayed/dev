@@ -2,28 +2,19 @@
 
 namespace Modules\Website\Http\Controllers;
 
-use App\Utils\BusinessUtil;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Website\Http\Requests\Settings\Update;
-use Modules\Website\Entities\WebsiteSetting;
 
-class WebsiteSettingController extends Controller
+class WebsiteSocialsController extends Controller
 {
-    private $businessUtil;
-
-    public function __construct(BusinessUtil $businessUtil)
-    {
-        $this->businessUtil = $businessUtil;
-    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('website::settings.index');
+        return view('website::index');
     }
 
     /**
@@ -71,27 +62,9 @@ class WebsiteSettingController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Update $request)
+    public function update(Request $request, $id)
     {
-        // dd('ok');
-        // if (! auth()->user()->can('business_settings.access')) {
-        //     abort(403, 'Unauthorized action.');
-        // }
-        try{
-            $notAllowed = $this->businessUtil->notAllowedInDemo();
-            if (! empty($notAllowed)) {
-                return $notAllowed;
-            }
-            // dd($request->validated());
-            WebsiteSetting::create($request->validated());
-        }catch(\Exception $exception) {
-            \Log::emergency('File:'.$exception->getFile().'Line:'.$exception->getLine().'Message:'.$exception->getMessage());
-
-            $output = ['success' => 0,
-                'msg' => __('messages.something_went_wrong'),
-            ];
-        }
-        
+        //
     }
 
     /**

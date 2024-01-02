@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('website_features', function (Blueprint $table) {
+        Schema::create('website_socials', function (Blueprint $table) {
             $table->id();
-            $table->string('number')->unique();
             $table->string('name');
-            $table->text('description');
+            $table->string('icon_name');
             $table->string('image');
-            $table->string('external_link')->nullable();
+            $table->string('link');
             $table->boolean('status')->default(true);
             $table->boolean('is_home')->default(true);
             $table->timestamps();
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('website_features');
+        Schema::dropIfExists('website_socials');
     }
 };
