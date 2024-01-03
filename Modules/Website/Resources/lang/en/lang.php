@@ -11,5 +11,6 @@ return [
     'title_ar' => 'Title Arabic',
     'title_en' => 'Title English',
     'description_ar' => 'Description Arabic',
-    'description_en' => 'Description English'
+    'description_en' => 'Description English',
+    'reviews'     => 'Reviews',
 ];

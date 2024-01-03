@@ -617,6 +617,20 @@ $(document).ready(function() {
             height:250
         });
     }
+
+    if ($('textarea#section_reviews_description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_reviews_description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#section_reviews_description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#section_reviews_description_en',
+            height:250
+        });
+    }
 });
 
 function toggle_dsp_input() {

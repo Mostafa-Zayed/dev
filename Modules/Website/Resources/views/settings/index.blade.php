@@ -23,6 +23,7 @@
                         <a href="#" class="list-group-item text-center">@lang('website::lang.works') @show_tooltip(__('website::tooltip.website_works'))</a>
                         <a href="#" class="list-group-item text-center">@lang('website::lang.screen_shots') @show_tooltip(__('website::tooltip.website_screen_shots'))</a>
                         <a href="#" class="list-group-item text-center">@lang('website::lang.packages') @show_tooltip(__('website::tooltip.website_packages'))</a>
+                        <a href="#" class="list-group-item text-center">@lang('website::lang.reviews') @show_tooltip(__('website::tooltip.website_reviews'))</a>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 pos-tab">
@@ -31,6 +32,7 @@
                     @include('website::settings.partials.work_settings')
                     @include('website::settings.partials.screen_shots')
                     @include('website::settings.partials.packages_settings')
+                    @include('website::settings.partials.reviews_settings')
                 </div>
             </div>
         </div>
