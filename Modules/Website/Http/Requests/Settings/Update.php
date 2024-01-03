@@ -31,7 +31,20 @@ class Update extends FormRequest
             'section_packages_title' => ['sometimes','array'],
             'section_packages_title.*' => ['sometimes','string','max:255'],
             'section_packages_description' => ['sometimes','array'],
-            'section_packages_description.*' => ['sometimes','string','max:255']
+            'section_packages_description.*' => ['sometimes','string','max:255'],
+            'section_reviews_title' => ['sometimes','array'],
+            'section_reviews_title.*' => ['sometimes','string','max:255'],
+            'section_reviews_description' => ['sometimes','array'],
+            'section_reviews_description.*' => ['sometimes','string'],
+            'section_questions_title' => ['sometimes','array'],
+            'section_questions_title.*' => ['sometimes','string','max:255'],
+            'section_questions_description' => ['sometimes','array'],
+            'section_questions_description.*' => ['sometimes','string'],
+            'section_questions_image' => ['sometimes','file'],
+            'section_posts_title' => ['sometimes','string','max:255'],
+            'section_posts_title.*' => ['sometimes','array'],
+            'section_posts_description' => ['sometimes','array'],
+            'section_posts_description.*' => ['sometimes','string']
         ];
     }
 

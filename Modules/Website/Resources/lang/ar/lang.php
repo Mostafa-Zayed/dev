@@ -4,5 +4,7 @@ return [
     'website_settings' => 'اعدادات الموقع التعريقي',
     'features'  => 'المميزات',
     'sliders' => 'سليدرز',
-    'reviews' => 'التعليقات'
+    'reviews' => 'التعليقات',
+    'posts'  => 'المدونة',
+    'questions' => 'الاسئلة الشائعة'
 ];

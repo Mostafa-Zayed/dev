@@ -13,5 +13,6 @@ return [
     'description_ar' => 'Description Arabic',
     'description_en' => 'Description English',
     'reviews'     => 'Reviews',
-    'questions' => 'Questions'
+    'questions' => 'Questions',
+    'posts'  => 'Posts',
 ];
