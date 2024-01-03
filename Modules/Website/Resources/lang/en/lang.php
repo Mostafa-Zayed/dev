@@ -15,4 +15,5 @@ return [
     'reviews'     => 'Reviews',
     'questions' => 'Questions',
     'posts'  => 'Posts',
+    'partners' => 'Partners',
 ];

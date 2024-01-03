@@ -6,15 +6,15 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class WebsiteSliderController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index(): Renderable
+    public function index()
     {
-        return view('website::sliders.index');
+        return view('website::index');
     }
 
     /**

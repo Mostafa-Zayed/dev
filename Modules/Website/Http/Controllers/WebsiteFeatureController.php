@@ -12,9 +12,9 @@ class WebsiteFeatureController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(): Renderable
     {
-        return view('website::index');
+        return view('website::features.index');
     }
 
     /**

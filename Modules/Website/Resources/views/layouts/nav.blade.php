@@ -23,55 +23,57 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{action([\Modules\Crm\Http\Controllers\CrmDashboardController::class, 'index'])}}"><i class="fas fa fa-broadcast-tower"></i> {{__('crm::lang.crm')}}</a>
+                <a class="navbar-brand" href="{{action([\Modules\Website\Http\Controllers\HomeController::class, 'index'])}}"><i class="fas fa fa-broadcast-tower"></i> {{__('website::lang.website')}}</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    @if(auth()->user()->can('crm.access_all_leads') || auth()->user()->can('crm.access_own_leads'))
-                    <li @if(request()->segment(2) == 'leads') class="active" @endif><a href="{{action([\Modules\Crm\Http\Controllers\LeadController::class, 'index']). '?lead_view=list_view'}}">@lang('crm::lang.leads')</a></li>
-                    @endif
-                    @if(auth()->user()->can('crm.access_all_schedule') || auth()->user()->can('crm.access_own_schedule'))
-                    <li @if(request()->segment(2) == 'follow-ups') class="active" @endif><a href="{{action([\Modules\Crm\Http\Controllers\ScheduleController::class, 'index'])}}">@lang('crm::lang.follow_ups')</a></li>
-                    @endif
-                    @if(auth()->user()->can('crm.access_all_campaigns') || auth()->user()->can('crm.access_own_campaigns'))
-                    <li @if(request()->segment(2) == 'campaigns') class="active" @endif><a href="{{action([\Modules\Crm\Http\Controllers\CampaignController::class, 'index'])}}">@lang('crm::lang.campaigns')</a></li>
-                    @endif                    
-
-                    @can('crm.access_contact_login')
-                        <li class="nav-item @if(request()->segment(2) == 'all-contacts-login' || request()->segment(2) == 'commissions') active @endif">
-                            <a class="nav-link dropdown-toggle" href="#" id="contacts_login_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @lang('crm::lang.contacts_login')
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{action([\Modules\Crm\Http\Controllers\ContactLoginController::class, 'allContactsLoginList'])}}"> @lang('crm::lang.contacts_login')</a>
-                              <a class="dropdown-item" href="{{action([\Modules\Crm\Http\Controllers\ContactLoginController::class, 'commissions'])}}">@lang('crm::lang.commissions')</a>
-                            </div>
-                        </li>
-                    @endcan
-                    @if((auth()->user()->can('crm.view_all_call_log') || auth()->user()->can('crm.view_own_call_log')) && config('constants.enable_crm_call_log'))
-                    <li @if(request()->segment(2) == 'call-log') class="active" @endif><a href="{{action([\Modules\Crm\Http\Controllers\CallLogController::class, 'index'])}}">@lang('crm::lang.call_log')</a></li>
-                    @endif
-
-                    @can('crm.view_reports')
-                    <li @if(request()->segment(2) == 'reports') class="active" @endif><a href="{{action([\Modules\Crm\Http\Controllers\ReportController::class, 'index'])}}">@lang('report.reports')</a></li>
-                    @endcan
-                    <li @if(request()->segment(2) == 'proposal-template') class="active" @endif>
-                        <a href="{{action([\Modules\Crm\Http\Controllers\ProposalTemplateController::class, 'index'])}}">
-                            @lang('crm::lang.proposal_template')
-                        </a>
-                    </li>
-                    <li @if(request()->segment(2) == 'proposals') class="active" @endif>
-                        <a href="{{action([\Modules\Crm\Http\Controllers\ProposalController::class, 'index'])}}">
-                            @lang('crm::lang.proposals')
-                        </a>
-                    </li>
                     <li @if(request()->segment(2) == 'settings') class="active" @endif>
                         <a href="{{action([\Modules\Website\Http\Controllers\WebsiteSettingController::class, 'index'])}}">
                             @lang('business.settings')
                         </a>
                     </li>
+                    <li @if(request()->segment(2) == 'sliders') class="active" @endif>
+                        <a href="{{action([\Modules\Website\Http\Controllers\WebsiteSliderController::class, 'index'])}}">
+                            @lang('website::lang.sliders')
+                        </a>
+                    </li>
+                        <li @if(request()->segment(2) == 'features') class="active" @endif>
+                            <a href="{{action([\Modules\Website\Http\Controllers\WebsiteFeatureController::class, 'index'])}}">
+                                @lang('website::lang.features')
+                            </a>
+                        </li>
+                        <li @if(request()->segment(2) == 'works') class="active" @endif>
+                            <a href="{{action([\Modules\Website\Http\Controllers\WebsiteWorkController::class, 'index'])}}">
+                                @lang('website::lang.works')
+                            </a>
+                        </li>
+                        <li @if(request()->segment(2) == 'screen-shots') class="active" @endif>
+                            <a href="{{action([\Modules\Website\Http\Controllers\WebsiteScreenshotController::class, 'index'])}}">
+                                @lang('website::lang.screen_shots')
+                            </a>
+                        </li>
+                        <li @if(request()->segment(2) == 'reviews') class="active" @endif>
+                            <a href="{{action([\Modules\Website\Http\Controllers\WebsiteReviewController::class, 'index'])}}">
+                                @lang('website::lang.reviews')
+                            </a>
+                        </li>
+                        <li @if(request()->segment(2) == 'partners') class="active" @endif>
+                            <a href="{{action([\Modules\Website\Http\Controllers\WebsitePartnerController::class, 'index'])}}">
+                                @lang('website::lang.partners')
+                            </a>
+                        </li>
+                        <li @if(request()->segment(2) == 'questions') class="active" @endif>
+                            <a href="{{action([\Modules\Website\Http\Controllers\WebsiteQuestionController::class, 'index'])}}">
+                                @lang('website::lang.questions')
+                            </a>
+                        </li>
+                        <li @if(request()->segment(2) == 'posts') class="active" @endif>
+                            <a href="{{action([\Modules\Website\Http\Controllers\WebsitePostController::class, 'index'])}}">
+                                @lang('website::lang.posts')
+                            </a>
+                        </li>
                 </ul>
 
             </div><!-- /.navbar-collapse -->
