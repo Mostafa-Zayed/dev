@@ -7,4 +7,5 @@ return [
     'website_screen_shots' => 'for add or update Website Screen Shots Section title or description',
     'website_packages'   => 'for add or update Website Packages Section title or description',
     'website_reviews'  => 'for add or update Website Reviews Section title or description',
+    'website_questions' => 'for add or update Website Questions Section title or description or Image',
 ];
