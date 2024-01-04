@@ -21,9 +21,9 @@ class WebsiteSliderController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
+    public function create(): Renderable
     {
-        return view('website::create');
+        return view('website::sliders.create');
     }
 
     /**
@@ -33,7 +33,7 @@ class WebsiteSliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

@@ -660,6 +660,20 @@ $(document).ready(function() {
         });
     }
 
+    if ($('textarea#description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#description_en',
+            height:250
+        });
+    }
+
 });
 
 function toggle_dsp_input() {
