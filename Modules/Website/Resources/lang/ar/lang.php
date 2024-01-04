@@ -18,4 +18,5 @@ return [
     'external_link' => 'لينك خارجي',
     'video_link' => 'رابط فيديو خارجي',
     'status' => 'مفعل',
+    'is_home' => 'الصفحة الرئسية'
 ];

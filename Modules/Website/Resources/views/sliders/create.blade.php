@@ -66,6 +66,12 @@
                                 {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                {!! Form::label('',__('website::lang.is_home') . ' : *') !!}
+                                {!! Form::select('is_home', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                            </div>
+                        </div>
                 </div>
                 <input type="submit" value="submit" class="btn btn-primary submit_product_form">
                 {!! Form::close() !!}
@@ -74,5 +80,21 @@
     </section>
 @endsection
 @section('javascript')
-    <script src="{{ asset('js/product.js')}}"></script>
+    <script>
+        $(document).ready( function() {
+            if ($('textarea#description_ar').length > 0) {
+                tinymce.init({
+                    selector: 'textarea#description_ar',
+                    height:250
+                });
+            }
+
+            if ($('textarea#description_en').length > 0) {
+                tinymce.init({
+                    selector: 'textarea#description_en',
+                    height:250
+                });
+            }
+        });
+    </script>
 @endsection

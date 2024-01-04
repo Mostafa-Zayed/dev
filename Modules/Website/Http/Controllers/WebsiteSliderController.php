@@ -39,9 +39,10 @@ class WebsiteSliderController extends Controller
     {
         try {
             dd($request->all());
-//            WebsiteSlider::create($request->validated());
+            WebsiteSlider::create($request->validated());
             return view('website::sliders.index');
         } catch (\Exception $exception){
+
             $this->logMethodException($exception);
         }
     }

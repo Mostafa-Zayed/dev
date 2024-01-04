@@ -14,17 +14,17 @@ class Store extends FormRequest
     public function rules(): array
     {
         return [
-            'number' => ['required','numeric'],
-            'heading' => ['required','string'],
-            'description' => ['required','string'],
-            'title' => ['sometimes','string'],
-            'image' => ['required','image'],
-            'app_store_link' => ['sometimes','string'],
-            'google_play_link' => ['sometimes','string'],
-            'external_link' => ['sometimes','string'],
-            'video_link' => ['sometimes','string'],
-            'status' => ['sometimes','in:0,1'],
-            'is_home' => ['sometimes','in:0,1']
+//            'number' => ['sometimes','numeric'],
+//            'heading' => ['required','string'],
+//            'description' => ['required','string'],
+//            'title' => ['sometimes','string'],
+//            'image' => ['required','image'],
+//            'app_store_link' => ['sometimes','string'],
+//            'google_play_link' => ['sometimes','string'],
+//            'external_link' => ['sometimes','string'],
+//            'video_link' => ['sometimes','string'],
+//            'status' => ['sometimes','in:0,1'],
+//            'is_home' => ['sometimes','in:0,1']
         ];
     }
 
