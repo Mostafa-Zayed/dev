@@ -85,6 +85,7 @@
         @include('layouts.partials.javascripts')
         <div class="modal fade view_modal" tabindex="-1" role="dialog" 
         aria-labelledby="gridSystemModalLabel"></div>
+    @yield('javascript')
     </body>
 
 </html>

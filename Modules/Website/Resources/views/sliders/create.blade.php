@@ -63,7 +63,7 @@
                     <div class="col-sm-12">
                             <div class="form-group">
                                 {!! Form::label('',__('website::lang.status') . ' : *') !!}
-                                {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'required', 'class' => 'form-control']); !!}
+                                {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                             </div>
                         </div>
                 </div>

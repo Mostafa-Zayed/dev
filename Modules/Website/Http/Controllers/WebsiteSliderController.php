@@ -2,12 +2,16 @@
 
 namespace Modules\Website\Http\Controllers;
 
+use App\Traits\LogException;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Website\Entities\WebsiteSlider;
+use Modules\Website\Http\Requests\Sliders\Store;
 
 class WebsiteSliderController extends Controller
 {
+    use LogException;
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -33,7 +37,13 @@ class WebsiteSliderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        try {
+            dd($request->all());
+//            WebsiteSlider::create($request->validated());
+            return view('website::sliders.index');
+        } catch (\Exception $exception){
+            $this->logMethodException($exception);
+        }
     }
 
     /**
