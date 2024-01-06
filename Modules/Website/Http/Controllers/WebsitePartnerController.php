@@ -2,19 +2,23 @@
 
 namespace Modules\Website\Http\Controllers;
 
+use App\Traits\LogException;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Website\Entities\WebsitePartner;
+use Modules\Website\Http\Requests\Partners\Store;
 
 class WebsitePartnerController extends Controller
 {
+    use LogException;
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('website::index');
+        return view('website::partners.index');
     }
 
     /**
@@ -23,7 +27,7 @@ class WebsitePartnerController extends Controller
      */
     public function create()
     {
-        return view('website::create');
+        return view('website::partners.create');
     }
 
     /**
@@ -31,9 +35,14 @@ class WebsitePartnerController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        //
+        try {
+            WebsitePartner::create($request->validated());
+            return view('website::partners.index');
+        } catch (\Exception $exception){
+            $this->logMethodException($exception);
+        }
     }
 
     /**

@@ -25,5 +25,10 @@ return [
     'external_link' => 'External Link',
     'video_link' => 'Video Link',
     'status' => 'Active',
-    'is_home' => 'Show Main Page'
+    'is_home' => 'Show Main Page',
+    'number' => 'Number',
+    'id' => '#',
+    'image' => 'Image',
+    'title' => 'Title'
+    
 ];

@@ -8,16 +8,40 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteSlider;
 use Modules\Website\Http\Requests\Sliders\Store;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\App;
 
 class WebsiteSliderController extends Controller
 {
     use LogException;
+
+    private $local;
+
+    public function __construct()
+    {
+        $this->local = App::getLocale();
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index(): Renderable
+    public function index()
     {
+        if (request()->ajax()){
+            $sliders = WebsiteSlider::select([
+                'id',
+                'number',
+                'image',
+                'title',
+                'heading',
+                'description',
+                DB::raw("JSON_VALUE(website_sliders.title,'$.$this->local') as title_trans"),
+                DB::raw("JSON_VALUE(website_sliders.heading,'$.$this->local') AS heading_trans"),
+                DB::raw("JSON_VALUE(website_sliders.description,'$.$this->local') AS description_trans"),
+                ])->get();
+            return DataTables::of($sliders)->make(true);
+        }
         return view('website::sliders.index');
     }
 
@@ -35,14 +59,12 @@ class WebsiteSliderController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
         try {
-            dd($request->all());
             WebsiteSlider::create($request->validated());
             return view('website::sliders.index');
         } catch (\Exception $exception){
-
             $this->logMethodException($exception);
         }
     }

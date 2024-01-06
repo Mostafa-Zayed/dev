@@ -6,6 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class Store extends FormRequest
 {
+    public function prepareForValidation()
+    {
+        // $this->merge(['number' => rand(1,22)]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -14,7 +19,14 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            //
+            // 'number' => ['sometimes','numeric'],
+            'name' => ['required','array'],
+            'name.*' => ['required','string','max:255'],
+            'description' => ['required','array'],
+            'description.*' => ['required','string'],
+            'image' => ['required','image'],
+            'status' => ['sometimes','in:0,1'],
+            'is_home' => ['sometimes','in:0,1']
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Modules\Website\Entities\WebsiteDemo;
 use Modules\Website\Entities\WebsiteFeature;
 use Modules\Website\Entities\WebsitePartner;
 use Modules\Website\Entities\WebsitePost;
@@ -16,7 +17,10 @@ class FrontEndController extends Controller
 {
     public function index()
     {
+        $websiteDemo = WebsiteDemo::where('status',1)->first();
+        // dd($websiteDemo->websiteFeature);
         // $sliders = WebsiteSlider::get();
+        // dd($sliders);
         // $features = WebsiteFeature::get();
         // $works    = WebsiteWork::get();
         // $screenShots = WebsiteScreenshot::get();

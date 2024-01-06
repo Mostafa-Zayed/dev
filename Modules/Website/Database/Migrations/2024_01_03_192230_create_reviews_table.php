@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-
+            $table->string('name');
+            $table->text('description');
+            $table->boolean('status')->default(true);
+            $table->boolean('is_home')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

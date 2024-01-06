@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('demos', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('website_slider_id')->nullable();
             $table->unsignedBigInteger('website_feature_id')->nullable();
             $table->unsignedBigInteger('website_banner_block_id')->nullable();

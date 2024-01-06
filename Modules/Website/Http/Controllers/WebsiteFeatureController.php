@@ -5,6 +5,8 @@ namespace Modules\Website\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Website\Entities\WebsiteFeature;
+use Modules\Website\Http\Requests\Features\Store;
 
 class WebsiteFeatureController extends Controller
 {
@@ -23,7 +25,7 @@ class WebsiteFeatureController extends Controller
      */
     public function create()
     {
-        return view('website::create');
+        return view('website::features.create');
     }
 
     /**
@@ -31,9 +33,14 @@ class WebsiteFeatureController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        //
+        try {
+            WebsiteFeature::create($request->validated());
+            return view('website::features.index');
+        } catch (\Exception $exception){
+            $this->logMethodException($exception);
+        }
     }
 
     /**

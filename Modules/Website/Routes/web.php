@@ -12,6 +12,11 @@
 */
 
 Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(function () {
+
+
+    // demos
+    Route::get('demos/',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'index'])->name('website.demos');
+
     Route::get('dashboard',[Modules\Website\Http\Controllers\HomeController::class,'index'])->name('website.home');
 
     // settings

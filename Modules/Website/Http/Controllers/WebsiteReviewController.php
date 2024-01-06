@@ -5,6 +5,8 @@ namespace Modules\Website\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Website\Entities\WebsiteReview;
+use Modules\Website\Http\Requests\Reviews\Store;
 
 class WebsiteReviewController extends Controller
 {
@@ -14,7 +16,7 @@ class WebsiteReviewController extends Controller
      */
     public function index()
     {
-        return view('website::index');
+        return view('website::reviews.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class WebsiteReviewController extends Controller
      */
     public function create()
     {
-        return view('website::create');
+        return view('website::reviews.create');
     }
 
     /**
@@ -31,9 +33,14 @@ class WebsiteReviewController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        //
+        try {
+            WebsiteReview::create($request->validated());
+            return view('website::reviews.index');
+        } catch (\Exception $exception){
+            $this->logMethodException($exception);
+        }
     }
 
     /**

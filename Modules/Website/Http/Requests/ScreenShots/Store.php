@@ -14,7 +14,12 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','array'],
+            'name.*' => ['required','string','max:255'],
+            'description' => ['required','array'],
+            'description.*' => ['required','string'],
+            'status' => ['sometimes','in:0,1'],
+            'is_home' => ['sometimes','in:0,1']
         ];
     }
 

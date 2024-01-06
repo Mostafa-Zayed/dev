@@ -12,17 +12,16 @@
                 @endslot
             @endcan
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="recipe_table">
+                <table class="table table-bordered table-striped" id="sliders_table">
                     <thead>
                     <tr>
-                        <th><input type="checkbox" id="select-all-row" data-table-id="recipe_table"></th>
-                        <th>@lang( 'manufacturing::lang.recipe' )</th>
-                        <th>@lang( 'product.category' )</th>
-                        <th>@lang( 'product.sub_category' )</th>
-                        <th>@lang( 'lang_v1.quantity' )</th>
-                        <th>@lang( 'lang_v1.price' ) @show_tooltip(__('manufacturing::lang.price_updated_live'))</th>
-                        <th>@lang( 'sale.unit_price' )</th>
-                        <th>@lang( 'messages.action' )</th>
+                        <th>@lang( 'website::lang.id' )</th>
+                        <th>@lang( 'website::lang.number' )</th>
+                        <th>@lang('website::lang.image')</th>
+                        <th>@lang('website::lang.title')</th>
+                        <th>@lang('website::lang.heading')</th>
+                        <th>@lang('website::lang.description')</th>
+
                     </tr>
                     </thead>
                     <tfoot>
@@ -32,4 +31,24 @@
             </div>
         @endcomponent
     </section>
+@endsection
+
+@section('javascript')
+<script>
+    $(document).ready(function(){
+        var slidersTable = $('#sliders_table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '/website/sliders',
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'number', name: 'number'},
+            {data: 'image',name: 'image'},
+            {data: 'title_trans' , name: 'title_trans'},
+            {data: 'heading_trans', name: 'heading_trans'},
+            {data: 'description_trans',name: 'description_trans'}
+        ]
+    });
+    });
+</script>
 @endsection
