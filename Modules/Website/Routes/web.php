@@ -15,7 +15,9 @@ Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(fun
 
 
     // demos
-    Route::get('demos/',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'index'])->name('website.demos');
+    Route::get('demos',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'index'])->name('demos.index');
+    Route::get('demos/create',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'create'])->name('demos.create');
+    Route::post('demos/store',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'store'])->name('demos.store');
 
     Route::get('dashboard',[Modules\Website\Http\Controllers\HomeController::class,'index'])->name('website.home');
 

@@ -8,58 +8,25 @@
 <section class="content">
     @component('components.widget', ['class' => 'box-solid'])
     <div class="pos-tab-content active">
-        {!! Form::open(['url' => action([Modules\Website\Http\Controllers\WebsiteSliderController::class, 'store']), 'method' => 'post', 'files' => true]) !!}
+        {!! Form::open(['url' => action([Modules\Website\Http\Controllers\WebsiteDemoController::class, 'store']), 'method' => 'post', 'files' => true]) !!}
         <div class="row">
             @foreach (languages() as $lang)
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.slider_heading_' . $lang) . ' : *') !!}
-                    {!! Form::text("heading[$lang]",null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.slider_heading_' . $lang)]); !!}
-                </div>
-            </div>
-            @endforeach
-            @foreach (languages() as $lang)
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label("description_$lang", __('website::lang.description_' . $lang) . ':') !!}
-                    {!! Form::textarea("description[$lang]", null, ['class' => 'form-control','id' => "description_$lang"]); !!}
-                </div>
-            </div>
-            @endforeach
-            @foreach (languages() as $lang)
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
-                    {!! Form::text("title[$lang]",null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.slider_heading_' . $lang)]); !!}
+                    {!! Form::label('',__('website::lang.title' . $lang) . ' : *') !!}
+                    {!! Form::text("name[$lang]",null, ['class' => 'form-control',
+                    'placeholder' => __('website::lang.title' . $lang)]); !!}
                 </div>
             </div>
             @endforeach
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.google_play_link') . ' : *') !!}
-                    {!! Form::text('google_play_link',null,['class' => 'form-control']) !!}
+                    {!! Form::label('website_slider_id',__('website::lang.slider') . ' : *') !!}
+                    {!! Form::select('website_slider_id', $sliders, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.app_store_link') . ' : *') !!}
-                    {!! Form::text('app_store_link',null,['class' => 'form-control']) !!}
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.external_link') . ' : *') !!}
-                    {!! Form::text('external_link',null,['class' => 'form-control']) !!}
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.video_link') . ' : *') !!}
-                    {!! Form::text('video_link',null,['class' => 'form-control']) !!}
-                </div>
-            </div>
+           
+
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="section_features_image">تحميل الصورة:</label>
@@ -90,13 +57,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     {!! Form::label('',__('website::lang.status') . ' : *') !!}
-                    {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.is_home') . ' : *') !!}
-                    {!! Form::select('is_home', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                    {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], 1, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>
             </div>
         </div>

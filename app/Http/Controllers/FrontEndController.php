@@ -17,8 +17,8 @@ class FrontEndController extends Controller
 {
     public function index()
     {
-        $websiteDemo = WebsiteDemo::where('status',1)->first();
-        // dd($websiteDemo->websiteFeature);
+        $websiteDemo = WebsiteDemo::with(['websiteSlider','websiteFeature'])->where('status',1)->first();
+        // dd($websiteDemo);
         // $sliders = WebsiteSlider::get();
         // dd($sliders);
         // $features = WebsiteFeature::get();
@@ -28,6 +28,6 @@ class FrontEndController extends Controller
         // $partners    = WebsitePartner::get();
         // $questions   = WebsiteQuestion::get();
         // $posts       = WebsitePost::get();
-        return view('welcome');
+        return view('welcome',['template' => $websiteDemo]);
     }
 }

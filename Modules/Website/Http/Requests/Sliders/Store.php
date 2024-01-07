@@ -9,8 +9,10 @@ class Store extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'number' => rand(1,11)
+            'number' => rand(1,11),
         ]);
+
+        
     }
     /**
      * Get the validation rules that apply to the request.
@@ -20,20 +22,20 @@ class Store extends FormRequest
     public function rules(): array
     {
         return [
-           'number' => ['sometimes','numeric'],
+           'number' => ['nullable','numeric'],
            'heading' => ['required','array'],
            'heading.*' => ['required','string','max:255'],
            'description' => ['required','array'],
            'description.*' => ['required','string'],
-           'title' => ['sometimes','array'],
-           'title.*' => ['sometimes','string','max:255'],
+           'title' => ['nullable','array'],
+           'title.*' => ['nullable','string','max:255'],
            'image' => ['required','image'],
-           'app_store_link' => ['sometimes','url'],
-           'google_play_link' => ['sometimes','url'],
-           'external_link' => ['sometimes','url'],
-           'video_link' => ['sometimes','url'],
-           'status' => ['sometimes','in:0,1'],
-           'is_home' => ['sometimes','in:0,1']
+           'app_store_link' => ['nullable'],
+           'google_play_link' => ['nullable'],
+           'external_link' => ['nullable'],
+           'video_link' => ['nullable'],
+           'status' => ['nullable','in:0,1'],
+           'is_home' => ['nullable','in:0,1']
         ];
     }
 
@@ -46,5 +48,6 @@ class Store extends FormRequest
     {
         return true;
     }
+
 
 }

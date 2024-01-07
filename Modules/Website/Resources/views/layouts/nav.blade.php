@@ -34,6 +34,11 @@
                             @lang('business.settings')
                         </a>
                     </li>
+                    <li @if(request()->segment(2) == 'demos') class="active" @endif>
+                        <a href="{{action([\Modules\Website\Http\Controllers\WebsiteDemoController::class, 'index'])}}">
+                            @lang('website::lang.demos')
+                        </a>
+                    </li>
                     <li @if(request()->segment(2) == 'sliders') class="active" @endif>
                         <a href="{{action([\Modules\Website\Http\Controllers\WebsiteSliderController::class, 'index'])}}">
                             @lang('website::lang.sliders')

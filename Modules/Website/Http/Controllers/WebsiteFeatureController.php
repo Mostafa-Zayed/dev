@@ -5,11 +5,20 @@ namespace Modules\Website\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Website\Entities\WebsiteDemo;
 use Modules\Website\Entities\WebsiteFeature;
 use Modules\Website\Http\Requests\Features\Store;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
 class WebsiteFeatureController extends Controller
 {
+    private $local;
+
+    public function __construct()
+    {
+        $this->local = App::getLocale();
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -25,7 +34,10 @@ class WebsiteFeatureController extends Controller
      */
     public function create()
     {
-        return view('website::features.create');
+        $templates = WebsiteDemo::select('id','name',DB::raw("JSON_VALUE(website_demos.name,'$.$this->local') AS name"))->get();
+        
+        // dd($templates);
+        return view('website::features.create',['templates' => $templates]);
     }
 
     /**
@@ -82,5 +94,14 @@ class WebsiteFeatureController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public static function forDromDown($items)
+    {
+        foreach($items as $item) {
+            $newItem['id'] = $item['name_trans'];
+            $result[] = $newItem;
+        }
+        return $result;
     }
 }

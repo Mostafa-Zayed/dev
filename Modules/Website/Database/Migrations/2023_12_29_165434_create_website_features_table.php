@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('number')->unique();
             $table->string('name');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('icon')->nullable();
             $table->string('external_link')->nullable();
             $table->boolean('status')->default(true);
             $table->boolean('is_home')->default(true);

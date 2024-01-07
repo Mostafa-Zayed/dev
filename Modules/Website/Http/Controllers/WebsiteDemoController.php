@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteDemo;
 use Modules\Website\Http\Requests\Demos\Store;
+use Modules\Website\Entities\WebsiteSlider;
+use Modules\Website\Entities\WebsiteFeature;
 
 class WebsiteDemoController extends Controller
 {
@@ -19,6 +21,7 @@ class WebsiteDemoController extends Controller
      */
     public function index()
     {
+       
         return view('website::demos.index');
     }
 
@@ -28,7 +31,12 @@ class WebsiteDemoController extends Controller
      */
     public function create()
     {
-        return view('website::demos.create');
+        $sliders = WebsiteSlider::pluck('number','id');
+        $features = WebsiteFeature::select('id','name')->get();
+        return view('website::demos.create',[
+            'sliders' => $sliders,
+            'features' => $features
+        ]);
     }
 
     /**
@@ -39,6 +47,7 @@ class WebsiteDemoController extends Controller
     public function store(Store $request)
     {
         try {
+            // dd($request->all());
             WebsiteDemo::create($request->validated());
             return view('website::demos.index');
         } catch (\Exception $exception){

@@ -12,11 +12,13 @@ class WebsiteFeature extends Model
     use HasFactory,HasTranslations,UploadTrait;
 
     const IMAGEPATH = 'website/features' ;
+    
     protected $fillable = [
         'number',
         'description',
         'name',
         'image',
+        'icon',
         'external_link',
         'status',
         'is_home'

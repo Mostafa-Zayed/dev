@@ -29,6 +29,7 @@ return [
     'number' => 'Number',
     'id' => '#',
     'image' => 'Image',
-    'title' => 'Title'
+    'title' => 'Title',
+    'demos' => 'Templates',
     
 ];

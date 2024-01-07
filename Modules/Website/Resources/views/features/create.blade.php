@@ -13,27 +13,20 @@
             @foreach (languages() as $lang)
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.title' . $lang) . ' : *') !!}
+                    {!! Form::label('',__('website::features.name_' . $lang) . ' : *') !!}
                     {!! Form::text("name[$lang]",null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.title' . $lang)]); !!}
+                    'placeholder' => __('website::lang.name_' . $lang)]); !!}
                 </div>
             </div>
             @endforeach
             @foreach (languages() as $lang)
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label("description_$lang", __('website::lang.description_' . $lang) . ':') !!}
+                    {!! Form::label("description_$lang", __('website::lang.description_' . $lang) . ' : *') !!}
                     {!! Form::textarea("description[$lang]", null, ['class' => 'form-control','id' => "description_$lang"]); !!}
                 </div>
             </div>
             @endforeach
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.external_link') . ' : *') !!}
-                    {!! Form::text('external_link',null,['class' => 'form-control']) !!}
-                </div>
-            </div>
-
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="section_features_image">تحميل الصورة:</label>
@@ -63,16 +56,29 @@
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.status') . ' : *') !!}
-                    {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                    {!! Form::label('icon',__('website::features.icon')) !!}
+                    {!! Form::text("icon",null, ['class' => 'form-control',
+                    'placeholder' => __('website::lang.icon')]); !!}
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.is_home') . ' : *') !!}
-                    {!! Form::select('is_home', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                    {!! Form::label('',__('website::lang.external_link')) !!}
+                    {!! Form::text('external_link',null,['class' => 'form-control']) !!}
                 </div>
             </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('',__('website::lang.status')) !!}
+                    {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], 1, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                </div>
+            </div>
+            <!-- <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('',__('website::lang.is_home')) !!}
+                    {!! Form::select('template_id',$templates, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                </div>
+            </div> -->
         </div>
         <input type="submit" value="submit" class="btn btn-primary submit_product_form">
         {!! Form::close() !!}
