@@ -292,7 +292,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>{{$settings->getTranslations('section_screenshot_title')[app()->getLocale()]}}</h2>
-                {!!$settings->getTranslations('section_screenshot_description')[app()->getLocale()]!!}
+                {!! $settings->getTranslations('section_screenshot_description')[app()->getLocale()] !!}
             </div>
 
             <div class="list_screen_slide owl-carousel">
@@ -378,8 +378,8 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="section-header-style2">
-                        <h2>No additional costs.<br>Pay for what you use.</h2>
-                        <p>Choose the most suitable service for your needs with reasonable price.</p>
+                        <h2>{{$settings->section_packages_title}}</h2>
+                        {!! $settings->section_packages_description !!}
                     </div>
                     <ul class="nav pricing-btns-group">
                         <li><a class="active btn" data-toggle="tab" href="#monthly">Monthly</a></li>
@@ -586,7 +586,7 @@
                 <div class="col-md-5">
                     <div class="section-header-style2">
                         <h2>{{$settings->getTranslations('section_reviews_title')[app()->getLocale()]}}</h2>
-                        {!$settings->getTranslations('section_reviews_description')[app()->getLocale()]!}
+                        {!! $settings->getTranslations('section_reviews_description')[app()->getLocale()] !!}
                         <div class="review_nav">
                             <span class="ti-angle-left button_prev"></span>
                             <span class="ti-angle-right button_next"></span>
@@ -741,11 +741,8 @@
     <section id="faqs" class="section-block" data-scroll-index="6">
         <div class="container">
             <div class="section-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan <br>
-                    nisi Ut ut felis congue nisl hendrerit commodo.
-                </p>
+                <h2>{{$settings->section_questions_title}}</h2>
+                {!! $settings->section_questions_description !!}
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -834,11 +831,8 @@
     <section id="blog" class="section-block" data-scroll-index="5">
         <div class="container">
             <div class="section-header">
-                <h2>Read our latest news</h2>
-                <p>
-                    Our duty towards you is to share our experience we're reaching in<br>
-                    our work path with you.
-                </p>
+                <h2>{{$settings->section_posts_title}}</h2>
+                {!! $settings->section_posts_description !!}
             </div>
             <div class="owl-carousel blog-slider">
                 <!-- Start Blog item -->
