@@ -25,7 +25,8 @@ class WebsiteSettingController extends Controller
      */
     public function index()
     {
-        return view('website::settings.index');
+        $settings = WebsiteSetting::first();
+        return view('website::settings.index',['settings' => $settings ?? []]);
     }
 
     /**
@@ -80,15 +81,20 @@ class WebsiteSettingController extends Controller
         //     abort(403, 'Unauthorized action.');
         // }
         try{
+            $requestPayload = $request->validated();
+
             $notAllowed = $this->businessUtil->notAllowedInDemo();
             if (! empty($notAllowed)) {
                 return $notAllowed;
             }
-            // dd($request->validated());
-            WebsiteSetting::create($request->validated());
-            if($request->hasFile('section_features_image')){ 
-                $this->uploadeImage($request->section_features_image,'settings');
+            $settings = WebsiteSetting::first();
+            if(! empty($settings)){
+                $settings->update($this->generateSettingsRequest($requestPayload));
+                return view('website::settings.index',['settings' => $settings]);
+            }else{
+                $settings = WebsiteSetting::create($this->generateSettingsRequest($requestPayload));
             }
+            return view('website::settings.index',['settings' => $settings]);
         }catch(\Exception $exception) {
             \Log::emergency('File:'.$exception->getFile().'Line:'.$exception->getLine().'Message:'.$exception->getMessage());
 
@@ -107,5 +113,100 @@ class WebsiteSettingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function generateSettingsRequest(& $settings)
+    {
+        // dd($settings);
+        $websiteSettings = [];
+        if(! empty($settings['section_features_description']['ar'])){
+            $websiteSettings['section_features_description']['ar'] = $settings['section_features_description']['ar'];
+        }
+        if(! empty($settings['section_features_description']['en'])){
+            $websiteSettings['section_features_description']['en'] = $settings['section_features_description']['en'];
+        }
+        if(! empty($settings['section_features_title']['ar'])){
+            $websiteSettings['section_features_title']['ar'] = $settings['section_features_title']['ar'];
+        }
+        if(! empty($settings['section_features_title']['en'])){
+            $websiteSettings['section_features_title']['en'] = $settings['section_features_title']['en'];
+        }
+        if(! empty($settings['section_work_title']['ar'])){
+            $websiteSettings['section_work_title']['ar'] = $settings['section_work_title']['ar'];
+        }
+        if(! empty($settings['section_work_title']['en'])){
+            $websiteSettings['section_work_title']['en'] = $settings['section_work_title']['en'];
+        }
+        if(! empty($settings['section_work_description']['ar'])){
+            $websiteSettings['section_work_description']['ar'] = $settings['section_work_description']['ar'];
+        }
+        if(! empty($settings['section_work_description']['en'])){
+            $websiteSettings['section_work_description']['en'] = $settings['section_work_description']['en'];
+        }
+
+        if(! empty($settings['section_screenshot_title']['ar'])){
+            $websiteSettings['section_screenshot_title']['ar'] = $settings['section_screenshot_title']['ar'];
+        }
+        if(! empty($settings['section_screenshot_title']['en'])){
+            $websiteSettings['section_screenshot_title']['en'] = $settings['section_screenshot_title']['en'];
+        }
+
+        if(! empty($settings['section_screenshot_description']['ar'])){
+            $websiteSettings['section_screenshot_description']['ar'] = $settings['section_screenshot_description']['ar'];
+        }
+        if(! empty($settings['section_screenshot_description']['en'])){
+            $websiteSettings['section_screenshot_description']['en'] = $settings['section_screenshot_description']['en'];
+        }
+
+        
+        if(! empty($settings['section_packages_title']['ar'])){
+            $websiteSettings['section_packages_title']['ar'] = $settings['section_packages_title']['ar'];
+        }
+        if(! empty($settings['section_packages_title']['en'])){
+            $websiteSettings['section_packages_title']['en'] = $settings['section_packages_title']['en'];
+        }
+
+         
+        if(! empty($settings['section_packages_description']['ar'])){
+            $websiteSettings['section_packages_description']['ar'] = $settings['section_packages_description']['ar'];
+        }
+        if(! empty($settings['section_packages_description']['en'])){
+            $websiteSettings['section_packages_description']['en'] = $settings['section_packages_description']['en'];
+        }
+
+        if(! empty($settings['section_reviews_title']['ar'])){
+            $websiteSettings['section_reviews_title']['ar'] = $settings['section_reviews_title']['ar'];
+        }
+
+        if(! empty($settings['section_reviews_title']['en'])){
+            $websiteSettings['section_reviews_title']['en'] = $settings['section_reviews_title']['en'];
+        }
+        if(! empty($settings['section_reviews_description']['en'])){
+            $websiteSettings['section_reviews_description']['en'] = $settings['section_reviews_description']['en'];
+        }
+        if(! empty($settings['section_reviews_description']['ar'])){
+            $websiteSettings['section_reviews_description']['ar'] = $settings['section_reviews_description']['ar'];
+        }
+
+        if(! empty($settings['section_questions_title']['ar'])){
+            $websiteSettings['section_questions_title']['ar'] = $settings['section_questions_title']['ar'];
+        }
+
+        if(! empty($settings['section_questions_title']['en'])){
+            $websiteSettings['section_questions_title']['en'] = $settings['section_questions_title']['en'];
+        }
+        if(! empty($settings['section_questions_description']['en'])){
+            $websiteSettings['section_questions_description']['en'] = $settings['section_questions_description']['en'];
+        }
+        if(! empty($settings['section_questions_description']['ar'])){
+            $websiteSettings['section_questions_description']['ar'] = $settings['section_questions_description']['ar'];
+        }
+
+        if(! empty($settings['section_features_image'])){
+            $websiteSettings['section_features_image'] = $settings['section_features_image'];
+        }
+        // dd($websiteSettings);
+        return $websiteSettings;
+        dd($websiteSettings);
     }
 }

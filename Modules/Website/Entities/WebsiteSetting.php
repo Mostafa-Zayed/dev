@@ -44,7 +44,12 @@ class WebsiteSetting extends Model
         'section_screenshot_title',
         'section_screenshot_description',
         'section_packages_title',
-        'section_packages_description'
+        'section_packages_description',
+        'section_reviews_title',
+        'section_reviews_description',
+        'section_questions_title',
+        'section_questions_description',
+
     ];
 
 

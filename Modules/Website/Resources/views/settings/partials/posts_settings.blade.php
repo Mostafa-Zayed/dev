@@ -4,7 +4,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
-                    {!! Form::text("section_posts_title[$lang]",null, ['class' => 'form-control', 'required',
+                    {!! Form::text("section_posts_title[$lang]",null, ['class' => 'form-control',
                     'placeholder' => __('website::lang.title_' . $lang)]); !!}
                 </div>
             </div>

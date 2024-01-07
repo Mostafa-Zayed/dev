@@ -19,7 +19,7 @@ class FrontEndController extends Controller
     public function index()
     {
         $websiteDemo = WebsiteDemo::with(['websiteSlider','websiteFeature'])->where('status',1)->first();
-        $websiteSettings = WebsiteSetting::get();
+        $websiteSettings = WebsiteSetting::first();
         // dd($websiteSettings);
         // dd($websiteDemo);
         // $sliders = WebsiteSlider::get();
@@ -31,6 +31,6 @@ class FrontEndController extends Controller
         // $partners    = WebsitePartner::get();
         // $questions   = WebsiteQuestion::get();
         // $posts       = WebsitePost::get();
-        return view('welcome',['template' => $websiteDemo]);
+        return view('welcome',['template' => $websiteDemo,'settings' => $websiteSettings]);
     }
 }

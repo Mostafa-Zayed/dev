@@ -156,11 +156,8 @@
         </div>
         <div class="container">
             <div class="section-header">
-                <h2>Core Features</h2>
-                <p>
-                    Efficiently syndicate flexible content via cost effective initiatives completely leverage vertical quality.<br>
-                    Turn your mobile visitors into your best customers.
-                </p>
+                <h2>{{$settings->getTranslations('section_features_title')[app()->getLocale()]}}</h2>
+                <p>{{$settings->getTranslations('section_features_description')[app()->getLocale()]}}</p>
             </div>
             <div class="row">
                 <!-- Start Features Item -->
@@ -243,11 +240,8 @@
     <section id="how-it-work" class="section-block" data-scroll-index="2">
         <div class="container">
             <div class="section-header">
-                <h2>How it works</h2>
-                <p>
-                    Efficiently syndicate flexible content via cost effective initiatives completely leverage vertical quality.<br>
-                    Turn your mobile visitors into your best customers.
-                </p>
+                <h2>{{$settings->getTranslations('section_work_title')[app()->getLocale()]}}</h2>
+                <p>{{$settings->getTranslations('section_work_description')[app()->getLocale()]}}</p>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -297,11 +291,8 @@
         <div class="shape-top"></div>
         <div class="container">
             <div class="section-header">
-                <h2>App Screenshots</h2>
-                <p>
-                    Efficiently syndicate flexible content via cost effective initiatives completely leverage vertical quality.<br>
-                    Turn your mobile visitors into your best customers.
-                </p>
+                <h2>{{$settings->getTranslations('section_screenshot_title')[app()->getLocale()]}}</h2>
+                <p>{{$settings->getTranslations('section_screenshot_description')[app()->getLocale()]}}</p>
             </div>
 
             <div class="list_screen_slide owl-carousel">
