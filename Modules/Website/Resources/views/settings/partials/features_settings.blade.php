@@ -5,7 +5,7 @@
         
             <div class="form-group">
                 {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
-                {!! Form::text("section_features_title[$lang]",isset($settings->getTranslations('section_features_title')[$lang]) ?$settings->getTranslations('section_features_title')[$lang] : null, ['class' => 'form-control',
+                {!! Form::text("section_features_title[$lang]",!empty($settings) && isset($settings->getTranslations('section_features_title')[$lang]) ?$settings->getTranslations('section_features_title')[$lang] : null, ['class' => 'form-control',
                 'placeholder' => __('website::lang.title_' . $lang)]); !!}
             </div>
         </div>
@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 {!! Form::label("section_features_description_$lang", __('website::lang.description_' . $lang) . ':') !!}
-                {!! Form::textarea("section_features_description[$lang]", isset($settings->getTranslations('section_features_description')[$lang]) ? $settings->getTranslations('section_features_description')[$lang] : null, ['class' => 'form-control','id' => "section_features_description_$lang"]); !!}
+                {!! Form::textarea("section_features_description[$lang]", !empty($settings) && isset($settings->getTranslations('section_features_description')[$lang]) ? $settings->getTranslations('section_features_description')[$lang] : null, ['class' => 'form-control','id' => "section_features_description_$lang"]); !!}
             </div>
         </div>
         @endforeach

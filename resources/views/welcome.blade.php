@@ -585,11 +585,8 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="section-header-style2">
-                        <h2>What Our Customer Says!</h2>
-                        <p>
-                            Don't just believe our words. <br>
-                            Check these testimonials from our satisfied customers!
-                        </p>
+                        <h2>{{$settings->getTranslations('section_reviews_title')[app()->getLocale()]}}</h2>
+                        <p>{{$settings->getTranslations('section_reviews_description')[app()->getLocale()]}}</p>
                         <div class="review_nav">
                             <span class="ti-angle-left button_prev"></span>
                             <span class="ti-angle-right button_next"></span>
