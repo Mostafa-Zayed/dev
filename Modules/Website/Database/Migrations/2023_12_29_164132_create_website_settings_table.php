@@ -16,22 +16,22 @@ return new class extends Migration
         Schema::create('website_settings', function (Blueprint $table) {
             $table->id();
             $table->string('logo')->nullable();
-            $table->string('section_features_title')->nullable();
+            $table->text('section_features_title')->nullable();
             $table->text('section_features_description')->nullable();
             $table->string('section_features_image')->nullable();
-            $table->string('section_work_title')->nullable();
+            $table->text('section_work_title')->nullable();
             $table->text('section_work_description')->nullable();
             $table->string('section_work_image')->nullable();
-            $table->string('section_screenshot_title')->nullable();
+            $table->text('section_screenshot_title')->nullable();
             $table->text('section_screenshot_description')->nullable();
             $table->string('section_packages_title')->nullable();
             $table->text('section_packages_description')->nullable();
-            $table->string('section_reviews_title')->nullable();
+            $table->text('section_reviews_title')->nullable();
             $table->text('section_reviews_description')->nullable();
-            $table->string('section_questions_title')->nullable();
+            $table->text('section_questions_title')->nullable();
             $table->text('section_questions_description')->nullable();
             $table->string('section_questions_image')->nullable();
-            $table->string('section_posts_title')->nullable();
+            $table->text('section_posts_title')->nullable();
             $table->text('section_posts_description')->nullable();
             $table->text('newsletter_description')->nullable();
             $table->string('footer_logo')->nullable();
