@@ -292,7 +292,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>{{$settings->getTranslations('section_screenshot_title')[app()->getLocale()]}}</h2>
-                <p>{{$settings->getTranslations('section_screenshot_description')[app()->getLocale()]}}</p>
+                {!$settings->getTranslations('section_screenshot_description')[app()->getLocale()]!}
             </div>
 
             <div class="list_screen_slide owl-carousel">
@@ -586,7 +586,7 @@
                 <div class="col-md-5">
                     <div class="section-header-style2">
                         <h2>{{$settings->getTranslations('section_reviews_title')[app()->getLocale()]}}</h2>
-                        <p>{{$settings->getTranslations('section_reviews_description')[app()->getLocale()]}}</p>
+                        {!$settings->getTranslations('section_reviews_description')[app()->getLocale()]!}
                         <div class="review_nav">
                             <span class="ti-angle-left button_prev"></span>
                             <span class="ti-angle-right button_next"></span>
