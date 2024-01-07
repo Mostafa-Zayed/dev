@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 start-home-img">
-                        <img class="img-fluid" src="{{asset('assets/images/banner-2.png')}}" alt="Img" />
+                        <img class="img-fluid" src="{{asset($template->websiteSlider->image)}}" alt="Img" />
                     </div>
                 </div>
             </div>

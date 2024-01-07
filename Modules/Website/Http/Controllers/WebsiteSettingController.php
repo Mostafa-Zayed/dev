@@ -2,6 +2,7 @@
 
 namespace Modules\Website\Http\Controllers;
 
+use App\Traits\UploadTrait;
 use App\Utils\BusinessUtil;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Modules\Website\Entities\WebsiteSetting;
 
 class WebsiteSettingController extends Controller
 {
+    use UploadTrait;
     private $businessUtil;
 
     public function __construct(BusinessUtil $businessUtil)
@@ -84,6 +86,9 @@ class WebsiteSettingController extends Controller
             }
             // dd($request->validated());
             WebsiteSetting::create($request->validated());
+            if($request->hasFile('section_features_image')){ 
+                $this->uploadeImage($request->section_features_image,'settings');
+            }
         }catch(\Exception $exception) {
             \Log::emergency('File:'.$exception->getFile().'Line:'.$exception->getLine().'Message:'.$exception->getMessage());
 

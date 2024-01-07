@@ -2,6 +2,7 @@
 
 namespace Modules\Website\Entities;
 
+use App\Traits\UploadTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +10,7 @@ use Spatie\Translatable\HasTranslations;
 
 class WebsiteSetting extends Model
 {
-    use HasFactory,HasTranslations,SoftDeletes;
+    use HasFactory,HasTranslations,SoftDeletes,UploadTrait;
 
     public $table = 'website_settings';
 
@@ -45,6 +46,25 @@ class WebsiteSetting extends Model
         'section_packages_title',
         'section_packages_description'
     ];
+
+
+    public function getSectionFeaturesImageAttribute()
+    {
+        if ($this->attributes['section_features_image']) {
+            $image = $this->getImage($this->attributes['section_features_image'], 'settings');
+        } else {
+            $image = $this->defaultImage('settings');
+        }
+        return $image;
+    }
+
+    public function setSectionFeaturesImageAttribute($value)
+    {
+        if (null != $value && is_file($value)) {
+            isset($this->attributes['section_features_image']) ? $this->deleteFile($this->attributes['section_features_image'], 'settings') : '';
+            $this->attributes['section_features_image'] = $this->uploadeImage($value, 'settings');
+        }
+    }
 
     protected static function newFactory()
     {

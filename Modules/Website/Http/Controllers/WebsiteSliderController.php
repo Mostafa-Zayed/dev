@@ -3,6 +3,7 @@
 namespace Modules\Website\Http\Controllers;
 
 use App\Traits\LogException;
+use App\Traits\UploadTrait;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\App;
 
 class WebsiteSliderController extends Controller
 {
-    use LogException;
+    use LogException,UploadTrait;
 
     private $local;
 
@@ -63,6 +64,9 @@ class WebsiteSliderController extends Controller
     {
         try {
             WebsiteSlider::create($request->validated());
+            if($request->hasFile('image')){ 
+                $this->uploadeImage($request->image,'sliders');
+            }
             return view('website::sliders.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);

@@ -12,12 +12,15 @@ use Modules\Website\Entities\WebsiteScreenshot;
 use Modules\Website\Entities\WebsiteSlider;
 use Modules\Website\Entities\WebsiteTestmonial;
 use Modules\Website\Entities\WebsiteWork;
+use Modules\Website\Entities\WebsiteSetting;
 
 class FrontEndController extends Controller
 {
     public function index()
     {
         $websiteDemo = WebsiteDemo::with(['websiteSlider','websiteFeature'])->where('status',1)->first();
+        $websiteSettings = WebsiteSetting::get();
+        // dd($websiteSettings);
         // dd($websiteDemo);
         // $sliders = WebsiteSlider::get();
         // dd($sliders);

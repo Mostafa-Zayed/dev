@@ -10,7 +10,7 @@ use Spatie\Translatable\HasTranslations;
 class WebsiteSlider extends Model
 {
     use UploadTrait,HasTranslations;
-    const IMAGEPATH = 'website/sliders' ;
+    const IMAGEPATH = 'sliders' ;
     use HasFactory;
 
     protected $fillable = [
@@ -47,7 +47,7 @@ class WebsiteSlider extends Model
     {
         if (null != $value && is_file($value)) {
             isset($this->attributes['image']) ? $this->deleteFile($this->attributes['image'], self::IMAGEPATH) : '';
-            $this->attributes['image'] = $this->uploadAllTyps($value, 'users');
+            $this->attributes['image'] = $this->uploadeImage($value, 'sliders');
         }
     }
 

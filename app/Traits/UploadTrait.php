@@ -41,8 +41,11 @@ trait UploadTrait
 
   public function uploadeImage($file, $directory, $width = null, $height = null)
   {
+    if (!File::isDirectory('uploads/images/' . $directory)) {
+      File::makeDirectory('uploads/images/' . $directory, 0777, true, true);
+    }
     $img        = Image::make($file)->orientate();
-    $thumbsPath = 'storage/images/' . $directory;
+    $thumbsPath = 'uploads/images/' . $directory;
     $name       = time() . '_' . rand(1111, 9999) . '.' . $file->getClientOriginalExtension();
 
     if (null != $width && null != $height)
@@ -63,11 +66,11 @@ trait UploadTrait
 
   public function defaultImage($directory): string
   {
-    return asset("/storage/images/$directory/default.png");
+    return asset("/uploads/images/$directory/default.png");
   }
 
   public static function getImage($name, $directory): string
   {
-    return asset("storage/images/$directory/" . $name);
+    return asset("uploads/images/$directory/" . $name);
   }
 }
