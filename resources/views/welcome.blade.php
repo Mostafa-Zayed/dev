@@ -107,7 +107,7 @@
                         <h1>
                             {{$template->websiteSlider->heading}}
                         </h1>
-                        <p>{{$template->websiteSlider->description}}</p>
+                        {!! $template->websiteSlider->description !!}
                         <div class="app-button">
                             <div class="apple-button">
                                 <a href="{{$template->websiteSlider->app_store_link}}">
@@ -157,7 +157,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>{{$settings->getTranslations('section_features_title')[app()->getLocale()]}}</h2>
-                <p>{{$settings->getTranslations('section_features_description')[app()->getLocale()]}}</p>
+                {!! $settings->getTranslations('section_features_description')[app()->getLocale()] !!}
             </div>
             <div class="row">
                 <!-- Start Features Item -->
@@ -241,7 +241,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>{{$settings->getTranslations('section_work_title')[app()->getLocale()]}}</h2>
-                <p>{{$settings->getTranslations('section_work_description')[app()->getLocale()]}}</p>
+                {!! $settings->getTranslations('section_work_description')[app()->getLocale()] !!}
             </div>
             <div class="row">
                 <div class="col-md-6">
