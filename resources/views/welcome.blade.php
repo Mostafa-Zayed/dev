@@ -378,8 +378,8 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="section-header-style2">
-                        <h2>{{$settings->section_packages_title}}</h2>
-                        {!! $settings->section_packages_description !!}
+                        <h2>{{$settings->getTranslations('section_packages_title')[app()->getLocale()]}}</h2>
+                        {!! $settings->getTranslations('section_packages_description')[app()->getLocale()] !!}
                     </div>
                     <ul class="nav pricing-btns-group">
                         <li><a class="active btn" data-toggle="tab" href="#monthly">Monthly</a></li>
@@ -741,8 +741,8 @@
     <section id="faqs" class="section-block" data-scroll-index="6">
         <div class="container">
             <div class="section-header">
-                <h2>{{$settings->section_questions_title}}</h2>
-                {!! $settings->section_questions_description !!}
+                <h2>{{$settings->getTranslations('section_questions_title')[app()->getLocale()]}}</h2>
+                {!! $settings->getTranslations('section_questions_description')[app()->getLocale()] !!}
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -831,8 +831,8 @@
     <section id="blog" class="section-block" data-scroll-index="5">
         <div class="container">
             <div class="section-header">
-                <h2>{{$settings->section_posts_title}}</h2>
-                {!! $settings->section_posts_description !!}
+                <h2>{{$settings->getTranslations('section_posts_title')[app()->getLocale()]}}</h2>
+                {!! $settings->getTranslations('section_posts_description')[app()->getLocale()] !!}
             </div>
             <div class="owl-carousel blog-slider">
                 <!-- Start Blog item -->
