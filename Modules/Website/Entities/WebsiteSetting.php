@@ -73,6 +73,41 @@ class WebsiteSetting extends Model
         }
     }
 
+    public function getSectionWorkImageAttribute()
+    {
+        if ($this->attributes['section_work_image']) {
+            $image = $this->getImage($this->attributes['section_work_image'], 'settings');
+        } else {
+            $image = $this->defaultImage('settings');
+        }
+        return $image;
+    }
+
+    public function setSectionWorkImageAttribute($value)
+    {
+        if (null != $value && is_file($value)) {
+            isset($this->attributes['section_work_image']) ? $this->deleteFile($this->attributes['section_work_image'], 'settings') : '';
+            $this->attributes['section_work_image'] = $this->uploadeImage($value, 'settings');
+        }
+    }
+
+    public function getSectionQuestionsImageAttribute()
+    {
+        if ($this->attributes['section_questions_image']) {
+            $image = $this->getImage($this->attributes['section_questions_image'], 'settings');
+        } else {
+            $image = $this->defaultImage('settings');
+        }
+        return $image;
+    }
+
+    public function setSectionQuestionsImageAttribute($value)
+    {
+        if (null != $value && is_file($value)) {
+            isset($this->attributes['section_questions_image']) ? $this->deleteFile($this->attributes['section_questions_image'], 'settings') : '';
+            $this->attributes['section_questions_image'] = $this->uploadeImage($value, 'settings');
+        }
+    }
     protected static function newFactory()
     {
         return \Modules\Website\Database\factories\WebsiteSettingFactory::new();
