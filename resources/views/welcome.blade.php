@@ -292,7 +292,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>{{$settings->getTranslations('section_screenshot_title')[app()->getLocale()]}}</h2>
-                {!$settings->getTranslations('section_screenshot_description')[app()->getLocale()]!}
+                {!!$settings->getTranslations('section_screenshot_description')[app()->getLocale()]!!}
             </div>
 
             <div class="list_screen_slide owl-carousel">
