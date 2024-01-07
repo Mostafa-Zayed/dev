@@ -28,8 +28,6 @@ class WebsiteSetting extends Model
         'section_reviews_title',
         'section_reviews_description',
         'section_questions_title',
-        'section_reviews_description',
-        'section_questions_title',
         'section_questions_description',
         'section_questions_image',
         'section_posts_title',

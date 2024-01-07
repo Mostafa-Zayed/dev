@@ -205,8 +205,16 @@ class WebsiteSettingController extends Controller
         if(! empty($settings['section_features_image'])){
             $websiteSettings['section_features_image'] = $settings['section_features_image'];
         }
-        // dd($websiteSettings);
+
+        if(! empty($settings['section_work_image'])){
+            $websiteSettings['section_work_image'] = $settings['section_work_image'];
+        }
+
+        if(! empty($settings['section_questions_image'])){
+            $websiteSettings['section_questions_image'] = $settings['section_questions_image'];
+        }
+
         return $websiteSettings;
-        dd($websiteSettings);
+
     }
 }
