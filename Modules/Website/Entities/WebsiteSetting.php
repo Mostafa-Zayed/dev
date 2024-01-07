@@ -49,6 +49,8 @@ class WebsiteSetting extends Model
         'section_reviews_description',
         'section_questions_title',
         'section_questions_description',
+        'section_posts_title',
+        'section_posts_description'
 
     ];
 
