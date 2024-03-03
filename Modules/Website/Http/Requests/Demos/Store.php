@@ -15,10 +15,10 @@ class Store extends FormRequest
     {
         return [
             'name' => ['required','array'],
-            'number' => ['required'],
-            'name.*' => ['required','string','unique:website_demos,id'],
+            // 'number' => ['required'],
+            // 'name.*' => ['required','string','unique:website_demos,id'],
             'image' => ['nullable','image'],
-            'website_slider_id' => ['required','exists:website_sliders,id']
+            
         ];
     }
 
