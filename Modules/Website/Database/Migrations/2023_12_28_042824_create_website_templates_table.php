@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('website_partners', function (Blueprint $table) {
+        Schema::create('website_templates', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name')->unique();
             $table->string('image')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unsignedBigInteger('website_template_id')->nullable();
-            $table->foreign('website_template_id')->references('id')->on('website_templates')->onUpdate('cascade')->onDelete('set null');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('website_partners');
+        Schema::dropIfExists('website_demos');
     }
 };

@@ -21,6 +21,13 @@
             @endforeach
             <div class="col-sm-12">
                 <div class="form-group">
+                    {!! Form::label('',__('website::lang.title') . ' : *') !!}
+                    {!! Form::text("number",null, ['class' => 'form-control',
+                    'placeholder' => __('website::lang.title')]); !!}
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
                     {!! Form::label('website_slider_id',__('website::lang.slider') . ' : *') !!}
                     {!! Form::select('website_slider_id', $sliders, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>

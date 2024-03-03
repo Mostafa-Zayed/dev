@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('section_work_image')->nullable();
             $table->text('section_screenshot_title')->nullable();
             $table->text('section_screenshot_description')->nullable();
-            $table->string('section_packages_title')->nullable();
+            $table->text('section_packages_title')->nullable();
             $table->text('section_packages_description')->nullable();
             $table->text('section_reviews_title')->nullable();
             $table->text('section_reviews_description')->nullable();

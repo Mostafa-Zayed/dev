@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Translatable\HasTranslations;
 
-class WebsiteDemo extends Model
+class WebsiteTemplate extends Model
 {
     use HasFactory,HasTranslations,UploadTrait;
-    const IMAGEPATH = 'website/templates' ;
+    const IMAGEPATH = 'templates' ;
 
     protected $fillable = [
         'name',
+        'number',
         'website_slider_id',
         'website_feature_id',
         'website_work_id',
@@ -40,7 +41,7 @@ class WebsiteDemo extends Model
     {
         if (null != $value && is_file($value)) {
             isset($this->attributes['image']) ? $this->deleteFile($this->attributes['image'], self::IMAGEPATH) : '';
-            $this->attributes['image'] = $this->uploadAllTyps($value, 'users');
+            $this->attributes['image'] = $this->uploadAllTyps($value, 'templates');
         }
     }
 

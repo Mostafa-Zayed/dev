@@ -156,81 +156,31 @@
         </div>
         <div class="container">
             <div class="section-header">
-                <h2>{{$settings->getTranslations('section_features_title')[app()->getLocale()]}}</h2>
+                @if(! empty($settings))
+                <h2>{{($settings->getTranslations('section_features_title')[app()->getLocale()])}}</h2>
                 {!! $settings->getTranslations('section_features_description')[app()->getLocale()] !!}
+                @endif
             </div>
             <div class="row">
                 <!-- Start Features Item -->
+                @if(! empty($features) && $features->count() > 0)
+                @foreach ($features as $feature)
                 <div class="col-md-4">
                     <div class="feature-block">
                         <span class="feature-icon icon-1">
-                            <i class="ti-wand"></i>
+                            @if($feature->icon)
+                            <i class="{{$feature->icon}}"></i>
+                            @else
+                            <img src="{{$feature->image}}" class="img-fluid" alt="Img" />
+                            @endif
                         </span>
-                        <h3>Trendy Look</h3>
-                        <p>We provide marketing to businesses to looking for a partner digital media.</p>
+                        <h3>{{$feature->getTranslations('name')[app()->getLocale()]}}</h3>
+                        <p>{{$feature->getTranslations('description')[app()->getLocale()]}}</p>
                     </div>
                 </div>
+                @endforeach
                 <!-- End Features Item -->
-
-                <!-- Start Features Item -->
-                <div class="col-md-4">
-                    <div class="feature-block">
-                        <span class="feature-icon icon-2">
-                            <i class="ti-gift"></i>
-                        </span>
-                        <h3>Clean Code</h3>
-                        <p>We provide marketing to businesses to looking for a partner digital media.</p>
-                    </div>
-                </div>
-                <!-- End Features Item -->
-
-                <!-- Start Features Item -->
-                <div class="col-md-4">
-                    <div class="feature-block">
-                        <span class="feature-icon icon-3">
-                            <i class="ti-announcement"></i>
-                        </span>
-                        <h3>No Ads</h3>
-                        <p>We provide marketing to businesses to looking for a partner digital media.</p>
-                    </div>
-                </div>
-                <!-- End Features Item -->
-
-                <!-- Start Features Item -->
-                <div class="col-md-4">
-                    <div class="feature-block">
-                        <span class="feature-icon icon-4">
-                            <i class="ti-headphone-alt"></i>
-                        </span>
-                        <h3>Free Support</h3>
-                        <p>We provide marketing to businesses to looking for a partner digital media.</p>
-                    </div>
-                </div>
-                <!-- End Features Item -->
-
-                <!-- Start Features Item -->
-                <div class="col-md-4">
-                    <div class="feature-block">
-                        <span class="feature-icon icon-5">
-                            <i class="ti-bar-chart"></i>
-                        </span>
-                        <h3>Speed Optimization</h3>
-                        <p>We provide marketing to businesses to looking for a partner digital media.</p>
-                    </div>
-                </div>
-                <!-- End Features Item -->
-
-                <!-- Start Features Item -->
-                <div class="col-md-4">
-                    <div class="feature-block">
-                        <span class="feature-icon icon-6">
-                            <i class="ti-pencil-alt"></i>
-                        </span>
-                        <h3>Full Customization</h3>
-                        <p>We provide marketing to businesses to looking for a partner digital media.</p>
-                    </div>
-                </div>
-                <!-- End Features Item -->
+                @endif
             </div>
         </div>
     </section>
@@ -240,8 +190,10 @@
     <section id="how-it-work" class="section-block" data-scroll-index="2">
         <div class="container">
             <div class="section-header">
+                @if(! empty($settings))
                 <h2>{{$settings->getTranslations('section_work_title')[app()->getLocale()]}}</h2>
                 {!! $settings->getTranslations('section_work_description')[app()->getLocale()] !!}
+                @endif
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -291,8 +243,10 @@
         <div class="shape-top"></div>
         <div class="container">
             <div class="section-header">
+                @if(! empty($settings))
                 <h2>{{$settings->getTranslations('section_screenshot_title')[app()->getLocale()]}}</h2>
                 {!! $settings->getTranslations('section_screenshot_description')[app()->getLocale()] !!}
+                @endif
             </div>
 
             <div class="list_screen_slide owl-carousel">
@@ -378,8 +332,10 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="section-header-style2">
+                        @if(! empty($settings))
                         <h2>{{$settings->getTranslations('section_packages_title')[app()->getLocale()]}}</h2>
                         {!! $settings->getTranslations('section_packages_description')[app()->getLocale()] !!}
+                        @endif
                     </div>
                     <ul class="nav pricing-btns-group">
                         <li><a class="active btn" data-toggle="tab" href="#monthly">Monthly</a></li>
@@ -585,8 +541,10 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="section-header-style2">
+                        @if(! empty($settings))
                         <h2>{{$settings->getTranslations('section_reviews_title')[app()->getLocale()]}}</h2>
                         {!! $settings->getTranslations('section_reviews_description')[app()->getLocale()] !!}
+                        @endif
                         <div class="review_nav">
                             <span class="ti-angle-left button_prev"></span>
                             <span class="ti-angle-right button_next"></span>
@@ -741,8 +699,10 @@
     <section id="faqs" class="section-block" data-scroll-index="6">
         <div class="container">
             <div class="section-header">
+                @if(! empty($settings))
                 <h2>{{$settings->getTranslations('section_questions_title')[app()->getLocale()]}}</h2>
                 {!! $settings->getTranslations('section_questions_description')[app()->getLocale()] !!}
+                @endif
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -831,8 +791,10 @@
     <section id="blog" class="section-block" data-scroll-index="5">
         <div class="container">
             <div class="section-header">
+                @if(! empty($settings))
                 <h2>{{$settings->getTranslations('section_posts_title')[app()->getLocale()]}}</h2>
                 {!! $settings->getTranslations('section_posts_description')[app()->getLocale()] !!}
+                @endif
             </div>
             <div class="owl-carousel blog-slider">
                 <!-- Start Blog item -->

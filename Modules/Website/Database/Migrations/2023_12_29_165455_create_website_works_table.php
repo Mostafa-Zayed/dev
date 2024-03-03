@@ -22,6 +22,9 @@ return new class extends Migration
             $table->boolean('is_home')->default(true);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unsignedBigInteger('website_template_id')->nullable();
+            $table->foreign('website_template_id')->references('id')->on('website_templates')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

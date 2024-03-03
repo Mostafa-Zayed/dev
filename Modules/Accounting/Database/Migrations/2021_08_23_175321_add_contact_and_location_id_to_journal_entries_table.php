@@ -15,7 +15,7 @@ class AddContactAndLocationIdToJournalEntriesTable extends Migration
      */
     public function up()
     {
-        DB::transaction(function () {
+        // DB::transaction(function () {
             Schema::table('journal_entries', function (Blueprint $table) {
                 $table->dropIndex('client_id_index');
                 $table->dropIndex('branch_id_index');
@@ -24,7 +24,7 @@ class AddContactAndLocationIdToJournalEntriesTable extends Migration
                 $table->index('contact_id');
                 $table->index('location_id');
             });
-        });
+        // });
     }
 
     /**

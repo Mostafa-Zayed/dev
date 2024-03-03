@@ -36,7 +36,6 @@ class WebsiteFeatureController extends Controller
     {
         $templates = WebsiteDemo::select('id','name',DB::raw("JSON_VALUE(website_demos.name,'$.$this->local') AS name"))->get();
         
-        // dd($templates);
         return view('website::features.create',['templates' => $templates]);
     }
 

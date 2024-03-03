@@ -11,7 +11,7 @@ class WebsiteFeature extends Model
 {
     use HasFactory,HasTranslations,UploadTrait;
 
-    const IMAGEPATH = 'website/features' ;
+    const IMAGEPATH = 'features' ;
     
     protected $fillable = [
         'number',
@@ -24,6 +24,7 @@ class WebsiteFeature extends Model
         'is_home'
     ];
 
+    
     public $translatable = ['name','description'];
 
     public function getImageAttribute()
@@ -40,7 +41,7 @@ class WebsiteFeature extends Model
     {
         if (null != $value && is_file($value)) {
             isset($this->attributes['image']) ? $this->deleteFile($this->attributes['image'], self::IMAGEPATH) : '';
-            $this->attributes['image'] = $this->uploadAllTyps($value, 'users');
+            $this->attributes['image'] = $this->uploadAllTyps($value, 'features');
         }
     }
 
