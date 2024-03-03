@@ -13,7 +13,7 @@
             @foreach (languages() as $lang)
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.title' . $lang) . ' : *') !!}
+                    {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
                     {!! Form::text("name[$lang]",null, ['class' => 'form-control',
                     'placeholder' => __('website::lang.title' . $lang)]); !!}
                 </div>

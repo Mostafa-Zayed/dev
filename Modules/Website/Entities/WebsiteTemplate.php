@@ -14,14 +14,7 @@ class WebsiteTemplate extends Model
 
     protected $fillable = [
         'name',
-        'number',
-        'website_slider_id',
-        'website_feature_id',
-        'website_work_id',
-        'website_question_id',
-        'website_screenshot_id',
-        'website_review_id',
-        'website_partner_id',
+        'image',
         'status',
     ];
     
@@ -49,15 +42,7 @@ class WebsiteTemplate extends Model
     {
         $query->where('status',1);
     }
-    public function websiteSlider()
-    {
-        return $this->belongsTo(WebsiteSlider::class,'website_slider_id','id');
-    }
-
-    public function websiteFeature()
-    {
-        return $this->belongsTo(WebsiteFeature::class,'website_feature_id','id');
-    }
+    
     protected static function newFactory()
     {
         return \Modules\Website\Database\factories\WebsiteDemoFactory::new();
