@@ -19,7 +19,7 @@
                         <p>We provide marketing to businesses digital media.</p>
                     </div>
                 </div>
-                array_shift($features)
+                $features->pull($feature->index)
                 @endforeach
                 <div class="col-md-4">
                     <div class="img-box">
