@@ -11,6 +11,9 @@
                 
             <div class="col-md-4">
                 @foreach ($features as $feature)
+                @if ($loop->index == 3)
+                    @break;
+                @endif
                 <div class="feature-block">
                     <span class="feature-icon">
                         <img src="{{$feature->image}}" class="img-fluid" alt="Img" />
