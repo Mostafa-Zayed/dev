@@ -8,8 +8,7 @@
         </div>
         <div class="row">
             @if(! empty($features) && $features->count() > 0)
-            @if ($loop->index == 3)
-            @break
+                
             <div class="col-md-4">
                 @foreach ($features as $feature)
                 <div class="feature-block">
@@ -24,7 +23,6 @@
                 @php $features->shift(); @endphp
                 @endforeach
             </div>
-            @endif
             <div class="col-md-4">
                 <div class="img-box">
                     <img src="{{$settings->section_features_image}}" class="img-fluid" alt="Img" />
@@ -45,7 +43,7 @@
                         {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                @php $features->shift(); @endphp
+               @php $features->shift(); @endphp
                 @endforeach
             </div>
             @endif
