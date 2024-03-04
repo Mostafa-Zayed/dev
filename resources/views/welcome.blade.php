@@ -165,6 +165,13 @@
                 <!-- Start Features Item -->
                 @if(! empty($features) && $features->count() > 0)
                 @foreach ($features as $feature)
+                @if ($loop->index == 3 && ! empty($settings->section_features_image))
+                <div class="col-md-4">
+                        <div class="img-box">
+                            <img src="{{$settings->section_features_image}}" class="img-fluid" alt="Img" />
+                        </div>
+                    </div>
+                @endif
                 <div class="col-md-4">
                     <div class="feature-block">
                         <span class="feature-icon icon-1">
