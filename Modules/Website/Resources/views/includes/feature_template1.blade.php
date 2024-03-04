@@ -19,7 +19,7 @@
                         {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                @php $features->pull($feature->index) @endphp
+                @php unset($features[$feature->index]) @endphp
                 @endforeach
             </div>
             <div class="col-md-4">
@@ -42,7 +42,7 @@
                         {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                @php $features->pull($feature->index) @endphp
+                @php unset($features[$feature->index]) @endphp
                 @endforeach
             </div>
             @endif
