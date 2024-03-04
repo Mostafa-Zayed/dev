@@ -146,7 +146,9 @@
     <!-- End Home Area -->
 
     <!-- Start Features Section -->
-    @include('website::includes.feature_template1')
+    @if($template->number == 1)
+        @include('website::includes.feature_template1')
+    @endif    
     <!-- End Features Section -->
 
     <!-- Start How it works Section -->

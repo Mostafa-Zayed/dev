@@ -15,8 +15,7 @@ class Store extends FormRequest
     {
         return [
             'name' => ['required','array'],
-            // 'number' => ['required'],
-            // 'name.*' => ['required','string','unique:website_demos,id'],
+            'number' => ['required','unique:website_templates,number'],
             'image' => ['nullable','image'],
             'status' => ['sometimes','in:0,1']
             

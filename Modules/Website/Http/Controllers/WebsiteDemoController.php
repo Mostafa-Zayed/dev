@@ -33,9 +33,19 @@ class WebsiteDemoController extends Controller
     {
         $sliders = WebsiteSlider::pluck('number','id');
         $features = WebsiteFeature::select('id','name')->get();
+        $numbers = [
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+            7 => 7
+        ];
         return view('website::demos.create',[
             'sliders' => $sliders,
-            'features' => $features
+            'features' => $features,
+            'numbers' => $numbers
         ]);
     }
 
@@ -48,6 +58,7 @@ class WebsiteDemoController extends Controller
     {
         try {
             WebsiteTemplate::create($request->validated());
+            
             return view('website::demos.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);

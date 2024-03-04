@@ -17,6 +17,7 @@ class WebsiteTemplate extends Model
         'name',
         'image',
         'status',
+        'number' 
     ];
     
     public $translatable = ['name'];
