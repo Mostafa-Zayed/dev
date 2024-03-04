@@ -19,7 +19,7 @@
                         {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                $features->shift();
+                @php $features->shift(); @endphp
                 @endforeach
             </div>
             <div class="col-md-4">
@@ -42,7 +42,7 @@
                         {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                $features->shift();
+               @php $features->shift(); @endphp
                 @endforeach
             </div>
             @endif
