@@ -26,7 +26,7 @@ class Store extends FormRequest
             'image' => ['nullable','image'],
             'external_link' => ['nullable'],
             'status' => ['nullable','in:0,1'],
-            'icon' => ['sometimes','string'],
+            'icon' => ['nullable','string'],
             'is_home' => ['nullable','in:0,1'],
             'website_template_id' => ['sometimes','exists:website_templates,id']
         ];
