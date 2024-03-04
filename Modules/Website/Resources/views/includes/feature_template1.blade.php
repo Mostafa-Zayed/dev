@@ -21,11 +21,13 @@
                 </div>
                 @php $features->pull($feature->index) @endphp
                 @endforeach
-                <div class="col-md-4">
-                    <div class="img-box">
-                        <img src="{{$settings->section_features_image}}" class="img-fluid" alt="Img" />
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="img-box">
+                    <img src="{{$settings->section_features_image}}" class="img-fluid" alt="Img" />
                 </div>
+            </div>
+            <div class="col-md-4">
                 @foreach ($features as $feature)
                 <div class="feature-block">
                     <span class="feature-icon">
