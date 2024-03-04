@@ -175,7 +175,7 @@
                             @endif
                         </span>
                         <h3>{{$feature->getTranslations('name')[app()->getLocale()]}}</h3>
-                        {{!! $feature->getTranslations('description')[app()->getLocale()] !!}}
+                        {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
                 @endforeach
