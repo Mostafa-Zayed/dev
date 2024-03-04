@@ -12,14 +12,14 @@
                 @foreach ($features as $feature)
                 <div class="feature-block">
                     <span class="feature-icon">
-                        <img src="images/icons/1.jpg" class="img-fluid" alt="Img" />
+                        <img src="{{$feature->image}}" class="img-fluid" alt="Img" />
                     </span>
                     <div class="feature-content">
-                        <h3>Trendy Look</h3>
-                        <p>We provide marketing to businesses digital media.</p>
+                        <h3>{{$feature->getTranslations('name')[app()->getLocale()]}}</h3>
+                        {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                $features->pull($feature->index)
+                @php $features->pull($feature->index) @endphp
                 @endforeach
                 <div class="col-md-4">
                     <div class="img-box">
