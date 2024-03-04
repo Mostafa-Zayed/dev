@@ -19,7 +19,7 @@
                         {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                @php $features->pull($feature->index) @endphp
+                @php array_shift($features) @endphp
                 @endforeach
             </div>
             <div class="col-md-4">
@@ -42,7 +42,7 @@
                         {!! $feature->getTranslations('description')[app()->getLocale()] !!}
                     </div>
                 </div>
-                array_shift($features)
+                @php array_shift($features) @endphp
                 @endforeach
             </div>
             @endif
