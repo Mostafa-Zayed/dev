@@ -146,7 +146,7 @@
     <!-- End Home Area -->
 
     <!-- Start Features Section -->
-    @include('Website::includes.feature_template1')
+    @include('website::includes.feature_template1')
     <!-- End Features Section -->
 
     <!-- Start How it works Section -->
