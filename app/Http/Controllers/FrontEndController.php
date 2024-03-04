@@ -19,7 +19,7 @@ class FrontEndController extends Controller
 {
     public function index()
     {
-        $websiteDemo = WebsiteTemplate::with(['websiteSlider','websiteFeature'])->where('status',1)->first();
+        $websiteDemo = WebsiteTemplate::with(['websiteSliders','websiteFeatures'])->where('status',1)->first();
         $websiteSettings = WebsiteSetting::first();
         $features = WebsiteFeature::where('status','1')->where('is_home',1)->get();
         // dd($websiteSettings);

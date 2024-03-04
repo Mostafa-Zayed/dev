@@ -2,6 +2,7 @@
 
 namespace Modules\Website\Http\Controllers;
 
+use App\Traits\LogException;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -10,9 +11,11 @@ use Modules\Website\Entities\WebsiteFeature;
 use Modules\Website\Http\Requests\Features\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use Modules\Website\Entities\WebsiteTemplate;
 
 class WebsiteFeatureController extends Controller
 {
+    use LogException;
     private $local;
 
     public function __construct()
@@ -34,9 +37,9 @@ class WebsiteFeatureController extends Controller
      */
     public function create()
     {
-        $templates = WebsiteDemo::select('id','name',DB::raw("JSON_VALUE(website_demos.name,'$.$this->local') AS name"))->get();
+        // $templates = WebsiteTemplate::select('id','name',DB::raw("JSON_VALUE(website_demos.name,'$.$this->local') AS name"))->get();
         
-        return view('website::features.create',['templates' => $templates]);
+        return view('website::features.create',['templates' => WebsiteTemplate::forDropdown()]);
     }
 
     /**

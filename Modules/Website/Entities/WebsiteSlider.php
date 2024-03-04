@@ -56,6 +56,11 @@ class WebsiteSlider extends Model
     {
         return $this->hasMany(WebsiteDemo::class,'website_slider_id','id');
     }
+
+    public function websiteTemplate()
+    {
+        return $this->belongsTo(WebsiteTemplate::class,'website_template_id','id');
+    }
     protected static function newFactory()
     {
         return \Modules\Website\Database\factories\WebsiteSliderFactory::new();

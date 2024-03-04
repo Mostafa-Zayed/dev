@@ -15,7 +15,7 @@
                 <div class="form-group">
                     {!! Form::label('',__('website::features.name_' . $lang) . ' : *') !!}
                     {!! Form::text("name[$lang]",null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.name_' . $lang)]); !!}
+                    'placeholder' => __('website::features.name_' . $lang)]); !!}
                 </div>
             </div>
             @endforeach
@@ -58,13 +58,19 @@
                 <div class="form-group">
                     {!! Form::label('icon',__('website::features.icon')) !!}
                     {!! Form::text("icon",null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.icon')]); !!}
+                    'placeholder' => __('website::features.icon')]); !!}
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
                     {!! Form::label('',__('website::lang.external_link')) !!}
                     {!! Form::text('external_link',null,['class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('',__('website::lang.demos') . ' : *') !!}
+                    {!! Form::select('website_template_id', $templates, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>
             </div>
             <div class="col-sm-12">

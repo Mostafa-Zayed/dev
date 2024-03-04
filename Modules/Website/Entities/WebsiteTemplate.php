@@ -49,6 +49,16 @@ class WebsiteTemplate extends Model
         return \Modules\Website\Database\factories\WebsiteDemoFactory::new();
     }
 
+    public function websiteSliders()
+    {
+        return $this->hasMany(WebsiteSlider::class,'website_template_id','id');
+    }
+
+    public function websiteFeatures()
+    {
+        return $this->hasMany(WebsiteFeature::class,'website_template_id','id');
+    }
+
     /**
      * Category Dropdown
      *

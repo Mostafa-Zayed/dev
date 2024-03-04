@@ -18,7 +18,7 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'number' => ['nullable','numeric'],
+            // 'number' => ['nullable','numeric'],
             'name' => ['required','array'],
             'name.*' => ['required','string','max:255'],
             'description' => ['required','array'],
@@ -26,7 +26,9 @@ class Store extends FormRequest
             'image' => ['nullable','image'],
             'external_link' => ['nullable'],
             'status' => ['nullable','in:0,1'],
-            'is_home' => ['nullable','in:0,1']
+            'icon' => ['sometimes','string'],
+            'is_home' => ['nullable','in:0,1'],
+            'website_template_id' => ['sometimes','exists:website_templates,id']
         ];
     }
 

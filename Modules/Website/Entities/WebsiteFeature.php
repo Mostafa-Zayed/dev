@@ -14,7 +14,7 @@ class WebsiteFeature extends Model
     const IMAGEPATH = 'features' ;
     
     protected $fillable = [
-        'number',
+        'website_template_id',
         'description',
         'name',
         'image',
