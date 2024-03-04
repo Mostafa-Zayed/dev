@@ -147,6 +147,7 @@
 
     <!-- Start Features Section -->
     <section id="AppFeatures" class="section-block features-style1" data-scroll-index="1">
+        @if(empty($settings->section_features_image))
         <div class="circls-features active">
             <div class="circle-1"></div>
             <div class="circle-2"></div>
@@ -154,6 +155,7 @@
             <div class="circle-4"></div>
             <div class="circle-x"></div>
         </div>
+        @endif
         <div class="container">
             <div class="section-header">
                 @if(! empty($settings))
