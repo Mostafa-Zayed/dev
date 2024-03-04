@@ -6,7 +6,7 @@ use App\Traits\LogException;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Website\Entities\WebsiteDemo;
+use Modules\Website\Entities\WebsiteTemplate;
 use Modules\Website\Http\Requests\Demos\Store;
 use Modules\Website\Entities\WebsiteSlider;
 use Modules\Website\Entities\WebsiteFeature;
@@ -47,7 +47,7 @@ class WebsiteDemoController extends Controller
     public function store(Store $request)
     {
         try {
-            WebsiteDemo::create($request->validated());
+            WebsiteTemplate::create($request->validated());
             return view('website::demos.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);

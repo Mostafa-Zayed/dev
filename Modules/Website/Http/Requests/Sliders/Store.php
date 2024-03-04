@@ -35,7 +35,8 @@ class Store extends FormRequest
            'external_link' => ['nullable'],
            'video_link' => ['nullable'],
            'status' => ['nullable','in:0,1'],
-           'is_home' => ['nullable','in:0,1']
+           'is_home' => ['nullable','in:0,1'],
+           'website_template_id' => ['sometimes','exists:website_templates,id']
         ];
     }
 

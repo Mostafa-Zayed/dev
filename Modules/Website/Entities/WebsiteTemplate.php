@@ -6,7 +6,8 @@ use App\Traits\UploadTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Translatable\HasTranslations;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 class WebsiteTemplate extends Model
 {
     use HasFactory,HasTranslations,UploadTrait;
@@ -46,5 +47,23 @@ class WebsiteTemplate extends Model
     protected static function newFactory()
     {
         return \Modules\Website\Database\factories\WebsiteDemoFactory::new();
+    }
+
+    /**
+     * Category Dropdown
+     *
+     * @param  int  $business_id
+     * @param  string  $type category type
+     * @return array
+     */
+    public static function forDropdown()
+    {
+        $local = App::getLocale();
+        $templates = WebsiteTemplate::select(DB::raw("JSON_VALUE(website_templates.name,'$.$local') as name_test"),'id')
+                        ->orderBy('name', 'asc')
+                        ->get();
+        $dropdown = $templates->pluck('name_test', 'id');
+
+        return $dropdown;
     }
 }

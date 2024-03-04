@@ -18,6 +18,7 @@ class Store extends FormRequest
             // 'number' => ['required'],
             // 'name.*' => ['required','string','unique:website_demos,id'],
             'image' => ['nullable','image'],
+            'status' => ['sometimes','in:0,1']
             
         ];
     }

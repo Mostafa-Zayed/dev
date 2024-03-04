@@ -24,7 +24,8 @@ class WebsiteSlider extends Model
         'external_link',
         'video_link',
         'status',
-        'is_home'
+        'is_home',
+        'website_template_id'
     ];
 
     public $translatable = [

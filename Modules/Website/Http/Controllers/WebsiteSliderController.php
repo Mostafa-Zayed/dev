@@ -12,6 +12,7 @@ use Modules\Website\Http\Requests\Sliders\Store;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\App;
+use Modules\Website\Entities\WebsiteTemplate;
 
 class WebsiteSliderController extends Controller
 {
@@ -52,7 +53,7 @@ class WebsiteSliderController extends Controller
      */
     public function create(): Renderable
     {
-        return view('website::sliders.create');
+        return view('website::sliders.create',['templates' => WebsiteTemplate::forDropdown()]);
     }
 
     /**
