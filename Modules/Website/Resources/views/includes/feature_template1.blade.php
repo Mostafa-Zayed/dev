@@ -8,7 +8,8 @@
         </div>
         <div class="row">
             @if(! empty($features) && $features->count() > 0)
-            @if ($loop->index != 3)
+            @if ($loop->index == 3)
+            @break
             <div class="col-md-4">
                 @foreach ($features as $feature)
                 <div class="feature-block">
