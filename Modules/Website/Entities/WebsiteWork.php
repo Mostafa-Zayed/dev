@@ -42,6 +42,11 @@ class WebsiteWork extends Model
             $this->attributes['image'] = $this->uploadAllTyps($value, 'users');
         }
     }
+
+    public function websiteTemplate()
+    {
+        return $this->belongsTo(WebsiteTemplate::class,'website_template_id','id');
+    }
     
     protected static function newFactory()
     {

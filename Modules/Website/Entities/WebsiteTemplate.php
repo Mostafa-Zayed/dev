@@ -60,6 +60,11 @@ class WebsiteTemplate extends Model
         return $this->hasMany(WebsiteFeature::class,'website_template_id','id');
     }
 
+    public function websiteWorks()
+    {
+        return $this->hasMany(WebsiteWork::class,'website_template_id','id');
+    }
+
     /**
      * Category Dropdown
      *
