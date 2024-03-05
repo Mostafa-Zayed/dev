@@ -57,7 +57,6 @@ class WebsiteDemoController extends Controller
     public function store(Store $request)
     {
         try {
-            dd($request->validated);
             WebsiteTemplate::create($request->validated());
             
             return view('website::demos.index');
