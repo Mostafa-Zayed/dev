@@ -39,6 +39,6 @@
         </div>
     </div>
     <div class="shape-bottom">
-        <img src="{{asset($template->websiteSlider->shape_image}}" alt="shape" class="bottom-shape img-fluid">
+        <img src="{{asset($template->websiteSlider->shape_image)}}" alt="shape" class="bottom-shape img-fluid">
     </div>
 </section>
