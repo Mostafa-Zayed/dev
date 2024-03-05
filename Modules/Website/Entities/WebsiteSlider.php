@@ -9,8 +9,8 @@ use Spatie\Translatable\HasTranslations;
 
 class WebsiteSlider extends Model
 {
-    use UploadTrait,HasTranslations;
-    const IMAGEPATH = 'sliders' ;
+    use UploadTrait, HasTranslations;
+    const IMAGEPATH = 'sliders';
     use HasFactory;
 
     protected $fillable = [
@@ -25,7 +25,8 @@ class WebsiteSlider extends Model
         'video_link',
         'status',
         'is_home',
-        'website_template_id'
+        'website_template_id',
+        'shape_image'
     ];
 
     public $translatable = [
@@ -51,15 +52,30 @@ class WebsiteSlider extends Model
             $this->attributes['image'] = $this->uploadeImage($value, 'sliders');
         }
     }
-
+    public function getShapeImageAttribute()
+    {
+        if ($this->attributes['shape_image']) {
+            $image = $this->getImage($this->attributes['shape_image'], self::IMAGEPATH);
+        } else {
+            $image = $this->defaultImage('users');
+        }
+        return $image;
+    }
+    public function setShapeImageAttribute($value)
+    {
+        if (null != $value && is_file($value)) {
+            isset($this->attributes['shape_image']) ? $this->deleteFile($this->attributes['shape_image'], self::IMAGEPATH) : '';
+            $this->attributes['shape_image'] = $this->uploadeImage($value, 'sliders');
+        }
+    }
     public function webisteDemos()
     {
-        return $this->hasMany(WebsiteDemo::class,'website_slider_id','id');
+        return $this->hasMany(WebsiteDemo::class, 'website_slider_id', 'id');
     }
 
     public function websiteTemplate()
     {
-        return $this->belongsTo(WebsiteTemplate::class,'website_template_id','id');
+        return $this->belongsTo(WebsiteTemplate::class, 'website_template_id', 'id');
     }
     protected static function newFactory()
     {

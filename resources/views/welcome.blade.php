@@ -102,6 +102,9 @@
     @if($template->number == 1)
         @include('website::includes.slider_template1')
     @endif
+    @if($template->number == 2)
+        @include('website::includes.slider_template2')
+    @endif
     <!-- End Home Area -->
 
     <!-- Start Features Section -->

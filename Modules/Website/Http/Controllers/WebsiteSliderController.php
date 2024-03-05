@@ -68,6 +68,9 @@ class WebsiteSliderController extends Controller
             if($request->hasFile('image')){ 
                 $this->uploadeImage($request->image,'sliders');
             }
+            if($request->hasFile('shape_image')){ 
+                $this->uploadeImage($request->image,'sliders');
+            }
             return view('website::sliders.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);
