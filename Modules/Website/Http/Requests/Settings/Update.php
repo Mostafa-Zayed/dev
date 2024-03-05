@@ -41,6 +41,7 @@ class Update extends FormRequest
             'section_questions_description' => ['nullable','array'],
             'section_questions_description.*' => ['nullable','string'],
             'section_questions_image' => ['nullable','file'],
+            'section_features_link' =>  ['nullable','string'],
             // 'section_posts_title' => ['nullable','string','max:255'],
             // 'section_posts_title.*' => ['nullable','array'],
             // 'section_posts_description' => ['nullable','array'],

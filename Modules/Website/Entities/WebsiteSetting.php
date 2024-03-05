@@ -31,7 +31,8 @@ class WebsiteSetting extends Model
         'section_questions_description',
         'section_questions_image',
         'section_posts_title',
-        'section_posts_description'
+        'section_posts_description',
+        'section_feature_link'
     ];
     
     public $translatable = [

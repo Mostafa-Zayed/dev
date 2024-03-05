@@ -2,7 +2,7 @@
     <div class="row">
         @foreach (languages() as $lang)
         <div class="col-sm-12">
-        
+
             <div class="form-group">
                 {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
                 {!! Form::text("section_features_title[$lang]",!empty($settings) && isset($settings->getTranslations('section_features_title')[$lang]) ?$settings->getTranslations('section_features_title')[$lang] : null, ['class' => 'form-control',
@@ -18,6 +18,14 @@
             </div>
         </div>
         @endforeach
+        <div class="col-sm-12">
+
+            <div class="form-group">
+                {!! Form::label('',__('website::lang.link') . ' : *') !!}
+                {!! Form::text("section_features_link",!empty($settings) && isset($settings->section_feature_link) ? $settings->section_feature_link : null, ['class' => 'form-control',
+                'placeholder' => __('website::lang.title_' . $lang)]); !!}
+            </div>
+        </div>
         <div class="col-sm-12">
             <div class="form-group">
                 <label for="section_features_image">تحميل الصورة:</label>
