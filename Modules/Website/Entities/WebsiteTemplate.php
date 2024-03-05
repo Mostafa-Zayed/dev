@@ -52,7 +52,7 @@ class WebsiteTemplate extends Model
 
     public function websiteSliders()
     {
-        return $this->hasMany(WebsiteSlider::class,'website_template_id','id');
+        return $this->hasOne(WebsiteSlider::class,'website_template_id','id');
     }
 
     public function websiteFeatures()
