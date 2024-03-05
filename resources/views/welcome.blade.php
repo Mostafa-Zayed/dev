@@ -148,7 +148,10 @@
     <!-- Start Features Section -->
     @if($template->number == 1)
         @include('website::includes.feature_template1')
-    @endif    
+    @endif
+    @if($template->number == 2)    
+        @include('website::includes.feature_template2')
+    @endif
     <!-- End Features Section -->
 
     <!-- Start How it works Section -->
