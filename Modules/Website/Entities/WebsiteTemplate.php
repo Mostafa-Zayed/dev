@@ -50,7 +50,7 @@ class WebsiteTemplate extends Model
         return \Modules\Website\Database\factories\WebsiteDemoFactory::new();
     }
 
-    public function websiteSliders()
+    public function websiteSlider()
     {
         return $this->hasOne(WebsiteSlider::class,'website_template_id','id');
     }
