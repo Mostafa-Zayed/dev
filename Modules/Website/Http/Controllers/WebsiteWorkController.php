@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteWork;
 use Modules\Website\Http\Requests\HowWorks\Store;
+use Modules\Website\Entities\WebsiteTemplate;
 
 class WebsiteWorkController extends Controller
 {
@@ -27,7 +28,7 @@ class WebsiteWorkController extends Controller
      */
     public function create()
     {
-        return view('website::how_works.create');
+        return view('website::how_works.create',['templates' => WebsiteTemplate::forDropdown()]);
     }
 
     /**
