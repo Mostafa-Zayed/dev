@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('website_works', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->text('name')->nullable();
             $table->text('description');
             $table->string('image');
             $table->boolean('status')->default(true);

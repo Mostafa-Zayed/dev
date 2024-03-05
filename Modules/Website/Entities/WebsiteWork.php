@@ -15,7 +15,6 @@ class WebsiteWork extends Model
     protected $table = 'website_works';
 
     protected $fillable = [
-        // 'number',
         'description',
         'name',
         'image',

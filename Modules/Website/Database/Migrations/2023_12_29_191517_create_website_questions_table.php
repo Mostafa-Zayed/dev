@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('website_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('nam');
+            $table->text('name');
             $table->text('answer');
             $table->boolean('status')->default(true);
             $table->boolean('is_home')->default(true);

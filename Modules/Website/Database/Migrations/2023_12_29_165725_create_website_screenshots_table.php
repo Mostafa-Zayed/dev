@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('website_screenshots', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->text('name');
             $table->text('description');
             $table->boolean('status')->default(true);
             $table->boolean('is_home')->default(true);

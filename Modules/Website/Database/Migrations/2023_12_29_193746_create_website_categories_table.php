@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('website_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->text('name');
             $table->timestamps();
             $table->softDeletes();
         });
