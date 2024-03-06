@@ -65,6 +65,11 @@ class WebsiteTemplate extends Model
         return $this->hasMany(WebsiteWork::class,'website_template_id','id');
     }
 
+    public function websiteScreenShots()
+    {
+        return $this->hasMany(WebsiteScreenshot::class,'website_template_id','id');
+    }
+
     /**
      * Category Dropdown
      *

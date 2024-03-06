@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteScreenshot;
 use Modules\Website\Http\Requests\ScreenShots\Store;
+use Modules\Website\Entities\WebsiteTemplate;
 
 class WebsiteScreenshotController extends Controller
 {
@@ -27,7 +28,7 @@ class WebsiteScreenshotController extends Controller
      */
     public function create()
     {
-        return view('website::screen_shots.create');
+        return view('website::screen_shots.create',['templates' => WebsiteTemplate::forDropdown()]);
     }
 
     /**

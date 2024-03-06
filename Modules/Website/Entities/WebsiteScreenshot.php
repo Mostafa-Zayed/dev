@@ -26,6 +26,11 @@ class WebsiteScreenshot extends Model
         return $this->hasMany(WebsiteDemo::class,'website_screenshots_id','id');
     }
 
+    public function websiteTemplate()
+    {
+        return $this->belongsTo(WebsiteTemplate::class,'website_template_id','id');
+    }
+
 
     protected static function newFactory()
     {

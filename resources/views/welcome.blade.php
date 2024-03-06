@@ -123,6 +123,9 @@
     <!-- End How it works Section -->
 
     <!-- Start App Screenshots Section -->
+    @if($template->number == 1)
+        @include('website::includes.screenshots.template1')
+    @endif
     <section id="appScreenshots" class="section-block" data-scroll-index="3">
         <div class="shape-top"></div>
         <div class="container">

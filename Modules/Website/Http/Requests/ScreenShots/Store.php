@@ -19,7 +19,8 @@ class Store extends FormRequest
             'description' => ['required','array'],
             'description.*' => ['required','string'],
             'status' => ['sometimes','in:0,1'],
-            'is_home' => ['sometimes','in:0,1']
+            'is_home' => ['sometimes','in:0,1'],
+            'website_template_id' => ['nullable','exists:website_templates,id']
         ];
     }
 

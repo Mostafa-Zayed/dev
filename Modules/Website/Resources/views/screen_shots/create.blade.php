@@ -39,6 +39,12 @@
                     {!! Form::select('is_home', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>
             </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('',__('website::lang.demos') . ' : *') !!}
+                    {!! Form::select('website_template_id', $templates, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                </div>
+            </div>
         </div>
         <input type="submit" value="submit" class="btn btn-primary submit_product_form">
         {!! Form::close() !!}
