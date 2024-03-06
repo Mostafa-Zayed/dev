@@ -40,6 +40,9 @@ class WebsiteScreenshotController extends Controller
     {
         try {
             WebsiteScreenshot::create($request->validated());
+            if($request->hasFile('image')){ 
+                $this->uploadeImage($request->image,'screen-shots');
+            }
             return view('website::screen_shots.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);
