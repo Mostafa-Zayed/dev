@@ -39,7 +39,7 @@ class WebsiteScreenshot extends Model
     {
         if (null != $value && is_file($value)) {
             isset($this->attributes['image']) ? $this->deleteFile($this->attributes['image'], self::IMAGEPATH) : '';
-            $this->attributes['image'] = $this->uploadAllTyps($value, 'features');
+            $this->attributes['image'] = $this->uploadAllTyps($value, self::IMAGEPATH);
         }
     }
     public function webisteDemos()
