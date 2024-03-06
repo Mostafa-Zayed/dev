@@ -23,7 +23,8 @@ class FrontEndController extends Controller
             [
                 'websiteSlider',
                 'websiteFeatures',
-                'websiteWorks'
+                'websiteWorks',
+                'websiteScreenShots'
             ]
         )->where('status',1)->first();
         $websiteSettings = WebsiteSetting::first();

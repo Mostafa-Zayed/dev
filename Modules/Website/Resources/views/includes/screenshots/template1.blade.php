@@ -9,13 +9,18 @@
         </div>
 
         <div class="list_screen_slide owl-carousel">
+            @if($template->websiteScreenShots->count() > 0)
+            @foreach ($template->websiteScreenShots as $screenShot)
             <!-- Start screen item-->
             <div class="item">
-                <a href="images/screen/1.png" data-rel="lightcase:gal">
+                <a href="{{$screenShot->image}}" data-rel="lightcase:gal">
                     <img src="images/screen/1.png" alt="Img">
                 </a>
             </div>
             <!-- End screen item-->
+            @endforeach
+            @endif
+
 
             <!-- Start screen item-->
             <div class="item">
