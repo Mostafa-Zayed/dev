@@ -9,10 +9,11 @@ use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteScreenshot;
 use Modules\Website\Http\Requests\ScreenShots\Store;
 use Modules\Website\Entities\WebsiteTemplate;
+use App\Traits\UploadTrait;
 
 class WebsiteScreenshotController extends Controller
 {
-    use LogException;
+    use LogException, UploadTrait;
     /**
      * Display a listing of the resource.
      * @return Renderable
