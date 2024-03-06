@@ -5,10 +5,11 @@ namespace Modules\Website\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Translatable\HasTranslations;
+use App\Traits\UploadTrait;
 
 class WebsiteScreenshot extends Model
 {
-    use HasFactory,HasTranslations;
+    use HasFactory,HasTranslations,UploadTrait;
 
     const IMAGEPATH = 'website/screen-shots';
 
