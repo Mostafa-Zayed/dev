@@ -11,7 +11,7 @@ class WebsiteScreenshot extends Model
 {
     use HasFactory,HasTranslations,UploadTrait;
 
-    const IMAGEPATH = 'website/screen-shots';
+    const IMAGEPATH = 'screen-shots';
 
     protected $fillable = [
         'description',
