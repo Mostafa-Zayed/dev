@@ -19,7 +19,8 @@ class WebsiteWork extends Model
         'name',
         'image',
         'status',
-        'is_home'
+        'is_home',
+        'website_template_id'
     ];
 
     public $translatable = ['name','description'];
