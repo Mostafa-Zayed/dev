@@ -14,14 +14,14 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['sometimes','array'],
-            'name.*' => ['sometimes','string','max:255'],
-            'description' => ['sometimes','array'],
-            'description.*' => ['sometimes','string'],
+            'name' => ['nullable','array'],
+            'name.*' => ['nullable','string','max:255'],
+            'description' => ['nullable','array'],
+            'description.*' => ['nullable','string'],
             'status' => ['sometimes','in:0,1'],
             'is_home' => ['sometimes','in:0,1'],
-            'image'   => ['sometimes','image'],
-            'website_template_id' => ['sometimes','exists:website_templates,id']
+            'image'   => ['nullable','image'],
+            'website_template_id' => ['nullable','exists:website_templates,id']
         ];
     }
 
