@@ -27,7 +27,7 @@
                                         <h4>{{ $package->getTranslations('name')[app()->getLocale()]}}</h4>
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
-                                            <span class="price-num">{{$package->price}}</span>
+                                            <span class="price-num">{{round($package->price,2)}}</span>
                                             <span class="price-date">/month</span>
                                         </span>
                                         <div class="shape-bottom">
@@ -76,7 +76,7 @@
                                         <h4>{{ $package->getTranslations('name')[app()->getLocale()]}}</h4>
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
-                                            <span class="price-num">{{$package->price}}</span>
+                                            <span class="price-num">{{round($package->price,2)}}</span>
                                             <span class="price-date">/month</span>
                                         </span>
                                         <div class="shape-bottom">
