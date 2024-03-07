@@ -9,8 +9,8 @@
                     @endif
                 </div>
                 <ul class="nav pricing-btns-group">
-                    <li><a class="active btn" data-toggle="tab" href="#monthly">Monthly</a></li>
-                    <li><a class="btn" data-toggle="tab" href="#yearly">Yearly <span class="btn-badge">10% OFF</span></a></li>
+                    <li><a class="active btn" data-toggle="tab" href="#monthly">{{__('website:lang.monthly')}}</a></li>
+                    <li><a class="btn" data-toggle="tab" href="#yearly">{{__('website::lang.yearly')}} <span class="btn-badge">10% OFF</span></a></li>
                 </ul>
             </div>
             <div class="col-md-7">
@@ -58,11 +58,23 @@
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                100+ header variations
+                                                @if($package->product_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->product_count}}
+                                                @endif
+
+                                                @lang('superadmin::lang.products')
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                20+ home page options
+                                                @if($package->invoice_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->invoice_count}}
+                                                @endif
+
+                                                @lang('superadmin::lang.invoices')
                                             </li>
                                         </ul>
                                         <button type="button" class="btn btn-sm btn-block">Get Started</button>
@@ -119,11 +131,23 @@
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                100+ header variations
+                                                @if($package->product_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->product_count}}
+                                                @endif
+
+                                                @lang('superadmin::lang.products')
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                20+ home page options
+                                                @if($package->invoice_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->invoice_count}}
+                                                @endif
+
+                                                @lang('superadmin::lang.invoices')
                                             </li>
                                         </ul>
                                         <button type="button" class="btn btn-sm btn-block">Get Started</button>
