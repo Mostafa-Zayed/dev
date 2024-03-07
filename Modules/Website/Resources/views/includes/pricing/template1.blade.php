@@ -84,14 +84,14 @@
                                                 <span class="fas fa-check"></span>
                                                 {{$permission_formatted[$permission]}}
                                             </li>
-                                            
+
                                             @endisset
                                             @endforeach
                                             @endif
 
 
                                         </ul>
-                                        <button type="button" class="btn btn-sm btn-block">Get Started</button>
+                                        <a href="{{action([\Modules\Superadmin\Http\Controllers\SubscriptionController::class, 'pay'], [$package->id])}}" class="btn btn-sm btn-block">Get Started</a>
                                     </div>
                                 </div>
                             </div>
