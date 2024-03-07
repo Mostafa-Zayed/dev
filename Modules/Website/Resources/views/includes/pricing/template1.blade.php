@@ -31,7 +31,7 @@
                                             <span class="price-date">/month</span>
                                         </span>
                                         <div class="shape-bottom">
-                                            <img src="images/shapes/price-shape.svg" alt="shape" class="bottom-shape img-fluid">
+                                            <img src="{{asset('modules/website/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
                                         </div>
                                     </header>
                                     <div class="card-body">
