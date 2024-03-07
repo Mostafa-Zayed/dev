@@ -4,16 +4,19 @@ namespace Modules\Superadmin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Translatable\HasTranslations;
 
 class Package extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,HasTranslations;
 
     protected $guarded = ['id'];
 
     protected $casts = [
         'custom_permissions' => 'array',
     ];
+
+    public $translations = ['name','description'];
 
     /**
      * Scope a query to only include active packages.

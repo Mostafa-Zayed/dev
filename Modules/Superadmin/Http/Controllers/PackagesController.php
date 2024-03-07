@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Modules\Superadmin\Entities\Package;
 use Modules\Superadmin\Entities\Subscription;
 use Illuminate\Routing\Controller;
+use Modules\Superadmin\Http\Requests\Packages\Store;
 
 class PackagesController extends Controller
 {
@@ -84,8 +85,9 @@ class PackagesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
+        dd($request->validated());
         if (! auth()->user()->can('superadmin')) {
             abort(403, 'Unauthorized action.');
         }

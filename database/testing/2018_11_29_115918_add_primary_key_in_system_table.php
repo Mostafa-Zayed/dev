@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        if (! Schema::hasColumn('system', 'id')) {
-            Schema::table('system', function (Blueprint $table) {
-                $table->increments('id')->first();
-            });
-        }
+        Schema::table('system', function (Blueprint $table) {
+            $table->increments('id')->first();
+        });
     }
 
     /**

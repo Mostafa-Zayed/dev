@@ -6,8 +6,8 @@
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>@lang('superadmin::lang.packages') <small>@lang('superadmin::lang.add_package')</small></h1>
-    <!-- <ol class="breadcrumb">
+	<h1>@lang('superadmin::lang.packages') <small>@lang('superadmin::lang.add_package')</small></h1>
+	<!-- <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
         <li class="active">Here</li>
     </ol> -->
@@ -27,21 +27,23 @@
 	<div class="box box-solid">
 		<div class="box-body">
 			<div class="row">
-				
+				@foreach (languages() as $lang)
 				<div class="col-sm-6">
 					<div class="form-group">
-						{!! Form::label('name', __('lang_v1.name').':') !!}
-						{!! Form::text('name', null, ['class' => 'form-control', 'required']); !!}
+						{!! Form::label("name[$lang]", __('lang_v1.name_'.$lang).':') !!}
+						{!! Form::text("name[$lang]", null, ['class' => 'form-control', 'required']); !!}
 					</div>
 				</div>
+				@endforeach
 
+				@foreach (languages() as $lang)
 				<div class="col-sm-6">
 					<div class="form-group">
-						{!! Form::label('description', __('superadmin::lang.description').':') !!}
-						{!! Form::text('description', null, ['class' => 'form-control', 'required']); !!}
+						{!! Form::label("description[$lang]", __('superadmin::lang.description_'.$lang).':') !!}
+						{!! Form::text("description[$lang]", null, ['class' => 'form-control', 'required']); !!}
 					</div>
 				</div>
-
+				@endforeach
 				<div class="clearfix"></div>
 				<div class="col-sm-6">
 					<div class="form-group">
@@ -99,7 +101,7 @@
 
 				<div class="col-sm-6">
 					<div class="form-group">
-						{!! Form::label('interval_count	', __('superadmin::lang.interval_count').':') !!}
+						{!! Form::label('interval_count ', __('superadmin::lang.interval_count').':') !!}
 						{!! Form::number('interval_count', null, ['class' => 'form-control', 'required', 'min' => 1]); !!}
 					</div>
 				</div>
@@ -107,7 +109,7 @@
 
 				<div class="col-sm-6">
 					<div class="form-group">
-						{!! Form::label('trial_days	', __('superadmin::lang.trial_days').':') !!}
+						{!! Form::label('trial_days ', __('superadmin::lang.trial_days').':') !!}
 						{!! Form::number('trial_days', null, ['class' => 'form-control', 'required', 'min' => 0]); !!}
 					</div>
 				</div>
@@ -130,7 +132,7 @@
 
 				<div class="col-sm-6">
 					<div class="form-group">
-						{!! Form::label('sort_order	', __('superadmin::lang.sort_order').':') !!}
+						{!! Form::label('sort_order ', __('superadmin::lang.sort_order').':') !!}
 						{!! Form::number('sort_order', 1, ['class' => 'form-control', 'required']); !!}
 					</div>
 				</div>
@@ -138,28 +140,28 @@
 				<div class="clearfix"></div>
 				<div class="col-sm-6">
 					<div class="checkbox">
-					<label>
-						{!! Form::checkbox('is_private', 1, false, ['class' => 'input-icheck']); !!}
-                        {{__('superadmin::lang.private_superadmin_only')}}
-					</label>
+						<label>
+							{!! Form::checkbox('is_private', 1, false, ['class' => 'input-icheck']); !!}
+							{{__('superadmin::lang.private_superadmin_only')}}
+						</label>
 					</div>
 				</div>
 
 				<div class="col-sm-6">
 					<div class="checkbox">
-					<label>
-						{!! Form::checkbox('is_one_time', 1, false, ['class' => 'input-icheck']); !!}
-                        {{__('superadmin::lang.one_time_only_subscription')}}
-					</label>
+						<label>
+							{!! Form::checkbox('is_one_time', 1, false, ['class' => 'input-icheck']); !!}
+							{{__('superadmin::lang.one_time_only_subscription')}}
+						</label>
 					</div>
 				</div>
 				<div class="clearfix"></div>
 				<div class="col-sm-4">
 					<div class="checkbox">
-					<label>
-						{!! Form::checkbox('enable_custom_link', 1, false, ['class' => 'input-icheck', 'id' => 'enable_custom_link']); !!}
-                        {{__('superadmin::lang.enable_custom_subscription_link')}}
-					</label>
+						<label>
+							{!! Form::checkbox('enable_custom_link', 1, false, ['class' => 'input-icheck', 'id' => 'enable_custom_link']); !!}
+							{{__('superadmin::lang.enable_custom_subscription_link')}}
+						</label>
 					</div>
 				</div>
 				<div id="custom_link_div" class="hide">
@@ -178,39 +180,39 @@
 				</div>
 				<div class="clearfix"></div>
 				@foreach($permissions as $module => $module_permissions)
-					@foreach($module_permissions as $permission)
-					<div class="col-sm-3">
-                        @if(isset($permission['field_type']) && in_array($permission['field_type'], ['number', 'input']))
-                        <div class="form-group">
-							{!! Form::label("custom_permissions[$permission[name]]", $permission['label'].':') !!} 
-                            @if(isset($permission['tooltip']))
-                                @show_tooltip($permission['tooltip'])
-                            @endif
-                            
-							{!! Form::text("custom_permissions[$permission[name]]", null, ['class' => 'form-control', 'type' => $permission['field_type']]); !!} 
-						</div>
-                        @else
-                            <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox("custom_permissions[$permission[name]]", 1, $permission['default'], ['class' => 'input-icheck']); !!}
-                                {{$permission['label']}}
-                            </label>
-                            </div>
-                        @endif
+				@foreach($module_permissions as $permission)
+				<div class="col-sm-3">
+					@if(isset($permission['field_type']) && in_array($permission['field_type'], ['number', 'input']))
+					<div class="form-group">
+						{!! Form::label("custom_permissions[$permission[name]]", $permission['label'].':') !!}
+						@if(isset($permission['tooltip']))
+						@show_tooltip($permission['tooltip'])
+						@endif
+
+						{!! Form::text("custom_permissions[$permission[name]]", null, ['class' => 'form-control', 'type' => $permission['field_type']]); !!}
 					</div>
-					@endforeach
+					@else
+					<div class="checkbox">
+						<label>
+							{!! Form::checkbox("custom_permissions[$permission[name]]", 1, $permission['default'], ['class' => 'input-icheck']); !!}
+							{{$permission['label']}}
+						</label>
+					</div>
+					@endif
+				</div>
+				@endforeach
 				@endforeach
 
 				<div class="col-sm-3">
 					<div class="checkbox">
-					<label>
-						{!! Form::checkbox('is_active', 1, true, ['class' => 'input-icheck']); !!}
-                        {{__('superadmin::lang.is_active')}}
-					</label>
+						<label>
+							{!! Form::checkbox('is_active', 1, true, ['class' => 'input-icheck']); !!}
+							{{__('superadmin::lang.is_active')}}
+						</label>
 					</div>
 				</div>
 
-				
+
 			</div>
 
 			<div class="row">
@@ -228,15 +230,29 @@
 @endsection
 
 @section('javascript')
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('form#add_package_form').validate();
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('form#add_package_form').validate();
+	});
+	$('#enable_custom_link').on('ifChecked', function(event) {
+		$("div#custom_link_div").removeClass('hide');
+	});
+	$('#enable_custom_link').on('ifUnchecked', function(event) {
+		$("div#custom_link_div").addClass('hide');
+	});
+
+	if ($('textarea#description_ar').length > 0) {
+		tinymce.init({
+			selector: 'textarea#description_ar',
+			height: 250
 		});
-		$('#enable_custom_link').on('ifChecked', function(event){
-		   $("div#custom_link_div").removeClass('hide');
+	}
+
+	if ($('textarea#description_en').length > 0) {
+		tinymce.init({
+			selector: 'textarea#description_en',
+			height: 250
 		});
-		$('#enable_custom_link').on('ifUnchecked', function(event){
-		   $("div#custom_link_div").addClass('hide');
-		});
-	</script>
+	}
+</script>
 @endsection

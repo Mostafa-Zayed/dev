@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'name_ar' => 'الاسم بالعربي',
+    'name_en' => 'الاسم بالانجليزي',
+    'description_ar' => 'الوصف بالعربي',
+    'description_en' => 'الوصف بالانجليزي',
     'enable_editing_product_from_purchase' => 'تمكين تعديل سعر المنتج من شاشة الشراء',
     'sales_commission_agent' => 'السماسرة',
     'sales_commission_agents' => 'السماسرة',

@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     'enable_editing_product_from_purchase' => 'ເປີດໃຊ້ການແກ້ໄຂລາຄາສິນຄ້າຈາກໜ້າຈໍຊື້',
     'sales_commission_agent' => 'ຕົວແທນຄ່ານາຍໜ້າ',
     'sales_commission_agents' => 'ຕົວແທນນາຍໜ້າການຂາຍ',

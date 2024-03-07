@@ -14,18 +14,19 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('system')) {
+        if (! Schema::hasTable('system')) {
             Schema::create('system', function (Blueprint $table) {
                 $table->string('key');
                 $table->text('value')->nullable();
             });
-
+    
             $version = config('author.app_version');
-
+    
             DB::table('system')->insert(
                 ['key' => 'db_version', 'value' => $version]
             );
         }
+        
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'description_ar' => 'الوصف بالعربي',
+    'description_en' => 'الوصف بالانجليزي',
     'superadmin' => 'من المشرفين المميزين',
     'dashboard' => 'لوحة القيادة',
     'all_business' => 'جميع الشركات',
