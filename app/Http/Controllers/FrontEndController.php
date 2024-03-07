@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utils\ModuleUtil;
 use Illuminate\Http\Request;
 use Modules\Website\Entities\WebsiteDemo;
 use Modules\Website\Entities\WebsiteFeature;
@@ -18,6 +19,12 @@ use Modules\Superadmin\Entities\Package;
 
 class FrontEndController extends Controller
 {
+    public $moduleUtil;
+
+    public function __construct(ModuleUtil $moduleUtil)
+    {
+        $this->moduleUtil = $moduleUtil;
+    }
     public function index()
     {
         $websiteDemo = WebsiteTemplate::with(
@@ -30,12 +37,21 @@ class FrontEndController extends Controller
         )->where('status',1)->first();
         $packages = Package::listPackages(true);
         $websiteSettings = WebsiteSetting::first();
+        $permissions = $this->moduleUtil->getModuleData('superadmin_package');
+
+        $permission_formatted = [];
+        foreach ($permissions as $permission) {
+            foreach ($permission as $details) {
+                $permission_formatted[$details['name']] = $details['label'];
+            }
+        }
         $features = WebsiteFeature::where('status','1')->where('is_home',1)->get();
         return view('welcome',[
             'template' => $websiteDemo,
             'settings' => $websiteSettings,
             'features' => $features,
-            'packages' => $packages
+            'packages' => $packages,
+            'permission_formatted' => $permission_formatted
         ]);
     }
 }
