@@ -14,6 +14,7 @@ use Modules\Website\Entities\WebsiteTestmonial;
 use Modules\Website\Entities\WebsiteWork;
 use Modules\Website\Entities\WebsiteSetting;
 use Modules\Website\Entities\WebsiteTemplate;
+use Modules\Superadmin\Entities\Package;
 
 class FrontEndController extends Controller
 {
@@ -27,12 +28,14 @@ class FrontEndController extends Controller
                 'websiteScreenShots'
             ]
         )->where('status',1)->first();
+        $packages = Package::listPackages(true);
         $websiteSettings = WebsiteSetting::first();
         $features = WebsiteFeature::where('status','1')->where('is_home',1)->get();
         return view('welcome',[
             'template' => $websiteDemo,
             'settings' => $websiteSettings,
-            'features' => $features
+            'features' => $features,
+            'packages' => $packages
         ]);
     }
 }

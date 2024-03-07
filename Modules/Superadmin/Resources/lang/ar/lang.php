@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'package_image' => 'صورة الباقة',
     'description_ar' => 'الوصف بالعربي',
     'description_en' => 'الوصف بالانجليزي',
     'superadmin' => 'من المشرفين المميزين',

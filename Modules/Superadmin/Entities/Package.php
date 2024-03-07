@@ -2,21 +2,22 @@
 
 namespace Modules\Superadmin\Entities;
 
+use App\Traits\UploadTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class Package extends Model
 {
-    use SoftDeletes,HasTranslations;
-
+    use SoftDeletes,HasTranslations,UploadTrait;
+    const IMAGEPATH = 'packages';
     protected $guarded = ['id'];
 
     protected $casts = [
         'custom_permissions' => 'array',
     ];
 
-    public $translations = ['name','description'];
+    public $translatable = ['name','description'];
 
     /**
      * Scope a query to only include active packages.
@@ -55,5 +56,23 @@ class Package extends Model
     public function scopeNotPrivate($query)
     {
         return $query->where('is_private', 0);
+    }
+
+    public function getImageAttribute()
+    {
+        if ($this->attributes['image']) {
+            $image = $this->getImage($this->attributes['image'], self::IMAGEPATH);
+        } else {
+            $image = $this->defaultImage('users');
+        }
+        return $image;
+    }
+
+    public function setImageAttribute($value)
+    {
+        if (null != $value && is_file($value)) {
+            isset($this->attributes['image']) ? $this->deleteFile($this->attributes['image'], self::IMAGEPATH) : '';
+            $this->attributes['image'] = $this->uploadeImage($value, self::IMAGEPATH);
+        }
     }
 }

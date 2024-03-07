@@ -22,7 +22,7 @@
 	<input type="hidden" id="p_thousand" value="{{$currency->thousand_separator}}">
 	<input type="hidden" id="p_decimal" value="{{$currency->decimal_separator}}">
 
-	{!! Form::open(['url' => action([\Modules\Superadmin\Http\Controllers\PackagesController::class, 'store']), 'method' => 'post', 'id' => 'add_package_form']) !!}
+	{!! Form::open(['url' => action([\Modules\Superadmin\Http\Controllers\PackagesController::class, 'store']), 'method' => 'post', 'id' => 'add_package_form','files' => true]) !!}
 
 	<div class="box box-solid">
 		<div class="box-body">
@@ -129,7 +129,17 @@
 					</div>
 				</div>
 				<div class="clearfix"></div>
-
+				<div class="col-sm-12">
+					<div class="form-group">
+						{!! Form::label('image', __('superadmin::lang.package_image') . ':') !!}
+						{!! Form::file('image', ['id' => 'upload_image', 'accept' => 'image/*',
+						'required' => true, 'class' => 'upload-element']); !!}
+						<small>
+							<p class="help-block">@lang('purchase.max_file_size', ['size' => (config('constants.document_size_limit') / 1000000)]) <br> @lang('lang_v1.aspect_ratio_should_be_1_1')</p>
+						</small>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 				<div class="col-sm-6">
 					<div class="form-group">
 						{!! Form::label('sort_order ', __('superadmin::lang.sort_order').':') !!}
@@ -234,6 +244,7 @@
 	$(document).ready(function() {
 		$('form#add_package_form').validate();
 	});
+
 	$('#enable_custom_link').on('ifChecked', function(event) {
 		$("div#custom_link_div").removeClass('hide');
 	});
@@ -254,5 +265,16 @@
 			height: 250
 		});
 	}
+
+	var img_fileinput_setting = {
+        showUpload: false,
+        showPreview: true,
+        browseLabel: LANG.file_browse_label,
+        removeLabel: LANG.remove,
+        previewSettings: {
+            image: { width: 'auto', height: 'auto', 'max-width': '100%', 'max-height': '100%' },
+        },
+    };
+    $('#upload_image').fileinput(img_fileinput_setting);
 </script>
 @endsection

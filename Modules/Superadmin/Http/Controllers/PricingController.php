@@ -31,17 +31,18 @@ class PricingController extends Controller
      */
     public function index()
     {
-        $packages = Package::listPackages(true);
 
+        $packages = Package::listPackages(true);
+        
         //Get all module permissions and convert them into name => label
         $permissions = $this->moduleUtil->getModuleData('superadmin_package');
+
         $permission_formatted = [];
         foreach ($permissions as $permission) {
             foreach ($permission as $details) {
                 $permission_formatted[$details['name']] = $details['label'];
             }
         }
-
         return view('superadmin::pricing.index')
             ->with(compact('packages', 'permission_formatted'));
     }

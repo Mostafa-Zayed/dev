@@ -27,7 +27,7 @@ class CreatePackagesTable extends Migration
             $table->decimal('price', 22, 4);
             $table->integer('created_by');
             $table->integer('sort_order')->default(0);
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

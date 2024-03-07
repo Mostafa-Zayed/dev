@@ -3,6 +3,8 @@
 namespace Modules\Superadmin\Http\Controllers;
 
 use App\System;
+use App\Traits\LogException;
+use App\Traits\UploadTrait;
 use App\Utils\BusinessUtil;
 use App\Utils\ModuleUtil;
 use Illuminate\Http\Request;
@@ -14,6 +16,7 @@ use Modules\Superadmin\Http\Requests\Packages\Store;
 
 class PackagesController extends Controller
 {
+    use LogException,UploadTrait;
     /**
      * All Utils instance.
      */
@@ -87,15 +90,15 @@ class PackagesController extends Controller
      */
     public function store(Store $request)
     {
-        dd($request->validated());
         if (! auth()->user()->can('superadmin')) {
             abort(403, 'Unauthorized action.');
         }
 
         try {
-            $input = $request->only(['name', 'description', 'location_count', 'user_count', 'product_count', 'invoice_count', 'interval', 'interval_count', 'trial_days', 'price', 'sort_order', 'is_active', 'custom_permissions', 'is_private', 'is_one_time', 'enable_custom_link', 'custom_link',
-                'custom_link_text', ]);
-
+            $input = $request->validated();
+            if($request->hasFile('image')){ 
+                $this->uploadeImage($request->image,'packages');
+            }
             $currency = System::getCurrency();
 
             $input['price'] = $this->businessUtil->num_uf($input['price'], $currency);
@@ -114,10 +117,11 @@ class PackagesController extends Controller
             $package->save();
 
             $output = ['success' => 1, 'msg' => __('lang_v1.success')];
-        } catch (\Exception $e) {
-            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+        } catch (\Exception $exception) {
+            $this->logMethodException($exception);
 
-            $output = ['success' => 0,
+            $output = [
+                'success' => 0,
                 'msg' => __('messages.something_went_wrong'),
             ];
         }

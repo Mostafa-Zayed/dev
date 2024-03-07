@@ -5,10 +5,10 @@
  */
 function pos_boot($ul, $pt, $lc, $em, $un, $type = 1, $pid = null)
 {
-	//bugs
+    //bugs
 }
 
-if (! function_exists('humanFilesize')) {
+if (!function_exists('humanFilesize')) {
     function humanFilesize($size, $precision = 2)
     {
         $units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -20,14 +20,14 @@ if (! function_exists('humanFilesize')) {
             $i++;
         }
 
-        return round($size, $precision).$units[$i];
+        return round($size, $precision) . $units[$i];
     }
 }
 
 /**
  * Checks if the uploaded document is an image
  */
-if (! function_exists('isFileImage')) {
+if (!function_exists('isFileImage')) {
     function isFileImage($filename)
     {
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -54,7 +54,7 @@ function isPusherEnabled()
 {
     $is_pusher_enabled = false;
 
-    if (! empty(config('broadcasting.connections.pusher.key')) && ! empty(config('broadcasting.connections.pusher.secret')) && ! empty(config('broadcasting.connections.pusher.app_id')) && ! empty(config('broadcasting.connections.pusher.options.cluster')) && (config('broadcasting.connections.pusher.driver') == 'pusher')) {
+    if (!empty(config('broadcasting.connections.pusher.key')) && !empty(config('broadcasting.connections.pusher.secret')) && !empty(config('broadcasting.connections.pusher.app_id')) && !empty(config('broadcasting.connections.pusher.options.cluster')) && (config('broadcasting.connections.pusher.driver') == 'pusher')) {
         $is_pusher_enabled = true;
     }
 
@@ -66,7 +66,7 @@ function isPusherEnabled()
  *
  * @return bool
  */
-if (! function_exists('isMobile')) {
+if (!function_exists('isMobile')) {
     function isMobile()
     {
         $useragent = $_SERVER['HTTP_USER_AGENT'];
@@ -79,7 +79,7 @@ if (! function_exists('isMobile')) {
     }
 }
 
-if (! function_exists('str_ordinal')) {
+if (!function_exists('str_ordinal')) {
     /**
      * Append an ordinal indicator to a numeric value.
      *
@@ -93,17 +93,24 @@ if (! function_exists('str_ordinal')) {
 
         $indicators = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
 
-        $suffix = $superscript ? '<sup>'.$indicators[$number % 10].'</sup>' : $indicators[$number % 10];
+        $suffix = $superscript ? '<sup>' . $indicators[$number % 10] . '</sup>' : $indicators[$number % 10];
         if ($number % 100 >= 11 && $number % 100 <= 13) {
             $suffix = $superscript ? '<sup>th</sup>' : 'th';
         }
 
-        return number_format($number).$suffix;
+        return number_format($number) . $suffix;
     }
 
     if (!function_exists('languages')) {
-        function languages() {
-          return ['ar', 'en'];
+        function languages()
+        {
+            return ['ar', 'en'];
+        }
+    }
+    if (!function_exists('getModulesName')) {
+        function getModulesName()
+        {
+          return config('erp.modules');
         }
       }
 }

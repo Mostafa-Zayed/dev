@@ -1,3 +1,4 @@
+{{dd($packages)}}
 <section id="pricing" class="section-block" data-scroll-index="4">
             <div class="container">
                 <div class="row">
