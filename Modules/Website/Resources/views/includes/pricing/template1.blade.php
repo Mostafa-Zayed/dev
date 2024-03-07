@@ -76,6 +76,20 @@
 
                                                 @lang('superadmin::lang.invoices')
                                             </li>
+
+                                            @if(!empty($package->custom_permissions))
+                                            @foreach($package->custom_permissions as $permission => $value)
+                                            @isset($permission_formatted[$permission])
+                                            <li>
+                                                <span class="fas fa-check"></span>
+                                                {{$permission_formatted[$permission]}}
+                                            </li>
+                                            <br /><br />
+                                            @endisset
+                                            @endforeach
+                                            @endif
+
+
                                         </ul>
                                         <button type="button" class="btn btn-sm btn-block">Get Started</button>
                                     </div>
