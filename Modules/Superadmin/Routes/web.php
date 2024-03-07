@@ -9,6 +9,8 @@ Route::get('/cache/clear', function() {
     Artisan::call('config:clear');
     Artisan::call('route:clear');
     Artisan::call('view:clear');
+
+    // testing
     return redirect()->route('home')->with('cache',__("lang_v1.system_cache_has_been_removed"));
 })->name('cache-clear');
 Route::get('/pricing', [Modules\Superadmin\Http\Controllers\PricingController::class, 'index'])->name('pricing');
