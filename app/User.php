@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
+use Modules\Website\Entities\WebsiteReview;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -319,5 +320,10 @@ class User extends Authenticatable
         }
 
         return $img_src;
+    }
+
+    public function websiteReview()
+    {
+        return $this->hasOne(WebsiteReview::class,'user_id','id');
     }
 }

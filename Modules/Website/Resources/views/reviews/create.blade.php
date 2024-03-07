@@ -13,7 +13,7 @@
             @foreach (languages() as $lang)
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.title' . $lang) . ' : *') !!}
+                    {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
                     {!! Form::text("name[$lang]",null, ['class' => 'form-control',
                     'placeholder' => __('website::lang.title' . $lang)]); !!}
                 </div>
@@ -37,6 +37,12 @@
                 <div class="form-group">
                     {!! Form::label('',__('website::lang.is_home') . ' : *') !!}
                     {!! Form::select('is_home', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('',__('website::lang.clients') . ' : *') !!}
+                    {!! Form::select('user_id', $users, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>
             </div>
         </div>

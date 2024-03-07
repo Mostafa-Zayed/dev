@@ -14,7 +14,8 @@ class WebsiteReview extends Model
         'description',
         'name',
         'status',
-        'is_home'
+        'is_home',
+        'user_id'
     ];
 
     public $translatable = ['name','description'];
@@ -26,5 +27,10 @@ class WebsiteReview extends Model
     protected static function newFactory()
     {
         return \Modules\Website\Database\factories\WebsiteReviewFactory::new();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

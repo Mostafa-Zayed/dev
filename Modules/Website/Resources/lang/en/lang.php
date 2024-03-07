@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'title_ar' => 'Title Arabic',
+    'title_en' => 'Title English',
     'website' => 'Website',
     'features' => 'Features',
     'works'    => 'How Works',
@@ -31,5 +33,6 @@ return [
     'image' => 'Image',
     'title' => 'Title',
     'demos' => 'Templates',
+    'clients' => 'Clients'
     
 ];

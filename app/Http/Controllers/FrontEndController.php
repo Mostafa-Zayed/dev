@@ -16,6 +16,7 @@ use Modules\Website\Entities\WebsiteWork;
 use Modules\Website\Entities\WebsiteSetting;
 use Modules\Website\Entities\WebsiteTemplate;
 use Modules\Superadmin\Entities\Package;
+use Modules\Website\Entities\WebsiteReview;
 
 class FrontEndController extends Controller
 {
@@ -37,6 +38,7 @@ class FrontEndController extends Controller
         )->where('status',1)->first();
         $packages = Package::listPackages(true);
         $websiteSettings = WebsiteSetting::first();
+        $reviews = WebsiteReview::with('user')->whee('is_home',1)->get();
         $permissions = $this->moduleUtil->getModuleData('superadmin_package');
 
         $permission_formatted = [];
@@ -51,7 +53,8 @@ class FrontEndController extends Controller
             'settings' => $websiteSettings,
             'features' => $features,
             'packages' => $packages,
-            'permission_formatted' => $permission_formatted
+            'permission_formatted' => $permission_formatted,
+            'reviews' => $reviews
         ]);
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteReview;
 use Modules\Website\Http\Requests\Reviews\Store;
+use App\User;
 
 class WebsiteReviewController extends Controller
 {
@@ -25,7 +26,8 @@ class WebsiteReviewController extends Controller
      */
     public function create()
     {
-        return view('website::reviews.create');
+        $users = User::pluck('first_name','id');
+        return view('website::reviews.create',['users' => $users]);
     }
 
     /**
