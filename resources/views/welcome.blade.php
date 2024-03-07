@@ -100,38 +100,38 @@
 
     <!-- Start Home Area -->
     @if($template->number == 1)
-        @include('website::includes.slider_template1')
+    @include('website::includes.slider_template1')
     @endif
     @if($template->number == 2)
-        @include('website::includes.slider_template2')
+    @include('website::includes.slider_template2')
     @endif
     <!-- End Home Area -->
 
     <!-- Start Features Section -->
     @if($template->number == 1)
-        @include('website::includes.feature_template1')
+    @include('website::includes.feature_template1')
     @endif
-    @if($template->number == 2)    
-        @include('website::includes.feature_template2')
+    @if($template->number == 2)
+    @include('website::includes.feature_template2')
     @endif
     <!-- End Features Section -->
 
     <!-- Start How it works Section -->
     @if($template->number == 1)
-        @include('website::includes.how_works.template1')
+    @include('website::includes.how_works.template1')
     @endif
     <!-- End How it works Section -->
 
     <!-- Start App Screenshots Section -->
     @if($template->number == 1)
-        @include('website::includes.screenshots.template1')
+    @include('website::includes.screenshots.template1')
     @endif
     <!-- End App Screenshots Section -->
 
     <!-- Start Pricing Section -->
-@if($template->number == 1)
-@include('website::includes.pricing.template1')
-@endif
+    @if($template->number == 1)
+    @include('website::includes.pricing.template1')
+    @endif
     <!-- End Pricing Section -->
 
     <!-- Start Reviews Section -->
