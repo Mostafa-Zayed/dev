@@ -5,8 +5,8 @@
             <div class="col-md-5">
                 <div class="section-header-style2">
                     @if(! empty($settings))
-                    <h2>{{$settings->getTranslations('section_questions_title')[app()->getLocale()]}}</h2>
-                    {!! $settings->getTranslations('section_questions_description')[app()->getLocale()] !!}
+                    <h2>{{$settings->getTranslations('section_reviews_title')[app()->getLocale()]}}</h2>
+                    {!! $settings->getTranslations('section_reviews_description')[app()->getLocale()] !!}
                     @endif
                     <div class="review_nav">
                         <span class="ti-angle-left button_prev"></span>
