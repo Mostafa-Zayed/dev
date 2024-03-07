@@ -38,11 +38,23 @@
                                         <ul>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                Community support
+                                                @if($package->location_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->location_count}}
+                                                @endif
+
+                                                @lang('business.business_locations')
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                400+ pages
+                                                @if($package->user_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->user_count}}
+                                                @endif
+
+                                                @lang('superadmin::lang.users')
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
@@ -77,7 +89,7 @@
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
                                             <span class="price-num">{{round($package->price,2)}}</span>
-                                            <span class="price-date">/month</span>
+                                            <span class="price-date">/year</span>
                                         </span>
                                         <div class="shape-bottom">
                                             <img src="images/shapes/price-shape.svg" alt="shape" class="bottom-shape img-fluid">
@@ -87,11 +99,23 @@
                                         <ul>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                Community support
+                                                @if($package->location_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->location_count}}
+                                                @endif
+
+                                                @lang('business.business_locations')
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
-                                                400+ pages
+                                                @if($package->user_count == 0)
+                                                @lang('superadmin::lang.unlimited')
+                                                @else
+                                                {{$package->user_count}}
+                                                @endif
+
+                                                @lang('superadmin::lang.users')
                                             </li>
                                             <li>
                                                 <span class="fas fa-check"></span>
