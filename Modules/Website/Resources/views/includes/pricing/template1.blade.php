@@ -68,7 +68,7 @@
                     <div id="yearly" class="tab-pane fade">
                         <div class="row">
                             @foreach ($packages as $package)
-                            @if ($package->interval == 'months')
+                            @if ($package->interval == 'years')
                             <!-- Start pricing table-->
                             <div class="col-md-6">
                                 <div class="pricing-card">
