@@ -111,7 +111,7 @@ class PackagesController extends Controller
 
             $input['custom_link'] = empty($input['enable_custom_link']) ? '' : $input['custom_link'];
             $input['custom_link_text'] = empty($input['enable_custom_link']) ? '' : $input['custom_link_text'];
-
+            $input['show_home'] = empty($input['show_home']) ? 0 : 1;
             $package = new Package;
             $package->fill($input);
             $package->save();

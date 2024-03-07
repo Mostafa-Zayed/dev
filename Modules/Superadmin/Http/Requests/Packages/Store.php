@@ -35,6 +35,7 @@ class Store extends FormRequest
             'custom_permissions' => ['required','array'],
             'online_users' => ['sometimes','numeric'],
             'image' => ['required','image'],
+            'show_home' => ['sometimes','in:0,1']
         ];
     }
 
