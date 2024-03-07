@@ -84,7 +84,7 @@
                                                 <span class="fas fa-check"></span>
                                                 {{$permission_formatted[$permission]}}
                                             </li>
-                                            <br />
+                                            
                                             @endisset
                                             @endforeach
                                             @endif
