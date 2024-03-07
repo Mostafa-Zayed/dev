@@ -19,15 +19,15 @@
                     <div id="monthly" class="tab-pane fade in active show">
                         <div class="row">
                             @foreach ($packages as $package)
-                            @if ($package->interval == 'months')
+                            @if ($package->interval == 'months' && $package->show_home == 1)
                             <!-- Start pricing table-->
                             <div class="col-md-6">
                                 <div class="pricing-card">
                                     <header class="card-header">
-                                        <h4>Individual Plan</h4>
+                                        <h4>{{ $package->getTranslations('name')[app()->getLocale()]}}</h4>
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
-                                            <span class="price-num">22</span>
+                                            <span class="price-num">{{$package->price}}</span>
                                             <span class="price-date">/month</span>
                                         </span>
                                         <div class="shape-bottom">
@@ -68,15 +68,15 @@
                     <div id="yearly" class="tab-pane fade">
                         <div class="row">
                             @foreach ($packages as $package)
-                            @if ($package->interval == 'years')
+                            @if ($package->interval == 'years' && $package->show_home == 1)
                             <!-- Start pricing table-->
                             <div class="col-md-6">
                                 <div class="pricing-card">
                                     <header class="card-header">
-                                        <h4>Individual Plan</h4>
+                                        <h4>{{ $package->getTranslations('name')[app()->getLocale()]}}</h4>
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
-                                            <span class="price-num">122</span>
+                                            <span class="price-num">{{$package->price}}</span>
                                             <span class="price-date">/month</span>
                                         </span>
                                         <div class="shape-bottom">
