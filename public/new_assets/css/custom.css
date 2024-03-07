@@ -1,0 +1,256 @@
+:root {
+    --main: #97197d;
+    --main-dark: #3d096b;
+    --main-bg: #f1f4f8;
+    --main-font-color: #002547;
+}
+/* Start Select 2 Plugin */
+.select2-container--default .select2-selection--multiple,
+.select2-container .select2-selection--single{
+    border: 1px solid #e6eaed;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.form-group .form-control,
+.select2-container--default .select2-selection--multiple,
+.select2-container .select2-selection--single,
+.select2-container--default .select2-selection--multiple .select2-selection__arrow,
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 40px !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered,
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 40px;
+    color: #33516c;
+    font-size: 14px;
+    font-weight: 500;
+}
+.select2-container{
+    max-width: 100% !important;
+}
+.hidden-default-box-body .select2-container{
+    width: 100% !important;
+}
+/* Select 2 With Addon Icon */
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) .select2-selection--single{
+    margin-left: -1px;
+    /*border-top-left-radius: 12px !important;*/
+    /*border-bottom-left-radius: 12px !important;*/
+    border-start-start-radius: 12px !important;
+    border-end-start-radius: 12px !important;
+}
+.add-product-form .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) .select2-selection--single{
+    margin-left: -1px;
+    border-start-start-radius: 0 !important;
+    border-end-start-radius: 0 !important;
+}
+.input-group>span:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) select {
+    margin-right: -1px;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+}
+.input-group > .form-control + span.select2{
+    position: relative;
+    flex: 1 1 auto;
+    /*width: 1% !important;*/
+    min-width: 0;
+}
+/* End Select 2 Plugin */
+
+/* Start Data Tables */
+.data_table_selector th{
+    white-space: nowrap;
+}
+.data_table_selector td{
+    padding: 10px;
+    white-space: nowrap;
+}
+.fixedHeader-floating.table>:not(caption)>*>th {
+    padding: 7px !important;
+}
+.dtfh-floatingparent{
+    display: none !important;
+}
+.dtfh-floatingparent:last-of-type{
+    display: block !important;
+}
+/* .dtfh-floatingparent + .dtfh-floatingparent{
+    display: none !important;
+} */
+.dt-buttons .btn-group{
+    margin-right: 5px;
+}
+.dropdown-menu .dt-button a{
+    color: #444;
+    background-color: #ffffff;
+}
+.dropdown-menu .dt-button.active a{
+    color: #fff;
+    background-color: var(--main);
+}
+div.dataTables_wrapper div.dt-buttons.btn-group div.btn-group:last-child{
+    border: 0;
+}
+.dt-buttons button,
+.dt-buttons a{
+    background-color: var(--main) !important;
+    border-color: #fff !important;
+    color: #fff !important;
+}
+.dt-buttons button:hover,
+.dt-buttons button:focus,
+.dt-buttons button:active:focus,
+.dt-buttons a:hover,
+.dt-buttons a:focus,
+.dt-buttons a:active:focus{
+    background-color: var(--main);
+    box-shadow: none;
+    color: #fff;
+}
+.dataTables_length select{
+    height: unset !important;
+}
+/* .dataTables_filter{
+    float: right;
+} */
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: var(--main);
+    border-color: var(--main);
+}
+.page-link,
+.page-link:hover,
+.page-link:focus{
+    color: var(--main);
+}
+.btn-check:focus+.btn-secondary, .btn-secondary:focus,
+.page-link:focus{
+    box-shadow: unset;
+}
+div.dataTables_wrapper div.dataTables_length select{
+    width: max-content;
+    text-align: center;
+    padding: 0px 10px;
+    border-radius: 8px;
+    margin: 0 8px;
+    font-size: 14px;
+    color: #888;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #888;
+}
+.dataTables_processing{
+    background: #28a745;
+    color: #fff;
+    z-index: 9;
+}
+/* End Data Tables */
+
+/* Start Bootstrap */
+#search,
+#sell_list_filter_date_range,
+.form-select{
+    color: #33516c !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border: solid 1px #e6eaed;
+    height: 40px !important;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    cursor: pointer;
+}
+#preview_setting_form .ui-autocomplete-input{
+    color: #33516c !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border: solid 1px #e6eaed;
+    height: 40px !important;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+.form-select:focus{
+    border-color: #e6eaed;
+}
+/* Icon for Modal Next to input */
+.input-group-text,
+.input-group-addon{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.modal-fullscreen .modal-content{
+    height: auto;
+}
+/* End Bootstrap */
+
+/* Start Tags Plugin */
+.blue.tag-contain {
+    padding: 0;
+}
+.blue.tag-contain .tag-input{
+    border: solid 1px #e6eaed;
+    padding: .375rem .75rem;
+    width: 100%;
+    font-size: 14px;
+}
+input:focus-visible{
+    outline: 0;
+}
+.blue.tag-contain ul li {
+    background: var(--main);
+}
+/* End Tags Plugin */
+.importing-box a{
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.file-label{
+    text-align: center;
+    border: 1px solid #e6eaed;
+    height: 55px;
+    border-radius: 6px;
+    display: block;
+    line-height: 55px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.file-label:hover{
+    background: #eee
+}
+.file-label + input[type="file"]{
+    display: none;
+}
+.importing-box h4{
+    color: #002547;
+    font-weight: 600;
+}
+.importing-box p{
+    color: #002547;
+    font-weight: 600;
+}
+.default-box td a {
+    padding: 5px 16px;
+}
+.input-group-btn>.btn{
+    height: 100%;
+}
+.datepicker-dropdown{
+    z-index: 9999 !important;
+}

@@ -1,0 +1,135 @@
+.mobile-menu-toggler i {
+    color: #370971 !important;
+}
+/*Start Forms 'Login & Register' */
+.form-img-des{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.form-img-des-container{
+    /*direction: ltr;*/
+    box-shadow: 0px 2px 15px rgb(0,0,0,.2);
+    font-family: cairo;
+}
+
+.form-img-des-container .form-img-des-img{
+    background: aliceblue;
+    padding: 30px;
+}
+.form-img-des-container .form-img-des-img img{
+    width: 70%;
+    display: block;
+    margin: auto;
+}
+.form-img-des-container .form-img-des-img h4{
+    font-size: 35px;
+    font-weight: 400;
+    color: #000;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.form-img-des-container .form-img-des-img h4 strong{
+    color: #555;
+}
+.form-img-des-container .form-img-des-v{
+    padding: 50px;
+    background: #fff;
+}
+.form-img-des-container .form-img-des-v h5{
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+}
+.form-img-des-container .form-img-des-v .form-group{
+    position: relative;
+}
+.form-img-des-container .form-img-des-v input[type="text"],
+.form-img-des-container .form-img-des-v input[type="email"],
+.form-img-des-container .form-img-des-v input[type="password"]{
+    border-left: 3px solid #370971;
+    height: 50px;
+    text-align: left;
+    border-radius: 0;
+}
+.form-img-des-container .form-img-des-v .login-custom-placeholder{
+    pointer-events: none;
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    color: #444;
+    transition: .3s ease-in-out all;
+}
+.form-img-des-container .form-img-des-v input:focus ~ .login-custom-placeholder, .form-img-des-container .form-img-des-v input:not(:focus):valid ~ .login-custom-placeholder{
+    top: 3px;
+    font-size: 11px;
+}
+.form-img-des-container .form-img-des-v button{
+    /*background: #370971;*/
+    color: #fff;
+    border-radius: 4px !important;
+    transition: all .2s ease;
+}
+/*.form-img-des-container .form-img-des-v button:hover{*/
+/*    background: #2b065a;*/
+/*}*/
+.form-img-des-container .form-img-des-v > span{
+    position: relative;
+    display: block;
+    text-align: center;
+}
+.form-img-des-container .form-img-des-v > span:before{
+    content: "";
+    position: absolute;
+    height: 1px;
+    left: 0;
+    right: 55%;
+    top: 48%;
+    background-color: #ccc;
+}
+.form-img-des-container .form-img-des-v > span:after{
+    content: "";
+    position: absolute;
+    height: 1px;
+    left: 55%;
+    right: 0;
+    top: 48%;
+    background-color: #ccc;
+}
+.form-img-des-container .form-img-des-v .new-register{
+    text-align: center;
+    background: #370971;
+    padding: 7px 22px;
+    display: block;
+    color: #fff;
+    margin-top: 18px;
+    border-radius: 4px;
+    font-size: 17px;
+}
+.form-img-des-container .form-img-des-v .login-more-btns a{
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+}
+.form-img-des-container .form-img-des-v .login-more-btns a:first-of-type{
+    background: #007bff;
+}
+.form-img-des-container .form-img-des-v .login-more-btns a:last-of-type{
+    background: #28a745;
+}
+.form-img-des-container .form-img-des-v a{
+    text-decoration: none;
+}
+@media only screen and (max-width:767px){
+    .form-img-des-container .form-img-des-img{
+        padding: 30px 20px;
+    }
+    .form-img-des-container .form-img-des-img h4 {
+        font-size: 24px;
+    }
+    .form-img-des-container .form-img-des-v {
+        padding: 40px 20px;
+    }
+}
+/*End Forms 'Login & Register' */

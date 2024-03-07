@@ -21,7 +21,10 @@
     font-size: 18px;
     line-height: 1.3333333;
 }
-
+body{
+  direction: rtl;
+  font-family: cairo;
+}
 .of-visible {
     overflow: visible !important;
 }

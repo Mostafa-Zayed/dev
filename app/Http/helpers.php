@@ -110,7 +110,21 @@ if (!function_exists('str_ordinal')) {
     if (!function_exists('getModulesName')) {
         function getModulesName()
         {
-          return config('erp.modules');
+            return config('erp.modules');
         }
-      }
+    }
+
+    if (!function_exists('getDirection')) {
+        function getDirection()
+        {
+            return in_array(session()->get('user.language', config('app.locale')), config('constants.langs_rtl')) ? 'rtl' : 'ltr';
+        }
+    }
+
+    if (!function_exists('getLanguage')) {
+        function getLanguage()
+        {
+            return app()->getLocale();
+        }
+    }
 }

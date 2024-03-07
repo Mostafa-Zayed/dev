@@ -1,0 +1,80 @@
+/* Start Override */
+.main-top-nav .dropdown-menu,
+.nav-dropdown .dropdown-menu{
+    left: 0;
+}
+.inner-nav .navbar-toggle {
+    margin-right: unset;
+    margin-left: unset;
+}
+/* End Override */
+body{
+    direction: rtl;
+    font-family: cairo;
+}
+.owl-custom-nav button{
+    transform: rotate(180deg);
+}
+.home-tables .table-overview th:first-of-type,
+.home-tables .table-overview td:first-of-type{
+    border-radius: 0 15px 15px 0;
+}
+.home-tables .table-overview th:last-of-type,
+.home-tables .table-overview td:last-of-type {
+    border-radius: 15px 0 0 15px;
+}
+.form-check-input {
+    margin-right: -1.25rem;
+}
+.login-p{
+    text-align: right;
+}
+.inner-nav .nav-link::after{
+    left: 0;
+    right: unset;
+}
+.nav-dropdown .dropdown-menu{
+    right: unset;
+    left: 0;
+}
+/*.add-product-form .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) .select2-selection--single{*/
+/*    margin-left: -1px;*/
+/*    border-top-left-radius: 12px !important;*/
+/*    border-bottom-left-radius: 12px !important;*/
+/*    border-top-right-radius: 0 !important;*/
+/*    border-bottom-right-radius: 0 !important;*/
+/*}*/
+
+
+.side-bar{
+    display: flex;
+    padding-top: 15px;
+    background: #fff;
+    width: 240px;
+    height: auto;
+    min-height: 90vh;
+    position: absolute;
+    visibility: hidden;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.side-bar ul ul{
+    padding: 0 15px 0 5px;
+    display: none;
+}
+.side-bar ul ul li a{
+    position: relative;
+    display: block;
+    color: var(--main-font-color);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 10px 10px 15px;
+}

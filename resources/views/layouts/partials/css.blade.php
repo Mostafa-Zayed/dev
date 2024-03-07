@@ -73,3 +73,5 @@
 @if(!empty($__system_settings['additional_css']))
     {!! $__system_settings['additional_css'] !!}
 @endif
+
+<link rel="stylesheet" href="{{ asset('new_assets/css/style.css') }}">
