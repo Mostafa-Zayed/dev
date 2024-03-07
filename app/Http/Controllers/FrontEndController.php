@@ -38,7 +38,7 @@ class FrontEndController extends Controller
         )->where('status',1)->first();
         $packages = Package::listPackages(true);
         $websiteSettings = WebsiteSetting::first();
-        $reviews = WebsiteReview::with('user')->whee('is_home',1)->get();
+        $reviews = WebsiteReview::with('user')->where('is_home',1)->get();
         $permissions = $this->moduleUtil->getModuleData('superadmin_package');
 
         $permission_formatted = [];
