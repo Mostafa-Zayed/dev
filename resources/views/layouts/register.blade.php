@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <select class="form-select form-select-sm mb-3" id="change_lang">
+                                <select class="custom-select" id="change_lang">
                                     @foreach(config('constants.langs') as $key => $val)
                                     <option value="{{$key}}" @if( (empty(request()->lang) && config('app.locale') == $key)
                                         || request()->lang == $key)
