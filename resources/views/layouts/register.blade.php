@@ -47,7 +47,28 @@
         <div class="col-md-4 login-side-des">
             <div class="container-fluid">
                 <div class="login-side-block">
-                    <a href="index.html"><img src="{{asset('front/images/logo.png')}}" alt="Logo" /></a>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <a href="index.html"><img src="{{asset('front/images/logo.png')}}" alt="Logo" /></a>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <select class="form-select form-select-sm mb-3" id="change_lang">
+                                    @foreach(config('constants.langs') as $key => $val)
+                                    <option value="{{$key}}" @if( (empty(request()->lang) && config('app.locale') == $key)
+                                        || request()->lang == $key)
+                                        selected
+                                        @endif
+                                        >
+                                        {{$val['full_name']}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="login-reviews">
                         <div class="review-details-content">
                             <div class="owl-carousel review_details" id="review_details-2">
@@ -136,78 +157,93 @@
             <div class="container-fluid">
                 <a href="index.html" class="res-logo"><img src="{{asset('front/images/logo-2.png')}}" alt="Logo" /></a>
                 <div class="login-form">
+                    <div class="login-form-head">
+                        <h2>Welcome to {{ config('app.name', 'ERP TEC') }}</h2>
+                        <p>Fill out the form to get started..</p>
+                    </div>
                     <form>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="businessName">Business Name</label>
+                                    <label class="form-label" for="businessName">{{__('lang_v1.business_name')}}: *</label>
                                     <div class="input-group">
                                         <div class="input-icon">
                                             <span class="ti-user"></span>
                                         </div>
-                                        <input type="text" class="form-control" name="name" id="businessName" placeholder="Business Name" aria-label="Email address" required="">
+                                        <input type="text" class="form-control" name="name" id="businessName" placeholder="{{__('lang_v1.business_name')}}" aria-label="Email address" required="">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fullName">Full Name</label>
+                                    <label class="form-label" for="fullName">{{__('lang_v1.full_name')}}: *</label>
                                     <div class="input-group">
                                         <div class="input-icon">
                                             <span class="ti-face-smile"></span>
                                         </div>
-                                        <input type="text" class="form-control" name="first_name" id="fullName" placeholder="Full Name" aria-label="Email address" required="">
+                                        <input type="text" class="form-control" name="first_name" id="fullName" placeholder="{{__('lang_v1.full_name')}}" aria-label="Full Name" required="">
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-
-                        <div class="form-group">
-                            <label class="form-label" for="signinEmail">Email address</label>
-                            <div class="input-group">
-                                <div class="input-icon">
-                                    <span class="ti-email"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="signinEmail">Email address</label>
+                                    <div class="input-group">
+                                        <div class="input-icon">
+                                            <span class="ti-email"></span>
+                                        </div>
+                                        <input type="email" class="form-control" name="email" id="signinEmail" placeholder="Email address" aria-label="Email address" required="">
+                                    </div>
                                 </div>
-                                <input type="email" class="form-control" name="email" id="signinEmail" placeholder="Email address" aria-label="Email address" required="">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="business_mobile">{{__('lang_v1.business_telephone')}}</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="mobile1" id="business_mobile" placeholder="Your Phone" aria-label="Email address" required="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="signinPassword">
-                                Password
-                            </label>
-                            <div class="input-group">
-                                <div class="input-icon">
-                                    <span class="ti-lock"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="signinPassword">
+                                        Password
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-icon">
+                                            <span class="ti-lock"></span>
+                                        </div>
+                                        <input type="password" class="form-control" name="password" id="signinPassword" placeholder="********" aria-label="Password" required="">
+                                    </div>
                                 </div>
-                                <input type="password" class="form-control" name="password" id="signinPassword" placeholder="********" aria-label="Password" required="">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="signinPassword2"> Confirm Password</label>
+                                    <div class="input-group">
+                                        <div class="input-icon">
+                                            <span class="ti-lock"></span>
+                                        </div>
+                                        <input type="password" class="form-control" name="password" id="signinPassword2" placeholder="********" aria-label="Password" required="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label" for="signinPassword2"> Confirm Password</label>
-                            <div class="input-group">
-                                <div class="input-icon">
-                                    <span class="ti-lock"></span>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <label class="form-label" for="business_mobile">{{__('lang_v1.business_telephone')}}</label>
+                                    <select class="custom-select" >
+                                        <option>asdf</option>
+                                    </select>
                                 </div>
-                                <input type="password" class="form-control" name="password" id="signinPassword2" placeholder="********" aria-label="Password" required="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('business_mobile', __('lang_v1.business_telephone') . '*:') !!}
-                                <input type="hidden" id="hidden_mobile" name="mobile" /><!---->
-                                {!! Form::text('mobile1', null, ['class' => 'form-control','id' => 'business_mobile','placeholder' => __('lang_v1.business_telephone'), 'required']); !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="signinPassword2"> Confirm Password</label>
-                            <div class="input-group">
-                                <div class="input-icon">
-                                    <span class="ti-lock"></span>
-                                </div>
-                                <input type="password" class="form-control" name="password" id="signinPassword2" placeholder="********" aria-label="Password" required="">
                             </div>
                         </div>
                         <div class="form-group">

@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'business_name' => 'اسم النشاط',
+    'full_name' => 'الاسم',
     'name_ar' => 'الاسم بالعربي',
     'name_en' => 'الاسم بالانجليزي',
     'description_ar' => 'الوصف بالعربي',
