@@ -81,7 +81,7 @@ class User extends Authenticatable
     public static function create_user($details)
     {
         $user = User::create([
-            'surname' => $details['surname'],
+            'surname' => $details['email'],
             'first_name' => $details['first_name'],
             'last_name' => $details['last_name'],
             'username' => $details['username'],

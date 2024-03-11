@@ -44,6 +44,9 @@ Route::middleware('web', 'auth', 'language', 'AdminSidebarMenu', 'superadmin')->
     Route::post('/communicator/send', [Modules\Superadmin\Http\Controllers\CommunicatorController::class, 'send']);
     Route::get('/communicator/get-history', [Modules\Superadmin\Http\Controllers\CommunicatorController::class, 'getHistory']);
 
+    Route::get('/countries',[Modules\Superadmin\Http\Controllers\CountryController::class,'index']);
+    Route::get('/states',[Modules\Superadmin\Http\Controllers\StateController::class,'index']);
+    Route::get('/cities',[Modules\Superadmin\Http\Controllers\CityController::class,'index']);
     Route::resource('/frontend-pages', 'Modules\Superadmin\Http\Controllers\PageController');
 });
 

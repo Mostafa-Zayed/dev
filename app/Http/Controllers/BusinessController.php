@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\Business\Auth\Register;
 
 class BusinessController extends Controller
 {
@@ -84,8 +85,9 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function postRegister(Request $request)
+    public function postRegister(Register $request)
     {
+        dd($request->validated());
         if (! config('constants.allow_registration')) {
             return redirect('/');
         }

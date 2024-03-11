@@ -1,6 +1,9 @@
 <?php
 
  return [
+    'forget_password' => 'نسيت كلمة المرور؟',
+    'welcome_back' => 'مرحبا بعودتك',
+    'login_to_manage' => 'تسجيل الدخول لإدارة حسابك.',
      'register_and_get_started_in_minutes' => 'سجل وابدأ في دقائق',
      'business_name' => 'اسم النشاط',
      'start_date' => 'تاريخ البدء',

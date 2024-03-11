@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'fill_form' => 'Fill out the form to get started..',
+    'have_account' => 'Already have an account?',
+    'dont_have_account' => "Don't have an account yet?",
+    'agree' => 'I agree to the',
+    'welcome_to' => 'Welcome To',
     'business_name' => 'Business Name',
     'full_name' => 'Name',
     'enable_editing_product_from_purchase' => 'Enable editing product price from purchase screen',

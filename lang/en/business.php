@@ -2,6 +2,9 @@
 
 return [
 
+    'welcome_back' => 'Welcome Back',
+    'login_to_manage' => 'Login to manage your account.',
+    'forget_password' => 'Forgot Password?',
     /*
     |--------------------------------------------------------------------------
     | Business Language Lines

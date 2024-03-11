@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'countries' => 'البلاد',
+    'states' => 'الولايات',
+    'cities' => 'المدن',
     'package_image' => 'صورة الباقة',
     'description_ar' => 'الوصف بالعربي',
     'description_en' => 'الوصف بالانجليزي',

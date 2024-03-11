@@ -52,7 +52,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('business.login');
     }
 
     /**
@@ -85,6 +85,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+   
         $this->businessUtil->activityLog($user, 'login', null, [], false, $user->business_id);
 
         if (! $user->business->is_active) {
