@@ -12,6 +12,7 @@ use App\Utils\Util;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
+use App\Services\BusinessLocationService;
 
 class BusinessLocationController extends Controller
 {
@@ -19,14 +20,17 @@ class BusinessLocationController extends Controller
 
     protected $commonUtil;
 
+    protected $businessLocationService;
+
     /**
      * Constructor
      *
      * @param  ModuleUtil  $moduleUtil
      * @return void
      */
-    public function __construct(ModuleUtil $moduleUtil, Util $commonUtil)
+    public function __construct(ModuleUtil $moduleUtil, Util $commonUtil, BusinessLocationService $businessLocationService)
     {
+        $this->businessLocationService = $businessLocationService;
         $this->moduleUtil = $moduleUtil;
         $this->commonUtil = $commonUtil;
     }

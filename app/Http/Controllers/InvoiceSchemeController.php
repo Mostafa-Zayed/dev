@@ -6,9 +6,16 @@ use App\InvoiceLayout;
 use App\InvoiceScheme;
 use Datatables;
 use Illuminate\Http\Request;
+use App\Services\InvoiceSchemeService;
 
 class InvoiceSchemeController extends Controller
 {
+    protected $invoiceSchemeService;
+
+    public function __construct(InvoiceSchemeService $invoiceSchemeService)
+    {
+        $this->invoiceSchemeService = $invoiceSchemeService;
+    }
     /**
      * Display a listing of the resource.
      *

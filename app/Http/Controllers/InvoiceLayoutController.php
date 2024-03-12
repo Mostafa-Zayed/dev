@@ -6,14 +6,17 @@ use App\InvoiceLayout;
 use App\Utils\Util;
 use Illuminate\Http\Request;
 use Validator;
+use App\Services\InvoiceLayoutService;
 
 class InvoiceLayoutController extends Controller
 {
     protected $commonUtil;
+    protected $invoiceLayoutService;
 
-    public function __construct(Util $commonUtil)
+    public function __construct(Util $commonUtil, InvoiceLayoutService $invoiceLayoutService)
     {
-        $this->commonUtil = $commonUtil;
+        $this->commonUtil            = $commonUtil;
+        $this->invoiceLayoutService  = $invoiceLayoutService;
     }
 
     /**
