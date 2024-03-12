@@ -19,9 +19,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\Business\Auth\Register;
+use App\Services\BusinessService;
+use App\Traits\LogException;
+use App\Services\UserService;
 
 class BusinessController extends Controller
 {
+    use LogException;
     /*
     |--------------------------------------------------------------------------
     | BusinessController
@@ -43,14 +47,26 @@ class BusinessController extends Controller
 
     protected $mailDrivers;
 
+    protected $businessService;
+
+    protected $userService;
+
     /**
      * Constructor
      *
      * @param  ProductUtils  $product
      * @return void
      */
-    public function __construct(BusinessUtil $businessUtil, RestaurantUtil $restaurantUtil, ModuleUtil $moduleUtil)
+    public function __construct(
+        BusinessService $businessService,
+        UserService $userService,
+        BusinessUtil $businessUtil,
+        RestaurantUtil $restaurantUtil,
+        ModuleUtil $moduleUtil
+        )
     {
+        $this->businessService = $businessService;
+        $this->userService     = $userService;
         $this->businessUtil = $businessUtil;
         $this->moduleUtil = $moduleUtil;
 
@@ -87,10 +103,24 @@ class BusinessController extends Controller
      */
     public function postRegister(Register $request)
     {
-        dd($request->validated());
-        if (! config('constants.allow_registration')) {
-            return redirect('/');
+        if(isAllowRegister()){
+            try{
+                DB::beginTransaction();
+                $user = $this->userService->register($request->only(['first_name','email', 'password','contact_no']));
+                
+                $business = BusinessService::register($request->only(['name','currency_id']),$user->id);
+                $user->business_id = $business->id;
+                $user->save();
+                BusinessService::addDefaultResourcesToNewBusiness($business->id, $user->id);
+                $businessLocation = BusinessService::addDefaultBusinessLocation($business->id,$request->only(['name','email','contact_no']));
+                Permission::create(['name' => 'location.'.$businessLocation->id]);
+                DB::commit();
+            } catch(\Exception $exception) {
+                return $this->logMethodException($exception);
+            }
         }
+        return redirect('/');
+        
 
         try {
             $validator = $request->validate(
@@ -133,7 +163,7 @@ class BusinessController extends Controller
             );
 
             DB::beginTransaction();
-
+//Africa/Cairo
             //Create owner.
             $owner_details = $request->only(['surname', 'first_name', 'last_name', 'username', 'email', 'password', 'language']);
 

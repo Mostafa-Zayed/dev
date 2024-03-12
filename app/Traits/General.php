@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Traits;
 
@@ -22,8 +22,8 @@ trait General
     public static function getAllCurrencies()
     {
         $currencies = DB::table('currencies')->select('id', DB::raw("concat(country, ' - ',currency, '(', code, ') ') as info"))
-                ->orderBy('country')
-                ->pluck('info', 'id');
+            ->orderBy('country')
+            ->pluck('info', 'id');
 
         return $currencies;
     }
@@ -31,7 +31,7 @@ trait General
     public static function getAllMonths()
     {
         for ($i = 1; $i <= 12; $i++) {
-            $months[$i] = __('business.months.'.$i);
+            $months[$i] = __('business.months.' . $i);
         }
 
         return $months;
@@ -48,5 +48,10 @@ trait General
             'fifo' => __('business.fifo'),
             'lifo' => __('business.lifo'),
         ];
+    }
+
+    function isAllowRegiser()
+    {
+        return config('constants.allow_registration');
     }
 }

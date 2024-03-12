@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang="{{app()->getLocale()}}" dir="@if(app()->getLocale() == 'ar' ) rtl @else ltr @endif">
+<html lang="{{getLanguage()}}" dir=@if(getLanguage() !='ar' ) 'ltr' @else 'rtl' @endif>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ariel - App Landing Page Template + RTL </title>
-    <meta name="description" content="App Landing page, RTL Version, Marwa El-Manawy, Application">
-    <meta name="author" content="Marwa El-Manawy - https://elmanawy.info" />
+    <title>ERP TEC</title>
+    <meta name="description" content="ERP TEC">
+    <meta name="ERP TEC" content="ERP TEC - https://dev.erptec.net" />
     <link rel="icon" href="favicon.png">
-    <!-- Font Icons -->
+
+    @if(getLanguage() == 'ar')
+    <link rel="stylesheet" href="{{asset('website/rtl/css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/lightcase.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/style.css')}}">
+    @else
     <link rel="stylesheet" href="{{asset('website/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('website/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('website/css/flaticon.css')}}">
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="{{asset('website/css/bootstrap.min.css')}}">
-    <!-- Animation -->
     <link rel="stylesheet" href="{{asset('website/css/animate.min.css')}}">
-    <!-- Owl Carousel -->
     <link rel="stylesheet" href="{{asset('website/css/owl.carousel.min.css')}}">
-    <!-- Light Case -->
     <link rel="stylesheet" href="{{asset('website/css/lightcase.min.css')}}" type="text/css">
-    <!-- Template style -->
     <link rel="stylesheet" href="{{asset('website/css/style.css')}}">
+    @endif
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>

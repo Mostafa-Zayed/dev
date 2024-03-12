@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Image;
 use Illuminate\Support\Facades\File;
+
 trait UploadTrait
 {
 
@@ -72,5 +73,50 @@ trait UploadTrait
   public static function getImage($name, $directory): string
   {
     return asset("uploads/images/$directory/" . $name);
+  }
+
+  /**
+   * Uploads document to the server if present in the request
+   *
+   * @param  obj  $request, string $file_name, string dir_name
+   * @return string
+   */
+  public function erpUploadFile($file, $directory)
+  {
+    //If app environment is demo return null
+    if (config('app.env') == 'demo') {
+      return null;
+    }
+
+    if (!File::isDirectory('storage/images/' . $directory)) {
+      File::makeDirectory('storage/images/' . $directory, 0777, true, true);
+    }
+
+    $uploaded_file_name = null;
+    if ($file->isValid()) {
+
+      $fileMimeType = $file->getClientmimeType();
+      $fileType = explode('/', $fileMimeType);
+      if ($fileType[0] == 'image') {
+        if (strpos($fileMimeType, 'image/') === false) {
+          throw new \Exception('Invalid image file');
+        }
+      }
+
+      if ($fileType[0] == 'document') {
+        if (!in_array($fileMimeType, array_keys(config('constants.document_upload_mimes_types')))) {
+          throw new \Exception('Invalid document file');
+        }
+      }
+
+      if ($file->getSize() <= config('constants.document_size_limit')) {
+        $new_file_name = time() . '_' . $file->getClientOriginalName();
+        if ($file->storeAs($directory, $new_file_name)) {
+          $uploaded_file_name = $new_file_name;
+        }
+      }
+    }
+
+    return $uploaded_file_name;
   }
 }

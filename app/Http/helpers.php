@@ -127,4 +127,11 @@ if (!function_exists('str_ordinal')) {
             return app()->getLocale();
         }
     }
+
+    if(! function_exists('isAllowRegister')){
+        function isAllowRegister()
+        {
+            return config('constants.allow_registration');
+        }
+    }
 }

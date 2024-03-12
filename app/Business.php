@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Traits\UploadTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Business extends Model
 {
+    use UploadTrait;
+    const IMAGEPATH = 'business';
     /**
      * The table associated with the model.
      *
@@ -128,5 +131,13 @@ class Business extends Model
         ', '.$location->state.'<br>'.$location->country.', '.$location->zip_code;
 
         return $address;
+    }
+
+    public function setLogoAttribute($value) {
+        if (null != $value && is_file($value) ) {
+            isset($this->attributes['logo']) ? $this->deleteFile($this->attributes['logo'] , static::IMAGEPATH) : '';
+            $this->attributes['logo'] = $this->erpUploadFile($value, static::IMAGEPATH);
+        }
+        return 'default.png';
     }
 }

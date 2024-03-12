@@ -118,7 +118,8 @@
                                     </div>
                                     <input type="text" class="form-control" name="name" id="businessName" placeholder="{{__('lang_v1.business_name')}}" aria-label="Email address" required="">
                                     @if($errors->has('name'))
-                                    <div class="error">{{ $errors->first('name') }}</div>
+                                    <br>
+                                    <div class="error"><span class="alert-danger">{{ $errors->first('name') }}</span></div>
                                     @endif
                                 </div>
                             </div>
@@ -126,9 +127,13 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="business_mobile">{{__('lang_v1.business_telephone')}}</label>
+                                <label class="form-label" for="contact_no">{{__('lang_v1.business_telephone')}}</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="mobile1" id="business_mobile" placeholder="Your Phone" aria-label="Email address" required="">
+                                    <input type="text" class="form-control" name="contact_no" id="contact_no" placeholder="Your Phone" aria-label="Email address" required="">
+                                    @if($errors->has('contact_no'))
+                                    <br>
+                                    <div class="error"><span class="alert-danger">{{ $errors->first('contact_no') }}</span></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -146,6 +151,10 @@
                                         <span class="ti-face-smile"></span>
                                     </div>
                                     <input type="text" class="form-control" name="first_name" id="fullName" placeholder="{{__('lang_v1.full_name')}}" aria-label="Full Name" required="">
+                                    @if($errors->has('first_name'))
+                                    <br>
+                                    <div class="error"><span class="alert-danger">{{ $errors->first('first_name') }}</span></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -157,6 +166,10 @@
                                         <span class="ti-email"></span>
                                     </div>
                                     <input type="email" class="form-control" name="email" id="signinEmail" placeholder="{{__('business.email')}}" aria-label="Email address" required="">
+                                    @if($errors->has('email'))
+                                    <br>
+                                    <div class="error"><span class="alert-danger">{{ $errors->first('email') }}</span></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -172,6 +185,10 @@
                                         <span class="ti-lock"></span>
                                     </div>
                                     <input type="password" class="form-control" name="password" id="password" aria-label="Password" required="">
+                                    @if($errors->has('password'))
+                                    <br>
+                                    <div class="error"><span class="alert-danger">{{ $errors->first('password') }}</span></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -183,6 +200,10 @@
                                         <span class="ti-lock"></span>
                                     </div>
                                     <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" aria-label="Password" required="">
+                                    @if($errors->has('password_confirmation'))
+                                    <br>
+                                    <div class="error"><span class="alert-danger">{{ $errors->first('password_confirmation') }}</span></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -303,26 +324,6 @@
         $(".time_zone").val("Africa/Cairo").change();
         $("#country").val("Egypt").change();
         $(".currency").val("35").change();
-
-        $("#business_register_form").submit(function(e) {
-            var form = $(this);
-
-            swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
-            }, function(isConfirmed) {
-                if (isConfirmed) {
-                    form.submit();
-                }
-            });
-
-            return false;
-        })
     });
 </script>
 
