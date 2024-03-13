@@ -65,7 +65,7 @@
                         <li class="nav-item"><a href="#" data-scroll-nav="7">Reviews</a></li>
                         <li class="nav-item"><a href="#" data-scroll-nav="6">Faqs</a></li>
                         <li class="nav-item"><a href="#" data-scroll-nav="8">Contact</a></li>
-                        <li class="nav-itme"><a href="{{route('login')}}">{{__('business.login')}}</a></li>
+                        <li class="nav-itme"><a href="{{route('login')}}">{{__('lang_v1.login')}}</a></li>
                         <li class="nav-itme"><a href="{{route('business.getRegister')}}">{{__('business.register')}}</a></li>
                     </ul>
 
