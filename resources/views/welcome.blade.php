@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="dropdown-toggle" href="{{url('/')}}">{{__('lang_v1.home')}}</a>
+                            <a href="{{url('/')}}">{{__('lang_v1.home')}}</a>
                         </li>
                       
                         <li class="nav-item"><a href="#" data-scroll-nav="1">{{__('lang_v1.features')}}</a></li>
