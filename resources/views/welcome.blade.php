@@ -57,7 +57,7 @@
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('lang_v1.home')}}</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item">
                             <a class="dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                 <a class="dropdown-item" href="about-us.html">About Us</a>
@@ -72,16 +72,8 @@
                                 <a class="dropdown-item" href="page-404.html">Page 404</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                <a class="dropdown-item" href="blog-1.html">Blog Demo 1</a>
-                                <a class="dropdown-item" href="blog-2.html">Blog Demo 2</a>
-                                <a class="dropdown-item" href="single-post.html">Single Post</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a href="#" data-scroll-nav="1">Features</a></li>
-                        <li class="nav-item"><a href="#" data-scroll-nav="2">How it work</a></li>
+                        <li class="nav-item"><a href="#" data-scroll-nav="1">{{__('lang_v1.features')}}</a></li>
+                        <li class="nav-item"><a href="#" data-scroll-nav="2">{{__('lang_v1.how_work')}}</a></li>
                         <li class="nav-item"><a href="#" data-scroll-nav="3">Screenshots</a></li>
                         <li class="nav-item"><a href="#" data-scroll-nav="4">Pricing</a></li>
                         <li class="nav-item"><a href="#" data-scroll-nav="7">Reviews</a></li>
