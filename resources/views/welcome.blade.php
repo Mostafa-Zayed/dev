@@ -48,23 +48,14 @@
     <header class="header-area" id="header-area">
         <nav class="navbar navbar-expand-md fixed-top">
             <div class="container">
-                <div class="site-logo"><a class="navbar-brand" href="index.html"><img src="images/logo.png" class="img-fluid" alt="Img" /></a></div>
+                <div class="site-logo"><a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('front/images/logo.png')}}" class="img-fluid" alt="Img" /></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="ti-menu"></i></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="index.html">Home Demo 01</a>
-                                <a class="dropdown-item" href="index-2.html">Home Demo 02</a>
-                                <a class="dropdown-item" href="index-3.html">Home Demo 03</a>
-                                <a class="dropdown-item" href="index-4.html">Home Demo 04</a>
-                                <a class="dropdown-item" href="index-5.html">Home Demo 05</a>
-                                <a class="dropdown-item" href="index-6.html">Home Demo 06</a>
-                                <a class="dropdown-item" href="index-7.html">Home Demo 07</a>
-                            </div>
+                            <a class="dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__(lang_v1.home)}}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>

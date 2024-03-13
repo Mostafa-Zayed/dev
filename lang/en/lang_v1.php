@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'home' => 'Home',
     'fill_form' => 'Fill out the form to get started..',
     'have_account' => 'Already have an account?',
     'dont_have_account' => "Don't have an account yet?",
