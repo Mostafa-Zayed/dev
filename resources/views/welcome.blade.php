@@ -66,7 +66,7 @@
                         <li class="nav-item"><a href="#" data-scroll-nav="6">Faqs</a></li>
                         <li class="nav-item"><a href="#" data-scroll-nav="8">Contact</a></li>
                         <li class="nav-itme"><a href="{{route('login')}}">{{__('business.login')}}</a></li>
-                        <li class="nav-itme"><a href="{{route('getRegister')}}">{{__('business.register')}}</a></li>
+                        <li class="nav-itme"><a href="{{route('business.getRegister')}}">{{__('business.register')}}</a></li>
                     </ul>
 
                 </div>
