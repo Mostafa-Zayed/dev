@@ -38,7 +38,7 @@ trait DefaultResourcesBusiness
         $cashier_role->syncPermissions(config('erp.business.roles.cashier'));
     }
 
-    public function addDefaultCustomer($businessId, $userId, $contactId)
+    public static function addDefaultCustomer($businessId, $userId, $contactId)
     {
         Contact::create([
             'business_id' => $businessId,
@@ -51,7 +51,7 @@ trait DefaultResourcesBusiness
         ]);
     }
 
-    public function addDefaultInvoiceScheme($businessId)
+    public static function addDefaultInvoiceScheme($businessId)
     {
         InvoiceScheme::create([
             'name' => 'Default',
@@ -64,7 +64,7 @@ trait DefaultResourcesBusiness
         ]);
     }
 
-    public function addDefaultInvoiceLayout($businessId)
+    public static function addDefaultInvoiceLayout($businessId)
     {
         return InvoiceLayout::create([
             'header_text' => null,
@@ -98,9 +98,9 @@ trait DefaultResourcesBusiness
         ]);
     }
 
-    public function addDefaultUnit($businessId, $userId)
+    public static function addDefaultUnit($businessId, $userId)
     {
-        Unit::creat([
+        Unit::create([
             'business_id' => $businessId,
             'actual_name' => 'Pieces',
             'short_name' => 'Pc(s)',
@@ -109,7 +109,7 @@ trait DefaultResourcesBusiness
         ]);
     }
 
-    public function addDefaultNotificationTemplate($businessId)
+    public static function addDefaultNotificationTemplate($businessId)
     {
         $notification_templates = NotificationTemplate::defaultNotificationTemplates($businessId);
         foreach ($notification_templates as $notification_template) {

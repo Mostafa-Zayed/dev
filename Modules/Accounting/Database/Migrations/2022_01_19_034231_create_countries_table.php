@@ -22,7 +22,7 @@ class CreateCountriesTable extends Migration
         });
 
         $countries = array(
-            array('sortname' => 'AF', 'name' => 'Afghanistan'),
+            array('sortname' => 'AF', 'name' => [ 'en' => 'Afghanistan', 'ar' => 'افغانستان']),
             array('sortname' => 'AL', 'name' => 'Albania'),
             array('sortname' => 'DZ', 'name' => 'Algeria'),
             array('sortname' => 'AS', 'name' => 'American Samoa'),
