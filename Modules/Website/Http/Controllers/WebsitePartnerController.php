@@ -3,6 +3,7 @@
 namespace Modules\Website\Http\Controllers;
 
 use App\Traits\LogException;
+use App\Traits\UploadTrait;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -11,6 +12,8 @@ use Modules\Website\Http\Requests\Partners\Store;
 use Modules\Website\Entities\WebsiteTemplate;
 class WebsitePartnerController extends Controller
 {
+    use UploadTrait;
+    const IMAGEPATH = 'partners' ;
     use LogException;
     /**
      * Display a listing of the resource.
@@ -38,8 +41,10 @@ class WebsitePartnerController extends Controller
     public function store(Store $request)
     {
         try {
-            // dd($request->validated());
             WebsitePartner::create($request->validated());
+            if($request->hasFile('image')){ 
+                $this->uploadeImage($request->image,'sliders');
+            }
             return view('website::partners.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);
