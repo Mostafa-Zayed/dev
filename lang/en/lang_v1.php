@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'contact' => 'Contact',
+    'faqs' => 'Faqs',
+    'reviews' => 'Reviews',
+    'pricing' => 'Pricing',
+    'screenshots' => 'screenshots',
     'home' => 'Home',
     'how_work' => 'How It Work',
     'features' => 'Features',

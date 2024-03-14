@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'contact' => 'اتصل بنا',
+    'faqs' => 'الاسئبة الشائعة',
+    'reviews' => 'الاراء',
+    'pricing' => 'الاسعار',
+    'screenshots' => 'معرض الصور',
     'home' => 'الرئسية',
     'features' => 'المميزات',
     'how_work' => 'كيف يعمل',
