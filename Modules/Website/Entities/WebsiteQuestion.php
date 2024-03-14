@@ -11,13 +11,14 @@ class WebsiteQuestion extends Model
 {
     use HasFactory,HasTranslations,UploadTrait;
 
-    const IMAGEPATH = 'website/questions' ;
+    const IMAGEPATH = 'questions' ;
     protected $fillable = [
         'answer',
         'title',
         'image',
         'status',
-        'is_home'
+        'is_home',
+        'website_template_id'
     ];
 
     public $translatable = ['title','answer'];
@@ -45,6 +46,11 @@ class WebsiteQuestion extends Model
         return $this->hasMany(WebsiteDemo::class,'website_question_id','id');
     }
     
+    public function websiteTemplate()
+    {
+        return $this->belongsTo(WebsiteTemplate::class, 'website_template_id', 'id');
+    }
+
     protected static function newFactory()
     {
         return \Modules\Website\Database\factories\WebsiteQuestionFactory::new();

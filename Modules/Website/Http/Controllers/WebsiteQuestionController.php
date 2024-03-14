@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteQuestion;
 use Modules\Website\Http\Requests\Questions\Store;
+use Modules\Website\Entities\WebsiteTemplate;
 
 class WebsiteQuestionController extends Controller
 {
@@ -28,7 +29,7 @@ class WebsiteQuestionController extends Controller
      */
     public function create()
     {
-        return view('website::questions.create');
+        return view('website::questions.create',['templates' => WebsiteTemplate::forDropdown()]);
     }
 
     /**

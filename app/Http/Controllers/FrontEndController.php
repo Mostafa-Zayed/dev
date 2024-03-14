@@ -41,6 +41,7 @@ class FrontEndController extends Controller
         $reviews         = WebsiteReview::with('user')->where('is_home',1)->get();
         $permissions     = $this->moduleUtil->getModuleData('superadmin_package');
         $partners        = WebsitePartner::get();
+        $questions       = WebsiteQuestion::get();
         $permission_formatted = [];
         foreach ($permissions as $permission) {
             foreach ($permission as $details) {
@@ -55,7 +56,8 @@ class FrontEndController extends Controller
             'packages' => $packages,
             'permission_formatted' => $permission_formatted,
             'reviews' => $reviews,
-            'partners' => $partners
+            'partners' => $partners,
+            'questions' => $questions
         ]);
     }
 }

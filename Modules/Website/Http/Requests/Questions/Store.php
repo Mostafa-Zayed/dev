@@ -14,10 +14,11 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required','array'],
-            'title.*' => ['required','string','max:255'],
+            'name' => ['required','array'],
+            'name.*' => ['required','string','max:255'],
             'answer' => ['required','array'],
-            'answer.*' => ['required','string']
+            'answer.*' => ['required','string'],
+            'website_template_id' => ['sometimes','exists:website_templates,id']
         ];
     }
 
