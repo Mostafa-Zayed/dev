@@ -33,6 +33,8 @@ return [
     'image' => 'Image',
     'title' => 'Title',
     'demos' => 'Templates',
-    'clients' => 'Clients'
+    'clients' => 'Clients',
+    'monthly' => 'Monthly',
+    'yearly' => 'Yearly',
     
 ];
