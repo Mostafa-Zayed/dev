@@ -67,6 +67,11 @@
                         <li class="nav-item"><a href="#" data-scroll-nav="8">{{__('lang_v1.contact')}}</a></li>
                         <li class="nav-itme"><a href="{{route('login')}}">{{__('lang_v1.login')}}</a></li>
                         <li class="nav-itme"><a href="{{route('business.getRegister')}}">{{__('business.register')}}</a></li>
+                        @if(getLanguage() == 'en')
+                        <li class="nav-item"><a href="{{url('/')}}?lang=ar">ar</a></li>
+                        @else
+                        <li class="nav-item"><a href="{{url('/')}}?lang=en">ar</a></li>
+                        @endif
                     </ul>
 
                 </div>
