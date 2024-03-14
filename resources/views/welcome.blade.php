@@ -70,7 +70,7 @@
                         @if(getLanguage() == 'en')
                         <li class="nav-item"><a href="{{url('/')}}?lang=ar">ar</a></li>
                         @else
-                        <li class="nav-item"><a href="{{url('/')}}?lang=en">ar</a></li>
+                        <li class="nav-item"><a href="{{url('/')}}?lang=en">en</a></li>
                         @endif
                     </ul>
 
