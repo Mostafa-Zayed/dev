@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsitePartner;
 use Modules\Website\Http\Requests\Partners\Store;
-
+use Modules\Website\Entities\WebsiteTemplate;
 class WebsitePartnerController extends Controller
 {
     use LogException;
@@ -27,7 +27,7 @@ class WebsitePartnerController extends Controller
      */
     public function create()
     {
-        return view('website::partners.create');
+        return view('website::partners.create',['templates' => WebsiteTemplate::forDropdown()]);
     }
 
     /**
@@ -38,6 +38,7 @@ class WebsitePartnerController extends Controller
     public function store(Store $request)
     {
         try {
+            // dd($request->validated());
             WebsitePartner::create($request->validated());
             return view('website::partners.index');
         } catch (\Exception $exception){

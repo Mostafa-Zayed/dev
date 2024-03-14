@@ -11,9 +11,9 @@ class WebsitePartner extends Model
 {
     use HasFactory,HasTranslations,UploadTrait;
 
-    const IMAGEPATH = 'website/partners' ;
+    const IMAGEPATH = 'partners' ;
 
-    protected $fillable = ['name','image'];
+    protected $fillable = ['name','image','link','website_template_id'];
 
     public $translatable  = ['name'];
     
@@ -31,13 +31,13 @@ class WebsitePartner extends Model
     {
         if (null != $value && is_file($value)) {
             isset($this->attributes['image']) ? $this->deleteFile($this->attributes['image'], self::IMAGEPATH) : '';
-            $this->attributes['image'] = $this->uploadAllTyps($value, 'users');
+            $this->attributes['image'] = $this->uploadAllTyps($value, self::IMAGEPATH);
         }
     }
 
-    public function webisteDemos()
+    public function websiteTemplate()
     {
-        return $this->hasMany(WebsiteDemo::class,'website_partner_id','id');
+        return $this->belongsTo(WebsiteTemplate::class, 'website_template_id', 'id');
     }
     
     protected static function newFactory()

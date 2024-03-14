@@ -36,11 +36,11 @@ class FrontEndController extends Controller
                 'websiteScreenShots'
             ]
         )->where('status',1)->first();
-        $packages = Package::listPackages(true);
+        $packages        = Package::listPackages(true);
         $websiteSettings = WebsiteSetting::first();
-        $reviews = WebsiteReview::with('user')->where('is_home',1)->get();
-        $permissions = $this->moduleUtil->getModuleData('superadmin_package');
-
+        $reviews         = WebsiteReview::with('user')->where('is_home',1)->get();
+        $permissions     = $this->moduleUtil->getModuleData('superadmin_package');
+        $partners        = WebsitePartner::get();
         $permission_formatted = [];
         foreach ($permissions as $permission) {
             foreach ($permission as $details) {
@@ -54,7 +54,8 @@ class FrontEndController extends Controller
             'features' => $features,
             'packages' => $packages,
             'permission_formatted' => $permission_formatted,
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'partners' => $partners
         ]);
     }
 }

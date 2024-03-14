@@ -91,40 +91,19 @@
             </div>
         </div>
     </div>
+    @if($partners->count() > 0)
     <div class="container">
         <div class="owl-carousel list-clients">
+            @foreach ($partners as $partner)
             <div class="clients-item">
-                <a href="#" title="">
-                    <img src="images/clients/1.png" alt="Img" />
+                <a href="{{$partner->link}}" title="">
+                    <img src="{{$partner->image}}" alt="Img" />
                 </a>
             </div>
-            <div class="clients-item">
-                <a href="#" title="">
-                    <img src="images/clients/2.png" alt="Img" />
-                </a>
-            </div>
-            <div class="clients-item">
-                <a href="#" title="">
-                    <img src="images/clients/3.png" alt="Img" />
-                </a>
-            </div>
-            <div class="clients-item">
-                <a href="#" title="">
-                    <img src="images/clients/4.png" alt="Img" />
-                </a>
-            </div>
-            <div class="clients-item">
-                <a href="#" title="">
-                    <img src="images/clients/5.png" alt="Img" />
-                </a>
-            </div>
-            <div class="clients-item">
-                <a href="#" title="">
-                    <img src="images/clients/6.png" alt="Img" />
-                </a>
-            </div>
+            @endforeach
         </div>
     </div>
+    @endif
     <div class="review-shape-bottom"></div>
     <div class="shape-bottom"></div>
 </section>

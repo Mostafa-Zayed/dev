@@ -13,12 +13,19 @@
             @foreach (languages() as $lang)
             <div class="col-sm-12">
                 <div class="form-group">
-                    {!! Form::label('',__('website::lang.title' . $lang) . ' : *') !!}
+                    {!! Form::label('',__('website::lang.title_' . $lang)) !!}
                     {!! Form::text("name[$lang]",null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.title' . $lang)]); !!}
+                    'placeholder' => __('website::lang.title_' . $lang)]); !!}
                 </div>
             </div>
             @endforeach
+            <div class="col-sm-12">
+                <div class="form-group">
+                </div>
+                {!! Form::label('',__('website::lang.external_link')) !!}
+                {!! Form::text("link",null, ['class' => 'form-control',
+                'placeholder' => __('website::lang.external_link')]); !!}
+            </div>
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="section_features_image">تحميل الصورة:</label>
@@ -44,6 +51,12 @@
                         </div>
                     </div>
                     <p class="help-block"><i> سيتم استبدال الصورة السابق (إن وجد)</i></p>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('',__('website::lang.demos') . ' : *') !!}
+                    {!! Form::select('website_template_id', $templates, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>
             </div>
         </div>

@@ -16,7 +16,9 @@ class Store extends FormRequest
         return [
             'name' => ['sometimes','array'],
             'name.*' => ['sometimes','string','max:255'],
-            'image' => ['required','image']
+            'image' => ['required','image'],
+            'link'  => ['sometimes','string','max:255'],
+            'website_template_id' => ['sometimes','exists:website_templates,id']
         ];
     }
 
