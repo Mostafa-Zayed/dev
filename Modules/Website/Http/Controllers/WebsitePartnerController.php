@@ -43,7 +43,7 @@ class WebsitePartnerController extends Controller
         try {
             WebsitePartner::create($request->validated());
             if($request->hasFile('image')){ 
-                $this->uploadeImage($request->image,self::IMAGEPATH);
+                $this->uploadeImage($request->image,'partners');
             }
             return view('website::partners.index');
         } catch (\Exception $exception){

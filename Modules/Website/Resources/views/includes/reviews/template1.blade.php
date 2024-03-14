@@ -96,7 +96,7 @@
         <div class="owl-carousel list-clients">
             @foreach ($partners as $partner)
             <div class="clients-item">
-                <a href="{{$partner->link}}" title="">
+                <a href="{{$partner->link}}" title="" target="__blank">
                     <img src="{{$partner->image}}" alt="Img" />
                 </a>
             </div>
