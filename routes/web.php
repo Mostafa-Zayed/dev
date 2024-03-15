@@ -90,6 +90,10 @@ Route::middleware(['setData','language'])->group(function () {
     Route::get('/',[FrontEndController::class,'index'])->name('welcome');
 });
 
+Route::middleware(['setData','language'])->group(function () {
+    Route::get('/business/register', [BusinessController::class, 'getRegister'])->name('business.getRegister');
+});
+
 include_once 'install_r.php';
 
 Route::middleware(['setData','language'])->group(function () {
@@ -100,7 +104,7 @@ Route::middleware(['setData','language'])->group(function () {
 
     Auth::routes();
 
-    Route::get('/business/register', [BusinessController::class, 'getRegister'])->name('business.getRegister');
+    
     Route::post('/business/register', [BusinessController::class, 'postRegister'])->name('business.postRegister');
     Route::post('/business/register/check-username', [BusinessController::class, 'postCheckUsername'])->name('business.postCheckUsername');
     Route::post('/business/register/check-email', [BusinessController::class, 'postCheckEmail'])->name('business.postCheckEmail');

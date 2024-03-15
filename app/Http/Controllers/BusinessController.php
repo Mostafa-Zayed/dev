@@ -102,6 +102,7 @@ class BusinessController extends Controller
      */
     public function postRegister(Register $request)
     {
+        
         if (isAllowRegister()) {
             try {
                 DB::beginTransaction();

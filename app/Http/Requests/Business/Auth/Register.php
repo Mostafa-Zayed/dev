@@ -38,14 +38,23 @@ class Register extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('validation.required', ['attribute' => __('business.business_name')]),
+            'name.required' => trans('validation.required', ['attribute' => __('business.business_name')]),
             'email.email' => __('validation.email', ['attribute' => __('business.email')]),
             'contact_no.required' => __('validation.required',['attribute' => __('lang_v1.business_telephone')]),
             'contact_no.numeric' => __('validation.numeric',['attribute' => __('lang_v1.business_telephone')]),
             'email.unique' => __('validation.unique', ['attribute' => __('business.email')]),
-            'password.required' => __('validation.required', ['attribute' => __('business.username')]),
-            'password.min' => __('validation.min', ['attribute' => __('business.username')]),
-            'accept_conditions.required' => __('validation.required'),
+            'password.required' => __('validation.required', ['attribute' => __('business.password')]),
+            'password.min' => __('validation.min', ['attribute' => __('business.password')]),
+            'password.confirmed' => __('validation.confirmed',['arrtibute' => __('business.password')]) ,
+            'accept_conditions.required' => __('validation.accept_conditions'),
+            'accept_conditions.on' => __('validation.accept_conditions'),
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'contact_no' =>  __('lang_v1.business_telephone')
         ];
     }
 }
