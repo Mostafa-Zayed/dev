@@ -85,10 +85,14 @@ Route::get('about-us',[FrontEndController::class,'about'])->name('about');
 Route::post('send-message',[FrontEndController::class,'sendMessage'])->name('send-message');
 Route::get('envents',[FrontEndController::class,'events'])->name('events');
 
-Route::get('/',[FrontEndController::class,'index'])->name('welcome');
+
+Route::middleware(['setData','language'])->group(function () {
+    Route::get('/',[FrontEndController::class,'index'])->name('welcome');
+});
+
 include_once 'install_r.php';
 
-Route::middleware(['setData'])->group(function () {
+Route::middleware(['setData','language'])->group(function () {
     //tesging now git
     // Route::get('/', function () {
     //     return view('welcome');
