@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="{{$settings->section_questions_image}}" class="img-fluid" alt="Img" />
+                        <img src="@if(! empty($settings->section_questions_image)) {{$settings->section_questions_image}} @endif" class="img-fluid" alt="Img" />
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -96,7 +96,7 @@ Route::middleware(['setData','language'])->group(function () {
 
 include_once 'install_r.php';
 
-Route::middleware(['setData','language'])->group(function () {
+Route::middleware(['setData'])->group(function () {
     //tesging now git
     // Route::get('/', function () {
     //     return view('welcome');

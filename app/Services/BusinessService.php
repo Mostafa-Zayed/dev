@@ -31,6 +31,7 @@ class BusinessService
             'enabled_modules'        => config('erp.business.enabled_modules'),
             'enable_inline_tax'      => 0,
             'owner_id'               => $userId,
+            'fy_start_month'         => Carbon::now()->month
         ]);
     }
 
