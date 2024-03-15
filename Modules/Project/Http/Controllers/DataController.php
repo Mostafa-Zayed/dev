@@ -202,7 +202,7 @@ class DataController extends Controller
             [
                 'name' => 'project_module',
                 'label' => __('project::lang.project_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

@@ -33,8 +33,10 @@ class InstallController extends Controller
 
         $this->installSettings();
         $is_installed = System::getProperty($this->module_name.'_version');
-        if (! empty($is_installed)) {
-            abort(404);
+        if (empty($is_installed)) {
+            DB::statement('SET default_storage_engine=INNODB;');
+            Artisan::call('module:migrate', ['module' => 'Website', '--force' => true]);
+            System::addProperty($this->module_name.'_version', $this->appVersion);
         }
 
         $action_url = action([\Modules\Website\Http\Controllers\InstallController::class, 'install']);
@@ -61,7 +63,7 @@ class InstallController extends Controller
     {
         try{
             DB::beginTransaction();
-            $pid = config('project.pid');
+            // $pid = config('project.pid');
     
             $is_installed = System::getProperty($this->module_name.'_version');
             if (! empty($is_installed)) {

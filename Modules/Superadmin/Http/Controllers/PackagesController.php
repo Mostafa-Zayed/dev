@@ -32,8 +32,10 @@ class PackagesController extends Controller
      */
     public function __construct(BusinessUtil $businessUtil, ModuleUtil $moduleUtil)
     {
+
         $this->businessUtil = $businessUtil;
         $this->moduleUtil = $moduleUtil;
+        // dd('adadf');
     }
 
     /**
@@ -52,6 +54,7 @@ class PackagesController extends Controller
 
         //Get all module permissions and convert them into name => label
         $permissions = $this->moduleUtil->getModuleData('superadmin_package');
+        // dd($permissions);
         $permission_formatted = [];
         foreach ($permissions as $permission) {
             foreach ($permission as $details) {
@@ -77,7 +80,7 @@ class PackagesController extends Controller
         $intervals = ['days' => __('lang_v1.days'), 'months' => __('lang_v1.months'), 'years' => __('lang_v1.years')];
         $currency = System::getCurrency();
         $permissions = $this->moduleUtil->getModuleData('superadmin_package');
-
+        
         return view('superadmin::packages.create')
             ->with(compact('intervals', 'currency', 'permissions'));
     }
@@ -88,7 +91,7 @@ class PackagesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Store $request)
+    public function store(store $request)
     {
         if (! auth()->user()->can('superadmin')) {
             abort(403, 'Unauthorized action.');

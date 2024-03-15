@@ -37,7 +37,7 @@ class DataController extends Controller
             [
                 'name' => 'accounting_module',
                 'label' => __('accounting::lang.accounting'),
-                'default' => false
+                'default' => true
             ]
         ];
     }

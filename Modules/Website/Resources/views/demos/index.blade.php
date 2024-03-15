@@ -18,7 +18,6 @@
                         <th>@lang( 'website::lang.id' )</th>
                         <th>@lang( 'website::lang.number' )</th>
                         <th>@lang('website::lang.title')</th>
-                        <th>@lang('website::lang.description')</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -33,6 +32,7 @@
 @section('javascript')
 <script>
     $(document).ready(function(){
+        let lang = "{{app()->getLocale()}}";
         var slidersTable = $('#demos_table').DataTable({
         processing: true,
         serverSide: true,
@@ -40,8 +40,7 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'number', name: 'number'},
-            {data: 'title_trans' , name: 'title_trans'},
-            {data: 'description_trans',name: 'description_trans'}
+            {data: 'name.' + lang , name: 'name'},
         ]
     });
     });

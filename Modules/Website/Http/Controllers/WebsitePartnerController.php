@@ -10,6 +10,8 @@ use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsitePartner;
 use Modules\Website\Http\Requests\Partners\Store;
 use Modules\Website\Entities\WebsiteTemplate;
+use Yajra\DataTables\Facades\DataTables;
+
 class WebsitePartnerController extends Controller
 {
     use UploadTrait;
@@ -21,6 +23,10 @@ class WebsitePartnerController extends Controller
      */
     public function index()
     {
+        if(request()->ajax()){
+            $partners = WebsitePartner::get();
+            return DataTables::of($partners)->make(true);
+        }
         return view('website::partners.index');
     }
 

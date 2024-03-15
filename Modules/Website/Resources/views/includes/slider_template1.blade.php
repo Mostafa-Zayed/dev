@@ -4,10 +4,17 @@
             <div class="row">
                 <div class="col-md-6 start-home-content">
                     <h1>
-                        {{$template->websiteSlider->heading}}
+                        @if(! empty($template->websiteSlider->heading)){{$template->websiteSlider->heading}}@else put slider heading here @endif
                     </h1>
+                    @if (! empty($template->websiteSlider->description))
                     {!! $template->websiteSlider->description !!}
+                    @else
+                    put slider description here
+                    @endif
+
+                    @if(!empty($template->websiteSlider->app_store_link) || ! empty($template->websiteSlider->google_play_link))
                     <div class="app-button">
+                        @if(! empty($template->websiteSlider->app_store_link))
                         <div class="apple-button">
                             <a href="{{$template->websiteSlider->app_store_link}}">
                                 <div class="slider-button-icon">
@@ -19,6 +26,8 @@
                                 </div>
                             </a>
                         </div>
+                        @endif
+                        @if(! empty($template->websiteSlider->google_play_link))
                         <div class="google-button">
                             <a href="{{$template->websiteSlider->google_play_link}}">
                                 <div class="slider-button-icon">
@@ -30,11 +39,15 @@
                                 </div>
                             </a>
                         </div>
+                        @endif
                     </div>
+                    @endif
                 </div>
+                @if(! empty($template->websiteSlider->image))
                 <div class="col-md-6 start-home-img">
                     <img class="img-fluid" src="{{asset($template->websiteSlider->image)}}" alt="Img" />
                 </div>
+                @endif
             </div>
         </div>
     </div>

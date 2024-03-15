@@ -22,6 +22,7 @@ use App\Http\Requests\Business\Auth\Register;
 use App\Services\BusinessService;
 use App\Traits\LogException;
 use App\Services\UserService;
+use Modules\Website\Entities\WebsitePartner;
 
 class BusinessController extends Controller
 {
@@ -84,14 +85,15 @@ class BusinessController extends Controller
         if (!config('constants.allow_registration')) {
             return redirect('/');
         }
-
+        
         return view('business.register', [
             'currencies' => BusinessUtil::getAllCurrencies(),
             'timezone_list' => BusinessUtil::getAllTimZones(),
             'months' => BusinessUtil::getAllMonths(),
             'accounting_methods' => BusinessUtil::getAllAccountingMethods(),
             'package_id' => request()->package,
-            'system_settings' => System::getProperties(['superadmin_enable_register_tc', 'superadmin_register_tc'], true)
+            'system_settings' => System::getProperties(['superadmin_enable_register_tc', 'superadmin_register_tc'], true),
+            'partners'  => WebsitePartner::get()
         ]);
     }
 

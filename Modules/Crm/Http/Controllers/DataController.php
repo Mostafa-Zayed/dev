@@ -185,7 +185,7 @@ class DataController extends Controller
             [
                 'name' => 'crm_module',
                 'label' => __('crm::lang.crm_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

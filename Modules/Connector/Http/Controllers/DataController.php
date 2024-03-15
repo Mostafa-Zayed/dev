@@ -14,7 +14,7 @@ class DataController extends Controller
             [
                 'name' => 'connector_module',
                 'label' => __('connector::lang.connector_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

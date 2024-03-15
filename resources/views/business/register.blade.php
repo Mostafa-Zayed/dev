@@ -57,8 +57,8 @@
             <div class="container-fluid">
                 <div class="login-side-block">
                     <div class="row">
-                        <div class="col-md-6">
-                            <a href="{{url('/')}}"><img src="{{asset('front/images/logo.png')}}" alt="Logo" /></a>
+                        <div class="col-md-6" style="max-height: 20px;">
+                            <a href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" alt="Logo" style="max-height: 50px;"/></a>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -78,18 +78,14 @@
                     </div>
 
                     <div class="login-partners">
-                        <h5>Ariel Partners</h5>
+                        <h5>Partners</h5>
                         <div class="partner-list">
                             <div class="row">
+                                @foreach ($partners as $partner)
                                 <div class="col-md-4">
-                                    <img src="{{asset('front/images/partners/google.png')}}" class="img-fluid" alt="partner" />
+                                    <img src="{{$partner->image}}" class="img-fluid" alt="partner" />
                                 </div>
-                                <div class="col-md-4">
-                                    <img src="{{asset('front/images/partners/slack.png')}}" class="img-fluid" alt="partner" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="{{asset('front/images/partners/spotify.png')}}" class="img-fluid" alt="partner" />
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

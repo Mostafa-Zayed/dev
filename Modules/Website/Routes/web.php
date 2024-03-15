@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//install
+Route::get('/install', [Modules\Website\Http\Controllers\InstallController::class, 'index']);
 Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(function () {
 
-
+    // Route::get('/dashboard',[Modules\Website\Http\Controllers\WebsiteController::class,'index'])->name('website.home');
     // demos
     Route::get('demos',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'index'])->name('demos.index');
     Route::get('demos/create',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'create'])->name('demos.create');

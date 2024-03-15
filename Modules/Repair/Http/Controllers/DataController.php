@@ -145,7 +145,7 @@ class DataController extends Controller
             [
                 'name' => 'repair_module',
                 'label' => __('repair::lang.repair_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

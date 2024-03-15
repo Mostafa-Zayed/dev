@@ -10,7 +10,7 @@ use Modules\Website\Entities\WebsiteTemplate;
 use Modules\Website\Http\Requests\Demos\Store;
 use Modules\Website\Entities\WebsiteSlider;
 use Modules\Website\Entities\WebsiteFeature;
-
+use Yajra\DataTables\Facades\DataTables;
 class WebsiteDemoController extends Controller
 {
     use LogException;
@@ -21,6 +21,10 @@ class WebsiteDemoController extends Controller
      */
     public function index()
     {
+        if(request()->ajax()){
+            $templates = WebsiteTemplate::get();
+            return DataTables::of($templates)->make(true);
+        }
        
         return view('website::demos.index');
     }

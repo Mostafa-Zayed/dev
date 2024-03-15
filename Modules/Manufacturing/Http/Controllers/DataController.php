@@ -20,7 +20,7 @@ class DataController extends Controller
             [
                 'name' => 'manufacturing_module',
                 'label' => __('manufacturing::lang.manufacturing_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

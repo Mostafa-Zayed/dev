@@ -22,7 +22,7 @@ class ModuleUtil extends Util
     public function isModuleInstalled($module_name)
     {
         $is_available = Module::has($module_name);
-
+        
         if ($is_available) {
             //Check if installed by checking the system table {module_name}_version
             $module_version = System::getProperty(strtolower($module_name).'_version');
@@ -56,32 +56,36 @@ class ModuleUtil extends Util
     public function getModuleData($function_name, $arguments = null)
     {
         $modules = Module::toCollection()->toArray();
-
         $installed_modules = [];
         foreach ($modules as $module => $details) {
             if ($this->isModuleInstalled($details['name'])) {
                 $installed_modules[] = $details;
             }
         }
-
+        
+   
         $data = [];
         if (! empty($installed_modules)) {
             foreach ($installed_modules as $module) {
                 $class = 'Modules\\'.$module['name'].'\Http\Controllers\DataController';
-
+                // dd($class);
                 if (class_exists($class)) {
                     $class_object = new $class();
+                    // dd($class_object);
                     if (method_exists($class_object, $function_name)) {
+                        // dd($class_object,$function_name);
                         if (! empty($arguments)) {
+                            // dd('sdfasfd');
                             $data[$module['name']] = call_user_func([$class_object, $function_name], $arguments);
                         } else {
                             $data[$module['name']] = call_user_func([$class_object, $function_name]);
+                            // dd($data);
                         }
                     }
                 }
             }
         }
-
+        // dd($data);
         return $data;
     }
 

@@ -7,11 +7,13 @@
             @endif
         </div>
         <div class="row">
+            @if(! empty($settings->section_work_image))
             <div class="col-md-6">
                 <div class="img-box">
                     <img src="{{$settings->section_work_image}}" alt="Img" />
                 </div>
             </div>
+            @endif
             <div class="col-md-6">
                 @foreach ($template->websiteWorks as $work)
                 <!-- Start Block 1 -->

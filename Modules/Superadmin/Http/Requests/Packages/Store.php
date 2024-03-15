@@ -22,20 +22,20 @@ class Store extends FormRequest
             'product_count' => ['required','numeric'],
             'invoice_count' => ['required','numeric'],
             'interval' => ['required','in:days,months,years'],
-            'invoice_count' => ['required','numeric'],
-            'trial_days'  => ['sometimes','numeric'],
+            'interval_count' => ['required','numeric','gt:0'],
+            'trial_days'  => ['nullable','numeric'],
             'price' => ['required','numeric'],
             'sort_order' => ['required','numeric'],
-            'is_private' => ['sometimes','in:0,1'],
-            'is_one_time' => ['sometimes','in:0,1'],
-            'enable_custom_link' => ['sometimes','in:0,1'],
-            'custom_link' => ['sometimes','max:255'],
-            'custom_link_text' => ['sometimes','max:255'],
-            'is_active' => ['sometimes','in:0,1'],
+            'is_private' => ['nullable','in:0,1'],
+            'is_one_time' => ['nullable','in:0,1'],
+            'enable_custom_link' => ['nullable','in:0,1'],
+            'custom_link' => ['nullable','max:255'],
+            'custom_link_text' => ['nullable','max:255'],
+            'is_active' => ['nullable','in:0,1'],
             'custom_permissions' => ['required','array'],
-            'online_users' => ['sometimes','numeric'],
+            'online_users' => ['nullable','numeric'],
             'image' => ['required','image'],
-            'show_home' => ['sometimes','in:0,1']
+            'show_home' => ['nullable','in:0,1']
         ];
     }
 

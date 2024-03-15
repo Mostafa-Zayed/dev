@@ -16,7 +16,7 @@ class DataController extends Controller
             [
                 'name' => 'spreadsheet_module',
                 'label' => __('spreadsheet::lang.spreadsheet_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

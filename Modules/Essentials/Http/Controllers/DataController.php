@@ -311,7 +311,7 @@ class DataController extends Controller
             [
                 'name' => 'essentials_module',
                 'label' => __('essentials::lang.essentials_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

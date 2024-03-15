@@ -22,12 +22,12 @@ class DataController extends Controller
             [
                 'name' => 'aiassistance_module',
                 'label' => __('aiassistance::lang.aiassistance_module'),
-                'default' => false,
+                'default' => true,
             ],
             [
                 'name' => 'aiassistance_max_token',
                 'label' => __('aiassistance::lang.aiassistance_max_token'),
-                'default' => false,
+                'default' => true,
                 'field_type' => 'number',
                 'tooltip' => __('aiassistance::lang.max_token_tooltip')
             ],

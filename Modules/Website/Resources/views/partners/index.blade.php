@@ -16,7 +16,7 @@
                     <thead>
                     <tr>
                         <th>@lang( 'website::lang.id' )</th>
-                        <th>@lang( 'website::lang.number' )</th>
+                        <th>@lang( 'website::lang.image' )</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -37,7 +37,9 @@
         ajax: '/website/partners',
         columns: [
             {data: 'id', name: 'id'},
-            {data: 'number', name: 'number'}
+            {data: 'image', name: 'image',render: function(data, type, full, meta){
+                return "<img src=\"" + data + "\" height=\"50\"/>";
+            }}
         ]
     });
     });

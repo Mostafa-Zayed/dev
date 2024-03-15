@@ -20,7 +20,7 @@ class DataController extends Controller
             [
                 'name' => 'woocommerce_module',
                 'label' => __('woocommerce::lang.woocommerce_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }

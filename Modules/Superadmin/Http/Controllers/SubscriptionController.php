@@ -21,13 +21,15 @@ use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
 use Yajra\DataTables\Facades\DataTables;
-
+use Illuminate\Support\Facades\App;
 class SubscriptionController extends BaseController
 {
     protected $provider;
+    private $local;
 
     public function __construct(ModuleUtil $moduleUtil = null)
     {
+        $this->local = App::getLocale();
         if (! defined('CURL_SSLVERSION_TLSv1_2')) {
             define('CURL_SSLVERSION_TLSv1_2', 6);
         }
@@ -59,7 +61,7 @@ class SubscriptionController extends BaseController
         $waiting = Subscription::waiting_approval($business_id);
 
         $packages = Package::active()->orderby('sort_order')->get();
-
+        
         //Get all module permissions and convert them into name => label
         $permissions = $this->moduleUtil->getModuleData('superadmin_package');
         $permission_formatted = [];
@@ -92,7 +94,7 @@ class SubscriptionController extends BaseController
             $business_id = request()->session()->get('user.business_id');
 
             $package = Package::active()->find($package_id);
-
+            
             //Check if superadmin only package
             if ($package->is_private == 1 && ! auth()->user()->can('superadmin')) {
                 $output = ['success' => 0, 'msg' => __('superadmin::lang.not_allowed_for_package')];
@@ -619,7 +621,8 @@ class SubscriptionController extends BaseController
                             'U.id'
                         )
                         ->addSelect(
-                            'P.name as package_name',
+                            // 'P.name as package_name',
+                            DB::raw("JSON_VALUE(P.name,'$.$this->local') as package_name"),
                             DB::raw("CONCAT(COALESCE(U.surname, ''), ' ', COALESCE(U.first_name, ''), ' ', COALESCE(U.last_name, '')) as created_by"),
                             'subscriptions.*'
                         );

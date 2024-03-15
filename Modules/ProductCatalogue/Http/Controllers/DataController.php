@@ -19,7 +19,7 @@ class DataController extends Controller
             [
                 'name' => 'productcatalogue_module',
                 'label' => __('productcatalogue::lang.productcatalogue_module'),
-                'default' => false,
+                'default' => true,
             ],
         ];
     }
