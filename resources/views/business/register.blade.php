@@ -33,9 +33,10 @@
     <link rel="stylesheet" href="{{asset('front/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/lightcase.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
     @endif
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/toastr.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/plugins/extensions/toastr.css')}}">
+
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
@@ -59,7 +60,7 @@
                 <div class="login-side-block">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="{{route('register')}}"><img src="{{asset('front/images/logo.png')}}" alt="Logo" /></a>
+                            <a href="{{url('/')}}"><img src="{{asset('front/images/logo.png')}}" alt="Logo" /></a>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -106,7 +107,7 @@
                         <p>{{__('lang_v1.fill_form')}}</p>
                     </div>
                     {!! Form::open(['url' => route('business.postRegister'), 'method' => 'post',
-                    'id' => 'business_register_form','files' => true ]) !!}
+                    'id' => 'business_register_form' ]) !!}
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -117,10 +118,7 @@
                                         <span class="ti-user"></span>
                                     </div>
                                     <input type="text" class="form-control" name="name" id="businessName" placeholder="{{__('lang_v1.business_name')}}" aria-label="Email address" required="">
-                                    @if($errors->has('name'))
-                                    <br>
-                                    <div class="error"><span class="alert-danger">{{ $errors->first('name') }}</span></div>
-                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
@@ -129,11 +127,8 @@
                             <div class="form-group">
                                 <label class="form-label" for="contact_no">{{__('lang_v1.business_telephone')}}</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="contact_no" id="contact_no" placeholder="Your Phone" aria-label="Email address" required="">
-                                    @if($errors->has('contact_no'))
-                                    <br>
-                                    <div class="error"><span class="alert-danger">{{ $errors->first('contact_no') }}</span></div>
-                                    @endif
+                                    <input type="text" class="form-control" name="contact_no" id="contact_no" placeholder="Your Phone" aria-label="Email address" required>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -145,31 +140,25 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="fullName">{{__('lang_v1.full_name')}}: *</label>
+                                <label class="form-label" for="first_name">{{__('lang_v1.full_name')}}: *</label>
                                 <div class="input-group">
                                     <div class="input-icon">
                                         <span class="ti-face-smile"></span>
                                     </div>
-                                    <input type="text" class="form-control" name="first_name" id="fullName" placeholder="{{__('lang_v1.full_name')}}" aria-label="Full Name" required="">
-                                    @if($errors->has('first_name'))
-                                    <br>
-                                    <div class="error"><span class="alert-danger">{{ $errors->first('first_name') }}</span></div>
-                                    @endif
+                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="{{__('lang_v1.full_name')}}" aria-label="Full Name" required="">
+                                 
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="signinEmail">{{__('business.email')}}: *</label>
+                                <label class="form-label" for="email">{{__('business.email')}}: *</label>
                                 <div class="input-group">
                                     <div class="input-icon">
                                         <span class="ti-email"></span>
                                     </div>
-                                    <input type="email" class="form-control" name="email" id="signinEmail" placeholder="{{__('business.email')}}" aria-label="Email address" required="">
-                                    @if($errors->has('email'))
-                                    <br>
-                                    <div class="error"><span class="alert-danger">{{ $errors->first('email') }}</span></div>
-                                    @endif
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="{{__('business.email')}}" aria-label="Email address" required="">
+                                 
                                 </div>
                             </div>
                         </div>
@@ -185,10 +174,7 @@
                                         <span class="ti-lock"></span>
                                     </div>
                                     <input type="password" class="form-control" name="password" id="password" aria-label="Password" required="">
-                                    @if($errors->has('password'))
-                                    <br>
-                                    <div class="error"><span class="alert-danger">{{ $errors->first('password') }}</span></div>
-                                    @endif
+                                   
                                 </div>
                             </div>
                         </div>
@@ -200,10 +186,7 @@
                                         <span class="ti-lock"></span>
                                     </div>
                                     <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" aria-label="Password" required="">
-                                    @if($errors->has('password_confirmation'))
-                                    <br>
-                                    <div class="error"><span class="alert-danger">{{ $errors->first('password_confirmation') }}</span></div>
-                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
@@ -212,7 +195,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-label" for="currency_id">{{__('business.currency')}}: *</label>
-                                {!! Form::select('currency_id', $currencies, '', ['class' => 'custom-select select2_register currency','placeholder' => __('business.currency_placeholder'), 'required']); !!}
+                                {!! Form::select('currency_id', $currencies, '', ['class' => 'custom-select select2_register currency','id' => 'currency_id','placeholder' => __('business.currency_placeholder'), 'required']); !!}
 
                             </div>
                         </div>
@@ -224,7 +207,7 @@
                         </p>
                     </div>
                     <div class="form-group">
-                        <button class="btn theme-btn btn-block">Get Started</button>
+                        <button class="btn theme-btn btn-block">{{__('business.register')}}</button>
                     </div>
                     <div class="form-group login-desc">
                         <p> {{__('lang_v1.have_account')}} <a href="{{route('login')}}">{{__('lang_v1.login')}}</a></p>
@@ -292,39 +275,55 @@
     <script src="{{asset('front/js/scrollIt.min.js')}}"></script>
     <!-- Main Script -->
     <script src="{{asset('front/js/script.js')}}"></script>
-    <script src="{{asset('new_assets/intlTelInput/js/intlTelInput.min.js')}}"></script>
-
+    <script src="{{asset('js/toastr.min.js')}}"></script>
     <script>
-        var input = document.querySelector("#business_mobile"),
-            mobile_hidden = document.querySelector("#hidden_mobile");
+        $(document).ready(function() {
+            $('#change_lang').change(function() {
+                window.location = "{{ route('business.getRegister') }}?lang=" + $(this).val();
+            });
 
-        var iti = window.intlTelInput(input, {
-            initialCountry: 'eg',
-            preferredCountries: ["eg", "ae"],
-            excludeCountries: ["il"],
-            separateDialCode: true,
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.6/build/js/utils.js",
+            $('#business_register_form').submit(function(event) {
+                event.preventDefault();
+                let businessName = $('#businessName').val();
+                let contactNo = $('#contact_no').val();
+                let firstName = $('#first_name').val();
+                let email = $('#email').val();
+                let password = $('#password').val();
+                let password_confirmation = $('#password_confirmation').val();
+                let currencyId = $('#currency_id').val();
+                let accept_conditions = $('#check-er').val();
+                console.log(businessName, contactNo, firstName, email, password, password_confirmation, currencyId, accept_conditions);
+                $.ajax({
+                    url: "{{route('business.postRegister')}}",
+                    method: "POST",
+                       dataType: "json",
+                    data: {
+                        name: businessName,
+                        contact_no: contactNo,
+                        first_name: firstName,
+                        email: email,
+                        password: password,
+                        password_confirmation: password_confirmation,
+                        currency_id: currencyId,
+                        accept_conditions: accept_conditions,
+                    },
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        if(response.success){
+                            toastr.success(response.msg);
+                            window.location.replace(response.url);
+                        }
+                    },
+                    error: function(response) {
+                        let errorMessage = JSON.parse(response.responseText);
+                        toastr.error(errorMessage.message);
+                    }
+                });
+            })
         });
-
-        var handleChange = function() {
-            mobile_hidden.value = iti.getNumber()
-        };
-
-        // listen to "keyup", but also "change" to update when the user selects a country
-        input.addEventListener('change', handleChange);
-        input.addEventListener('keyup', handleChange);
     </script>
 </body>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#change_lang').change(function() {
-            window.location = "{{ route('business.getRegister') }}?lang=" + $(this).val();
-        });
-
-        $(".time_zone").val("Africa/Cairo").change();
-        $("#country").val("Egypt").change();
-        $(".currency").val("35").change();
-    });
-</script>
 
 </html>

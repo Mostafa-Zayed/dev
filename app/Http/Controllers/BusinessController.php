@@ -131,12 +131,13 @@ class BusinessController extends Controller
                     }
                 }
 
-                $output = [
+                return response()->json([
                     'success' => 1,
                     'msg' => __('business.business_created_succesfully'),
-                ];
+                    'url' => route('login')
+                ]);
 
-                return redirect('login')->with('status', $output);
+                // return redirect('login')->with('status', $output);
             } catch (\Exception $exception) {
                 DB::rollBack();
                 $this->logMethodException($exception);
