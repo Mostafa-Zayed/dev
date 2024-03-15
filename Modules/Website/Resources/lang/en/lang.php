@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'heading' => 'Heading',
+    'description' => 'Description',
     'title_ar' => 'Title Arabic',
     'title_en' => 'Title English',
     'website' => 'Website',

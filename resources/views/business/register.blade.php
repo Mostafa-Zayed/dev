@@ -82,6 +82,9 @@
                         <div class="partner-list">
                             <div class="row">
                                 @foreach ($partners as $partner)
+                                @if($loop->index > 2)
+                                    @break
+                                @endif    
                                 <div class="col-md-4">
                                     <img src="{{$partner->image}}" class="img-fluid" alt="partner" />
                                 </div>

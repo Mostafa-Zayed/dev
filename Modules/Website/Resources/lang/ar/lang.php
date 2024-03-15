@@ -1,5 +1,7 @@
 <?php 
 return [
+    'heading' => 'العنوان',
+    'description' => 'الوصف',
     'title_ar' => 'الاسم بالعربي',
     'title_en' => 'الاسم بالانجليزي',
     'website' => 'الموقع التعريفي',
