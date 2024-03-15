@@ -26,7 +26,7 @@ class Register extends FormRequest
         return [
             'accept_conditions' => ['required', 'in:on', 'max:255'],
             'name' => ['required', 'string', 'min:3', 'max:255'],
-            'contact_no' => ['nullable', 'numeric'],
+            'contact_no' => ['required', 'numeric'],
             'first_name' => ['required', 'string', 'max:255', 'min:3'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'max:255', 'min:8', 'confirmed'],
@@ -40,9 +40,12 @@ class Register extends FormRequest
         return [
             'name.required' => __('validation.required', ['attribute' => __('business.business_name')]),
             'email.email' => __('validation.email', ['attribute' => __('business.email')]),
+            'contact_no.required' => __('validation.required',['attribute' => __('lang_v1.business_telephone')]),
+            'contact_no.numeric' => __('validation.numeric',['attribute' => __('lang_v1.business_telephone')]),
             'email.unique' => __('validation.unique', ['attribute' => __('business.email')]),
             'password.required' => __('validation.required', ['attribute' => __('business.username')]),
             'password.min' => __('validation.min', ['attribute' => __('business.username')]),
+            'accept_conditions.required' => __('validation.required'),
         ];
     }
 }

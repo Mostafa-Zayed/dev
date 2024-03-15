@@ -46,7 +46,6 @@
             width: 80% !important;
         }
     </style>
-    <link rel="stylesheet" href="{{asset('new_assets/intlTelInput/css/intlTelInput.min.css')}}" />
 </head>
 
 <body>
