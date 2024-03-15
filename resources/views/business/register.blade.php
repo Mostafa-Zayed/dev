@@ -33,10 +33,9 @@
     <link rel="stylesheet" href="{{asset('front/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/lightcase.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
+    @endif
     <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
-    @endif
-
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
@@ -291,7 +290,7 @@
                 let password_confirmation = $('#password_confirmation').val();
                 let currencyId = $('#currency_id').val();
                 let accept_conditions = $('#check-er').val();
-                console.log(businessName, contactNo, firstName, email, password, password_confirmation, currencyId, accept_conditions);
+                
                 $.ajax({
                     url: "{{route('business.postRegister')}}",
                     method: "POST",
