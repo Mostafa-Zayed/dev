@@ -45,9 +45,9 @@ class WebsiteFeature extends Model
         }
     }
 
-    public function webisteDemos()
+    public function websiteTemplate()
     {
-        return $this->hasMany(WebsiteDemo::class,'website_feature_id','id');
+        return $this->belongsTo(WebsiteTemplate::class, 'website_template_id', 'id');
     }
     protected static function newFactory()
     {

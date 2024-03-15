@@ -12,7 +12,7 @@ use Modules\Website\Http\Requests\Features\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Modules\Website\Entities\WebsiteTemplate;
-
+use Yajra\DataTables\Facades\DataTables;
 class WebsiteFeatureController extends Controller
 {
     use LogException;
@@ -26,8 +26,12 @@ class WebsiteFeatureController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index(): Renderable
+    public function index()
     {
+        if(request()->ajax()){
+            $features = WebsiteFeature::with('websiteTemplate')->get();
+            return DataTables::of($features)->make(true);
+        }
         return view('website::features.index');
     }
 
