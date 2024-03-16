@@ -15,10 +15,11 @@
                 <table class="table table-bordered table-striped" id="screen_shots_table">
                     <thead>
                     <tr>
-                        <th>@lang( 'website::lang.id' )</th>
-                        <th>@lang( 'website::lang.number' )</th>
-                        <th>@lang('website::lang.title')</th>
+             
+                       <th>@lang( 'website::lang.id' )</th>
+                        <th>@lang( 'website::lang.title' )</th>        
                         <th>@lang('website::lang.description')</th>
+                        <th>@lang('website::lang.image')</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -33,15 +34,20 @@
 @section('javascript')
 <script>
     $(document).ready(function(){
+        let lang = "{{app()->getLocale()}}";
         var slidersTable = $('#screen_shots_table').DataTable({
         processing: true,
         serverSide: true,
         ajax: '/website/screen-shots',
         columns: [
             {data: 'id', name: 'id'},
-            {data: 'number', name: 'number'},
-            {data: 'title_trans' , name: 'title_trans'},
-            {data: 'description_trans',name: 'description_trans'}
+            {data: 'name.' + lang , name: 'name'},
+            {data: 'description.' + lang ,name: 'description',render: function(data, type, full, meta){
+                return data;
+            }},
+            {data: 'image', name: 'image', render: function(data, type, full, meta){
+                return "<img src=\"" + data + "\" height=\"50\"/>";
+            }}
         ]
     });
     });

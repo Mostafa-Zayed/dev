@@ -10,6 +10,7 @@ use Modules\Website\Entities\WebsiteScreenshot;
 use Modules\Website\Http\Requests\ScreenShots\Store;
 use Modules\Website\Entities\WebsiteTemplate;
 use App\Traits\UploadTrait;
+use Yajra\DataTables\Facades\DataTables;
 
 class WebsiteScreenshotController extends Controller
 {
@@ -20,6 +21,10 @@ class WebsiteScreenshotController extends Controller
      */
     public function index()
     {
+        if(request()->ajax()){
+            $screenShots = WebsiteScreenshot::get();
+            return DataTables::of($screenShots)->make(true);
+        }
         return view('website::screen_shots.index');
     }
 
