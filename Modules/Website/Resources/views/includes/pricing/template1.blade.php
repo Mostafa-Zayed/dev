@@ -114,7 +114,7 @@
                                         <h4>{{ $package->getTranslations('name')[app()->getLocale()]}}</h4>
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
-                                            <span class="price-num">{{round($package->price,2)}}</span>
+                                            <span class="price-num">{{round($package->price / 12 ,2)}}</span>
                                             <span class="price-date">/ {{__('website::lang.yearly')}}</span>
                                         </span>
                                         <div class="shape-bottom">
