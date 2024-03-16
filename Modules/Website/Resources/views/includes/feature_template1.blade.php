@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-4">
                 <div class="img-box">
-                    <img src="{{$settings->section_features_image}}" class="img-fluid" alt="Img" />
+                    <img src="@if(! empty($settings->section_features_image)) {{$settings->section_features_image}} @endif" class="img-fluid" alt="Img" />
                 </div>
             </div>
             <div class="col-md-4">

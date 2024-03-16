@@ -8,6 +8,7 @@ use App\Utils\BusinessUtil;
 use App\Utils\ModuleUtil;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Modules\Website\Entities\WebsitePartner;
 
 class LoginController extends Controller
 {
@@ -48,11 +49,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->businessUtil = $businessUtil;
         $this->moduleUtil = $moduleUtil;
+        
     }
 
     public function showLoginForm()
     {
-        return view('business.login');
+        $partners = WebsitePartner::get();
+        return view('business.login',['partners' => $partners]);
     }
 
     /**

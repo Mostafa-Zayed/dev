@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="{{asset('front/css/lightcase.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     @endif
+    <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
@@ -44,7 +46,7 @@
                 <div class="login-side-block">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="{{route('login')}}"><img src="{{asset('front/images/logo.png')}}" alt="Logo" /></a>
+                        <a href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" alt="Logo" style="max-height: 40px;"/></a>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -75,18 +77,17 @@
                         </div>
                     </div>
                     <div class="login-partners">
-                        <h5>Ariel Partners</h5>
+                        <h5>Partners</h5>
                         <div class="partner-list">
                             <div class="row">
+                            @foreach ($partners as $partner)
+                                @if($loop->index > 2)
+                                    @break
+                                @endif    
                                 <div class="col-md-4">
-                                    <img src="{{asset('front/images/partners/google.png')}}" class="img-fluid" alt="partner" />
+                                    <img src="{{$partner->image}}" class="img-fluid" alt="partner" />
                                 </div>
-                                <div class="col-md-4">
-                                    <img src="{{asset('front/images/partners/slack.png')}}" class="img-fluid" alt="partner" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="{{asset('front/images/partners/spotify.png')}}" class="img-fluid" alt="partner" />
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -158,7 +159,8 @@
     <script src="{{asset('front/js/scrollIt.min.js')}}"></script>
     <!-- Main Script -->
     <script src="{{asset('front/js/script.js')}}"></script>
-
+    <script src="{{asset('front/js/script.js')}}"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

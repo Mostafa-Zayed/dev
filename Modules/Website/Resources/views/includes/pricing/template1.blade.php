@@ -28,7 +28,7 @@
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
                                             <span class="price-num">{{round($package->price,2)}}</span>
-                                            <span class="price-date">/month</span>
+                                            <span class="price-date">/ {{__('website::lang.monthly')}}</span>
                                         </span>
                                         <div class="shape-bottom">
                                             <img src="{{asset('modules/website/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
@@ -115,7 +115,7 @@
                                         <span class="card-header-price">
                                             <span class="simbole">$</span>
                                             <span class="price-num">{{round($package->price,2)}}</span>
-                                            <span class="price-date">/year</span>
+                                            <span class="price-date">/ {{__('website::lang.yearly')}}</span>
                                         </span>
                                         <div class="shape-bottom">
                                             <img src="images/shapes/price-shape.svg" alt="shape" class="bottom-shape img-fluid">

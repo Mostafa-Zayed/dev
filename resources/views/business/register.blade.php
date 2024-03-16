@@ -58,7 +58,7 @@
                 <div class="login-side-block">
                     <div class="row">
                         <div class="col-md-6" style="max-height: 20px;">
-                            <a href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" alt="Logo" style="max-height: 50px;"/></a>
+                            <a href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" alt="Logo" style="max-height: 40px;"/></a>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -100,7 +100,7 @@
                 <a href="index.html" class="res-logo"><img src="{{asset('front/images/logo-2.png')}}" alt="Logo" /></a>
                 <div class="login-form">
                     <div class="login-form-head">
-                        <h2>{{__('lang_v1.welcome_to')}}{{ config('app.name', 'ERP TEC') }}</h2>
+                        <h2>{{__('lang_v1.welcome_to')}} {{ config('app.name', 'ERP TEC') }}</h2>
                         <p>{{__('lang_v1.fill_form')}}</p>
                     </div>
                     {!! Form::open(['url' => route('business.postRegister'), 'method' => 'post',
