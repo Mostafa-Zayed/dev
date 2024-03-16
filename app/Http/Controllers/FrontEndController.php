@@ -41,6 +41,7 @@ class FrontEndController extends Controller
         $reviews         = WebsiteReview::with('user')->where('is_home',1)->get();
         $permissions     = $this->moduleUtil->getModuleData('superadmin_package');
         $partners        = WebsitePartner::get();
+        // dd($partners);
         $questions       = WebsiteQuestion::get();
         $permission_formatted = [];
         foreach ($permissions as $permission) {

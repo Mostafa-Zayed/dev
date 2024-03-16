@@ -91,7 +91,7 @@
 
 
                                         </ul>
-                                        <a href="{{action([\Modules\Superadmin\Http\Controllers\SubscriptionController::class, 'pay'], [$package->id])}}" class="btn btn-sm btn-block">Get Started</a>
+                                        <a href="{{route('business.getRegister')}}?package={{$package->id}}" class="btn btn-sm btn-block">Get Started</a>
                                     </div>
                                 </div>
                             </div>
