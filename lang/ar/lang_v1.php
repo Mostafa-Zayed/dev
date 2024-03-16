@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'start_now' => 'ابدء الان',
     'contact' => 'اتصل بنا',
     'faqs' => 'الاسئلة الشائعة',
     'reviews' => 'الاراء',

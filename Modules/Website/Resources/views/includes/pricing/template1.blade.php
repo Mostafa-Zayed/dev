@@ -91,7 +91,7 @@
 
 
                                         </ul>
-                                        <a href="{{route('business.getRegister')}}?package={{$package->id}}" class="btn btn-sm btn-block">Get Started</a>
+                                        <a href="{{route('business.getRegister')}}?package={{$package->id}}" class="btn btn-sm btn-block">{{__('lang_v1.start_now')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                             <span class="price-date">/ {{__('website::lang.yearly')}}</span>
                                         </span>
                                         <div class="shape-bottom">
-                                            <img src="images/shapes/price-shape.svg" alt="shape" class="bottom-shape img-fluid">
+                                            <img src="{{asset('front/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
                                         </div>
                                     </header>
                                     <div class="card-body">
@@ -163,8 +163,20 @@
 
                                                 @lang('superadmin::lang.invoices')
                                             </li>
+
+                                            @if(!empty($package->custom_permissions))
+                                            @foreach($package->custom_permissions as $permission => $value)
+                                            @isset($permission_formatted[$permission])
+                                            <li>
+                                                <span class="fas fa-check"></span>
+                                                {{$permission_formatted[$permission]}}
+                                            </li>
+
+                                            @endisset
+                                            @endforeach
+                                            @endif
                                         </ul>
-                                        <button type="button" class="btn btn-sm btn-block">Get Started</button>
+                                        <a href="{{route('business.getRegister')}}?package={{$package->id}}" class="btn btn-sm btn-block">{{__('lang_v1.start_now')}}</a>
                                     </div>
                                 </div>
                             </div>

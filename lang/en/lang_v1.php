@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'start_now' => 'Get Start' ,
     'contact' => 'Contact',
     'faqs' => 'Faqs',
     'reviews' => 'Reviews',
