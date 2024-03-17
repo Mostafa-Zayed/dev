@@ -2,8 +2,10 @@
     <div class="container">
         <div class="section-header">
             @if(! empty($settings))
-            <h2>{{$settings->getTranslations('section_work_title')[app()->getLocale()]}}</h2>
-            {!! $settings->getTranslations('section_work_description')[app()->getLocale()] !!}
+                <h2>
+                    @if(! empty($settings->getTranslations('section_work_title')[app()->getLocale()])) {{$settings->getTranslations('section_work_title')[app()->getLocale()]}} @endif
+                </h2>
+                @if(! empty($settings->getTranslations('section_work_description')[app()->getLocale()])) {!! $settings->getTranslations('section_work_description')[app()->getLocale()] !!} @endif
             @endif
         </div>
         <div class="row">

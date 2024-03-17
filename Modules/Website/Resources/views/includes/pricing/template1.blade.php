@@ -4,8 +4,10 @@
             <div class="col-md-5">
                 <div class="section-header-style2">
                     @if(! empty($settings))
-                    <h2>{{$settings->getTranslations('section_packages_title')[app()->getLocale()]}}</h2>
-                    {!! $settings->getTranslations('section_packages_description')[app()->getLocale()] !!}
+                    <h2>
+                        @if(! empty($settings->getTranslations('section_packages_title')[app()->getLocale()])) {{$settings->getTranslations('section_packages_title')[app()->getLocale()]}} @endif
+                    </h2> 
+                    @if(! empty($settings->getTranslations('section_packages_description')[app()->getLocale()])) {!! $settings->getTranslations('section_packages_description')[app()->getLocale()] !!} @endif
                     @endif
                 </div>
                 <ul class="nav pricing-btns-group">
@@ -31,7 +33,7 @@
                                             <span class="price-date">/ {{__('website::lang.monthly')}}</span>
                                         </span>
                                         <div class="shape-bottom">
-                                            <img src="{{asset('modules/website/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
+                                            
                                         </div>
                                     </header>
                                     <div class="card-body">
@@ -118,7 +120,7 @@
                                             <span class="price-date">/ {{__('website::lang.yearly')}}</span>
                                         </span>
                                         <div class="shape-bottom">
-                                            <img src="{{asset('front/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
+                                            
                                         </div>
                                     </header>
                                     <div class="card-body">

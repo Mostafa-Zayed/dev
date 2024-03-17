@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'subscribe_success' => 'Subscribed Succefulley',
+    'subscribe' => 'Subscribe',
+    'view_all_reviews' => 'View all reviews' ,
+    'newsletter' => 'Newsletter',
+    'user_acount' => 'User Account',
+    'useful_links' => 'Useful Links',
+    'blog' => 'Blog',
+    'about' => 'About',
+    'meta_description' => 'A specialized Ecommerce platform to manage your business professionally',
     'start_now' => 'Get Start' ,
     'contact' => 'Contact',
     'faqs' => 'Faqs',

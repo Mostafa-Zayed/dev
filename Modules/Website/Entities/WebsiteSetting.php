@@ -32,7 +32,9 @@ class WebsiteSetting extends Model
         'section_questions_image',
         'section_posts_title',
         'section_posts_description',
-        'section_feature_link'
+        'section_feature_link',
+        'newsletter_description',
+        'footer_description'
     ];
     
     public $translatable = [
@@ -49,7 +51,9 @@ class WebsiteSetting extends Model
         'section_questions_title',
         'section_questions_description',
         'section_posts_title',
-        'section_posts_description'
+        'section_posts_description',
+        'newsletter_description',
+        'footer_description',
 
     ];
 

@@ -25,7 +25,8 @@
                         <a href="#" class="list-group-item text-center">@lang('website::lang.packages') @show_tooltip(__('website::tooltip.website_packages'))</a>
                         <a href="#" class="list-group-item text-center">@lang('website::lang.reviews') @show_tooltip(__('website::tooltip.website_reviews'))</a>
                         <a href="#" class="list-group-item text-center">@lang('website::lang.questions') @show_tooltip(__('website::tooltip.website_questions'))</a>
-                            <a href="#" class="list-group-item text-center">@lang('website::lang.posts') @show_tooltip(__('website::tooltip.website_posts'))</a>
+                        <a href="#" class="list-group-item text-center">@lang('website::lang.posts') @show_tooltip(__('website::tooltip.website_posts'))</a>
+                        <a href="#" class="list-group-item text-center">@lang('website::lang.footer') @show_tooltip(__('website::tooltip.website_posts'))</a>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 pos-tab">
@@ -37,6 +38,7 @@
                     @include('website::settings.partials.reviews_settings')
                     @include('website::settings.partials.questions_settings')
                     @include('website::settings.partials.posts_settings')
+                    @include('website::settings.partials.footer_settings')
                 </div>
             </div>
         </div>
@@ -52,8 +54,8 @@
 
 
 @section('javascript')
-  @php $asset_v = env('APP_VERSION'); @endphp
-  <script src="{{ asset('js/product.js?v=' . $asset_v) }}"></script>
+@php $asset_v = env('APP_VERSION'); @endphp
+<script src="{{ asset('js/product.js?v=' . $asset_v) }}"></script>
 <script type="text/javascript">
     __page_leave_confirmation('#website_settings_update');
     $(document).on('ifToggled', '#use_superadmin_settings', function() {

@@ -76,13 +76,15 @@ use App\Http\Controllers\FrontEndController;
 */
 
 
-Route::get('reviews',[RevieweController::class,'index'])->name('reviews.index');
-Route::get('contacts',[FrontEndController::class,'contact'])->name('contact');
+// Route::get('reviews',[RevieweController::class,'index'])->name('reviews.index');
+Route::get('reviews',[FrontEndController::class,'reviews'])->name('reviews');
+Route::get('contact',[FrontEndController::class,'contact'])->name('contact');
 Route::get('blog',[FrontEndController::class,'blog'])->name('blog');
 Route::get('features',[FrontEndController::class,'features'])->name('features');
 Route::get('faqs',[FrontEndController::class,'faqs'])->name('faqs');
 Route::get('about-us',[FrontEndController::class,'about'])->name('about');
 Route::post('send-message',[FrontEndController::class,'sendMessage'])->name('send-message');
+Route::post('subscribe',[FrontEndController::class,'subscribe'])->name('subscribe');
 Route::get('envents',[FrontEndController::class,'events'])->name('events');
 
 

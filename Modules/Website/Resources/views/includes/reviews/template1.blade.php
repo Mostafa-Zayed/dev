@@ -5,15 +5,17 @@
             <div class="col-md-5">
                 <div class="section-header-style2">
                     @if(! empty($settings))
-                    <h2>{{$settings->getTranslations('section_reviews_title')[app()->getLocale()]}}</h2>
-                    {!! $settings->getTranslations('section_reviews_description')[app()->getLocale()] !!}
+                    <h2>
+                        @if(! empty($settings->getTranslations('section_reviews_title')[app()->getLocale()])) {{$settings->getTranslations('section_reviews_title')[app()->getLocale()]}} @endif
+                    </h2>
+                    @if(! empty($settings->getTranslations('section_reviews_description')[app()->getLocale()])) {!! $settings->getTranslations('section_reviews_description')[app()->getLocale()] !!} @endif
                     @endif
                     <div class="review_nav">
                         <span class="ti-angle-left button_prev"></span>
                         <span class="ti-angle-right button_next"></span>
                     </div>
 
-                    <div class="btn-read-more"><a class="btn theme-btn" href="reviews.html">View all reviews</a></div>
+                    <div class="btn-read-more"><a class="btn theme-btn" href="{{route('reviews')}}">{{__('lang_v1.view_all_reviews')}}</a></div>
                 </div>
             </div>
             <div class="col-md-7">
@@ -41,7 +43,7 @@
                         <!-- Start review item Avatar -->
                         <div class="item">
                             <div class="review_photo_block">
-                                <img src="images/reviews/author-1.jpg" alt="Img">
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" alt="Img">
                             </div>
                         </div>
                         <!-- End review item Avatar -->
@@ -49,7 +51,7 @@
                         <!-- Start review item Avatar -->
                         <div class="item">
                             <div class="review_photo_block">
-                                <img src="images/reviews/author-2.jpg" alt="Img">
+                                <img src="{{asset('front/images/reviews/author-2.jpg')}}" alt="Img">
                             </div>
                         </div>
                         <!-- End review item Avatar -->
@@ -57,7 +59,7 @@
                         <!-- Start review item Avatar -->
                         <div class="item">
                             <div class="review_photo_block">
-                                <img src="images/reviews/author-3.jpg" alt="Img">
+                                <img src="{{asset('front/images/reviews/author-3.jpg')}}" alt="Img">
                             </div>
                         </div>
                         <!-- End review item Avatar -->
@@ -65,7 +67,7 @@
                         <!-- Start review item Avatar -->
                         <div class="item">
                             <div class="review_photo_block">
-                                <img src="images/reviews/author-4.jpg" alt="Img">
+                                <img src="{{asset('front/images/reviews/author-4.jpg')}}" alt="Img">
                             </div>
                         </div>
                         <!-- End review item Avatar -->
@@ -73,7 +75,7 @@
                         <!-- Start review item Avatar -->
                         <div class="item">
                             <div class="review_photo_block">
-                                <img src="images/reviews/author-1.jpg" alt="Img">
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" alt="Img">
                             </div>
                         </div>
                         <!-- End review item Avatar -->
@@ -81,7 +83,7 @@
                         <!-- Start review item Avatar -->
                         <div class="item">
                             <div class="review_photo_block">
-                                <img src="images/reviews/author-3.jpg" alt="Img">
+                                <img src="{{asset('front/images/reviews/author-3.jpg')}}" alt="Img">
                             </div>
                         </div>
                         <!-- End review item Avatar -->

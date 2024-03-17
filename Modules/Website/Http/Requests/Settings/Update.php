@@ -45,7 +45,11 @@ class Update extends FormRequest
             // 'section_posts_title' => ['nullable','string','max:255'],
             // 'section_posts_title.*' => ['nullable','array'],
             // 'section_posts_description' => ['nullable','array'],
-            // 'section_posts_description.*' => ['nullable','string']
+            // 'section_posts_description.*' => ['nullable','string'],
+            'newsletter_description'  => ['nullable','array'],
+            'newsletter_description.*'  => ['nullable','string'],
+            'footer_description'   => ['nullable','array'],
+            'footer_description.*' => ['nullable','string']
         ];
     }
 

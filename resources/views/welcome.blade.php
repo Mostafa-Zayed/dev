@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{getLanguage()}}" dir=@if(getLanguage() !='ar' ) 'ltr' @else 'rtl' @endif>
+<html dir=@if(getLanguage() !='ar' ) 'ltr' @else 'rtl' @endif lang="{{getLanguage()}}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ERP TEC</title>
-    <meta name="description" content="ERP TEC">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="{{__('lang_v1.meta_description')}}">
     <meta name="ERP TEC" content="ERP TEC - https://dev.erptec.net" />
-    <link rel="icon" href="favicon.png">
-
+    <meta name="ERP TEC" content="ERP TEC - https://dev.erptec.net" />
+    <link rel="icon" href="{{asset('favicon.png')}}" type="image/gif" sizes="32x32">
+    <meta name="keywords" content="ERP TEC" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     @if(getLanguage() == 'ar')
     <link rel="stylesheet" href="{{asset('website/rtl/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('website/rtl/css/themify-icons.css')}}">
@@ -28,6 +32,9 @@
     <link rel="stylesheet" href="{{asset('website/css/lightcase.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('website/css/style.css')}}">
     @endif
+    <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
+
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
@@ -175,7 +182,7 @@
                 <!-- Start Contact form Area -->
                 <div class="col-md-7">
                     <div class="contact-shape">
-                        <img src="images/shapes/contact-form.png" class="img-fluid" alt="Img" />
+                        <img src="{{asset('front/images/shapes/contact-form.png')}}" class="img-fluid" alt="Img" />
                     </div>
                     <div class="contact-form-block">
                         <div class="section-header-style2">
@@ -210,11 +217,15 @@
                     <!-- Start Column 1 -->
                     <div class="col-md-4">
                         <div class="footer-logo">
-                            <img src="images/logo.png" class="img-fluid" alt="Img" />
+                            <h4 class="footer-title">
+                                <img src="{{asset('front/images/erp_logo.png')}}" class="img-fluid" alt="Img" />
+                                ERP TEC
+
+                            </h4>
                         </div>
-                        <p>
-                            Intrinsicly matrix high standards in niches whereas intermandated niche markets. Objectively harness competitive resources.
-                        </p>
+                        @if(! empty($settings))
+                        @if(! empty($settings->getTranslations('footer_description')[app()->getLocale()])) {!! $settings->getTranslations('footer_description')[app()->getLocale()] !!} @endif
+                        @endif
                         <div class="footer-social-links">
                             <a href="#"><i class="ti-facebook"></i></a>
                             <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -226,41 +237,39 @@
 
                     <!-- Start Column 2 -->
                     <div class="col-md-2">
-                        <h4 class="footer-title">Useful Links</h4>
+                        <h4 class="footer-title">{{__('lang_v1.useful_links')}}</h4>
                         <ul class="footer-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about-us.html">About</a></li>
-                            <li><a href="contact-us.html">Contact Us</a></li>
-                            <li><a href="reviews.html">Reviews</a></li>
-                            <li><a href="faqs.html">Faqs</a></li>
-                            <li><a href="blog-1.html">News</a></li>
+                            <li><a href="{{url('/')}}">{{__('lang_v1.home')}}</a></li>
+                            <li><a href="{{route('about')}}">{{__('lang_v1.about')}}</a></li>
+                            <li><a href="{{route('contact')}}">{{__('lang_v1.contact')}}</a></li>
+                            <li><a href="{{route('reviews')}}">{{__('lang_v1.reviews')}}</a></li>
+                            <li><a href="{{route('faqs')}}">{{__('lang_v1.faqs')}}</a></li>
+                            <li><a href="{{route('blog')}}">{{__('lang_v1.blog')}}</a></li>
                         </ul>
                     </div>
                     <!-- End Column 2 -->
 
                     <!-- Start Column 3 -->
                     <div class="col-md-2">
-                        <h4 class="footer-title">User Account</h4>
+                        <h4 class="footer-title">{{__('lang_v1.user_acount')}}</h4>
                         <ul class="footer-links">
-                            <li><a href="signin.html">Sign In</a></li>
-                            <li><a href="signup.html">Sign up</a></li>
-                            <li><a href="recover-account.html">Reset Password</a></li>
-                            <li><a href="recover-account.html">Recover Account</a></li>
-                            <li><a href="error-404.html">404 Not Found</a></li>
-                            <li><a href="coming-soon.html">Coming soon</a></li>
+                            <li><a href="{{route('login')}}">{{__('lang_v1.login')}}</a></li>
+                            <li><a href="{{route('business.getRegister')}}">{{__('lang_v1.register')}}</a></li>
+
                         </ul>
                     </div>
                     <!-- End Column 3 -->
 
                     <!-- Start Column 4 -->
                     <div class="col-md-4">
-                        <h4 class="footer-title">Newsletter</h4>
-                        <p>
-                            Subscribe our newsletter to get our update. We don't send span email to you.
-                        </p>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Enter Your Email" />
-                            <button class="btn theme-btn">Subscribe</button>
+                        <h4 class="footer-title">{{__('lang_v1.newsletter')}}</h4>
+                        @if(! empty($settings))
+                        @if(! empty($settings->getTranslations('newsletter_description')[app()->getLocale()])) {!! $settings->getTranslations('newsletter_description')[app()->getLocale()] !!} @endif
+                        @endif
+                        <form class="newsletter-form" method="post" action="{{route('subscribe')}}" id="subscribe_form">
+                            @csrf
+                            <input type="email" name= 'email' placeholder="{{__('business.email')}}" id="user_email"/>
+                            <button class="btn theme-btn" type="submit">{{__('lang_v1.subscribe')}}</button>
                         </form>
                     </div>
                     <!-- End Column 4 -->
@@ -270,7 +279,7 @@
 
             <!-- Start Copyrights Area -->
             <div class="copyrights">
-                <p>Copyrights © 2020. Designed by <i class="flaticon-like-2"></i> <a href="https://elmanawy.info">Marwa El-Manawy</a>.</p>
+                <p>Copyrights © 2020. Designed by <i class="flaticon-like-2"></i> <a href="{{url('/')}}">ERP TEC</a>.</p>
             </div>
             <!-- End Copyrights Area -->
         </div>
@@ -299,6 +308,27 @@
     <script src="{{asset('website/js/scrollIt.min.js')}}"></script>
     <!-- Main Script -->
     <script src="{{asset('website/js/script.js')}}"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#subscribe_form').submit(function(event){
+                event.preventDefault();
+                let email = $('#user_email').val();
+                $.ajax({
+                    url: "{{route('subscribe')}}",
+                    method: 'POST',
+                    data: {email:email},
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result){
+                        toastr.success(result.msg);
+                        $('#user_email').val(null);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

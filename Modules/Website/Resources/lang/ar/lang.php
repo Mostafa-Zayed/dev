@@ -1,5 +1,10 @@
 <?php 
 return [
+    'newsletter_description_ar' => 'وصف الرسائل الاخبارية بالعربي',
+    'newsletter_description_en' => 'وصف الرسائل الاخبارية بالانجليزي',
+    'footer_description_ar'   => 'وصف ذيل الصفحة بالعربي',
+    'footer_description_en'   => 'وصف ذيل الصفحة بالانجليزي',
+    'footer' => 'نهاية الصفحة',
     'heading' => 'العنوان',
     'description' => 'الوصف',
     'title_ar' => 'الاسم بالعربي',

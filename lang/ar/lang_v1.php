@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'subscribe_success' => 'تم الاشتراك بنجاح',
+    'subscribe' => 'اشترك',
+    'view_all_reviews' => 'مشاهدة كل الأراء',
+    'newsletter' => 'الرسائل الاخبارية',
+    'user_acount' => 'حساب المستخدم',
+    'useful_links' => 'روابط مهمه',
+    'blog' => 'المدونة',
+    'about' => 'عننا',
+    'meta_description' => 'منصة الكترونية متخصصة لادارة نشاطك التجاري باحترافية',
     'start_now' => 'ابدء الان',
     'contact' => 'اتصل بنا',
     'faqs' => 'الاسئلة الشائعة',

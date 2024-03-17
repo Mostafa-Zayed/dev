@@ -574,6 +574,33 @@ $(document).ready(function() {
         });
     }
 
+    if ($('textarea#newsletter_description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#newsletter_description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#newsletter_description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#newsletter_description_en',
+            height:250
+        });
+    }
+    
+    if ($('textarea#footer_description_ar').length > 0) {
+        tinymce.init({
+            selector: 'textarea#footer_description_ar',
+            height:250
+        });
+    }
+
+    if ($('textarea#footer_description_en').length > 0) {
+        tinymce.init({
+            selector: 'textarea#footer_description_en',
+            height:250
+        });
+    }
     if ($('textarea#section_work_description_ar').length > 0) {
         tinymce.init({
             selector: 'textarea#section_work_description_ar',

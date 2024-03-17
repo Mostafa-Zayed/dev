@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'newsletter_description_ar' => 'Description newsletter in arabic',
+    'newsletter_description_en' => 'Description newsletter in english',
+    'footer_description_ar'   => 'Description Footer in arabic',
+    'footer_description_en'   => 'Description Footer in english',
+    'footer' => 'Footer',
     'heading' => 'Heading',
     'description' => 'Description',
     'title_ar' => 'Title Arabic',

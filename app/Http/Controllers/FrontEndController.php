@@ -17,6 +17,8 @@ use Modules\Website\Entities\WebsiteSetting;
 use Modules\Website\Entities\WebsiteTemplate;
 use Modules\Superadmin\Entities\Package;
 use Modules\Website\Entities\WebsiteReview;
+use Modules\Website\Entities\WebsiteSubscribe;
+use Modules\Website\Http\Requests\Subscribe\Store;
 
 class FrontEndController extends Controller
 {
@@ -35,13 +37,13 @@ class FrontEndController extends Controller
                 'websiteWorks',
                 'websiteScreenShots'
             ]
-        )->where('status',1)->first();
+        )->where('status', 1)->first();
         $packages        = Package::listPackages(true);
         $websiteSettings = WebsiteSetting::first();
-        $reviews         = WebsiteReview::with('user')->where('is_home',1)->get();
+        $reviews         = WebsiteReview::with('user')->where('is_home', 1)->get();
         $permissions     = $this->moduleUtil->getModuleData('superadmin_package');
         $partners        = WebsitePartner::get();
-        $screenShots     = WebsiteScreenshot::get()        ;
+        $screenShots     = WebsiteScreenshot::get();
         $questions       = WebsiteQuestion::get();
         $permission_formatted = [];
         foreach ($permissions as $permission) {
@@ -49,8 +51,8 @@ class FrontEndController extends Controller
                 $permission_formatted[$details['name']] = $details['label'];
             }
         }
-        $features = WebsiteFeature::where('status','1')->where('is_home',1)->get();
-        return view('welcome',[
+        $features = WebsiteFeature::where('status', '1')->where('is_home', 1)->get();
+        return view('welcome', [
             'template' => $websiteDemo,
             'settings' => $websiteSettings,
             'features' => $features,
@@ -61,5 +63,39 @@ class FrontEndController extends Controller
             'questions' => $questions,
             'screenShots' => $screenShots
         ]);
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function reviews()
+    {
+        return view('reviews');
+    }
+
+    public function subscribe(Store $request)
+    {
+        WebsiteSubscribe::create(['email' => $request->email]);
+        return [
+            'success' => 1,
+            'msg' => __('lang_v1.subscribe_success')
+        ];
+    }
+
+    public function faqs()
+    {
+        return view('faqs');
+    }
+
+    public function blog()
+    {
+        return view('blog.index');
     }
 }
