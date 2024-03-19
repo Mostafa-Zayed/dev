@@ -178,7 +178,6 @@ class BusinessLocationController extends Controller
      */
     public function store(Store $request)
     {
-        // dd($request->all());
         if (isHasPermission(['business_settings.access'])) {
             try {
                 $business_id = $request->session()->get('user.business_id');
@@ -246,7 +245,7 @@ class BusinessLocationController extends Controller
      * @param  \App\StoreFront  $storeFront
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(BusinessLocation $id)
     {
         if (!auth()->user()->can('business_settings.access')) {
             abort(403, 'Unauthorized action.');
