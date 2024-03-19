@@ -245,7 +245,7 @@ class BusinessLocationController extends Controller
      * @param  \App\StoreFront  $storeFront
      * @return \Illuminate\Http\Response
      */
-    public function edit(BusinessLocation $id)
+    public function edit($id)
     {
         if (!auth()->user()->can('business_settings.access')) {
             abort(403, 'Unauthorized action.');
