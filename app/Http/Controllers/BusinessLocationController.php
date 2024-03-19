@@ -21,6 +21,7 @@ use App\Services\InvoiceSchemeService;
 use App\Services\InvoiceLayoutService;
 use App\Services\SellingPriceGroupService;
 use App\Http\Requests\BusinessLocation\Store;
+use App\Http\Requests\BusinessLocation\Update;
 
 class BusinessLocationController extends Controller
 {
@@ -291,43 +292,43 @@ class BusinessLocationController extends Controller
      * @param  \App\StoreFront  $storeFront
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        if (!auth()->user()->can('business_settings.access')) {
-            abort(403, 'Unauthorized action.');
+        if (isHasPermission(['business_settings.access'])) {
+            try {
+                $input = $request->only([
+                    'name', 'landmark', 'city', 'state', 'country',
+                    'zip_code', 'invoice_scheme_id',
+                    'invoice_layout_id', 'mobile', 'alternate_number', 'email', 'website', 'custom_field1', 'custom_field2', 'custom_field3', 'custom_field4', 'location_id', 'selling_price_group_id', 'default_payment_accounts', 'featured_products', 'sale_invoice_layout_id',
+                ]);
+
+                $business_id = $request->session()->get('user.business_id');
+
+                $input['default_payment_accounts'] = !empty($input['default_payment_accounts']) ? json_encode($input['default_payment_accounts']) : null;
+
+                $input['featured_products'] = !empty($input['featured_products']) ? json_encode($input['featured_products']) : null;
+
+                BusinessLocation::where('business_id', $business_id)
+                    ->where('id', $id)
+                    ->update($input);
+
+                $output = [
+                    'success' => true,
+                    'msg' => __('business.business_location_updated_success'),
+                ];
+            } catch (\Exception $e) {
+                $this->logMethodException($e);
+
+                $output = [
+                    'success' => false,
+                    'msg' => __('messages.something_went_wrong'),
+                ];
+            }
+
+            return $output;
         }
 
-        try {
-            $input = $request->only([
-                'name', 'landmark', 'city', 'state', 'country',
-                'zip_code', 'invoice_scheme_id',
-                'invoice_layout_id', 'mobile', 'alternate_number', 'email', 'website', 'custom_field1', 'custom_field2', 'custom_field3', 'custom_field4', 'location_id', 'selling_price_group_id', 'default_payment_accounts', 'featured_products', 'sale_invoice_layout_id',
-            ]);
-
-            $business_id = $request->session()->get('user.business_id');
-
-            $input['default_payment_accounts'] = !empty($input['default_payment_accounts']) ? json_encode($input['default_payment_accounts']) : null;
-
-            $input['featured_products'] = !empty($input['featured_products']) ? json_encode($input['featured_products']) : null;
-
-            BusinessLocation::where('business_id', $business_id)
-                ->where('id', $id)
-                ->update($input);
-
-            $output = [
-                'success' => true,
-                'msg' => __('business.business_location_updated_success'),
-            ];
-        } catch (\Exception $e) {
-            \Log::emergency('File:' . $e->getFile() . 'Line:' . $e->getLine() . 'Message:' . $e->getMessage());
-
-            $output = [
-                'success' => false,
-                'msg' => __('messages.something_went_wrong'),
-            ];
-        }
-
-        return $output;
+        abort(403, 'Unauthorized action.');
     }
 
     /**
