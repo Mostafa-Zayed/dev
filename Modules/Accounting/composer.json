@@ -1,10 +1,10 @@
 {
-    "name": "dsoft/accounting",
+    "name": "nwidart/accounting",
     "description": "",
     "authors": [
         {
-            "name": "DSOFT SOLUTIONS",
-            "email": "ultimateposlive@gmail.com"
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
         }
     ],
     "extra": {
@@ -12,7 +12,9 @@
             "providers": [
                 "Modules\\Accounting\\Providers\\AccountingServiceProvider"
             ],
-            "aliases": {}
+            "aliases": {
+                
+            }
         }
     },
     "autoload": {

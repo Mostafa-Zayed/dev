@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -56,6 +57,10 @@ class Product extends Model
         return $image_path;
     }
 
+    public function scopeForBusiness(Builder $query, int $businessId)
+    {
+        return $query->where('business_id','=',$businessId);
+    }
     public function product_variations()
     {
         return $this->hasMany(\App\ProductVariation::class);

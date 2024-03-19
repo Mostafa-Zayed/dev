@@ -269,7 +269,7 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::resource('barcodes', BarcodeController::class);
 
     //Invoice schemes..
-    Route::get('/invoice-schemes/set_default/{id}', [InvoiceSchemeController::class, 'setDefault']);
+    Route::post('/invoice-schemes/set_default', [InvoiceSchemeController::class, 'setDefault'])->name('invoice-scheme-default');
     Route::resource('invoice-schemes', InvoiceSchemeController::class);
 
     //Print Labels
@@ -321,9 +321,10 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::get('/reports/get-stock-value', [ReportController::class, 'getStockValue']);
 
     Route::get('business-location/activate-deactivate/{location_id}', [BusinessLocationController::class, 'activateDeactivateLocation']);
-
+    Route::get('business-location/{id}/add-map',[BusinessLocationController::class,'addLocationMap']);
     //Business Location Settings...
     Route::prefix('business-location/{location_id}')->name('location.')->group(function () {
+        
         Route::get('settings', [LocationSettingsController::class, 'index'])->name('settings');
         Route::post('settings', [LocationSettingsController::class, 'updateSettings'])->name('settings_update');
     });

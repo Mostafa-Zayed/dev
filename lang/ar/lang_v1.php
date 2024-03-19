@@ -1379,4 +1379,7 @@ return [
     'zatca_qr_help' => 'لبلد المملكة العربية السعودية',
     'customer_irrespective_of_sell' => 'عرض العملاء بغض النظر عن بيعهم',
     'img_url_help_text' => 'أو URL للصورة',
+    'invoice_layout' => 'تصميم الفاتورة',
+    'invoice_scheme' => 'تصميم رأس الفاتوره',
+    'sale_invoice_layout' => '',
 ];

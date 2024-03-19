@@ -113,3 +113,28 @@
 <!-- /.content -->
 
 @endsection
+@section('javascript')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(document).on('click', 'button.set_default_invoice', function(event){
+            var id = $(this).data('id');
+            $.ajax({
+                method: "POST",
+                url: "{{route('invoice-scheme-default')}}",
+                dataType: "json",
+                data: {id:id},
+                success: function(result){
+                    if(result.success === true){
+
+                        toastr.success(result.msg);
+                        location.reload();
+                    } else {
+                        toastr.error(result.msg);
+                    }
+                }
+            });
+        });
+    });
+</script>
+@endsection
+

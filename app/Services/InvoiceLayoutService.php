@@ -13,5 +13,10 @@ class InvoiceLayoutService
         $this->invoiceLayoutRepository = $invoiceLayoutRepository;
     }
 
+    public function forDropDown(int $businessId)
+    {
+        return $this->invoiceLayoutRepository->getAll($businessId)->pluck('name','id');
+    }
+
     
 }

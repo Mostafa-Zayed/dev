@@ -1546,4 +1546,8 @@ return [
          Letterhead will be added at the top of the invoices.',
     'letter_head_help2' => 'Upload only if you want to replace previous letterhead',
     'copy_quotation' => 'Copy Quotation',
+    'invoice_layout' => 'Invoice Layout Design',
+    'invoice_scheme' => 'Invoice Scheme Design',
+    'sale_invoice_layout' => 'Sale Invoice Layout Design',
+    
 ];

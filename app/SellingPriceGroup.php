@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -46,6 +47,11 @@ class SellingPriceGroup extends Model
         }
 
         return $dropdown;
+    }
+
+    public function scopeForBusiness(Builder $query, int $businessId)
+    {
+        return $query->where('business_id','=',$businessId);
     }
 
     /**

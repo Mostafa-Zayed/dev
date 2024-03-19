@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class InvoiceScheme extends Model
@@ -34,5 +35,10 @@ class InvoiceScheme extends Model
                                 ->first();
 
         return $default;
+    }
+
+    public function scopeForBusiness(Builder $query, int $businessId)
+    {
+        return $query->where('business_id','=',$businessId);
     }
 }

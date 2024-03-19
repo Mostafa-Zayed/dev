@@ -12,4 +12,5 @@ class BusinessLocationService
     {
         $this->businessLocationRepository = $businessLocationRepository;
     }
+    
 }

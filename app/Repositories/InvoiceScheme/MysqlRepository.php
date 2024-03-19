@@ -1,19 +1,20 @@
 <?php 
 
-namespace App\Repositories\InvoiceSchema;
+namespace App\Repositories\InvoiceScheme;
 
+use App\InvoiceScheme;
 use App\Repositories\InvoiceSchemeRepository;
 use Illuminate\Support\Facades\DB;
 
 class MysqlRepository extends InvoiceSchemeRepository
 {
-    public function getAll()
+    public function getById(int $id)
     {
-        DB::table('business')->get();
+        return InvoiceScheme::find($id);
     }
 
-    public function store($businessData)
+    public function getAll(int $businessId)
     {
-        DB::table('business')->insert($businessData);
+        return InvoiceScheme::ForBusiness($businessId)->get();
     }
 }

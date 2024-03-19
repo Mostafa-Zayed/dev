@@ -10,10 +10,12 @@ class ModuleService
 {
     private static $erpModules = [];
     public $moduleRepository;
+    public $subscriptionService;
 
-    public function __construct(ModuleRepository $moduleRepository)
+    public function __construct(ModuleRepository $moduleRepository, SubscriptionService $subscriptionService)
     {
-        $this->moduleRepository = $moduleRepository;
+        $this->moduleRepository    = $moduleRepository;
+        $this->subscriptionService = $subscriptionService;
     }
 
     public static function getModuleData($functionName, $arguments = null)
@@ -70,5 +72,20 @@ class ModuleService
                 }
             }
         }
+    }
+
+    public function isHasSubscription(int $businessId)
+    {
+        return $this->subscriptionService->isHasSubscription($businessId);
+    }
+
+    public function isSuperadminInstalled()
+    {
+        return self::isModuleInstalled('superadmin');
+    }
+
+    public function isHasActiveSubscription(int $businessId)
+    {
+        return $this->subscriptionService->isHasActiveSubscription($businessId);
     }
 }

@@ -37,64 +37,64 @@
         <div class="col-sm-12">
           <div class="form-group">
             {!! Form::label('name', __( 'invoice.name' ) . ':*') !!}
-              {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => __( 'invoice.name' ) ]); !!}
+            {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => __( 'invoice.name' ) ]); !!}
           </div>
         </div>
         <div id="invoice_format_settings" class="hide">
-        <div class="col-sm-6">
-          <div class="form-group">
-            {!! Form::label('prefix', __( 'invoice.prefix' ) . ':') !!}
-            <div class="input-group col-md-12 col-sm-12">
-              <span class="input-group-addon">
+          <div class="col-sm-6">
+            <div class="form-group">
+              {!! Form::label('prefix', __( 'invoice.prefix' ) . ':') !!}
+              <div class="input-group col-md-12 col-sm-12">
+                <span class="input-group-addon">
                   <i class="fa fa-info"></i>
-              </span>
+                </span>
                 {!! Form::text('prefix', null, ['class' => 'form-control', 'placeholder' => '']); !!}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            {!! Form::label('start_number', __( 'invoice.start_number' ) . ':') !!}
-            <div class="input-group col-md-12 col-sm-12">
-              <span class="input-group-addon">
+          <div class="col-sm-6">
+            <div class="form-group">
+              {!! Form::label('start_number', __( 'invoice.start_number' ) . ':') !!}
+              <div class="input-group col-md-12 col-sm-12">
+                <span class="input-group-addon">
                   <i class="fa fa-info"></i>
-              </span>
+                </span>
                 {!! Form::number('start_number', 0, ['class' => 'form-control', 'required', 'min' => 0 ]); !!}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="clearfix">
-        <div class="col-sm-6">
-          <div class="form-group">
-            {!! Form::label('total_digits', __( 'invoice.total_digits' ) . ':') !!}
-            <div class="input-group col-md-12 col-sm-12">
-              <span class="input-group-addon">
-                  <i class="fa fa-info"></i>
-              </span>
-              {!! Form::select('total_digits', ['4' => '4', '5' => '5', '6' => '6', '7' => '7', 
-              '8' => '8', '9'=>'9', '10' => '10'], 4, ['class' => 'form-control', 'required']); !!}
+          <div class="clearfix">
+            <div class="col-sm-6">
+              <div class="form-group">
+                {!! Form::label('total_digits', __( 'invoice.total_digits' ) . ':') !!}
+                <div class="input-group col-md-12 col-sm-12">
+                  <span class="input-group-addon">
+                    <i class="fa fa-info"></i>
+                  </span>
+                  {!! Form::select('total_digits', ['4' => '4', '5' => '5', '6' => '6', '7' => '7',
+                  '8' => '8', '9'=>'9', '10' => '10'], 4, ['class' => 'form-control', 'required']); !!}
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <br>
+                <div class="checkbox">
+                  <label>
+                    {!! Form::checkbox('is_default', 1); !!} @lang('barcode.set_as_default')</label>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <br>
-            <div class="checkbox">
-              <label>
-                {!! Form::checkbox('is_default', 1); !!} @lang('barcode.set_as_default')</label>
-            </div>
-          </div>
-        </div>
         </div>
       </div>
-    </div>
 
-    <div class="modal-footer">
-      <button type="submit" class="btn btn-primary">@lang( 'messages.save' )</button>
-      <button type="button" class="btn btn-default" data-dismiss="modal">@lang( 'messages.close' )</button>
-    </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">@lang( 'messages.save' )</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@lang( 'messages.close' )</button>
+      </div>
 
-    {!! Form::close() !!}
+      {!! Form::close() !!}
 
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->

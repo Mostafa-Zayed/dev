@@ -1,224 +1,116 @@
-@extends('accounting::layouts.app')
-@section('title')
-    {{ ucfirst(Request::get('view')) }}
-    {{ trans_choice('accounting::general.budget', 1) }} - {{ $financial_year }}
+@extends('layouts.app')
+
+@section('title', __('accounting::lang.budget'))
+
+@section('css')
+<style>
+.table-sticky thead,
+.table-sticky tfoot {
+  position: sticky;
+}
+.table-sticky thead {
+  inset-block-start: 0; /* "top" */
+}
+.table-sticky tfoot {
+  inset-block-end: 0; /* "bottom" */
+}
+.collapsed .collapse-tr {
+    display: none;
+}
+</style>
 @endsection
 
 @section('content')
 
-    @include('accounting::layouts.nav')
-    <!-- Content Header (Page header) -->
-    @component('accounting::components.section_header')
-        @slot('title')
-            {{ ucfirst(Request::get('view')) }}
-            {{ trans_choice('accounting::general.budget', 1) }} - {{ $financial_year }}
+@include('accounting::layouts.nav')
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>@lang( 'accounting::lang.budget' )</h1>
+</section>
+<section class="content">
+	@component('components.widget', ['class' => 'box-solid'])
+        @slot('tool')
+            <div class="box-tools">
+                <button type="button" class="btn btn-block btn-primary" data-toggle="modal"  
+                    data-target="#add_budget_modal">
+                    <i class="fas fa-plus"></i> @lang( 'messages.add' )</button>
+            </div>
         @endslot
+        <div class="card-body">
+            <div class="row mb-10">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="fiscal_year_picker">@lang( 'accounting::lang.financial_year_for_the_budget' )</label>
+                        <input type="text" class="form-control" id="fiscal_year_picker" value="{{$fy_year}}" readonly>
+                    </div>
+                </div>
+            </div>
+            @if(count($budget)!=0)
+                @include('accounting::budget.budget_table')
+            @else
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4>@lang( 'accounting::lang.select_a_financial_year' )</h4>
+                    </div>
+                </div>
+            @endif
+        </div>
     @endcomponent
-
-    <!-- Main content -->
-    <section class="content no-print" id="vue-app">
-        <div class="row">
-            @component('accounting::components.box')
-                @slot('header')
-                    <div class="box-tools">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#settingsModal">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                    </div>
-
-                    <div class="col-md-4">
-                        <form action="{{ Request::url() }}" id="financial_year_form">
-                            <input type="hidden" name="view" value="{{ Request::get('view') }}">
-                            <div class="form-group">
-                                <label for="year">{{ trans_choice('accounting::general.financial_year', 1) }}</label>
-                                <input type="text" class="form-control year-datepicker" name="year" id="financial_year" v-model="financial_year">
-                            </div>
-                        </form>
-                    </div>
-                @endslot
-
-                @slot('body')
-                    <div class="nav-tabs-custom">
-                        <ul class="nav nav-tabs nav-justified">
-                            <li class="@if (Request::get('view') == 'monthly') active @endif">
-                                <a href="{{ request()->view != 'monthly' ? $url->monthly : '#' }}" aria-expanded="true">
-                                    <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    {{ trans_choice('accounting::lang.monthly', 1) }}
-                                </a>
-                            </li>
-                            <li class="@if (Request::get('view') == 'quarterly') active @endif">
-                                <a href="{{ request()->view != 'quarterly' ? $url->quarterly : '#' }}" aria-expanded="true">
-                                    <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    {{ trans_choice('accounting::lang.quarterly', 1) }}
-                                </a>
-                            </li>
-                            <li class="@if (Request::get('view') == 'yearly') active @endif">
-                                <a href="{{ request()->view != 'yearly' ? $url->yearly : '#' }}" aria-expanded="true">
-                                    <i class="fas fa-calendar" aria-hidden="true"></i>
-                                    {{ trans_choice('accounting::lang.yearly', 2) }}
-                                </a>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-
-                                {{-- Conditional views --}}
-
-                                @if (!empty($chart_of_accounts) && count($chart_of_accounts) > 0)
-                                    @switch(Request::get('view'))
-                                        @case('monthly')
-                                            @include('accounting::budget.partials.monthly_view')
-                                        @break
-
-                                        @case('quarterly')
-                                            @include('accounting::budget.partials.quarterly_view')
-                                        @break
-
-                                        @case('yearly')
-                                            @include('accounting::budget.partials.yearly_view')
-                                        @break
-
-                                        @default
-                                            <div class="alert alert-info text-center">
-                                                {{ trans('accounting::lang.an_error_occurred') }}
-                                            </div>
-                                    @endswitch
-                                @else
-                                    <div class="alert alert-info text-center">
-                                        {{ trans('accounting::lang.chart_of_account_needed_to_budget') }}
-                                        {{ trans('accounting::lang.add') }}
-                                        <a href="{{ url('accounting/chart_of_account/create') }}">
-                                            {{ trans('accounting::lang.here') }}
-                                        </a>
-                                    </div>
-                                @endif
-
-                            </div>
+</section>
+<div class="modal fade" id="add_budget_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        {!! Form::open(['url' => action('\Modules\Accounting\Http\Controllers\BudgetController@create'), 
+            'method' => 'get', 'id' => 'add_budget_form' ]) !!}
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" 
+                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">@lang( 'accounting::lang.financial_year_for_the_budget' )</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {!! Form::number('financial_year', null, ['class' => 'form-control', 
+                                'required', 'placeholder' => 
+                                __( 'accounting::lang.financial_year_for_the_budget' ), 'id' => 'financial_year' ]); !!}
                         </div>
                     </div>
-
-                    @include('accounting::budget.modals.budget_settings_modal')
-                @endslot
-            @endcomponent
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">@lang( 'accounting::lang.continue' )</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang( 'messages.close' )</button>
+            </div>
+            {!! Form::close() !!}
         </div>
-    </section>
+    </div>
+</div>
 @stop
-
 @section('javascript')
-    <script>
-        $(function() {
-            $('.apply_for_all').on('click', function() {
-                const id = $(this).attr('input_id')
-                const value = $('#' + id).val();
-                const view = "{{ Request::get('view') }}";
-
-                switch (view) {
-                    case 'monthly':
-                        $("[id^=month_]").val(value);
-                        break;
-
-                    case 'quarterly':
-                        $("[id^=quarter_]").val(value);
-                        break;
-
-                    default:
-                        break;
-                }
-
-            });
-
-            $('#financial_year').on('change', function() {
-                document.getElementById('financial_year_form').submit();
-            })
-        })
-
-        new Vue({
-            el: '#vue-app',
-            data() {
-                return {
-                    financial_year_start: "{{ $financial_year_start }}",
-                    financial_year: "{{ $financial_year }}",
-                    business_id: "{{ session('business.id') }}",
-                    view: "{{ Request::get('view') }}",
-                    chart_of_account_id: '',
-                    chart_of_accounts: {!! json_encode($chart_of_accounts) !!},
-                    months: [],
-                    quarters: [],
-                    yearly_budget: 0,
-                    eliminate_decimals: true
-                }
-            },
-
-            computed: {
-                chart_of_account() {
-                    const chart_of_account = this.chart_of_accounts.find(account => account.id == this.chart_of_account_id);
-                    const default_chart_of_account = {
-                        name: ''
-                    };
-
-                    return chart_of_account ?
-                        chart_of_account :
-                        default_chart_of_account;
-                }
-            },
-
-            methods: {
-                onClickEditBudget(e) {
-                    this.chart_of_account_id = e.target.getAttribute('chart_of_account_id');
-
-                    switch (this.view) {
-                        case 'monthly':
-                            !this.chart_of_account || this.chart_of_account.budget == null ?
-                                this.setMonthlyBudget({}) :
-                                this.setMonthlyBudget(this.chart_of_account.budget);
-                            break;
-
-                        case 'quarterly':
-                            !this.chart_of_account || this.chart_of_account.budget == null ?
-                                this.setQuarterlyBudget({}) :
-                                this.setQuarterlyBudget(this.chart_of_account.budget);
-                            break;
-
-                        case 'yearly':
-                            this.yearly_budget = !this.chart_of_account || this.chart_of_account.budget == null ?
-                                0 :
-                                this.chart_of_account.budget.yearly;
-                            break;
-
-                        default:
-                            throw 'No view type found'
-                            break;
-                    }
-                },
-
-                setMonthlyBudget(budget) {
-                    if (!Object.keys(budget).length > 0) {
-                        for (let i = 1; i <= 12; i++) {
-                            this.months[i] = 0;
-                        }
-
-                    } else {
-                        for (let i = 1; i <= 12; i++) {
-                            const month = `month_${i}`;
-                            this.months[i] = budget[month];
-                        }
-                    }
-                },
-
-                setQuarterlyBudget(budget) {
-                    if (!Object.keys(budget).length > 0) {
-                        for (let i = 1; i <= 4; i++) {
-                            this.quarters[i] = 0;
-                        }
-
-                    } else {
-                        for (let i = 1; i <= 4; i++) {
-                            this.quarters[i] = budget.quarterly[i];
-                        }
-                    }
-                },
-            },
+<script type="text/javascript">
+	$(document).ready( function(){
+        $('#fiscal_year_picker').datepicker({
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years"
+        }).on('changeDate', function(e){
+            window.location.href = 
+            "{{action('\Modules\Accounting\Http\Controllers\BudgetController@index')}}?financial_year=" + $('#fiscal_year_picker').val();
         });
-    </script>
+
+        $('#financial_year').datepicker({
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years"
+        })
+	});
+    $(document).on('click', '.toggle-tr', function(){
+        $(this).closest('tbody').toggleClass('collapsed');
+        var html = $(this).closest('tbody').hasClass('collapsed') ? 
+        '<i class="fas fa-arrow-circle-right"></i>' : '<i class="fas fa-arrow-circle-down"></i>';
+        $(this).find('.collapse-icon').html(html);
+    })
+</script>
 @endsection

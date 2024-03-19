@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class InvoiceLayout extends Model
 {
@@ -46,5 +47,10 @@ class InvoiceLayout extends Model
                     ->pluck('name', 'id');
 
         return $layouts;
+    }
+
+    public function scopeForBusiness(Builder $query, int $businessId)
+    {
+        return $query->where('business_id','=',$businessId);
     }
 }

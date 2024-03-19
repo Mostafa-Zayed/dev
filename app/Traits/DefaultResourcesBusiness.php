@@ -67,6 +67,7 @@ trait DefaultResourcesBusiness
     public static function addDefaultInvoiceLayout($businessId)
     {
         return InvoiceLayout::create([
+            'name' => 'Default',
             'header_text' => null,
             'invoice_no_prefix' => 'Invoice No.',
             'invoice_heading' => 'Invoice',

@@ -52,4 +52,19 @@ class BusinessService
     {
         return self::addDefaultLocation($businessId,$locationsData);
     }
+
+    public function getLocationsCount(int $businessId)
+    {
+        return $this->businessRepository->getLocationsCount($businessId);
+    }
+
+    public function getUsersCount(int $businessId)
+    {
+        return $this->businessRepository->getUsersCount($businessId);
+    }
+
+    public function isLocationQuotaAvailable(int $businessId, int $subscriptionMaxAllowLocations)
+    {
+        return $subscriptionMaxAllowLocations == 0 ? true : ($subscriptionMaxAllowLocations >= $this->getLocationsCount($businessId) ? false : true);
+    }
 }

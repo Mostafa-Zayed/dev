@@ -2,22 +2,11 @@
 
 namespace Modules\Accounting\Providers;
 
-use App\Utils\ModuleUtil;
-use Illuminate\Database\Eloquent\Factory;
-
-use Illuminate\Support\Facades\View;
-
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Factory;
 
 class AccountingServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
     /**
      * Boot the application events.
      *
@@ -30,19 +19,6 @@ class AccountingServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-
-        //TODO:Remove sidebar
-        view::composer(['accounting::layouts.partials.sidebar'], function ($view) {
-                if (auth()->user()->can('superadmin')) {
-                    $__is_accounting_enabled = true;
-                } else {
-                    $business_id = session()->get('user.business_id');
-                    $module_util = new ModuleUtil();
-                    $__is_accounting_enabled = (boolean)$module_util->hasThePermissionInSubscription($business_id, 'accounting_module');
-                }
-
-                $view->with(compact('__is_accounting_enabled'));
-            });
     }
 
     /**
@@ -52,7 +28,7 @@ class AccountingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(RouteServiceProvider::class);
     }
 
     /**
@@ -66,8 +42,7 @@ class AccountingServiceProvider extends ServiceProvider
             __DIR__.'/../Config/config.php' => config_path('accounting.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php',
-            'accounting'
+            __DIR__.'/../Config/config.php', 'accounting'
         );
     }
 
@@ -84,7 +59,7 @@ class AccountingServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ], 'views');
+        ],'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/accounting';
@@ -114,7 +89,7 @@ class AccountingServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
+        if (! app()->environment('production') && $this->app->runningInConsole()) {
             app(Factory::class)->load(__DIR__ . '/../Database/factories');
         }
     }

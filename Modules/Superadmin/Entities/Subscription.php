@@ -2,6 +2,7 @@
 
 namespace Modules\Superadmin\Entities;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -51,7 +52,20 @@ class Subscription extends Model
         return $this->belongsTo('\Modules\Superadmin\Entities\Package')
             ->withTrashed();
     }
+ 
+    public function scopeActive(Builder $query, $businessId)
+    {
+        $date_today = \Carbon::today()->toDateString();
+        return $query->ForBusiness($businessId)
+            ->whereDate('start_date', '<=', $date_today)
+            ->whereDate('end_date', '>=', $date_today)
+            ->approved();
+    }
 
+    public function scopeForBusiness(Builder $query, $businessId)
+    {
+        return $query->where('business_id', $businessId);
+    }
     /**
      * Returns the active subscription details for a business
      *

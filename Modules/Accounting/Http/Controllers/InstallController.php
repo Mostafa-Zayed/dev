@@ -19,10 +19,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Install
      * @return Response
      */
-
     public function index()
     {
         if (!auth()->user()->can('superadmin')) {
@@ -34,16 +33,17 @@ class InstallController extends Controller
 
         $this->installSettings();
 
-        //Check if installed or not.
+        //Check if accounting installed or not.
         $is_installed = System::getProperty($this->module_name . '_version');
         if (!empty($is_installed)) {
             abort(404);
         }
 
         $action_url = action('\Modules\Accounting\Http\Controllers\InstallController@install');
+        $intruction_type = 'uf';
 
         return view('install.install-module')
-            ->with(compact('action_url'));
+            ->with(compact('action_url', 'intruction_type'));
     }
 
     /**
@@ -55,13 +55,26 @@ class InstallController extends Controller
         Artisan::call('config:clear');
     }
 
+
     /**
-     * Installing Accounting Module
+     * Installing accounting Module
      */
     public function install()
     {
         try {
+            // request()->validate(
+            //     ['license_code' => 'required',
+            //         'login_username' => 'required'],
+            //     ['license_code.required' => 'License code is required',
+            // 'login_username.required' => 'Username is required']
+            // );
+
             DB::beginTransaction();
+
+            // $license_code = request()->license_code;
+            // $email = request()->email;
+            // $login_username = request()->login_username;
+            $pid = config('accounting.pid');
 
             $is_installed = System::getProperty($this->module_name . '_version');
             if (!empty($is_installed)) {
@@ -74,7 +87,7 @@ class InstallController extends Controller
             System::addProperty($this->module_name . '_version', $this->appVersion);
 
             DB::commit();
-            
+
             $output = ['success' => 1,
                     'msg' => 'Accounting module installed succesfully'
                 ];
@@ -87,10 +100,9 @@ class InstallController extends Controller
                 'msg' => $e->getMessage()
             ];
         }
-
         return redirect()
-                ->action('\App\Http\Controllers\Install\ModulesController@index')
-                ->with('status', $output);
+            ->action('\App\Http\Controllers\Install\ModulesController@index')
+            ->with('status', $output);
     }
 
     /**
@@ -145,6 +157,7 @@ class InstallController extends Controller
                 
                 DB::statement('SET default_storage_engine=INNODB;');
                 Artisan::call('module:migrate', ['module' => "Accounting"]);
+                Artisan::call('module:publish', ['module' => "Accounting"]);
                 System::setProperty($this->module_name . '_version', $this->appVersion);
             } else {
                 abort(404);

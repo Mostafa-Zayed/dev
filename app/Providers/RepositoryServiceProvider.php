@@ -31,6 +31,46 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\\Repositories\\BusinessLocationRepository',
             'App\\Repositories\\BusinessLocation\\MysqlRepository'
         );
+
+        $this->app->bind(
+            'App\\Repositories\\InvoiceSchemeRepository',
+            'App\\Repositories\\InvoiceScheme\\MysqlRepository'
+        );
+
+        $this->app->bind(
+            'App\\Repositories\\InvoiceLayoutRepository',
+            'App\\Repositories\\InvoiceLayout\\MysqlRepository'
+        );
+
+        $this->app->bind(
+            'App\\Repositories\\SubscriptionRepository',
+            'App\\Repositories\\Subscription\\MysqlRepository'
+        );
+
+        $this->app->bind(
+            'App\\Repositories\\ModuleRepository',
+            'App\\Repositories\\Module\\MysqlRepository'
+        );
+
+        $this->app->bind(
+            'App\\Repositories\\SellingPriceGroupRepository',
+            'App\\Repositories\\SellingPriceGroup\\MysqlRepository'
+        );
+
+        $this->app->bind(
+            'App\\Repositories\\CountryRepository',
+            'App\\Repositories\\Country\\MysqlRepository'
+        );
+
+        $this->app->bind(
+            'App\\Repositories\\StateRepository',
+            'App\\Repositories\\State\\MysqlRepository'
+        );
+
+        $this->app->bind(
+            'App\\Repositories\\CityRepository',
+            'App\\Repositories\\City\\MysqlRepository'
+        );
         //
         // $this->app->bind(
         //     'App\\Interfaces\\Shipment\\BostaShipmentInterface',

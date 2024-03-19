@@ -1313,6 +1313,10 @@ $(document).ready(function() {
                                 toastr.error(result.msg);
                             }
                         },
+                        error: function(response) {
+                            let errorMessage = JSON.parse(response.responseText);
+                            toastr.error(errorMessage.message);
+                        }
                     });
                 },
             });

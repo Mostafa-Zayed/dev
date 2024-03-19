@@ -134,4 +134,11 @@ if (!function_exists('str_ordinal')) {
             return config('constants.allow_registration');
         }
     }
+
+    if( ! function_exists('isHasPermission')) {
+        function isHasPermission($permissions)
+        {
+            return auth()->user()->can($permissions);
+        }
+    }
 }

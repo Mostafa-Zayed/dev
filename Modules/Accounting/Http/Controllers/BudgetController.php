@@ -2,232 +2,283 @@
 
 namespace Modules\Accounting\Http\Controllers;
 
-use App\Business;
-use Modules\Accounting\Services\FlashService;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
-use Modules\Accounting\Entities\Budget;
-use Modules\Accounting\Entities\ChartOfAccount;
-use Modules\Accounting\Services\BudgetService;
+use App\Http\Controllers\Controller;
+use Modules\Accounting\Entities\AccountingAccount;
+use Modules\Accounting\Entities\AccountingBudget;
+use App\Utils\ModuleUtil;
+use Modules\Accounting\Entities\AccountingAccountType;
+use DB;
+use Excel;
+use Modules\Accounting\Exports\BudgetExport;
 
 class BudgetController extends Controller
 {
+    protected $moduleUtil;
+    /**
+     * Constructor
+     *
+     * @return void
+     */
+    public function __construct(ModuleUtil $moduleUtil)
+    {
+        $this->moduleUtil = $moduleUtil;
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        $financial_year_start = Business::findOrFail(session('business.id'))->fy_start_month;
-        $chart_of_accounts = ChartOfAccount::forBusiness()->with('budget')->where('active', 1)->get();
-        $financial_year = !empty(request()->year) ? request()->year : BudgetService::getCurrentFinancialYear($financial_year_start);
-        $months = (new BudgetService($financial_year_start, $financial_year))->getMonths();
-        $calendar_year = get_calendar_year();
-        $url = (object)[
-            'monthly' => url("accounting/budget?view=monthly&year=$financial_year"),
-            'quarterly' => url("accounting/budget?view=quarterly&year=$financial_year"),
-            'yearly' => url("accounting/budget?view=yearly&year=$financial_year"),
-        ];
+        $business_id = request()->session()->get('user.business_id');
 
-        return view('accounting::budget.index', compact('chart_of_accounts', 'months', 'calendar_year', 'financial_year_start', 'financial_year', 'url'));
-    }
-
-    public function store_financial_year_start(Request $request)
-    {
-        $request->validate([
-            'financial_year_start' => ['required']
-        ]);
-
-        try {
-            $accounting_settings = Business::updateOrCreate(
-                ['id' => session('business.id')],
-                ['fy_start_month' => $request->financial_year_start]
-            );
-
-            activity()
-                ->on($accounting_settings)
-                ->withProperties(['id' => $accounting_settings->id])
-                ->log('Update financial year start');
-        } catch (\Exception $e) {
-            throw $e;
-            return (new FlashService())->onException($e)->redirectBackWithInput();
+        if (!(auth()->user()->can('superadmin') || 
+            $this->moduleUtil->hasThePermissionInSubscription($business_id, 'accounting_module')) || 
+            !(auth()->user()->can('accounting.manage_budget')) ) {
+            abort(403, 'Unauthorized action.');
         }
 
-        (new FlashService())->onSave();
-        return back();
+        $fy_year = request()->input('financial_year', null);
+        $budget = [];
+        $accounts = [];
+        if($fy_year!= null) {
+            $accounts = AccountingAccount::where('business_id', $business_id)
+                                ->where('status', 'active')
+                                ->select('name', 'id', 'account_primary_type')
+                                ->get();
+
+            $budget = AccountingBudget::whereIn('accounting_account_id', $accounts->pluck('id'))
+                                ->where('financial_year', $fy_year)
+                                ->get();
+
+            if(count($budget) == 0) {
+                return redirect(action('\Modules\Accounting\Http\Controllers\BudgetController@create') . 
+                '?financial_year=' . $fy_year);
+            }
+        }
+        $months = $this->getFinancialYearMonths();
+
+        $account_types = AccountingAccountType::accounting_primary_type();
+
+        if(!empty(request()->input('format'))) {
+            $view_type = request()->input('view_type');
+            if(request()->input('view_type')=='monthly') {
+                if(request()->input('format')=='pdf') {
+                    $html = view('accounting::budget.partials.budget_monthly_pdf')->with(compact('accounts', 
+                    'budget', 'months', 'fy_year', 'account_types'))->render();
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Monthly.pdf';
+    
+                    $mpdf = $this->getMpdf();
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output($output_file_name, 'D');
+                } else if(request()->input('format')=='excel') {
+                    $export = new BudgetExport($accounts, $budget, $months, $fy_year, $account_types, $view_type);
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Monthly.xlsx';
+                
+                    return Excel::download($export, $output_file_name);
+                } else if(request()->input('format')=='csv') {
+                    $export = new BudgetExport($accounts, $budget, $months, $fy_year, $account_types, $view_type);
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Monthly.csv';
+                
+                    return Excel::download($export, $output_file_name);
+                }
+            } else if(request()->input('view_type')=='quarterly') {
+                if(request()->input('format')=='pdf') {
+                    $html = view('accounting::budget.partials.budget_quarterly_pdf')->with(compact('accounts', 
+                    'budget', 'fy_year', 'account_types'))->render();
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Quarterly.pdf';
+    
+                    $mpdf = $this->getMpdf();
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output($output_file_name, 'D');
+                } else if(request()->input('format')=='excel') {
+                    $export = new BudgetExport($accounts, $budget, $months, $fy_year, $account_types, $view_type);
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Quarterly.xlsx';
+                
+                    return Excel::download($export, $output_file_name);
+                } else if(request()->input('format')=='csv') {
+                    $export = new BudgetExport($accounts, $budget, $months, $fy_year, $account_types, $view_type);
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Quarterly.csv';
+                
+                    return Excel::download($export, $output_file_name);
+                }
+            } else if(request()->input('view_type')=='yearly') {
+                if(request()->input('format')=='pdf') {
+                    $html = view('accounting::budget.partials.budget_yearly_pdf')->with(compact('accounts', 
+                    'budget', 'fy_year', 'account_types'))->render();
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Yearly.pdf';
+    
+                    $mpdf = $this->getMpdf();
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output($output_file_name, 'D');
+                } else if(request()->input('format')=='excel') {
+                    $export = new BudgetExport($accounts, $budget, $months, $fy_year, $account_types, $view_type);
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Yearly.xlsx';
+                
+                    return Excel::download($export, $output_file_name);
+                } else if(request()->input('format')=='csv') {
+                    $export = new BudgetExport($accounts, $budget, $months, $fy_year, $account_types, $view_type);
+    
+                    $output_file_name = 'Budget-'. $fy_year . '-Yearly.csv';
+                
+                    return Excel::download($export, $output_file_name);
+                }
+            }
+            
+        }
+
+        return view('accounting::budget.index')->with(compact('accounts', 'budget', 'months', 'fy_year', 
+                'account_types'));
+    }
+
+    private function getFinancialYearMonths()
+    {
+        $fy_start_month = request()->session()->get('business.fy_start_month');
+        $months = [];
+        $month_names = [
+            1 => 'jan',
+            2 => 'feb',
+            3 => 'mar',
+            4 => 'apr',
+            5 => 'may',
+            6 => 'jun',
+            7 => 'jul',
+            8 => 'aug',
+            9 => 'sep',
+            10 => 'oct',
+            11 => 'nov',
+            12 => 'dec'
+        ];
+        for($i=$fy_start_month;count($months)<=11;$i++) {
+            $months[$i]=$month_names[$i];
+            if($i==12) {
+                $i=0;
+            }
+        }   
+
+        return $months;
     }
 
     /**
-     * Update or create the specified resource in storage.
+     * Show the form for creating a new resource.
+     * @return Response
+     */
+    public function create()
+    {
+        $business_id = request()->session()->get('user.business_id');
+
+        if (!(auth()->user()->can('superadmin') || 
+            $this->moduleUtil->hasThePermissionInSubscription($business_id, 'accounting_module')) || 
+            !(auth()->user()->can('accounting.manage_budget')) ) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $fy_year = request()->input('financial_year');
+
+        $accounts = AccountingAccount::where('business_id', $business_id)
+                                ->where('status', 'active')
+                                ->select('name', 'id')
+                                ->get();
+        $months = $this->getFinancialYearMonths();
+        
+        $budget = AccountingBudget::whereIn('accounting_account_id', $accounts->pluck('id'))
+                                ->where('financial_year', $fy_year)
+                                ->get();
+
+        return view('accounting::budget.create')->with(compact('fy_year', 'accounts', 'months', 'budget'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
      * @param Request $request
      * @return Response
      */
-    public function update_monthly_budget(Request $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'chart_of_account_id' => ['required'],
-            'business_id' => ['required'],
-            'financial_year' => ['required'],
-            'month_1' => ['required', 'numeric'],
-            'month_2' => ['required', 'numeric'],
-            'month_3' => ['required', 'numeric'],
-            'month_4' => ['required', 'numeric'],
-            'month_5' => ['required', 'numeric'],
-            'month_6' => ['required', 'numeric'],
-            'month_7' => ['required', 'numeric'],
-            'month_8' => ['required', 'numeric'],
-            'month_9' => ['required', 'numeric'],
-            'month_10' => ['required', 'numeric'],
-            'month_11' => ['required'], 'numeric',
-            'month_12' => ['required', 'numeric'],
-        ]);
+        $business_id = request()->session()->get('user.business_id');
 
-        try {
-            $budget = Budget::updateOrCreate(
-                [
-                    'business_id' => session('business.id'),
-                    'chart_of_account_id' => $request->chart_of_account_id,
-                    'financial_year' => $request->financial_year
-                ],
-                request()->only(
-                    'financial_year',
-                    'month_1',
-                    'month_2',
-                    'month_3',
-                    'month_4',
-                    'month_5',
-                    'month_6',
-                    'month_7',
-                    'month_8',
-                    'month_9',
-                    'month_10',
-                    'month_11',
-                    'month_12'
-                )
-            );
-
-            activity()
-                ->on($budget)
-                ->withProperties(['id' => $budget->id])
-                ->log('Update Budget');
-        } catch (\Exception $e) {
-            return (new FlashService())->onException($e)->redirectBackWithInput();
+        if (!(auth()->user()->can('superadmin') || 
+            $this->moduleUtil->hasThePermissionInSubscription($business_id, 'accounting_module')) || 
+            !(auth()->user()->can('accounting.manage_budget')) ) {
+            abort(403, 'Unauthorized action.');
         }
+        
+        try {
+            DB::beginTransaction();
 
-        (new FlashService())->onSave();
-        return back();
-    }
-
-
-    public function update_quarterly_budget(Request $request)
-    {
-        $request->validate([
-            'chart_of_account_id' => ['required'],
-            'business_id' => ['required'],
-            'financial_year' => ['required'],
-            'quarter_1' => ['required', 'numeric'],
-            'quarter_2' => ['required', 'numeric'],
-            'quarter_3' => ['required', 'numeric'],
-            'quarter_4' => ['required', 'numeric'],
-        ]);
-
-        $quarters = collect($request->only(['quarter_1', 'quarter_2', 'quarter_3', 'quarter_4']));
-
-        $collection = collect(['financial_year' => $request->financial_year]);
-
-        $eliminate_decimals = $request->has('eliminate_decimals');
-
-        $monthly_budget = [];
-
-        foreach ($quarters as $key => $quarter_budget) {
-
-            switch ($key) {
-                case 'quarter_1':
-                    $monthly_budget['quarter_1'] = (new BudgetService())->quartelyBudgetToMonthly(['month_1', 'month_2', 'month_3'], $quarter_budget, $eliminate_decimals);
-                    break;
-
-                case 'quarter_2':
-                    $monthly_budget['quarter_2'] = (new BudgetService())->quartelyBudgetToMonthly(['month_4', 'month_5', 'month_6'], $quarter_budget, $eliminate_decimals);
-                    break;
-
-                case 'quarter_3':
-                    $monthly_budget['quarter_3'] = (new BudgetService())->quartelyBudgetToMonthly(['month_7', 'month_8', 'month_9'], $quarter_budget, $eliminate_decimals);
-                    break;
-
-                case 'quarter_4':
-                    $monthly_budget['quarter_4'] = (new BudgetService())->quartelyBudgetToMonthly(['month_10', 'month_11', 'month_12'], $quarter_budget, $eliminate_decimals);
-                    break;
-
-                default:
-                    throw new Exception('Quarter not found');
-                    break;
+            foreach($request->input('budget') as $key => $value) {
+                $inputs = [];
+                foreach($value as $k => $v) {
+                    $inputs[$k] = !is_null($v) ? $this->moduleUtil->num_uf($v) : null;
+                }
+                AccountingBudget::updateOrCreate(
+                    [
+                        'accounting_account_id' => $key,
+                        'financial_year' => $request->input('financial_year')
+                    ],
+                    $inputs
+                );
             }
-        }
+        
+            DB::commit();
 
-        $merged_monthly_budgets = $collection
-            ->merge($monthly_budget['quarter_1'])
-            ->merge($monthly_budget['quarter_2'])
-            ->merge($monthly_budget['quarter_3'])
-            ->merge($monthly_budget['quarter_4']);
-
-        try {
-            $budget = Budget::updateOrCreate(
-                [
-                    'business_id' => session('business.id'),
-                    'chart_of_account_id' => $request->chart_of_account_id,
-                    'financial_year' => $request->financial_year
-                ],
-                $merged_monthly_budgets->toArray()
-            );
-
-            activity()
-                ->on($budget)
-                ->withProperties(['id' => $budget->id])
-                ->log('Update Budget');
         } catch (\Exception $e) {
-            return (new FlashService())->onException($e)->redirectBackWithInput();
+            DB::rollBack();
+
+            \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
         }
 
-        (new FlashService())->onSave();
-        return back();
+        return redirect()->back();
     }
 
-    public function update_yearly_budget(Request $request)
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Response
+     */
+    public function show($id)
     {
-        $request->validate([
-            'chart_of_account_id' => ['required'],
-            'business_id' => ['required'],
-            'financial_year' => ['required'],
-            'yearly_budget' => ['required', 'numeric'],
-        ]);
+        return view('accounting::show');
+    }
 
-        $eliminate_decimals = $request->has('eliminate_decimals');
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        return view('accounting::edit');
+    }
 
-        $monthly_budgets = (new BudgetService())->yearlyBudgetToMonthly($request->yearly_budget, $eliminate_decimals);
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
 
-        $monthly_budgets['financial_year'] = $request->financial_year;
-
-        try {
-            $budget = Budget::updateOrCreate(
-                [
-                    'business_id' => session('business.id'),
-                    'chart_of_account_id' => $request->chart_of_account_id,
-                    'financial_year' => $request->financial_year
-                ],
-                $monthly_budgets
-            );
-
-            activity()
-                ->on($budget)
-                ->withProperties(['id' => $budget->id])
-                ->log('Update Budget');
-        } catch (\Exception $e) {
-            return (new FlashService())->onException($e)->redirectBackWithInput();
-        }
-
-        (new FlashService())->onSave();
-        return back();
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

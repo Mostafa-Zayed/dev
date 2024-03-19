@@ -17,4 +17,6 @@ class MysqlRepository extends BusinessLocationRepository
     {
         DB::table('users')->insert($userData);
     }
+
+    
 }
