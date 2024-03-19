@@ -176,9 +176,9 @@ class BusinessLocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        dd($request->all());
+        // dd($request->all());
         if (isHasPermission(['business_settings.access'])) {
             try {
                 $business_id = $request->session()->get('user.business_id');
