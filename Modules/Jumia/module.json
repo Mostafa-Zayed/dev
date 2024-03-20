@@ -1,0 +1,11 @@
+{
+    "name": "Jumia",
+    "alias": "jumia",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Jumia\\Providers\\JumiaServiceProvider"
+    ],
+    "files": []
+}

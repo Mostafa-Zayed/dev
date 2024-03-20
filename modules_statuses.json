@@ -15,5 +15,8 @@
     "Superadmin": true,
     "Woocommerce": true,
     "AiAssistance": true,
-    "Website": true
+    "Website": true,
+    "Salla": true,
+    "Shopify": true,
+    "Jumia": true
 }

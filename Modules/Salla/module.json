@@ -1,0 +1,11 @@
+{
+    "name": "Salla",
+    "alias": "salla",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Salla\\Providers\\SallaServiceProvider"
+    ],
+    "files": []
+}
