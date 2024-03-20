@@ -299,21 +299,21 @@
 
         <!-- Start JS FILES -->
         <!-- JQuery -->
-        <script src="{{asset('front/js/jquery.min.js"></script>
-        <script src="{{asset('front/js/popper.min.js"></script>
+        <script src="{{asset('front/js/jquery.min.js')}}"></script>
+        <script src="{{asset('front/js/popper.min.js')}}"></script>
         <!-- Bootstrap -->
-        <script src="{{asset('front/js/bootstrap.min.js"></script>
+        <script src="{{asset('front/js/bootstrap.min.js')}}"></script>
         <!-- Wow Animation -->
-        <script src="{{asset('front/js/wow.min.js"></script>
+        <script src="{{asset('front/js/wow.min.js')}}"></script>
         <!-- Owl Coursel -->
-        <script src="{{asset('front/js/owl.carousel.min.js"></script>
+        <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
         <!-- Images LightCase -->
-        <script src="{{asset('front/js/lightcase.min.js"></script>
+        <script src="{{asset('front/js/lightcase.min.js')}}"></script>
         <!-- scrollIt -->
-        <script src="{{asset('front/js/scrollIt.min.js"></script>
+        <script src="{{asset('front/js/scrollIt.min.js')}}"></script>
         <!-- Map -->
         <script src="https://maps.google.com/maps/api/js?key=AIzaSyBkdsK7PWcojsO-o_q2tmFOLBfPGL8k8Vg&amp;language=en"></script>
         <!-- Main Script -->
-        <script src="{{asset('front/js/script.js"></script>
+        <script src="{{asset('front/js/script.js')}}"></script>
     </body>
 </html>
