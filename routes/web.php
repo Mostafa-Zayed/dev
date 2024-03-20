@@ -86,6 +86,9 @@ Route::get('about-us',[FrontEndController::class,'about'])->name('about');
 Route::post('send-message',[FrontEndController::class,'sendMessage'])->name('send-message');
 Route::post('subscribe',[FrontEndController::class,'subscribe'])->name('subscribe');
 Route::get('envents',[FrontEndController::class,'events'])->name('events');
+Route::get('screenshots',[FrontEndController::class,'screenshots'])->name('screenshots');
+Route::get('packages',[FrontEndController::class,'packages'])->name('pricing');
+Route::get('how-work',[FrontEndController::class,'how_work'])->name('how-work');
 
 
 Route::middleware(['setData','language'])->group(function () {

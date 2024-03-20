@@ -98,4 +98,19 @@ class FrontEndController extends Controller
     {
         return view('blog.index');
     }
+
+    public function how_work()
+    {
+        return view('how_work');
+    }
+
+    public function packages()
+    {
+        return view('packages');
+    }
+
+    public function screenshots()
+    {
+        return view('screenshots');
+    }
 }
