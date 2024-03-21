@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{asset('front/css/lightcase.min.css')}}" type="text/css">
     <!-- Template style -->
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
@@ -334,6 +336,51 @@
     <script src="{{asset('front/js/scrollIt.min.js')}}"></script>
     <!-- Main Script -->
     <script src="{{asset('front/js/script.js')}}"></script>
+    <script src="{{asset('website/js/script.js')}}"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            // subscripe
+            $('#subscribe_form').submit(function(event) {
+                event.preventDefault();
+                let email = $('#user_email').val();
+                $.ajax({
+                    url: "{{route('subscribe')}}",
+                    method: 'POST',
+                    data: {
+                        email: email
+                    },
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result) {
+                        toastr.success(result.msg);
+                        $('#user_email').val(null);
+                    }
+                });
+            });
+
+            // send message
+            $('#form-send-message').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "{{route('website-send-message')}}",
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    data: new FormData(this),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result) {
+                        toastr.success(result.msg);
+                        $('#form-send-message')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
