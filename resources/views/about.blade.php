@@ -45,7 +45,9 @@
     <header class="header-area" id="header-area">
         <nav class="navbar navbar-expand-md fixed-top">
             <div class="container">
-                <div class="site-logo"><a class="navbar-brand" href="index.html"><img src="images/logo.png" class="img-fluid" alt="IMG" /></a></div>
+                <div class="site-logo">
+                <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" class="img-fluid" alt="Img" /> ERP TEC</a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="ti-menu"></i></span>
                 </button>
@@ -54,7 +56,7 @@
                     <li class="nav-item"><a href="{{url('/')}}">{{__('lang_v1.home')}}</a></li>
                         <li class="nav-item"><a href="{{route('features')}}">{{__('lang_v1.features')}}</a></li>
                         <li class="nav-item"><a href="{{route('how-work')}}">{{__('lang_v1.how_work')}}</a></li>
-                        <li class="nav-item"><a href="{{route('screen-shots')}}">{{__('lang_v1.screenshots')}}</a></li>
+                        <li class="nav-item"><a href="{{route('screenshots')}}">{{__('lang_v1.screenshots')}}</a></li>
                         <li class="nav-item"><a href="{{route('pricing')}}">{{__('lang_v1.pricing')}}</a></li>
                         <li class="nav-item"><a href="{{route('reviews')}}">{{__('lang_v1.reviews')}}</a></li>
                         <li class="nav-item"><a href="{{route('faqs')}}">{{__('lang_v1.faqs')}}</a></li>
