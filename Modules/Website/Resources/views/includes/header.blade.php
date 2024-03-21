@@ -23,10 +23,12 @@
                     <li class="nav-itme"><a href="{{route('login')}}">{{__('lang_v1.login')}}</a></li>
                     <li class="nav-itme"><a href="{{route('business.getRegister')}}">{{__('business.register')}}</a></li>
                     @if(getLanguage() == 'en')
-                    <li class="nav-item"><a href="{{ route(request()->route()->getName()) }}?lang=ar">ar</a></li>
+                    <li class="nav-item"><a href="{{url(request()->path())}}?lang=ar">ar</a></li>
                     @else
-                    <li class="nav-item"><a href="{{route(request()->route()->getName() )}}?lang=en">en</a></li>
+                    <li class="nav-item"><a href="{{url(request()->path())}}?lang=en">en</a></li>
                     @endif
+                    
+                    
                 </ul>
 
             </div>
