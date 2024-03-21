@@ -112,7 +112,7 @@
                 <div class="col-md-6">
                     <div class="description-block">
                         <div class="inner-box">
-                            <div class="step_num"><img src="{{asset('front/mages/step1.png')}}" /></div>
+                            <div class="step_num"><img src="{{asset('front/images/step1.png')}}" /></div>
                             <h3>Register / Login to our Platform</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium modi assumenda beatae provident.</p>
                         </div>
