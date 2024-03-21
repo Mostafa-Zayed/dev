@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('website/rtl/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('website/rtl/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('website/rtl/css/flaticon.css')}}">
-    <!-- Bootstrap -->website/rtl
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="{{asset('website/rtl/css/bootstrap.min.css')}}">
     <!-- Animation -->
     <link rel="stylesheet" href="{{asset('website/rtl/css/animate.min.css')}}">
