@@ -260,7 +260,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="block-body">
-                        <span class="icon-block"><img src="images/faq-icon-1.png" class="img-fluid" alt="IMG" /></span>
+                        <span class="icon-block"><img src="{{asset('front/images/faq-icon-1.png')}}" class="img-fluid" alt="IMG" /></span>
                         <h4>Can't find your answer?</h4>
                         <p>We want to answer all of your queries. Get in touch and we'll get back to you as soon as we can.</p>
                         <a href="#" class="btn theme-btn">Email us</a>
@@ -268,7 +268,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="block-body">
-                        <span class="icon-block"><img src="images/faq-icon-2.png" class="img-fluid" alt="IMG" /></span>
+                        <span class="icon-block"><img src="{{asset('front/images/faq-icon-2.png')}}" class="img-fluid" alt="IMG" /></span>
                         <h4>Technical questions</h4>
                         <p>Have some technical questions? Hit us on community page or just say hello or contact our support .</p>
                         <a href="#" class="btn theme-btn">Contact Us</a>
