@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="shape-bottom">
-            <img src="images/shapes/price-shape.svg" alt="shape" class="bottom-shape img-fluid">
+            <img src="{{asset('front/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
         </div>
     </div>
 
@@ -180,7 +180,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="images/faq2.png" class="img-fluid" alt="IMG" />
+                        <img src="{{asset('front/images/faq2.png')}}" class="img-fluid" alt="IMG" />
                     </div>
                 </div>
                 <div class="col-md-6">
