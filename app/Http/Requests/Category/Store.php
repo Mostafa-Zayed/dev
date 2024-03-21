@@ -42,14 +42,14 @@ class Store extends FormRequest
            'short_code'    => ['nullable','max:255'],
            'description'   => ['nullable'],
            'add_as_sub_cat'     => ['sometimes','in:0,1'],
-           'parent_id'       =>  ['sometimes','in:0,1']
+           'parent_id'       =>  ['nullable','exists:categories,id']
         ];
     }
 
     public function passedValidation()
     {
         $this->merge([
-            'parent_id' => (! empty($this->input('add_as_sub_cat')) && $this->input('add_as_sub_cat') == 1 && ! empty($this->input('parent_id'))) ? 1 : 0
+            'parent_id' => (! empty($this->input('add_as_sub_cat')) && $this->input('add_as_sub_cat') == 1 && ! empty($this->input('parent_id'))) ?  $this->input('parent_id') : 0
         ]);
     }
 }
