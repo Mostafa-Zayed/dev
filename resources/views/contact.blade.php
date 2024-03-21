@@ -11,8 +11,24 @@
     <link rel="icon" href="{{asset('favicon.png')}}" type="image/gif" sizes="32x32">
     <meta name="keywords" content="ERP TEC" />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    @if(getLanguage() == 'ar')
     <!-- Font Icons -->
-    <link rel="stylesheet" href="{{asset('website/css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('website/rtl/css/flaticon.css')}}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{asset('website/rtl/css/bootstrap.min.css')}}">
+    <!-- Animation -->
+    <link rel="stylesheet" href="{{asset('website/rtl/css/animate.min.css')}}">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{{asset('website/rtl/css/owl.carousel.min.css')}}">
+    <!-- Light Case -->
+    <link rel="stylesheet" href="{{asset('website/rtl/css/lightcase.min.css')}}" type="text/css">
+    <!-- Template style -->
+    <link rel="stylesheet" href="{{asset('website/rtl/css/style.css')}}">
+    @else
+     <!-- Font Icons -->
+     <link rel="stylesheet" href="{{asset('website/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('website/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('website/css/flaticon.css')}}">
     <!-- Bootstrap -->
@@ -25,7 +41,7 @@
     <link rel="stylesheet" href="{{asset('website/css/lightcase.min.css')}}" type="text/css">
     <!-- Template style -->
     <link rel="stylesheet" href="{{asset('website/css/style.css')}}">
-
+    @endif
     <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
     <!--[if lt IE 9]>
