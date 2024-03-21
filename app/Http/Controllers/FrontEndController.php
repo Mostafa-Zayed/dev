@@ -19,6 +19,7 @@ use Modules\Superadmin\Entities\Package;
 use Modules\Website\Entities\WebsiteReview;
 use Modules\Website\Entities\WebsiteSubscribe;
 use Modules\Website\Http\Requests\Subscribe\Store;
+use Modules\Website\Entities\WebsiteContact;
 
 class FrontEndController extends Controller
 {
@@ -112,5 +113,14 @@ class FrontEndController extends Controller
     public function screenshots()
     {
         return view('screenshots');
+    }
+
+    public function sendMessage(Request $request)
+    {
+        WebsiteContact::create($request->all());
+        return [
+            'success' => 1,
+            'msg' => __('lang_v1.subscribe_success')
+        ];
     }
 }

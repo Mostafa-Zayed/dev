@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -91,6 +92,16 @@ class Category extends Model
         return $dropdown;
     }
 
+    public function scopeForBusiness(Builder $query, int $businessId)
+    {
+        return $query->where('business_id','=', $businessId);
+    }
+
+    public function scopeType(Builder $query, int $businessId, string $type)
+    {
+        return $query->ForBusiness($businessId)->where('category_type','=',$type);
+    }
+
     public function sub_categories()
     {
         return $this->hasMany(\App\Category::class, 'parent_id');
@@ -105,5 +116,10 @@ class Category extends Model
     public function scopeOnlyParent($query)
     {
         return $query->where('parent_id', 0);
+    }
+
+    public function variationTemplates()
+    {
+        return $this->hasMany(VariationTemplate::class,'category_id','id');
     }
 }

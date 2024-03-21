@@ -9,9 +9,16 @@ use App\VariationValueTemplate;
 use DB;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use App\Services\CategoryService;
 
 class VariationTemplateController extends Controller
 {
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +66,10 @@ class VariationTemplateController extends Controller
      */
     public function create()
     {
-        return view('variation.create');
+        
+        return view('variation.create',[
+            'categories' => $this->categoryService->forDropDown(request()->session()->get('user.business_id'),'product'),
+        ]);
     }
 
     /**
@@ -71,7 +81,7 @@ class VariationTemplateController extends Controller
     public function store(Request $request)
     {
         try {
-            $input = $request->only(['name']);
+            $input = $request->only(['name','category_id']);
             $input['business_id'] = $request->session()->get('user.business_id');
             $variation = VariationTemplate::create($input);
 

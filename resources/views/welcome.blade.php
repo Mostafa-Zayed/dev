@@ -191,11 +191,12 @@
                                 Check these testimonials from our satisfied customers!
                             </p>
                         </div>
-                        <form class="contact-form">
-                            <input type="text" class="form-control" placeholder="You Name" />
-                            <input type="email" class="form-control" placeholder="You Email" />
-                            <input type="tel" class="form-control" placeholder="You Phone" />
-                            <textarea class="form-control" placeholder="Your Message"></textarea>
+                        <form class="contact-form" id="form-send-message" method="post" action="{{route('website-send-message')}}">
+                            @csrf
+                            <input type="text" class="form-control" name="name" placeholder="You Name" />
+                            <input type="email" class="form-control" name="email" placeholder="You Email" />
+                            <input type="tel" class="form-control" name="phone" placeholder="You Phone" />
+                            <textarea class="form-control" name="message" placeholder="Your Message"></textarea>
                             <button class="btn theme-btn">Send Message</button>
                         </form>
                     </div>
@@ -235,20 +236,43 @@
     <script src="{{asset('website/js/script.js')}}"></script>
     <script src="{{asset('js/toastr.min.js')}}"></script>
     <script>
-        $(document).ready(function(){
-            $('#subscribe_form').submit(function(event){
+        $(document).ready(function() {
+            // subscripe
+            $('#subscribe_form').submit(function(event) {
                 event.preventDefault();
                 let email = $('#user_email').val();
                 $.ajax({
                     url: "{{route('subscribe')}}",
                     method: 'POST',
-                    data: {email:email},
+                    data: {
+                        email: email
+                    },
                     headers: {
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                     },
-                    success: function(result){
+                    success: function(result) {
                         toastr.success(result.msg);
                         $('#user_email').val(null);
+                    }
+                });
+            });
+
+            // send message
+            $('#form-send-message').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "{{route('website-send-message')}}",
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    data: new FormData(this),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result) {
+                        toastr.success(result.msg);
+                        $('#form-send-message')[0].reset();
                     }
                 });
             });

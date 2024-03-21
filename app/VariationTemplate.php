@@ -20,4 +20,9 @@ class VariationTemplate extends Model
     {
         return $this->hasMany(\App\VariationValueTemplate::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
 }

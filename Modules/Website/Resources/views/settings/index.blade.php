@@ -27,6 +27,7 @@
                         <a href="#" class="list-group-item text-center">@lang('website::lang.questions') @show_tooltip(__('website::tooltip.website_questions'))</a>
                         <a href="#" class="list-group-item text-center">@lang('website::lang.posts') @show_tooltip(__('website::tooltip.website_posts'))</a>
                         <a href="#" class="list-group-item text-center">@lang('website::lang.footer') @show_tooltip(__('website::tooltip.website_posts'))</a>
+                        <a href="#" class="list-group-item text-center">@lang('website::lang.general') @show_tooltip(__('website::tooltip.website_posts'))</a>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 pos-tab">
@@ -39,6 +40,7 @@
                     @include('website::settings.partials.questions_settings')
                     @include('website::settings.partials.posts_settings')
                     @include('website::settings.partials.footer_settings')
+                    @include('website::settings.partials.general_settings')
                 </div>
             </div>
         </div>

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'support_email' => 'Support Email',
+    'sales_email'   => 'Sales Email',
+    'general' => 'General Settings',
     'newsletter_description_ar' => 'Description newsletter in arabic',
     'newsletter_description_en' => 'Description newsletter in english',
     'footer_description_ar'   => 'Description Footer in arabic',

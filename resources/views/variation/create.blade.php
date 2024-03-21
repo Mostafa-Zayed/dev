@@ -16,9 +16,15 @@
         </div>
       </div>
       <div class="form-group">
+        {!! Form::label('category_id',__('product.category') . ':*',['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-9">
+          {!! Form::select('category_id', $categories, null, ['placeholder' => __('messages.please_select'), 'class' => 'form-control select2']); !!}
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-sm-3 control-label">@lang('lang_v1.add_variation_values'):*</label>
         <div class="col-sm-7">
-           {!! Form::text('variation_values[]', null, ['class' => 'form-control', 'required']); !!}
+          {!! Form::text('variation_values[]', null, ['class' => 'form-control', 'required']); !!}
         </div>
         <div class="col-sm-2">
           <button type="button" class="btn btn-primary" id="add_variation_values">+</button>

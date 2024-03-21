@@ -83,7 +83,7 @@ return [
     ],
     'string' => 'يجب أن يكون الحقل attribute: سلسلة من الأحرف.',
     'timezone' => 'يجب أن يكون الحقل attribute: منطقة زمنية صالحة.',
-    'unique' => 'قيمة الحقل attribute: مستخدمة بالفعل.',
+    'unique' => 'قيمة الحقل :attribute مستخدمة بالفعل.',
     'uploaded' => 'ملف الحقل attribute: لا يمكن تحميله',
     'url' => 'نسق عنوان URL لـ attribute: غير صالح.',
 

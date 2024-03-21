@@ -71,6 +71,9 @@
                     toastr.error(result.msg);
                 }
             },
+            error: function(result){
+                toastr.error(result.responseJSON.message)
+            }
         });
     });
     $(document).on('click', 'button.edit_category_button', function() {

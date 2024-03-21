@@ -1,5 +1,8 @@
 <?php 
 return [
+    'sales_email' => 'ايميل المبيعات',
+    'support_email' => 'ايميل الدعم',
+    'general' => 'اعدادات عامة',
     'newsletter_description_ar' => 'وصف الرسائل الاخبارية بالعربي',
     'newsletter_description_en' => 'وصف الرسائل الاخبارية بالانجليزي',
     'footer_description_ar'   => 'وصف ذيل الصفحة بالعربي',
