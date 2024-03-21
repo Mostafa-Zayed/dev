@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="shape-bottom">
-            <img src="images/shapes/price-shape.svg" alt="shape" class="bottom-shape img-fluid">
+            <img src="{{asset('front/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
         </div>
     </div>
 
@@ -106,27 +106,27 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="images/how-work.png" alt="IMG" />
+                        <img src="{{asset('front/images/how-work.png')}}" alt="IMG" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="description-block">
                         <div class="inner-box">
-                            <div class="step_num"><img src="images/step1.png" /></div>
+                            <div class="step_num"><img src="{{asset('front/mages/step1.png')}}" /></div>
                             <h3>Register / Login to our Platform</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium modi assumenda beatae provident.</p>
                         </div>
                     </div>
                     <div class="description-block">
                         <div class="inner-box">
-                            <div class="step_num"><img src="images/step2.png" /></div>
+                            <div class="step_num"><img src="{{asset('front/images/step2.png')}}" /></div>
                             <h3>Enter Your Information Details</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium modi assumenda beatae provident.</p>
                         </div>
                     </div>
                     <div class="description-block">
                         <div class="inner-box">
-                            <div class="step_num"><img src="images/step3.png" /></div>
+                            <div class="step_num"><img src="{{asset('front/images/step3.png')}}" /></div>
                             <h3>Follow Your Software Usage Steps</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium modi assumenda beatae provident.</p>
                         </div>
@@ -228,7 +228,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="images/faq2.png" class="img-fluid" alt="IMG" />
+                        <img src="{{asset('website/images/faq2.png')}}" class="img-fluid" alt="IMG" />
                     </div>
                 </div>
                 <div class="col-md-6">
