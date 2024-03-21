@@ -4,10 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ariel - App Landing Page Template + RTL </title>
-    <meta name="description" content="App Landing page, RTL Version, Marwa El-Manawy, Application">
-    <meta name="author" content="Marwa El-Manawy - https://elmanawy.info" />
-    <link rel="icon" href="favicon.png">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="{{__('lang_v1.meta_description')}}">
+    <meta name="ERP TEC" content="ERP TEC - https://dev.erptec.net" />
+    <meta name="ERP TEC" content="ERP TEC - https://dev.erptec.net" />
+    <link rel="icon" href="{{asset('favicon.png')}}" type="image/gif" sizes="32x32">
+    <meta name="keywords" content="ERP TEC" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     <!-- Font Icons -->
     <link rel="stylesheet" href="{{asset('front/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/themify-icons.css')}}">
@@ -48,7 +51,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{url('/')}}">{{__('lang_v1.home')}}</a></li>
+                        <li class="nav-item"><a href="{{url('/')}}">{{__('lang_v1.home')}}</a></li>
                         <li class="nav-item"><a href="{{route('features')}}">{{__('lang_v1.features')}}</a></li>
                         <li class="nav-item"><a href="{{route('how-work')}}">{{__('lang_v1.how_work')}}</a></li>
                         <li class="nav-item"><a href="{{route('screen-shots')}}">{{__('lang_v1.screenshots')}}</a></li>

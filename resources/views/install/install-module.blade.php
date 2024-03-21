@@ -38,22 +38,18 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="license_code">License Code:*</label>
-                            <input type="text" name="license_code" required class="form-control" id="license_code">
+                            <input type="text" name="license_code"  class="form-control" id="license_code">
 
-                            @if(!empty($intruction_type) && $intruction_type == 'uf')
-                                <p class="help-block"><a href="https://ultimatefosters.com/docs/ultimate-fosters-shop/license-key/" target="_blank">Where is my License Key?</a></p>
-                            @endif
+                         
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="login_username">Login Username:*</label>
-                            <input type="text" name="login_username" required class="form-control" id="login_username">
+                            <input type="text" name="login_username"  class="form-control" id="login_username">
 
-                            @if(!empty($intruction_type) && $intruction_type == 'uf')
-                                <p class="help-block"><a href="https://ultimatefosters.com/docs/ultimate-fosters-shop/user-name/" target="_blank" class="text-success">Where is my Username?</a></p>
-                            @endif
+                          
                         </div>
                     </div>
 

@@ -123,4 +123,9 @@ class FrontEndController extends Controller
             'msg' => __('lang_v1.subscribe_success')
         ];
     }
+
+    public function features()
+    {
+        return view('features');
+    }
 }

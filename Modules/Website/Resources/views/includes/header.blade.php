@@ -2,7 +2,8 @@
     <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
             <div class="site-logo">
-                <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" class="img-fluid" alt="Img" />  ERP TEC</a></div>
+                <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" class="img-fluid" alt="Img" />  ERP TEC</a>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="ti-menu"></i></span>
             </button>

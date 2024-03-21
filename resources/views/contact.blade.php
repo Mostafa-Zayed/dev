@@ -4,24 +4,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ariel - App Landing Page Template + RTL </title>
-    <meta name="description" content="App Landing page, RTL Version, Marwa El-Manawy, Application">
-    <meta name="author" content="Marwa El-Manawy - https://elmanawy.info" />
-    <link rel="icon" href="favicon.png">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="{{__('lang_v1.meta_description')}}">
+    <meta name="ERP TEC" content="ERP TEC - https://dev.erptec.net" />
+    <meta name="ERP TEC" content="ERP TEC - https://dev.erptec.net" />
+    <link rel="icon" href="{{asset('favicon.png')}}" type="image/gif" sizes="32x32">
+    <meta name="keywords" content="ERP TEC" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     <!-- Font Icons -->
-    <link rel="stylesheet" href="{{asset('front/css/fontawesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('front/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('front/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('website/css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('website/css/flaticon.css')}}">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{asset('front/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/css/bootstrap.min.css')}}">
     <!-- Animation -->
-    <link rel="stylesheet" href="{{asset('front/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/css/animate.min.css')}}">
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="{{asset('front/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website/css/owl.carousel.min.css')}}">
     <!-- Light Case -->
-    <link rel="stylesheet" href="{{asset('front/css/lightcase.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('website/css/lightcase.min.css')}}" type="text/css">
     <!-- Template style -->
-    <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('website/css/style.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
@@ -42,16 +48,18 @@
     <header class="header-area" id="header-area">
         <nav class="navbar navbar-expand-md fixed-top">
             <div class="container">
-                <div class="site-logo"><a class="navbar-brand" href="index.html"><img src="images/logo.png" class="img-fluid" alt="IMG" /></a></div>
+                <div class="site-logo">
+                    <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('front/images/erp_logo.png')}}" class="img-fluid" alt="Img" /> ERP TEC</a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="ti-menu"></i></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{url('/')}}">{{__('lang_v1.home')}}</a></li>
+                        <li class="nav-item"><a href="{{url('/')}}">{{__('lang_v1.home')}}</a></li>
                         <li class="nav-item"><a href="{{route('features')}}">{{__('lang_v1.features')}}</a></li>
                         <li class="nav-item"><a href="{{route('how-work')}}">{{__('lang_v1.how_work')}}</a></li>
-                        <li class="nav-item"><a href="{{route('screen-shots')}}">{{__('lang_v1.screenshots')}}</a></li>
+                        <li class="nav-item"><a href="{{route('screenshots')}}">{{__('lang_v1.screenshots')}}</a></li>
                         <li class="nav-item"><a href="{{route('pricing')}}">{{__('lang_v1.pricing')}}</a></li>
                         <li class="nav-item"><a href="{{route('reviews')}}">{{__('lang_v1.reviews')}}</a></li>
                         <li class="nav-item"><a href="{{route('faqs')}}">{{__('lang_v1.faqs')}}</a></li>
@@ -85,7 +93,7 @@
             </div>
         </div>
         <div class="shape-bottom">
-            <img src="images/shapes/price-shape.svg" alt="shape" class="bottom-shape img-fluid">
+            <img src="{{asset('website/images/shapes/price-shape.svg')}}" alt="shape" class="bottom-shape img-fluid">
         </div>
     </div>
 
@@ -153,7 +161,7 @@
                 </div>
                 <div class="col-md-7">
                     <div class="contact-shape">
-                        <img src="images/shapes/contact-form.png" class="img-fluid" alt="IMG" />
+                        <img src="{{asset('website/images/shapes/contact-form.png')}}" class="img-fluid" alt="IMG" />
                     </div>
                     <div class="contact-form-block">
                         <div class="section-header-style2">
@@ -195,7 +203,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="images/faq2.png" class="img-fluid" alt="IMG" />
+                        <img src="{{asset('website/images/faq2.png')}}" class="img-fluid" alt="IMG" />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -291,6 +299,51 @@
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyBkdsK7PWcojsO-o_q2tmFOLBfPGL8k8Vg&amp;language=en"></script>
     <!-- Main Script -->
     <script src="{{asset('front/js/script.js')}}"></script>
+    <script src="{{asset('front/js/script.js')}}"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            // subscripe
+            $('#subscribe_form').submit(function(event) {
+                event.preventDefault();
+                let email = $('#user_email').val();
+                $.ajax({
+                    url: "{{route('subscribe')}}",
+                    method: 'POST',
+                    data: {
+                        email: email
+                    },
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result) {
+                        toastr.success(result.msg);
+                        $('#user_email').val(null);
+                    }
+                });
+            });
+
+            // send message
+            $('#form-send-message').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "{{route('website-send-message')}}",
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    data: new FormData(this),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result) {
+                        toastr.success(result.msg);
+                        $('#form-send-message')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
