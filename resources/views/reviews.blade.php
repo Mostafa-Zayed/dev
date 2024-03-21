@@ -133,7 +133,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -154,7 +154,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -175,7 +175,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -198,7 +198,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -219,7 +219,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -240,7 +240,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -261,7 +261,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -284,7 +284,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -305,7 +305,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -326,7 +326,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
@@ -347,7 +347,7 @@
                     <div class="review-item">
                         <div class="review-head">
                             <div class="review-item-img">
-                                <img src="images/reviews/author-1.jpg" class="img-fluid" alt="IMG" />
+                                <img src="{{asset('front/images/reviews/author-1.jpg')}}" class="img-fluid" alt="IMG" />
                             </div>
                             <div class="review-author">
                                 <h5>Maronia Slen</h5>
