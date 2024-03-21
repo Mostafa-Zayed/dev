@@ -25,7 +25,7 @@
                     @if(getLanguage() == 'en')
                     <li class="nav-item"><a href="{{ route(request()->route()->getName()) }}?lang=ar">ar</a></li>
                     @else
-                    <li class="nav-item"><a href="{{route({{ request()->route()->getName() }})}}?lang=en">en</a></li>
+                    <li class="nav-item"><a href="{{route(request()->route()->getName() )}}?lang=en">en</a></li>
                     @endif
                 </ul>
 
