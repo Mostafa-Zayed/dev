@@ -60,4 +60,11 @@ class Store extends FormRequest
             }
         }
     }
+
+    public function attributes()
+    {
+        return [
+            'actual_name' => __( 'unit.name' )
+        ];
+    }
 }

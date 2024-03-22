@@ -305,6 +305,9 @@ $(document).ready(function() {
                     toastr.error(result.msg);
                 }
             },
+            error: function(result){
+                toastr.error(result.responseJSON.message);
+            }
         });
     });
 
