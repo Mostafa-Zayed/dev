@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Unit\Destroy;
 use App\Product;
 use App\Traits\LogException;
 use App\Unit;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Services\UnitService;
 use App\Http\Requests\Unit\Store;
+use App\Http\Requests\Unit\Update;
 
 class UnitController extends Controller
 {
@@ -18,20 +20,14 @@ class UnitController extends Controller
     protected $unitService;
 
     /**
-     * All Utils instance.
-     */
-    protected $commonUtil;
-
-    /**
      * Constructor
      *
      * @param  ProductUtils  $product
      * @return void
      */
-    public function __construct(Util $commonUtil, UnitService $unitService)
+    public function __construct(UnitService $unitService)
     {
         $this->unitService = $unitService;
-        $this->commonUtil  = $commonUtil;
     }
 
     /**
@@ -53,7 +49,7 @@ class UnitController extends Controller
                                 &nbsp;
                             @endcan
                             @can("unit.delete")
-                                <button data-href="{{action(\'App\Http\Controllers\UnitController@destroy\', [$id])}}" class="btn btn-xs btn-danger delete_unit_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
+                                <button data-href="{{action(\'App\Http\Controllers\UnitController@destroy\', [$id])}}" class="btn btn-xs btn-danger delete_unit_button" data-id="{{$id}}"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
                             @endcan'
                         )
                         ->editColumn('allow_decimal', function ($row) {
@@ -74,7 +70,6 @@ class UnitController extends Controller
                         ->rawColumns(['action'])
                         ->make(true);
                 }
-
                 return view('unit.index');
             } catch (\Exception $exception) {
                 $this->logMethodException($exception);
@@ -138,19 +133,19 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        if (!auth()->user()->can('unit.update')) {
-            abort(403, 'Unauthorized action.');
+        if (isHasPermission(['unit.update'])) {
+            try {
+                if (request()->ajax()) {
+                    return view('unit.edit', [
+                        'unit' => $this->unitService->getOne($id),
+                        'units' => $this->unitService->forDropDown()
+                    ]);
+                }
+            } catch (\Exception $exception) {
+                $this->logMethodException($exception);
+            }
         }
-
-        if (request()->ajax()) {
-            $business_id = request()->session()->get('user.business_id');
-            $unit = Unit::where('business_id', $business_id)->find($id);
-
-            $units = Unit::forDropdown($business_id);
-
-            return view('unit.edit')
-                ->with(compact('unit', 'units'));
-        }
+        abort(403, 'Unauthorized action.');
     }
 
     /**
@@ -160,51 +155,33 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        if (!auth()->user()->can('unit.update')) {
-            abort(403, 'Unauthorized action.');
-        }
-
-        if (request()->ajax()) {
+        if (isHasPermission(['unit.update'])) {
             try {
-                $input = $request->only(['actual_name', 'short_name', 'allow_decimal']);
-                $business_id = $request->session()->get('user.business_id');
-
-                $unit = Unit::where('business_id', $business_id)->findOrFail($id);
-                $unit->actual_name = $input['actual_name'];
-                $unit->short_name = $input['short_name'];
-                $unit->allow_decimal = $input['allow_decimal'];
-                if ($request->has('define_base_unit')) {
-                    if (!empty($request->input('base_unit_id')) && !empty($request->input('base_unit_multiplier'))) {
-                        $base_unit_multiplier = $this->commonUtil->num_uf($request->input('base_unit_multiplier'));
-                        if ($base_unit_multiplier != 0) {
-                            $unit->base_unit_id = $request->input('base_unit_id');
-                            $unit->base_unit_multiplier = $base_unit_multiplier;
-                        }
+                if (request()->ajax()) {
+                    $unit = $this->unitService->getOne($id);
+                    if (!$unit) {
+                        return [
+                            'success' => false,
+                            'msg' => __('messages.unit_not_exists'),
+                        ];
                     }
-                } else {
-                    $unit->base_unit_id = null;
-                    $unit->base_unit_multiplier = null;
+                    $unit->update($request->validated());
+                    return [
+                        'success' => true,
+                        'msg' => __('unit.updated_success'),
+                    ];
                 }
-
-                $unit->save();
-
-                $output = [
-                    'success' => true,
-                    'msg' => __('unit.updated_success'),
-                ];
-            } catch (\Exception $e) {
-                \Log::emergency('File:' . $e->getFile() . 'Line:' . $e->getLine() . 'Message:' . $e->getMessage());
-
-                $output = [
+            } catch (\Exception $exception) {
+                $this->logMethodException($exception);
+                return [
                     'success' => false,
                     'msg' => __('messages.something_went_wrong'),
                 ];
             }
-
-            return $output;
         }
+        abort(403, 'Unauthorized action.');
     }
 
     /**
@@ -213,43 +190,38 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Destroy $request, $id)
     {
-        if (!auth()->user()->can('unit.delete')) {
-            abort(403, 'Unauthorized action.');
-        }
-
-        if (request()->ajax()) {
-            try {
-                $business_id = request()->user()->business_id;
-
-                $unit = Unit::where('business_id', $business_id)->findOrFail($id);
-
-                //check if any product associated with the unit
-                $exists = Product::where('unit_id', $unit->id)
-                    ->exists();
-                if (!$exists) {
+        if (isHasPermission(['unit.delete'])) {
+            if (request()->ajax()) {
+                try {
+                    $unit = $this->unitService->getOne($request->id);
+                    if (!$unit) {
+                        return [
+                            'success' => false,
+                            'msg' => __('messages.unit_not_exists'),
+                        ];
+                    }
+                    if ($this->unitService->isUnitAssociatedWithProduct($unit->id)) {
+                        return [
+                            'success' => false,
+                            'msg' => __('lang_v1.unit_cannot_be_deleted'),
+                        ];
+                    }
                     $unit->delete();
-                    $output = [
+                    return [
                         'success' => true,
                         'msg' => __('unit.deleted_success'),
                     ];
-                } else {
-                    $output = [
+                } catch (\Exception $exception) {
+                    $this->logMethodException($exception);
+
+                    return [
                         'success' => false,
-                        'msg' => __('lang_v1.unit_cannot_be_deleted'),
+                        'msg' => '__("messages.something_went_wrong")',
                     ];
                 }
-            } catch (\Exception $e) {
-                \Log::emergency('File:' . $e->getFile() . 'Line:' . $e->getLine() . 'Message:' . $e->getMessage());
-
-                $output = [
-                    'success' => false,
-                    'msg' => '__("messages.something_went_wrong")',
-                ];
             }
-
-            return $output;
         }
     }
 }

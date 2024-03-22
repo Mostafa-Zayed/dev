@@ -10,7 +10,7 @@ return [
     | The following language lines are used during common CRUD operations.
     |
     */
-
+    'unit_not_exists' => 'Unit Not Exists',
     'add' => 'Add',
     'edit' => 'Edit',
     'save' => 'Save',

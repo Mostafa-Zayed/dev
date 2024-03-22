@@ -29,4 +29,14 @@ class MysqlRepository extends UnitRepository
     {
         return Unit::create($unitData);
     }
+
+    public function getOne(int $businessId, int $id)
+    {
+        return Unit::ForBusiness($businessId)->find($id);
+    }
+
+    public function isUnitAssociatedWithProduct(int $id)
+    {
+        return DB::table('products')->where('unit_id','=',$id)->exists();
+    }
 }

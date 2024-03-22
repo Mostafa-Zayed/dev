@@ -523,7 +523,7 @@ function __disable_submit_button(element) {
 
 function __remove_disable_submit_button(element) {
     if (__is_online()) {
-        element.attr('disable', false);
+        element.removeAttr('disabled');
     }
 }
 

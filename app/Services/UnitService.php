@@ -37,4 +37,14 @@ class UnitService
     {
         return $this->unitRepository->store($unitData);
     }
+
+    public function getOne(int $id, $businessId =  null)
+    {
+        return $this->unitRepository->getOne($businessId ?? request()->session()->get('user.business_id'), $id);
+    }
+
+    public function isUnitAssociatedWithProduct(int $unitId)
+    {
+        return $this->unitRepository->isUnitAssociatedWithProduct($unitId);
+    }
 }

@@ -307,6 +307,7 @@ $(document).ready(function() {
             },
             error: function(result){
                 toastr.error(result.responseJSON.message);
+                __remove_disable_submit_button(form.find('button[type="submit"]'));
             }
         });
     });
@@ -335,9 +336,13 @@ $(document).ready(function() {
                             units_table.ajax.reload();
                         } else {
                             toastr.error(result.msg);
-                            __remove_disable_submit_button(form.find('button[type="submit"]'));
+                            
                         }
                     },
+                    error: function(result){
+                        toastr.error(result.responseJSON.message);
+                        __remove_disable_submit_button(form.find('button[type="submit"]'));
+                    }
                 });
             });
         });
@@ -354,12 +359,13 @@ $(document).ready(function() {
             if (willDelete) {
                 var href = $(this).data('href');
                 var data = $(this).serialize();
-
+                let unitid = $(this).data('id');
+                console.log(data);
                 $.ajax({
                     method: 'DELETE',
                     url: href,
                     dataType: 'json',
-                    data: data,
+                    data: {id:unitid},
                     success: function(result) {
                         if (result.success == true) {
                             toastr.success(result.msg);
