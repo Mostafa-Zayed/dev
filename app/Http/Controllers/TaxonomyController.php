@@ -13,7 +13,7 @@ use App\Http\Requests\Category\Store;
 class TaxonomyController extends Controller
 {
     use LogException;
-
+    private const PRODUCT_TYPES = ['product','project'];
     protected $categoryService;
     /**
      * All Utils instance.
@@ -135,7 +135,7 @@ class TaxonomyController extends Controller
      */
     public function store(Store $request)
     {
-        if ($request->validated('category_type') == 'product' && isHasPermission(['category.create'])) {
+        if (in_array($request->validated('category_type'),self::PRODUCT_TYPES) && isHasPermission(['category.create'])) {
             try {
                 $category = Category::create($request->validated());
                 $output = [

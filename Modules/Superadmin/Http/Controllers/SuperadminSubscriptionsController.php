@@ -10,9 +10,13 @@ use Modules\Superadmin\Entities\Package;
 use Modules\Superadmin\Entities\Subscription;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Routing\Controller;
+use App\Traits\LogException;
+
 
 class SuperadminSubscriptionsController extends BaseController
 {
+    use LogException;
+
     protected $businessUtil;
 
     /**
@@ -24,6 +28,7 @@ class SuperadminSubscriptionsController extends BaseController
     public function __construct(BusinessUtil $businessUtil)
     {
         $this->businessUtil = $businessUtil;
+
     }
 
     /**
@@ -33,6 +38,7 @@ class SuperadminSubscriptionsController extends BaseController
      */
     public function index()
     {
+        
         if (! auth()->user()->can('superadmin')) {
             abort(403, 'Unauthorized action.');
         }
@@ -94,16 +100,14 @@ class SuperadminSubscriptionsController extends BaseController
                         ->make(false);
         }
 
-        $packages = Package::listPackages()->pluck('name', 'id');
-
-        $subscription_statuses = [
-            'approved' => __('superadmin::lang.approved'),
-            'waiting' => __('superadmin::lang.waiting'),
-            'declined' => __('superadmin::lang.declined'),
-        ];
-
-        return view('superadmin::superadmin_subscription.index')
-                    ->with(compact('packages', 'subscription_statuses'));
+        return view('superadmin::superadmin_subscription.index', [
+            'packages' => Package::listPackages()->pluck('name', 'id'),
+            'subscription_statuses' => [
+                'approved' => __('superadmin::lang.approved'),
+                'waiting' => __('superadmin::lang.waiting'),
+                'declined' => __('superadmin::lang.declined'),
+            ]
+            ]);
     }
 
     /**

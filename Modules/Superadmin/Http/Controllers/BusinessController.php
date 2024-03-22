@@ -18,9 +18,14 @@ use Modules\Superadmin\Entities\Package;
 use Modules\Superadmin\Notifications\PasswordUpdateNotification;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
+use App\Traits\LogException;
+use App\Services\BusinessService;
 
 class BusinessController extends BaseController
 {
+    use LogException;
+
+    protected $businessService;
     protected $businessUtil;
 
     protected $moduleUtil;
@@ -31,8 +36,9 @@ class BusinessController extends BaseController
      * @param  ProductUtils  $product
      * @return void
      */
-    public function __construct(BusinessUtil $businessUtil, ModuleUtil $moduleUtil)
+    public function __construct(BusinessUtil $businessUtil, ModuleUtil $moduleUtil, BusinessService $businessService)
     {
+        $this->businessService = $businessService;
         $this->businessUtil = $businessUtil;
         $this->moduleUtil = $moduleUtil;
     }
