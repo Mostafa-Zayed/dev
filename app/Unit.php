@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,6 +23,10 @@ class Unit extends Model
      */
     protected $guarded = ['id'];
 
+    public function scopeForBusiness(Builder $query, int $businessId)
+    {
+        return $query->where('business_id','=',$businessId);
+    }
     /**
      * Return list of units for a business
      *

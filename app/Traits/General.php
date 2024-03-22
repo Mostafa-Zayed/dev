@@ -54,4 +54,29 @@ trait General
     {
         return config('constants.allow_registration');
     }
+
+    /**
+     * This function unformats a number and returns them in plain eng format
+     *
+     * @param  int  $input_number
+     * @return float
+     */
+    public static function num_uf($input_number, $currency_details = null)
+    {
+        $thousand_separator = '';
+        $decimal_separator = '';
+
+        if (!empty($currency_details)) {
+            $thousand_separator = $currency_details->thousand_separator;
+            $decimal_separator = $currency_details->decimal_separator;
+        } else {
+            $thousand_separator = session()->has('currency') ? session('currency')['thousand_separator'] : '';
+            $decimal_separator = session()->has('currency') ? session('currency')['decimal_separator'] : '';
+        }
+
+        $num = str_replace($thousand_separator, '', $input_number);
+        $num = str_replace($decimal_separator, '.', $num);
+
+        return (float) $num;
+    }
 }
