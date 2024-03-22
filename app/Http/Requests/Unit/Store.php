@@ -38,10 +38,10 @@ class Store extends FormRequest
             'business_id' => ['required', 'integer', 'exists:business,id'],
             'created_by'  => ['required', 'integer', 'exists:users,id'],
             'actual_name' => ['required', 'string', 'max:255', Rule::unique('units')->where(function ($query) {
-                return $query->where('actual_name', $this->name)->where('business_id', '=', $this->business_id);
+                return $query->where('actual_name', $this->actual_name)->where('business_id', '=', $this->business_id);
             })],
             'short_name'  => ['nullable', 'max:255', Rule::unique('units')->where(function ($query) {
-                return $query->where('short_name', $this->name)->where('business_id', '=', $this->business_id);
+                return $query->where('short_name', $this->short_name)->where('business_id', '=', $this->business_id);
             })],
             'allow_decimal' => ['required', 'in:0,1'],
             'base_unit_id' => ['nullable','exists:units,id'],
