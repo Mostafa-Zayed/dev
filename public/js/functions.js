@@ -521,6 +521,12 @@ function __disable_submit_button(element) {
     }
 }
 
+function __remove_disable_submit_button(element) {
+    if (__is_online()) {
+        element.attr('disable', false);
+    }
+}
+
 function __current_datetime() {
     return moment().format(moment_date_format + ' ' + moment_time_format);
 }

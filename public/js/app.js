@@ -335,6 +335,7 @@ $(document).ready(function() {
                             units_table.ajax.reload();
                         } else {
                             toastr.error(result.msg);
+                            __remove_disable_submit_button(form.find('button[type="submit"]'));
                         }
                     },
                 });
