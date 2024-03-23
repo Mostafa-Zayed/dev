@@ -61,7 +61,7 @@
             e.preventDefault();
             $(this).find('button[type="submit"]').attr('disabled', true);
             var data = $(this).serialize();
-
+            var form = $(this);
             $.ajax({
                 method: $(this).attr('method'),
                 url: $(this).attr("action"),
@@ -75,6 +75,10 @@
                     } else {
                         toastr.error(result.msg);
                     }
+                },
+                error: function(result){
+                    toastr.error(result.responseJSON.message);
+                    __remove_disable_submit_button(form.find('button[type="submit"]'));
                 }
             });
         });

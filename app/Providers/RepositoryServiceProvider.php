@@ -81,6 +81,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\\Repositories\\UnitRepository',
             'App\\Repositories\\Unit\\MysqlRepository'
         );
+
+        $this->app->bind(
+            'App\\Repositories\\WarrantyRepository',
+            'App\\Repositories\\Warranty\\MysqlRepository'
+        );
         //
         // $this->app->bind(
         //     'App\\Interfaces\\Shipment\\BostaShipmentInterface',
