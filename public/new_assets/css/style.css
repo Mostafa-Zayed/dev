@@ -1111,3 +1111,69 @@ main{
     /*position: fixed;*/
     /*overflow: auto;*/
 }
+
+/* End Sidebar */
+
+
+/* Start Dashboard */
+.button4{
+    padding: 8px 16px !important;
+}
+.button4:hover,
+.button4.focus,
+.button4.active{
+    background: var(--main-dark);
+    border: 0;
+}
+
+.overview-box{
+    padding: 20px 5px;
+    border-radius: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    -ms-border-radius: 9px;
+    -o-border-radius: 9px;
+}
+.overview-box-1{
+    border: solid 1px #8c1573;
+    background-image: linear-gradient(to right, #97197d 7%, #b12594 52%, #97197d 97%);
+}
+.overview-box-2{
+    border: solid 1px #3a0865;
+    background-image: linear-gradient(to right, #390663 7%, #4b0a7a 52%, #30065b 97%);
+}
+.overview-box-3{
+    border: solid 1px #423955;
+    background-image: linear-gradient(to right, #4b4966 7%, #59567a 52%, #554a68 97%);
+}
+.overview-box-4{
+    border: solid 1px #ac4d26;
+    background-image: linear-gradient(to right, #c65e33 7%, #d86b3e 52%, #c65e34 97%);
+}
+.overview-box-5{
+    border: solid 1px #1c57a7;
+    background-image: linear-gradient(to right, #1c58a7 7%, #3070c3 52%, #1c57a7 97%);
+}
+.overview-box-6{
+    border: solid 1px #2f3876;
+    background-image: linear-gradient(to right, #2c346f 7%, #39438c 52%, #2c346f 97%);
+}
+.overview-box-7{
+    border: solid 1px #d7b40a;
+    background-image: linear-gradient(to right, #d7b40a 7%, #c7b464 52%, #d7b40a 97%);
+}
+.overview-box-8{
+    border: solid 1px #d70a0a;
+    background-image: linear-gradient(to right, #d70a0a 7%, #e33e3e 52%, #d70a0a 97%);
+}
+.overview-box span{
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+}
+.overview-box p{
+    font-size: 13px;
+    font-weight: 400;
+    color: #ffffffbf;
+}
