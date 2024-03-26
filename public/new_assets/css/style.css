@@ -1098,3 +1098,16 @@ main{
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
+
+.main-sidebar{
+    display: flex;
+    padding-top: 15px;
+    background: #fff;
+    width: 240px;
+    height: auto;
+    min-height: 90vh;
+    top: unset;
+    position: absolute;
+    /*position: fixed;*/
+    /*overflow: auto;*/
+}
