@@ -5,15 +5,15 @@ import './bootstrap';
 import  { createApp } from 'vue';
 
 
-import router from "./router";
-import store from './store';
+// import router from "./router";
+// import store from './store';
 import dashboardAppRoot from './App.vue';
 
 let dashboardVueApp = createApp(dashboardAppRoot);
 
-dashboardVueApp.use(router);
+// dashboardVueApp.use(router);
 
-dashboardVueApp.use(store);
+// dashboardVueApp.use(store);
 dashboardVueApp.mount('#app');
 
 

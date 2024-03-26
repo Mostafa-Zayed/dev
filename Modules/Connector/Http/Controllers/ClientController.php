@@ -24,10 +24,11 @@ class ClientController extends Controller
      */
     public function index()
     {
+        // dd('index');
         if (! auth()->user()->can('superadmin')) {
             abort(403, 'Unauthorized action.');
         }
-
+        
         $is_demo = (config('app.env') == 'demo');
 
         $business_id = request()->session()->get('user.business_id');
@@ -38,8 +39,11 @@ class ClientController extends Controller
                     ->select('oauth_clients.*')
                     ->get()
                     ->makeVisible('secret');
-
-        return view('connector::clients.index')->with(compact('clients', 'is_demo'));
+            // dd($clients);
+        return view('connector::clients.index',[
+            'clients' => $clients,
+            'is_demo' => $is_demo
+        ]);
     }
 
     /**

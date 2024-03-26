@@ -47,7 +47,7 @@ class DataController extends Controller
                             );
                         }
                         $sub->url(
-                            url('\docs'),
+                            url('connector\docs'),
                            __('connector::lang.documentation'),
                             ['icon' => 'fa fas fa-book', 'active' => request()->segment(1) == 'docs']
                         );

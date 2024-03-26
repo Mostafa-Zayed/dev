@@ -142,3 +142,10 @@ if (!function_exists('str_ordinal')) {
         }
     }
 }
+
+if (!function_exists('defaultLang')) {
+    function defaultLang()
+    {
+      return 'ar';
+    }
+  }

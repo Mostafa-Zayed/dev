@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['middleware'=>['guest:sanctum']],function () {
+    Route::post('v1/business/login',function(){
+        return 'ok';
+    });
+});

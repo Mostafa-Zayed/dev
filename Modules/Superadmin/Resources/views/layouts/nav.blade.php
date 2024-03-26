@@ -27,9 +27,9 @@
 
                     <li @if(request()->segment(1) == 'superadmin' && request()->segment(2) == 'countries') class="active" @endif><a href="{{action([\Modules\Superadmin\Http\Controllers\CountryController::class, 'index'])}}">@lang('superadmin::lang.countries')</a></li>
 
-                    <li @if(request()->segment(1) == 'superadmin' && request()->segment(2) == 'countries') class="active" @endif><a href="{{action([\Modules\Superadmin\Http\Controllers\StateController::class, 'index'])}}">@lang('superadmin::lang.states')</a></li>
+                    <li @if(request()->segment(1) == 'superadmin' && request()->segment(2) == 'states') class="active" @endif><a href="{{action([\Modules\Superadmin\Http\Controllers\StateController::class, 'index'])}}">@lang('superadmin::lang.states')</a></li>
 
-                    <li @if(request()->segment(1) == 'superadmin' && request()->segment(2) == 'countries') class="active" @endif><a href="{{action([\Modules\Superadmin\Http\Controllers\CityController::class, 'index'])}}">@lang('superadmin::lang.cities')</a></li>
+                    <li @if(request()->segment(1) == 'superadmin' && request()->segment(2) == 'cities') class="active" @endif><a href="{{action([\Modules\Superadmin\Http\Controllers\CityController::class, 'index'])}}">@lang('superadmin::lang.cities')</a></li>
                 </ul>
 
             </div><!-- /.navbar-collapse -->

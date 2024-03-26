@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Brands;
+use App\Traits\LogException;
 use App\Utils\ModuleUtil;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use App\Services\BrandService;
+use App\Services\ModuleService;
 
 class BrandController extends Controller
 {
+    use LogException;
+
+    protected $brandService;
     /**
      * All Utils instance.
      */
@@ -20,9 +26,10 @@ class BrandController extends Controller
      * @param  ProductUtils  $product
      * @return void
      */
-    public function __construct(ModuleUtil $moduleUtil)
+    public function __construct(ModuleUtil $moduleUtil, BrandService $brandService)
     {
         $this->moduleUtil = $moduleUtil;
+        $this->brandService = $brandService;
     }
 
     /**
@@ -32,33 +39,31 @@ class BrandController extends Controller
      */
     public function index()
     {
-        if (! auth()->user()->can('brand.view') && ! auth()->user()->can('brand.create')) {
-            abort(403, 'Unauthorized action.');
+        if (isHasPermission(['brand.view', 'brand.create'])) {
+            if (request()->ajax()) {
+                try {
+                    return Datatables::of($this->brandService->getAllForBusiness())
+                        ->addColumn(
+                            'action',
+                            '@can("brand.update")
+                        <button data-href="{{action(\'App\Http\Controllers\BrandController@edit\', [$id])}}" class="btn btn-xs btn-primary edit_brand_button"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>
+                            &nbsp;
+                        @endcan
+                        @can("brand.delete")
+                            <button data-href="{{action(\'App\Http\Controllers\BrandController@destroy\', [$id])}}" class="btn btn-xs btn-danger delete_brand_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
+                        @endcan'
+                        )
+                        ->removeColumn('id')
+                        ->rawColumns([2])
+                        ->make(false);
+                } catch (\Exception $exception) {
+                    $this->logMethodException($exception);
+                }
+            }
+
+            return view('brand.index');
         }
-
-        if (request()->ajax()) {
-            $business_id = request()->session()->get('user.business_id');
-
-            $brands = Brands::where('business_id', $business_id)
-                        ->select(['name', 'description', 'id']);
-
-            return Datatables::of($brands)
-                ->addColumn(
-                    'action',
-                    '@can("brand.update")
-                    <button data-href="{{action(\'App\Http\Controllers\BrandController@edit\', [$id])}}" class="btn btn-xs btn-primary edit_brand_button"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>
-                        &nbsp;
-                    @endcan
-                    @can("brand.delete")
-                        <button data-href="{{action(\'App\Http\Controllers\BrandController@destroy\', [$id])}}" class="btn btn-xs btn-danger delete_brand_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
-                    @endcan'
-                )
-                ->removeColumn('id')
-                ->rawColumns([2])
-                ->make(false);
-        }
-
-        return view('brand.index');
+        abort(403, 'Unauthorized action.');
     }
 
     /**
@@ -68,19 +73,13 @@ class BrandController extends Controller
      */
     public function create()
     {
-        if (! auth()->user()->can('brand.create')) {
-            abort(403, 'Unauthorized action.');
+        if (isHasPermission(['brand.create'])) {
+            return view('brand.create', [
+                'quick_add' => !empty(request()->input('quick_add')) ? true : false,
+                'is_repair_installed' => ModuleService::isModuleInstalled('Repair')
+            ]);
         }
-
-        $quick_add = false;
-        if (! empty(request()->input('quick_add'))) {
-            $quick_add = true;
-        }
-
-        $is_repair_installed = $this->moduleUtil->isModuleInstalled('Repair');
-
-        return view('brand.create')
-                ->with(compact('quick_add', 'is_repair_installed'));
+        abort(403, 'Unauthorized action.');
     }
 
     /**
@@ -91,7 +90,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        if (! auth()->user()->can('brand.create')) {
+        if (!auth()->user()->can('brand.create')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -102,18 +101,20 @@ class BrandController extends Controller
             $input['created_by'] = $request->session()->get('user.id');
 
             if ($this->moduleUtil->isModuleInstalled('Repair')) {
-                $input['use_for_repair'] = ! empty($request->input('use_for_repair')) ? 1 : 0;
+                $input['use_for_repair'] = !empty($request->input('use_for_repair')) ? 1 : 0;
             }
 
             $brand = Brands::create($input);
-            $output = ['success' => true,
+            $output = [
+                'success' => true,
                 'data' => $brand,
                 'msg' => __('brand.added_success'),
             ];
         } catch (\Exception $e) {
-            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+            \Log::emergency('File:' . $e->getFile() . 'Line:' . $e->getLine() . 'Message:' . $e->getMessage());
 
-            $output = ['success' => false,
+            $output = [
+                'success' => false,
                 'msg' => __('messages.something_went_wrong'),
             ];
         }
@@ -121,16 +122,6 @@ class BrandController extends Controller
         return $output;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -140,7 +131,7 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        if (! auth()->user()->can('brand.update')) {
+        if (!auth()->user()->can('brand.update')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -164,7 +155,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (! auth()->user()->can('brand.update')) {
+        if (!auth()->user()->can('brand.update')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -178,18 +169,20 @@ class BrandController extends Controller
                 $brand->description = $input['description'];
 
                 if ($this->moduleUtil->isModuleInstalled('Repair')) {
-                    $brand->use_for_repair = ! empty($request->input('use_for_repair')) ? 1 : 0;
+                    $brand->use_for_repair = !empty($request->input('use_for_repair')) ? 1 : 0;
                 }
 
                 $brand->save();
 
-                $output = ['success' => true,
+                $output = [
+                    'success' => true,
                     'msg' => __('brand.updated_success'),
                 ];
             } catch (\Exception $e) {
-                \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+                \Log::emergency('File:' . $e->getFile() . 'Line:' . $e->getLine() . 'Message:' . $e->getMessage());
 
-                $output = ['success' => false,
+                $output = [
+                    'success' => false,
                     'msg' => __('messages.something_went_wrong'),
                 ];
             }
@@ -206,7 +199,7 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        if (! auth()->user()->can('brand.delete')) {
+        if (!auth()->user()->can('brand.delete')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -217,13 +210,15 @@ class BrandController extends Controller
                 $brand = Brands::where('business_id', $business_id)->findOrFail($id);
                 $brand->delete();
 
-                $output = ['success' => true,
+                $output = [
+                    'success' => true,
                     'msg' => __('brand.deleted_success'),
                 ];
             } catch (\Exception $e) {
-                \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+                \Log::emergency('File:' . $e->getFile() . 'Line:' . $e->getLine() . 'Message:' . $e->getMessage());
 
-                $output = ['success' => false,
+                $output = [
+                    'success' => false,
                     'msg' => __('messages.something_went_wrong'),
                 ];
             }
@@ -240,9 +235,9 @@ class BrandController extends Controller
             $api_settings = $this->moduleUtil->getApiSettings($api_token);
 
             $brands = Brands::where('business_id', $api_settings->business_id)
-                                ->get();
+                ->get();
         } catch (\Exception $e) {
-            \Log::emergency('File:'.$e->getFile().'Line:'.$e->getLine().'Message:'.$e->getMessage());
+            \Log::emergency('File:' . $e->getFile() . 'Line:' . $e->getLine() . 'Message:' . $e->getMessage());
 
             return $this->respondWentWrong($e);
         }

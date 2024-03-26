@@ -75,7 +75,7 @@ use App\Http\Controllers\FrontEndController;
 |
 */
 
-
+ 
 // Route::get('reviews',[RevieweController::class,'index'])->name('reviews.index');
 Route::get('reviews',[FrontEndController::class,'reviews'])->name('reviews');
 Route::get('contact',[FrontEndController::class,'contact'])->name('contact');

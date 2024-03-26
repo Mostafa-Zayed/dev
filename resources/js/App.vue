@@ -7,13 +7,7 @@
 import Home from "./views/Home.vue";
 
 export default {
-    name: 'App',
-    components: {Home},
-    computed: {
-        getRouteName(){
-            return this.$route.name;
-        }
-    }
+    name: 'App'
 
 };
 </script>

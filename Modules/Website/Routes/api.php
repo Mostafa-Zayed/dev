@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Website\Http\Controllers\Api\V1\FeatureController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('home',function(){
-    return 'ok';
-});
+Route::get('features',[FeatureController::class,'index'])->name('website.api.v1.features');

@@ -12,8 +12,8 @@ return [
     |
     */
 
-    'accepted' => 'يجب قبول الحقل attribute:.',
-    'active_url' => 'الحقل attribute: ليست عنوان URL صالحًا.',
+    'accepted' => 'يجب قبول الحقل :attribute .',
+    'active_url' => 'الحقل :attribute ليست عنوان URL صالحًا.',
     'after' => 'يجب أن يكون الحقل attribute: تاريخًا بعد date:.',
     'after_or_equal' => 'يجب أن يكون الحقل attribute: تاريخًا متأخرًا عن أو يساوي date:.',
     'alpha' => 'يجب أن يحتوي الحقل attribute: على أحرف فقط.',
@@ -42,7 +42,7 @@ return [
     'file' => 'يجب أن يكون الحقل attribute: ملفًا.',
     'filled' => 'يجب أن يحتوي الحقل attribute: على قيمة.',
     'image' => 'يجب أن يكون الحقل attribute: صورة.',
-    'in' => 'الحقل attribute: غير صالح.',
+    'in' => 'الحقل :attribute غير صالح.',
     'in_array' => 'الحقل attribute: غير موجود في other:.',
     'integer' => 'يجب أن يكون الحقل attribute: عددًا صحيحًا.',
     'ip' => 'يجب أن يكون الحقل attribute: عنوان IP صالح.',

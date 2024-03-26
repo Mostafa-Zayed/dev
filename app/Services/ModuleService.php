@@ -32,7 +32,7 @@ class ModuleService
     {
         $isModuleExists = Module::has($moduleName);
         if ($isModuleExists) {
-            $moduleName = DB::table('system')->where('key', strtolower($moduleName) . '_verison')->value('key');
+            $moduleName = DB::table('system')->where('key', strtolower($moduleName) . '_version')->value('key');
             return !empty($moduleName) ? true : false;
         }
         return false;

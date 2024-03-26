@@ -21,7 +21,7 @@ class CountryController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('countries.index',
+        return view('superadmin::countries.index',
         [
             'countries' => Country::get()
         ]);
@@ -33,7 +33,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        return view('superadmin::create');
+        return view('superadmin::countries.create');
     }
 
     /**
