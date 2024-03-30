@@ -11,7 +11,7 @@
 |
 */
 //install
-Route::get('/install', [Modules\Website\Http\Controllers\InstallController::class, 'index']);
+Route::get('/website/install', [Modules\Website\Http\Controllers\InstallController::class, 'index']);
 Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(function () {
 
     // Route::get('/dashboard',[Modules\Website\Http\Controllers\WebsiteController::class,'index'])->name('website.home');
