@@ -36,6 +36,7 @@
     @endif
     <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
+    
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
