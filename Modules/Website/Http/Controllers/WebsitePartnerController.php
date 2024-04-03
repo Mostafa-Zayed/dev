@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsitePartner;
 use Modules\Website\Http\Requests\Partners\Store;
+use Modules\Website\Http\Requests\Partners\Update;
+
 use Modules\Website\Entities\WebsiteTemplate;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -96,9 +98,11 @@ class WebsitePartnerController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        //
+        $partner = WebsitePartner::find($id);
+        $partner->update($request->validated());
+        return redirect()->route('website.partners.index');
     }
 
     /**

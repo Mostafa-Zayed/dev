@@ -75,12 +75,12 @@ Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(fun
     Route::post('reviews/status/change',[Modules\Website\Http\Controllers\WebsiteReviewController::class,'changeStatus'])->name('reviews.change-status');
 
     // partners
-    Route::get('partners',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'index'])->name('partners.index');
+    Route::get('partners',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'index'])->name('website.partners.index');
     Route::get('partners/create',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'create'])->name('partners.create');
-    Route::get('partners/edit/{id}',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'edit'])->name('partners.edit');
-    Route::post('partners/update',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'update'])->name('partners.update');
+    Route::get('partners/{id}/edit',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'edit'])->name('partners.edit');
+    Route::put('partners/{id}/update',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'update'])->name('partners.update');
     Route::post('partners/store',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'store'])->name('partners.store');
-    Route::post('partners/delete',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'destroy'])->name('partners.destroy');
+    Route::delete('partners/{id}/destroy',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'destroy'])->name('partners.destroy');
     Route::post('partners/status/change',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'changeStatus'])->name('partners.change-status');
 
     // questions
