@@ -14,14 +14,13 @@ class WebsiteQuestion extends Model
     const IMAGEPATH = 'questions' ;
     protected $fillable = [
         'answer',
-        'title',
-        'image',
+        'name',
         'status',
         'is_home',
         'website_template_id'
     ];
 
-    public $translatable = ['title','answer'];
+    public $translatable = ['name','answer'];
 
     public function getImageAttribute()
     {

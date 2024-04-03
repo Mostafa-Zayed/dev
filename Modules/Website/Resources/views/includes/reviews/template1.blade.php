@@ -3,8 +3,15 @@
     <div class="container">
 
         <div class="section-header">
-            <h2>{{ $settings->getTranslations('section_reviews_title')[app()->getLocale()] }}</h2>
-            {!! $settings->getTranslations('section_reviews_description')[app()->getLocale()] !!}
+            <h2>
+                @if(! empty($settings->getTranslations('section_reviews_title')[app()->getLocale()]))
+                {{ $settings->getTranslations('section_reviews_title')[app()->getLocale()] }}
+            </h2>
+            @endif
+            @if (! empty($settings->getTranslations('section_reviews_description')[app()->getLocale()]))
+            {!! $settings->getTranslations('section_reviews_description')[app()->getLocale()] !!} 
+            @endif
+            
 
         </div>
         <div class="row">
@@ -14,15 +21,15 @@
                 <div class="review-details-content">
                     <div class="owl-carousel review_details" id="review_details-1">
                         @if ($reviews->count() > 0)
-                            @foreach ($reviews as $review)
-                                <!-- Start review item -->
-                                <div class="item">
-                                    {!! $review->description !!}
-                                    <h5>Sarah Carlos</h5>
-                                    <h6>Creative Director</h6>
-                                </div>
-                                <!-- End review item -->
-                            @endforeach
+                        @foreach ($reviews as $review)
+                        <!-- Start review item -->
+                        <div class="item">
+                            {!! $review->description !!}
+                            <h5>Sarah Carlos</h5>
+                            <h6>Creative Director</h6>
+                        </div>
+                        <!-- End review item -->
+                        @endforeach
                         @endif
                     </div>
                 </div>
@@ -95,40 +102,39 @@
                         {{-- <div class="item">
                             <div class="review_photo_block">
                                 <img src="{{ asset('front/images/reviews/author-3.jpg') }}" alt="Img">
-                            </div>
-                        </div> --}}
-                        <!-- End review item Avatar -->
                     </div>
-                </div>
-                <!-- End review items Avatar -->
+                </div> --}}
+                <!-- End review item Avatar -->
+            </div>
+        </div>
+        <!-- End review items Avatar -->
+    </div>
+
+    <div class="col-md-12">
+        <div class="section-header-style2">
+
+            <div class="review_nav">
+                <span class="ti-angle-left button_prev"></span>
+                <span class="ti-angle-right button_next"></span>
             </div>
 
-            <div class="col-md-12">
-                <div class="section-header-style2">
-
-                    <div class="review_nav">
-                        <span class="ti-angle-left button_prev"></span>
-                        <span class="ti-angle-right button_next"></span>
-                    </div>
-
-                    <div class="btn-read-more"><a class="btn theme-btn"
-                            href="{{ route('reviews') }}">{{ __('lang_v1.view_all_reviews') }}</a></div>
-                </div>
-            </div>
+            <div class="btn-read-more"><a class="btn theme-btn" href="{{ route('reviews') }}">{{ __('lang_v1.view_all_reviews') }}</a></div>
         </div>
     </div>
+    </div>
+    </div>
     @if ($partners->count() > 0)
-        <div class="container">
-            <div class="owl-carousel list-clients">
-                @foreach ($partners as $partner)
-                    <div class="clients-item">
-                        <a href="{{ $partner->link }}" title="" target="__blank">
-                            <img src="{{ $partner->image }}" alt="Img" />
-                        </a>
-                    </div>
-                @endforeach
+    <div class="container">
+        <div class="owl-carousel list-clients">
+            @foreach ($partners as $partner)
+            <div class="clients-item">
+                <a href="{{ $partner->link }}" title="" target="__blank">
+                    <img src="{{ $partner->image }}" alt="Img" />
+                </a>
             </div>
+            @endforeach
         </div>
+    </div>
     @endif
     <div class="review-shape-bottom"></div>
     <div class="shape-bottom"></div>

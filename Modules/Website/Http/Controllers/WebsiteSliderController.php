@@ -42,7 +42,16 @@ class WebsiteSliderController extends Controller
                 DB::raw("JSON_VALUE(website_sliders.heading,'$.$this->local') AS heading_trans"),
                 DB::raw("JSON_VALUE(website_sliders.description,'$.$this->local') AS description_trans"),
                 ])->get();
-            return DataTables::of($sliders)->make(true);
+            return DataTables::of($sliders)
+            ->addColumn(
+                'action',
+                function ($row){
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteSliderController::class,'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_slider_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteSliderController::class,'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_slider_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                }
+            )
+                ->make(true);
         }
         return view('website::sliders.index');
     }
@@ -94,7 +103,10 @@ class WebsiteSliderController extends Controller
      */
     public function edit($id)
     {
-        return view('website::edit');
+        return view('website::sliders.edit',[
+            'id' => $id,
+            
+        ]);
     }
 
     /**

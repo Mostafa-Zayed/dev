@@ -30,11 +30,11 @@ Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(fun
     Route::post('settings',[Modules\Website\Http\Controllers\WebsiteSettingController::class,'update'])->name('settings.update');
 
     // sliders
-    Route::get('sliders',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'index'])->name('sliders.index');
+    Route::get('sliders',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'index'])->name('website.sliders.index');
     Route::get('sliders/create',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'create'])->name('sliders.create');
     Route::post('sliders/store',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'store'])->name('sliders.store');
-    Route::get('sliders/edit/{id}',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'edit'])->name('sliders.edit');
-    Route::post('sliders/update',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'update'])->name('sliders.update');
+    Route::get('sliders/{id}/edit',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'edit'])->name('sliders.edit');
+    Route::put('sliders/{id}/update',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'update'])->name('sliders.update');
     Route::post('sliders/delete',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'destroy'])->name('sliders.destroy');
     Route::post('sliders/status/change',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'changeStatus'])->name('sliders.change-status');
 
@@ -84,11 +84,11 @@ Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(fun
     Route::post('partners/status/change',[Modules\Website\Http\Controllers\WebsitePartnerController::class,'changeStatus'])->name('partners.change-status');
 
     // questions
-    Route::get('questions',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'index'])->name('questions.index');
+    Route::get('questions',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'index'])->name('website.questions.index');
     Route::get('questions/create',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'create'])->name('questions.create');
     Route::post('questions/store',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'store'])->name('questions.store');
-    Route::get('questions/edit/{id}',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'edit'])->name('questions.edit');
-    Route::post('questions/update',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'update'])->name('questions.update');
+    Route::get('questions/{id}/edit',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'edit'])->name('questions.edit');
+    Route::put('questions/{id}/update',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'update'])->name('questions.update');
     Route::post('questions/delete',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'destroy'])->name('questions.destroy');
     Route::post('questions/status/change',[Modules\Website\Http\Controllers\WebsiteQuestionController::class,'changeStatus'])->name('questions.change-status');
 

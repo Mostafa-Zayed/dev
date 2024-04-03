@@ -18,6 +18,8 @@ class Store extends FormRequest
             'name.*' => ['required','string','max:255'],
             'answer' => ['required','array'],
             'answer.*' => ['required','string'],
+            'status' => ['nullable','in:1,0'],
+            'is_home' => ['nullable','in:1,0'],
             'website_template_id' => ['sometimes','exists:website_templates,id']
         ];
     }

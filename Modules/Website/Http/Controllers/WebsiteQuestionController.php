@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteQuestion;
 use Modules\Website\Http\Requests\Questions\Store;
+use Modules\Website\Http\Requests\Questions\Update;
+
 use Modules\Website\Entities\WebsiteTemplate;
+use Yajra\DataTables\Facades\DataTables;
 
 class WebsiteQuestionController extends Controller
 {
@@ -20,6 +23,19 @@ class WebsiteQuestionController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()){
+            $questions = WebsiteQuestion::get();
+            return DataTables::of($questions)
+                ->addColumn(
+                    'action',
+                    function ($row) {
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteQuestionController::class, 'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_question_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteQuestionController::class, 'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_question_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                    }
+                )
+                ->make(true);
+        }
         return view('website::questions.index');
     }
 
@@ -64,7 +80,11 @@ class WebsiteQuestionController extends Controller
      */
     public function edit($id)
     {
-        return view('website::edit');
+        return view('website::questions.edit',[
+            'id' => $id,
+            'question' => WebsiteQuestion::find($id),
+            'templates' => WebsiteTemplate::forDropdown()
+        ]);
     }
 
     /**
@@ -73,9 +93,11 @@ class WebsiteQuestionController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        //
+        $question = WebsiteQuestion::find($id);
+        $question->update($request->validated());
+        return redirect()->route('website.questions.index');
     }
 
     /**
