@@ -1136,9 +1136,10 @@ ul.list-checked li i {
 }
 .features-style2 .feature-block {
     background: #fff;
-    box-shadow: 0px 0px 29px 6px rgba(154, 161, 171, 0.18);
+    box-shadow: 0px 0px 29px 6px rgb(110 114 121 / 31%);
     text-align: right;
     margin-bottom: 50px;
+    height: 165px;
 }
 .features-style2 .feature-block .feature-icon {
     float: right;
@@ -1234,7 +1235,7 @@ ul.list-checked li i {
     position: absolute;
     right: 0px;
     top: 0px;
-    width: 40px;
+    width: 55px;
     height: 40px;
     text-align: center;
     transition: 0.3s ease;
@@ -3167,9 +3168,7 @@ footer p {
     font-weight: bold !important;
     margin-top: -8px;
 }
-.feature-block:nth-of-type(1) {
-    display: none !important;
-}
+
 .owl-stage-outer {
     direction: ltr;
 }
@@ -3177,3 +3176,39 @@ footer p {
     transform: rotate(180deg);
 }
 
+#AppFeatures {
+    position: relative;
+    background-color: #eef2ff;
+}
+#AppFeatures .container {
+    position: relative;
+    z-index: 1;
+}
+.img-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 0;
+}
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#pricing .tab-content ul {
+    max-height: 320px;
+    overflow-y: auto;
+}
+#reviews .item {
+    background: #fff;
+    border-radius: 9px;
+    padding: 10px;
+}
+#reviews .item img {
+    width: 120px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
