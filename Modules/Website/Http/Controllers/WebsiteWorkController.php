@@ -8,17 +8,39 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteWork;
 use Modules\Website\Http\Requests\HowWorks\Store;
+use Modules\Website\Http\Requests\HowWorks\Update;
 use Modules\Website\Entities\WebsiteTemplate;
+use Illuminate\Support\Facades\App;
+use Yajra\DataTables\Facades\DataTables;
 
 class WebsiteWorkController extends Controller
 {
     use LogException;
+    private $local;
+
+    public function __construct()
+    {
+        $this->local = App::getLocale();
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
+        if (request()->ajax()) {
+            $howWorks = WebsiteWork::with('websiteTemplate')->get();
+            return DataTables::of($howWorks)
+                ->addColumn(
+                    'action',
+                    function ($row) {
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteWorkController::class, 'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_work_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteWorkController::class, 'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_work_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                    }
+                )
+                ->make(true);
+        }
         return view('website::how_works.index');
     }
 
@@ -28,7 +50,7 @@ class WebsiteWorkController extends Controller
      */
     public function create()
     {
-        return view('website::how_works.create',['templates' => WebsiteTemplate::forDropdown()]);
+        return view('website::how_works.create', ['templates' => WebsiteTemplate::forDropdown()]);
     }
 
     /**
@@ -39,10 +61,9 @@ class WebsiteWorkController extends Controller
     public function store(Store $request)
     {
         try {
-            // dd($request->validated());
             WebsiteWork::create($request->validated());
             return view('website::how_works.index');
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $this->logMethodException($exception);
         }
     }
@@ -64,7 +85,11 @@ class WebsiteWorkController extends Controller
      */
     public function edit($id)
     {
-        return view('website::edit');
+        return view('website::how_works.edit', [
+            'id' => $id,
+            'work' => WebsiteWork::find($id),
+            'templates' => WebsiteTemplate::forDropdown()
+        ]);
     }
 
     /**
@@ -73,9 +98,11 @@ class WebsiteWorkController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        //
+        $howWork = WebsiteWork::find($id);
+        $howWork->update($request->validated());
+        return redirect()->route('website.works.index');
     }
 
     /**

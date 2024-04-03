@@ -23,7 +23,16 @@ class WebsiteDemoController extends Controller
     {
         if(request()->ajax()){
             $templates = WebsiteTemplate::get();
-            return DataTables::of($templates)->make(true);
+            return DataTables::of($templates)
+            ->addColumn(
+                'action',
+                function ($row){
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteDemoController::class,'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_category_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteDemoController::class, 'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_category_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                }
+            )
+                ->make(true);
         }
        
         return view('website::demos.index');
@@ -86,7 +95,16 @@ class WebsiteDemoController extends Controller
      */
     public function edit($id)
     {
-        return view('website::edit');
+        $numbers = [
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+            7 => 7
+        ];
+        return view('website::demos.edit',['id' => $id,'numbers' => $numbers,'template' => WebsiteTemplate::find($id)]);
     }
 
     /**

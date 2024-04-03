@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'add_feature' => 'New Feature',
+    'add_template' => 'New Template',
     'support_email' => 'Support Email',
     'sales_email'   => 'Sales Email',
     'general' => 'General Settings',

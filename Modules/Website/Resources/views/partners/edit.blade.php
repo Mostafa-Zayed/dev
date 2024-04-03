@@ -1,38 +1,36 @@
-@extends('layouts.app')
-@section('title', __('website::lang.website'))
-@section('content')
-@include('website::layouts.nav')
-<section class="content-header">
-    <h1>@lang('website::lang.add_slider')</h1>
-</section>
-<section class="content">
-    @component('components.widget', ['class' => 'box-solid'])
-    <div class="pos-tab-content active">
-        {!! Form::open(['url' => action([Modules\Website\Http\Controllers\WebsitePartnerController::class, 'store']), 'method' => 'post', 'files' => true]) !!}
-        <div class="row">
-            @foreach (languages() as $lang)
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.title_' . $lang)) !!}
-                    {!! Form::text("name[$lang]",null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.title_' . $lang)]); !!}
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        {!! Form::open(['url' => action([\Modules\Website\Http\Controllers\WebsitePartnerController::class,'update'],[$id]), 'method' => 'post', 'id' => 'work_partner_form','files' => true ]) !!}
+        @method('PUT')
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">@lang( 'messages.edit' )</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                @foreach (languages() as $lang)
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {!! Form::label('',__('website::lang.title_' . $lang)) !!}
+                        {!! Form::text("name[$lang]",$partner->getTranslations('name')[$lang], ['class' => 'form-control',
+                        'placeholder' => __('website::lang.title_' . $lang)]); !!}
+                    </div>
                 </div>
-            </div>
-            @endforeach
-            <div class="col-sm-12">
-                <div class="form-group">
+                @endforeach
+                <div class="col-sm-12">
+                    <div class="form-group">
+                    </div>
+                    {!! Form::label('',__('website::lang.external_link')) !!}
+                    {!! Form::text("link",$partner->link, ['class' => 'form-control',
+                    'placeholder' => __('website::lang.external_link')]); !!}
                 </div>
-                {!! Form::label('',__('website::lang.external_link')) !!}
-                {!! Form::text("link",null, ['class' => 'form-control',
-                'placeholder' => __('website::lang.external_link')]); !!}
-            </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.demos') . ' : *') !!}
-                    {!! Form::select('website_template_id', $templates, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {!! Form::label('',__('website::lang.demos') . ' : *') !!}
+                        {!! Form::select('website_template_id', $templates, $partner->website_template_id, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-12">
+                <div class="col-sm-12">
                 <div class="form-group">
                     <label for="section_features_image">تحميل الصورة:</label>
                     <div class="file-input file-input-new">
@@ -59,11 +57,8 @@
                     <p class="help-block"><i> سيتم استبدال الصورة السابق (إن وجد)</i></p>
                 </div>
             </div>
-            
+
+            </div>
         </div>
-        <input type="submit" value="submit" class="btn btn-primary submit_product_form">
-        {!! Form::close() !!}
     </div>
-    @endcomponent
-</section>
-@endsection
+</div>

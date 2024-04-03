@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteDemo;
 use Modules\Website\Entities\WebsiteFeature;
 use Modules\Website\Http\Requests\Features\Store;
+use Modules\Website\Http\Requests\Features\Update;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Modules\Website\Entities\WebsiteTemplate;
@@ -30,7 +31,16 @@ class WebsiteFeatureController extends Controller
     {
         if(request()->ajax()){
             $features = WebsiteFeature::with('websiteTemplate')->get();
-            return DataTables::of($features)->make(true);
+            return DataTables::of($features)
+            ->addColumn(
+                'action',
+                function ($row){
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteFeatureController::class,'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_feature_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteFeatureController::class,'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_feature_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                }
+            )
+                ->make(true);
         }
         return view('website::features.index');
     }
@@ -78,7 +88,11 @@ class WebsiteFeatureController extends Controller
      */
     public function edit($id)
     {
-        return view('website::edit');
+        return view('website::features.edit',[
+            'id' => $id,
+            'feature' => WebsiteFeature::find($id),
+            'templates' => WebsiteTemplate::forDropdown()
+        ]);
     }
 
     /**
@@ -87,9 +101,11 @@ class WebsiteFeatureController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        //
+        $feature = WebsiteFeature::find($id);
+        $feature->update($request->validated());
+        return redirect()->route('website.features.index');
     }
 
     /**

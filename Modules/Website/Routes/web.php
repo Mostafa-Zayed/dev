@@ -17,6 +17,9 @@ Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(fun
     // Route::get('/dashboard',[Modules\Website\Http\Controllers\WebsiteController::class,'index'])->name('website.home');
     // demos
     Route::get('demos',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'index'])->name('demos.index');
+    Route::get('demos/{id}/edit',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'edit']);
+    Route::get('demos/{id}/update',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'update']);
+    Route::delete('demos/{id}',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'destroy']);
     Route::get('demos/create',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'create'])->name('demos.create');
     Route::post('demos/store',[Modules\Website\Http\Controllers\WebsiteDemoController::class,'store'])->name('demos.store');
 
@@ -36,30 +39,30 @@ Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(fun
     Route::post('sliders/status/change',[Modules\Website\Http\Controllers\WebsiteSliderController::class,'changeStatus'])->name('sliders.change-status');
 
     // features
-    Route::get('features',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'index'])->name('features.index');
+    Route::get('features',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'index'])->name('website.features.index');
     Route::get('features/create',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'create'])->name('features.create');
     Route::post('features/store',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'store'])->name('features.store');
-    Route::get('features/edit',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'edit'])->name('features.edit');
-    Route::post('features/update',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'update'])->name('features.update');
-    Route::post('features/delete',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'destroy'])->name('features.destroy');
+    Route::get('features/{id}/edit',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'edit'])->name('features.edit');
+    Route::put('features/{id}/update',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'update'])->name('features.update');
+    Route::post('features/{id}/destroy',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'destroy'])->name('features.destroy');
     Route::post('features/status/change',[Modules\Website\Http\Controllers\WebsiteFeatureController::class,'changeStatus'])->name('features.change-status');
 
     // how works
-    Route::get('how-works',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'index'])->name('works.index');
+    Route::get('how-works',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'index'])->name('website.works.index');
     Route::get('how-works/create',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'create'])->name('works.create');
     Route::post('how-works/store',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'store'])->name('works.store');
-    Route::get('how-works/edit/{id}',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'edit'])->name('works.edit');
-    Route::post('how-works/update',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'update'])->name('works.update');
-    Route::post('how-works/delete',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'destroy'])->name('works.destroy');
+    Route::get('how-works/{id}/edit/',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'edit'])->name('works.edit');
+    Route::put('how-works/{id}/update',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'update'])->name('works.update');
+    Route::post('how-works/{id}/destroy',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'destroy'])->name('works.destroy');
     Route::post('how-works/status/change',[Modules\Website\Http\Controllers\WebsiteWorkController::class,'changeStatus'])->name('works.change-status');
 
     // screen shots
-    Route::get('screen-shots',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'index'])->name('screen-shots.index');
+    Route::get('screen-shots',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'index'])->name('website.screen-shots.index');
     Route::get('screen-shots/create',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'create'])->name('screen-shots.create');
     Route::post('screen-shots/store',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'store'])->name('screen-shots.store');
-    Route::get('screen-shots/edit/{id}',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'edit'])->name('screen-shots.edit');
-    Route::post('screen-shots/update',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'update'])->name('screen-shots.update');
-    Route::post('screen-shots/delete',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'destroy'])->name('screen-shots.destroy');
+    Route::get('screen-shots/{id}/edit',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'edit'])->name('screen-shots.edit');
+    Route::put('screen-shots/{id}/update',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'update'])->name('screen-shots.update');
+    Route::delete('screen-shots/{id}/destroy',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'destroy'])->name('screen-shots.destroy');
     Route::post('screen-shots/status/change',[Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'changeStatus'])->name('screen-shots.change-status');
 
     // reviews

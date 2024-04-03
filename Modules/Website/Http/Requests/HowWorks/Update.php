@@ -14,7 +14,14 @@ class Update extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','array'],
+            'name.*' => ['required','string','max:255'],
+            'description' => ['required','array'],
+            'description.*' => ['required','string'],
+            'image' => ['nullable','image'],
+            'status' => ['nullable','in:0,1'],
+            'is_home' => ['nullable','in:0,1'],
+            'website_template_id' => ['nullable','exists:website_templates,id']
         ];
     }
 

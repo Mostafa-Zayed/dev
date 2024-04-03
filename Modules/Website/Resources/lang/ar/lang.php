@@ -1,5 +1,7 @@
 <?php 
 return [
+    'add_feature' => 'اضافة ميزة',
+    'add_template' => 'اضافة تصميم جديد',
     'sales_email' => 'ايميل المبيعات',
     'support_email' => 'ايميل الدعم',
     'general' => 'اعدادات عامة',

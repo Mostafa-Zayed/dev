@@ -3,7 +3,7 @@
 @section('content')
 @include('website::layouts.nav')
 <section class="content-header">
-    <h1>@lang('website::lang.add_slider')</h1>
+    <h1>@lang('website::lang.add_feature')</h1>
 </section>
 <section class="content">
     @component('components.widget', ['class' => 'box-solid'])
@@ -27,6 +27,21 @@
                 </div>
             </div>
             @endforeach
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('icon',__('website::features.icon')) !!}
+                    {!! Form::text("icon",null, ['class' => 'form-control',
+                    'placeholder' => __('website::features.icon')]); !!}
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {!! Form::label('',__('website::lang.external_link')) !!}
+                    {!! Form::text('external_link',null,['class' => 'form-control']) !!}
+                </div>
+            </div>
+
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="section_features_image">تحميل الصورة:</label>
@@ -54,19 +69,7 @@
                     <p class="help-block"><i> سيتم استبدال الصورة السابق (إن وجد)</i></p>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('icon',__('website::features.icon')) !!}
-                    {!! Form::text("icon",null, ['class' => 'form-control',
-                    'placeholder' => __('website::features.icon')]); !!}
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.external_link')) !!}
-                    {!! Form::text('external_link',null,['class' => 'form-control']) !!}
-                </div>
-            </div>
+           
             <div class="col-sm-12">
                 <div class="form-group">
                     {!! Form::label('',__('website::lang.demos') . ' : *') !!}
@@ -79,12 +82,7 @@
                     {!! Form::select('status', ['1' => __('messages.yes'), '0' => __('messages.no')], 1, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
                 </div>
             </div>
-            <!-- <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.is_home')) !!}
-                    {!! Form::select('template_id',$templates, null, ['placeholder' => __( 'messages.please_select' ), 'class' => 'form-control']); !!}
-                </div>
-            </div> -->
+
         </div>
         <input type="submit" value="submit" class="btn btn-primary submit_product_form">
         {!! Form::close() !!}

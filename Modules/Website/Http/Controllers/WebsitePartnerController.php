@@ -25,7 +25,16 @@ class WebsitePartnerController extends Controller
     {
         if(request()->ajax()){
             $partners = WebsitePartner::get();
-            return DataTables::of($partners)->make(true);
+            return DataTables::of($partners)
+            ->addColumn(
+                'action',
+                function ($row){
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsitePartnerController::class,'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_partner_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsitePartnerController::class,'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_partner_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                }
+            )
+                ->make(true);
         }
         return view('website::partners.index');
     }
@@ -74,7 +83,11 @@ class WebsitePartnerController extends Controller
      */
     public function edit($id)
     {
-        return view('website::edit');
+        return view('website::partners.edit',[
+            'id' => $id,
+            'partner' => WebsitePartner::find($id),
+            'templates' => WebsiteTemplate::forDropdown()
+        ]);
     }
 
     /**

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteScreenshot;
 use Modules\Website\Http\Requests\ScreenShots\Store;
+use Modules\Website\Http\Requests\ScreenShots\Update;
 use Modules\Website\Entities\WebsiteTemplate;
 use App\Traits\UploadTrait;
 use Yajra\DataTables\Facades\DataTables;
@@ -23,7 +24,16 @@ class WebsiteScreenshotController extends Controller
     {
         if(request()->ajax()){
             $screenShots = WebsiteScreenshot::get();
-            return DataTables::of($screenShots)->make(true);
+            return DataTables::of($screenShots)
+            ->addColumn(
+                'action',
+                function ($row){
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_screen_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteScreenshotController::class,'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_screen_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                }
+            )
+                ->make(true);
         }
         return view('website::screen_shots.index');
     }
@@ -72,7 +82,11 @@ class WebsiteScreenshotController extends Controller
      */
     public function edit($id)
     {
-        return view('website::edit');
+        return view('website::screen_shots.edit',[
+            'id' => $id,
+            'screen' => WebsiteScreenshot::find($id),
+            'templates' => WebsiteTemplate::forDropdown()
+        ]);
     }
 
     /**
@@ -81,9 +95,11 @@ class WebsiteScreenshotController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        //
+        $screen = WebsiteScreenshot::find($id);
+        $screen->update($request->validated());
+        return redirect()->route('website.screen-shots.index');
     }
 
     /**
