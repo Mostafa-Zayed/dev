@@ -54,7 +54,7 @@ class Update extends FormRequest
             'location_address.*' => ['nullable', 'string'],
             'support_email' => ['nullable', 'string'],
             'sales_email' => ['nullable', 'string'],
-            'facbook_link' => ['nullable','string'],
+            'facebook_link' => ['nullable','string'],
             'twitter_link' => ['nullable','string'],
             'instagram_link' => ['nullable','string'],
             'pinterest_link' => ['nullable','string'],
