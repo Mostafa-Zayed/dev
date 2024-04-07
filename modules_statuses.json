@@ -20,5 +20,6 @@
     "Shopify": true,
     "Jumia": true,
     "Hms": true,
-    "Shipment": true
+    "Shipment": true,
+    "Store": true
 }

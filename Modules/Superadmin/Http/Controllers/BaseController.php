@@ -3,6 +3,7 @@
 namespace Modules\Superadmin\Http\Controllers;
 
 use App\System;
+use App\Traits\LogException;
 use Illuminate\Routing\Controller;
 use Modules\Superadmin\Entities\Package;
 use Modules\Superadmin\Entities\Subscription;
@@ -11,6 +12,7 @@ use Notification;
 
 class BaseController extends Controller
 {
+    use LogException;
     /**
      * Returns the list of all configured payment gateway
      *
@@ -68,60 +70,69 @@ class BaseController extends Controller
      */
     public function _add_subscription($business_id, $package, $gateway, $payment_transaction_id, $user_id, $is_superadmin = false)
     {
-        if (! is_object($package)) {
-            $package = Package::active()->find($package);
-        }
-
-        $subscription = ['business_id' => $business_id,
-            'package_id' => $package->id,
-            'paid_via' => $gateway,
-            'payment_transaction_id' => $payment_transaction_id,
-        ];
-
-        if ($package->price != 0 && (in_array($gateway, ['offline', 'pesapal']) && ! $is_superadmin)) {
-            //If offline then dates will be decided when approved by superadmin
-            $subscription['start_date'] = null;
-            $subscription['end_date'] = null;
-            $subscription['trial_end_date'] = null;
-            $subscription['status'] = 'waiting';
-        } else {
-            $dates = $this->_get_package_dates($business_id, $package);
-
-            $subscription['start_date'] = $dates['start'];
-            $subscription['end_date'] = $dates['end'];
-            $subscription['trial_end_date'] = $dates['trial'];
-            $subscription['status'] = 'approved';
-        }
-
-        $subscription['package_price'] = $package->price;
-        $subscription['package_details'] = [
-            'location_count' => $package->location_count,
-            'user_count' => $package->user_count,
-            'product_count' => $package->product_count,
-            'invoice_count' => $package->invoice_count,
-            'name' => $package->name,
-        ];
-        //Custom permissions.
-        if (! empty($package->custom_permissions)) {
-            foreach ($package->custom_permissions as $name => $value) {
-                $subscription['package_details'][$name] = $value;
+        try {
+            if (!is_object($package)) {
+                $package = Package::active()->find($package);
             }
-        }
+            // dd($business_id,$package,$gateway,$payment_transaction_id);
+            $subscription = [
+                'business_id' => $business_id,
+                'package_id' => $package->id,
+                'paid_via' => $gateway,
+                'payment_transaction_id' => $payment_transaction_id,
+            ];
 
-        $subscription['created_id'] = $user_id;
-        $subscription = Subscription::create($subscription);
-
-        if (! $is_superadmin) {
-            $email = System::getProperty('email');
-            $is_notif_enabled = System::getProperty('enable_new_subscription_notification');
-
-            if (! empty($email) && $is_notif_enabled == 1) {
-                Notification::route('mail', $email)
-                ->notify(new NewSubscriptionNotification($subscription));
+            if ($package->price != 0 && (in_array($gateway, ['offline', 'pesapal']) && !$is_superadmin)) {
+                //If offline then dates will be decided when approved by superadmin
+                $subscription['start_date'] = null;
+                $subscription['end_date'] = null;
+                $subscription['trial_end_date'] = null;
+                $subscription['status'] = 'waiting';
+            } else {
+                // dd('here');
+                $dates = $this->_get_package_dates($business_id, $package);
+                // dd($dates);
+                $subscription['start_date'] = $dates['start'];
+                $subscription['end_date'] = $dates['end'];
+                $subscription['trial_end_date'] = $dates['trial'];
+                $subscription['status'] = 'approved';
+                // dd($subscription);
             }
-        }
 
-        return $subscription;
+            $subscription['package_price'] = $package->price;
+            $subscription['package_details'] = [
+                'location_count' => $package->location_count,
+                'user_count' => $package->user_count,
+                'product_count' => $package->product_count,
+                'invoice_count' => $package->invoice_count,
+                'name' => $package->name,
+            ];
+            //  dd($subscription);
+            //Custom permissions.
+            if (!empty($package->custom_permissions)) {
+                foreach ($package->custom_permissions as $name => $value) {
+                    $subscription['package_details'][$name] = $value;
+                }
+            }
+
+            $subscription['created_id'] = $user_id;
+            
+            $subscription = Subscription::create($subscription);
+            // dd('sdfasdfsdf');
+            if (!$is_superadmin) {
+                $email = System::getProperty('email');
+                $is_notif_enabled = System::getProperty('enable_new_subscription_notification');
+
+                if (!empty($email) && $is_notif_enabled == 1) {
+                    Notification::route('mail', $email)
+                        ->notify(new NewSubscriptionNotification($subscription));
+                }
+            }
+
+            return $subscription;
+        } catch (\Exception $exception) {
+            $this->logMethodException($exception);
+        }
     }
 
     /**

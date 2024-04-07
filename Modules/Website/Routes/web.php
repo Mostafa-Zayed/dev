@@ -12,7 +12,7 @@
 */
 //install
 Route::get('/website/install', [Modules\Website\Http\Controllers\InstallController::class, 'index']);
-Route::middleware('web','SetSessionData', 'auth',)->prefix('website')->group(function () {
+Route::middleware('web','auth','AdminSidebarMenu','language')->prefix('website')->group(function () {
 
     // Route::get('/dashboard',[Modules\Website\Http\Controllers\WebsiteController::class,'index'])->name('website.home');
     // demos

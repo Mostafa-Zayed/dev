@@ -1,9 +1,11 @@
 {
     "name": "Website",
     "alias": "website",
-    "description": "",
+    "description": "Allows for superadmin only to manage system website",
     "keywords": [],
-    "priority": 0,
+    "active": 1,
+    "order": 1,
+    "priority": 1,
     "providers": [
         "Modules\\Website\\Providers\\WebsiteServiceProvider"
     ],

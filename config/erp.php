@@ -34,6 +34,13 @@ return [
         // 'ses' => 'SES',
         // 'sparkpost' => 'Sparkpost'
     ],
+    'date_formates' => [
+        'd-m-Y' => 'dd-mm-yyyy',
+        'm-d-Y' => 'mm-dd-yyyy',
+        'd/m/Y' => 'dd/mm/yyyy',
+        'm/d/Y' => 'mm/dd/yyyy',
+    ],
+
     'business' => [
         'enabled_modules' => [
             'purchases',
@@ -65,6 +72,8 @@ return [
                 'view_cash_register',
                 'close_cash_register'
             ]
-        ]
+        ],
+        'default_pos_settings' => ['disable_pay_checkout' => 0, 'disable_draft' => 0, 'disable_express_checkout' => 0, 'hide_product_suggestion' => 0, 'hide_recent_trans' => 0, 'disable_discount' => 0, 'disable_order_tax' => 0, 'is_pos_subtotal_editable' => 0],
+        'default_email_settings' => ['mail_host' => '', 'mail_port' => '', 'mail_username' => '', 'mail_password' => '', 'mail_encryption' => '', 'mail_from_address' => '', 'mail_from_name' => ''],
     ]
 ];

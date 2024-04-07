@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 trait General
 {
+
     public static function getAllTimZones()
     {
         $datetime = new \DateTimeZone('EDT');
@@ -19,14 +20,14 @@ trait General
         return $timezone_list;
     }
 
-    public static function getAllCurrencies()
-    {
-        $currencies = DB::table('currencies')->select('id', DB::raw("concat(country, ' - ',currency, '(', code, ') ') as info"))
-            ->orderBy('country')
-            ->pluck('info', 'id');
+    // public static function getAllCurrencies()
+    // {
+    //     $currencies = DB::table('currencies')->select('id', DB::raw("concat(country, ' - ',currency, '(', code, ') ') as info"))
+    //         ->orderBy('country')
+    //         ->pluck('info', 'id');
 
-        return $currencies;
-    }
+    //     return $currencies;
+    // }
 
     public static function getAllMonths()
     {
@@ -36,6 +37,17 @@ trait General
 
         return $months;
     }
+
+    public static function getCommissionAgentDropdown()
+    {
+        return [
+            '' => __('lang_v1.disable'),
+            'logged_in_user' => __('lang_v1.logged_in_user'),
+            'user' => __('lang_v1.select_from_users_list'),
+            'cmsn_agnt' => __('lang_v1.select_from_commisssion_agents_list'),
+        ];
+    }
+
 
     /**
      * Gives a list of all accouting methods

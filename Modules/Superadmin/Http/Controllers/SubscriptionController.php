@@ -82,19 +82,18 @@ class SubscriptionController extends BaseController
      *
      * @return Response
      */
-    public function pay($package_id, $form_register = null)
+    public function pay($package_id, $form_register = null, $business_id = null)
     {
         if (! auth()->user()->can('superadmin.access_package_subscriptions')) {
             abort(403, 'Unauthorized action.');
         }
-
+        // dd($package_id);
         try {
             DB::beginTransaction();
-
-            $business_id = request()->session()->get('user.business_id');
-
-            $package = Package::active()->find($package_id);
             
+            $business_id = $business_id ? $business_id : request()->session()->get('user.business_id');
+            $package = Package::active()->find($package_id);
+            // dd($business_id,$package);
             //Check if superadmin only package
             if ($package->is_private == 1 && ! auth()->user()->can('superadmin')) {
                 $output = ['success' => 0, 'msg' => __('superadmin::lang.not_allowed_for_package')];
@@ -103,7 +102,7 @@ class SubscriptionController extends BaseController
                         ->back()
                         ->with('status', $output);
             }
-
+            // dd('asdfasdf');
             //Check if one time only package
             if (empty($form_register) && $package->is_one_time) {
                 $count_subcriptions = Subscription::where('business_id', $business_id)
@@ -118,15 +117,16 @@ class SubscriptionController extends BaseController
                         ->with('status', $output);
                 }
             }
-
+            // dd('sdasdf now');
             //Check for free package & subscribe it.
             if ($package->price == 0) {
+                // dd('sdfasdf');
                 $gateway = null;
                 $payment_transaction_id = 'FREE';
                 $user_id = request()->session()->get('user.id');
-
+                // dd($user_id);
                 $this->_add_subscription($business_id, $package, $gateway, $payment_transaction_id, $user_id);
-
+                // dd('end');
                 DB::commit();
 
                 if (empty($form_register)) {
@@ -180,9 +180,9 @@ class SubscriptionController extends BaseController
      *
      * @return Response
      */
-    public function registerPay($package_id)
+    public function registerPay($package_id,$business_id)
     {
-        return $this->pay($package_id, 1);
+        return $this->pay($package_id, 1,$business_id);
     }
 
     /**

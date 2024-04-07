@@ -23,10 +23,13 @@ use App\Services\BusinessService;
 use App\Traits\LogException;
 use App\Services\UserService;
 use Modules\Website\Entities\WebsitePartner;
+use App\Traits\General;
+use App\Traits\BusinessTrait;
 
 class BusinessController extends Controller
 {
     use LogException;
+    use General,BusinessTrait;
     /*
     |--------------------------------------------------------------------------
     | BusinessController
@@ -36,7 +39,10 @@ class BusinessController extends Controller
     | validation and creation.
     |
     */
-
+    /*
+        configrations
+    */
+    private static $date_formates;
     /**
      * All Utils instance.
      */
@@ -65,6 +71,7 @@ class BusinessController extends Controller
         RestaurantUtil $restaurantUtil,
         ModuleUtil $moduleUtil
     ) {
+        self::$date_formates = config('erp.date_formates');
         $this->businessService = $businessService;
         $this->userService     = $userService;
         $this->businessUtil = $businessUtil;
@@ -88,10 +95,10 @@ class BusinessController extends Controller
         
         return view('business.register', [
             'currencies' => BusinessUtil::getAllCurrencies(),
-            'timezone_list' => BusinessUtil::getAllTimZones(),
-            'months' => BusinessUtil::getAllMonths(),
-            'accounting_methods' => BusinessUtil::getAllAccountingMethods(),
-            'package_id' => request()->package,
+            // 'timezone_list' => BusinessUtil::getAllTimZones(),
+            // 'months' => BusinessUtil::getAllMonths(),
+            // 'accounting_methods' => BusinessUtil::getAllAccountingMethods(),
+            'package' => request()->package,
             'system_settings' => System::getProperties(['superadmin_enable_register_tc', 'superadmin_register_tc'], true),
             'partners'  => WebsitePartner::get()
         ]);
@@ -124,12 +131,17 @@ class BusinessController extends Controller
 
                 //Process payment information if superadmin is installed & package information is present
                 $is_installed_superadmin = $this->moduleUtil->isSuperadminInstalled();
-                $package_id = $request->get('package_id', null);
+                $package_id = $request->get('package', null);
+                // dd($package_id);
                 if ($is_installed_superadmin && !empty($package_id) && (config('app.env') != 'demo')) {
                     $package = \Modules\Superadmin\Entities\Package::find($package_id);
                     if (!empty($package)) {
                         Auth::login($user);
-
+                        return response()->json([
+                            'success' => 1,
+                            'msg' => __('business.business_created_succesfully'),
+                            'url' => route('register-pay', ['package_id' => $package_id,'business_id' => $business->id])
+                        ]);
                         return redirect()->route('register-pay', ['package_id' => $package_id]);
                     }
                 }
@@ -315,64 +327,45 @@ class BusinessController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $timezones = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-        $timezone_list = [];
-        foreach ($timezones as $timezone) {
-            $timezone_list[$timezone] = $timezone;
-        }
+        
 
         $business_id = request()->session()->get('user.business_id');
-        $business = Business::where('id', $business_id)->first();
-
-        $currencies = $this->businessUtil->allCurrencies();
+        $business = Business::find($business_id);
         $tax_details = TaxRate::forBusinessDropdown($business_id);
         $tax_rates = $tax_details['tax_rates'];
-
-        $months = [];
-        for ($i = 1; $i <= 12; $i++) {
-            $months[$i] = __('business.months.' . $i);
-        }
-
-        $accounting_methods = [
-            'fifo' => __('business.fifo'),
-            'lifo' => __('business.lifo'),
-        ];
-        $commission_agent_dropdown = [
-            '' => __('lang_v1.disable'),
-            'logged_in_user' => __('lang_v1.logged_in_user'),
-            'user' => __('lang_v1.select_from_users_list'),
-            'cmsn_agnt' => __('lang_v1.select_from_commisssion_agents_list'),
-        ];
-
         $units_dropdown = Unit::forDropdown($business_id, true);
-
-        $date_formats = Business::date_formats();
-
-        $shortcuts = json_decode($business->keyboard_shortcuts, true);
-
-        $pos_settings = empty($business->pos_settings) ? $this->businessUtil->defaultPosSettings() : json_decode($business->pos_settings, true);
-
-        $email_settings = empty($business->email_settings) ? $this->businessUtil->defaultEmailSettings() : $business->email_settings;
 
         $sms_settings = empty($business->sms_settings) ? $this->businessUtil->defaultSmsSettings() : $business->sms_settings;
 
         $modules = $this->moduleUtil->availableModules();
 
-        $theme_colors = $this->theme_colors;
-
         $mail_drivers = $this->mailDrivers;
-
-        $allow_superadmin_email_settings = System::getProperty('allow_email_settings_to_businesses');
-
-        $custom_labels = !empty($business->custom_labels) ? json_decode($business->custom_labels, true) : [];
-
-        $common_settings = !empty($business->common_settings) ? $business->common_settings : [];
-
-        $weighing_scale_setting = !empty($business->weighing_scale_setting) ? $business->weighing_scale_setting : [];
 
         $payment_types = $this->moduleUtil->payment_types(null, false, $business_id);
 
-        return view('business.settings', compact('business', 'currencies', 'tax_rates', 'timezone_list', 'months', 'accounting_methods', 'commission_agent_dropdown', 'units_dropdown', 'date_formats', 'shortcuts', 'pos_settings', 'modules', 'theme_colors', 'email_settings', 'sms_settings', 'mail_drivers', 'allow_superadmin_email_settings', 'custom_labels', 'common_settings', 'weighing_scale_setting', 'payment_types'));
+        return view('business.settings',[
+            'business' => $business,
+            'currencies' => self::getAllCurrencies(),
+            'tax_rates' => $tax_rates,
+            'timezone_list' => self::getAllTimZones(),
+            'months' => self::getAllMonths(),
+            'accounting_methods' => self::getAllAccountingMethods(),
+            'commission_agent_dropdown' => self::getCommissionAgentDropdown(),
+            'units_dropdown' => $units_dropdown,
+            'date_formats' => self::$date_formates,
+            'shortcuts' => json_decode($business->keyboard_shortcuts, true),
+            'pos_settings' => empty($business->pos_settings) ? config('erp.business.default_pos_settings') : json_decode($business->pos_settings, true),
+            'modules' => $modules,
+            'theme_colors' => $this->theme_colors,
+            'email_settings' => empty($business->email_settings) ? config('erp.business.default.email_settings') : $business->email_settings,
+            'sms_settings' => $sms_settings,
+            'mail_drivers' => $mail_drivers,
+            'allow_superadmin_email_settings' => DB::table('system')->where('key','allow_email_settings_to_businesses')->first()->value ?? null,
+            'custom_labels' => !empty($business->custom_labels) ? json_decode($business->custom_labels, true) : [],
+            'common_settings' => !empty($business->common_settings) ? $business->common_settings : [],
+            'weighing_scale_setting' => !empty($business->weighing_scale_setting) ? $business->weighing_scale_setting : [],
+            'payment_types' => $payment_types
+        ]);
     }
 
     /**

@@ -28,6 +28,7 @@
 
         <title>@yield('title') - {{ Session::get('business.name') }}</title>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+        
         @include('layouts.partials.css')
 
         @yield('css')
