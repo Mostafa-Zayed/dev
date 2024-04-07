@@ -39,12 +39,13 @@ class WebsiteSettingController extends Controller
     {
         try{
             $requestPayload = $request->validated();
-
+            // dd($requestPayload);
             $notAllowed = $this->businessUtil->notAllowedInDemo();
             if (! empty($notAllowed)) {
                 return $notAllowed;
             }
             $settings = WebsiteSetting::first();
+            // dd($this->generateSettingsRequest($requestPayload));
             if(! empty($settings)){
                 $settings->update($this->generateSettingsRequest($requestPayload));
                 return view('website::settings.index',['settings' => $settings]);
@@ -67,6 +68,14 @@ class WebsiteSettingController extends Controller
     {
         $websiteSettings = [];
         
+
+        if(! empty($settings['location_address']['ar'])){
+            $websiteSettings['location_address']['ar'] = $settings['location_address']['ar'];
+        }
+        if(! empty($settings['location_address']['en'])){
+            $websiteSettings['location_address']['en'] = $settings['location_address']['en'];
+        }
+
         if(! empty($settings['footer_description']['ar'])){
             $websiteSettings['footer_description']['ar'] = $settings['footer_description']['ar'];
         }
@@ -175,6 +184,26 @@ class WebsiteSettingController extends Controller
             $websiteSettings['section_questions_image'] = $settings['section_questions_image'];
         }
 
+        if(! empty($settings['support_email'])){
+            $websiteSettings['support_email'] = $settings['support_email'];
+        }
+
+        if(! empty($settings['sales_email'])){
+            $websiteSettings['sales_email'] = $settings['sales_email'];
+        }
+
+        if(! empty($settings['facbook_link'])){
+            $websiteSettings['facbook_link'] = $settings['facbook_link'];
+        }
+        if(! empty($settings['twitter_link'])){
+            $websiteSettings['twitter_link'] = $settings['twitter_link'];
+        }
+        if(! empty($settings['instagram_link'])){
+            $websiteSettings['instagram_link'] = $settings['instagram_link'];
+        }
+        if(! empty($settings['pinterest_link'])){
+            $websiteSettings['pinterest_link'] = $settings['pinterest_link'];
+        }
         return $websiteSettings;
 
     }

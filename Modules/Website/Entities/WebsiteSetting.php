@@ -34,7 +34,14 @@ class WebsiteSetting extends Model
         'section_posts_description',
         'section_feature_link',
         'newsletter_description',
-        'footer_description'
+        'footer_description',
+        'facbook_link',
+        'twitter_link',
+        'instagram_link',
+        'pinterest_link',
+        'location_address',
+        'support_email',
+        'sales_email'
     ];
     
     public $translatable = [
@@ -54,7 +61,7 @@ class WebsiteSetting extends Model
         'section_posts_description',
         'newsletter_description',
         'footer_description',
-
+        'location_address'
     ];
 
 

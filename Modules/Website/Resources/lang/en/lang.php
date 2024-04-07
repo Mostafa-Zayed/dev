@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'facebook_link' => 'Facebook Page Link',
+    'twitter_link' => 'Twitter Page Link',
+    'instagram_link' => 'Instagram Page Link',
+    'pinterest_link' => 'Pinterest Account Link',
+    'location_address_ar' => 'Address Arabic',
+    'location_address_en' => 'Address English',
     'add_feature' => 'New Feature',
     'add_template' => 'New Template',
     'support_email' => 'Support Email',

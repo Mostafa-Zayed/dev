@@ -1,5 +1,11 @@
 <?php 
 return [
+    'facebook_link' => 'رابط صفحة الفيس بوك',
+    'twitter_link' => 'رابط صفحة تويتر',
+    'instagram_link' => 'رابط صفحة انستجرام',
+    'pinterest_link' => 'رابط صفحة pinterest',
+    'location_address_ar' => 'العنوان بالعربي ',
+    'location_address_en' => 'العنوان بالانجليزي',
     'add_feature' => 'اضافة ميزة',
     'add_template' => 'اضافة تصميم جديد',
     'sales_email' => 'ايميل المبيعات',

@@ -129,10 +129,9 @@
                             <h4>Office Location</h4>
                             <div class="contact-block-side">
                                 <i class="flaticon-route"></i>
-                                <p>
-                                    <span>12 Street Name, </span>
-                                    <span>Calefornia, United States.</span>
-                                </p>
+                                 @if(! empty($settings))
+                                {!! $settings->getTranslations('location_address')[app()->getLocale()] !!}
+                                @endif
                             </div>
                         </div>
                         <!-- End Contact Block -->
@@ -169,8 +168,8 @@
                             <div class="contact-block-side">
                                 <i class="flaticon-paper-plane-1"></i>
                                 <p>
-                                    <span> info@domain.com</span>
-                                    <span>info@domain.com </span>
+                                    @if(! empty($settings) && ! empty($settings->sales_email))<span>{{ $settings->sales_email }}</span>@endif
+                                    @if(! empty($settings) && ! empty($settings->support_email))<span>{{ $settings->support_email }}</span>@endif
                                 </p>
                             </div>
                         </div>
