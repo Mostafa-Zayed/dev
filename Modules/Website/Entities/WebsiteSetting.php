@@ -35,7 +35,7 @@ class WebsiteSetting extends Model
         'section_feature_link',
         'newsletter_description',
         'footer_description',
-        'facbook_link',
+        'facebook_link',
         'twitter_link',
         'instagram_link',
         'pinterest_link',

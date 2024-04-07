@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('website_settings', function (Blueprint $table) {
-            $table->string('facbook_link')->nullable();
+            $table->string('facebook_link')->nullable();
             $table->string('twitter_link')->nullable();
             $table->string('instagram_link')->nullable();
             $table->string('pinterest_link')->nullable();
