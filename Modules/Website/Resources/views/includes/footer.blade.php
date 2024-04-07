@@ -18,7 +18,7 @@
                         @endif
                     @endif
                     <div class="footer-social-links">
-                        <a href="#"><i class="ti-facebook"></i></a>
+                        @if(isset($settings) && ! empty($settings->facebook_link))<a href="{{$settings->facebook_link}}"><i class="ti-facebook"></i></a>@endif
                         <a href="#"><i class="ti-twitter-alt"></i></a>
                         <a href="#"><i class="ti-instagram"></i></a>
                         <a href="#"><i class="ti-pinterest"></i></a>
