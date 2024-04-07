@@ -192,8 +192,8 @@ class WebsiteSettingController extends Controller
             $websiteSettings['sales_email'] = $settings['sales_email'];
         }
 
-        if(! empty($settings['facbook_link'])){
-            $websiteSettings['facbook_link'] = $settings['facbook_link'];
+        if(! empty($settings['facebook_link'])){
+            $websiteSettings['facebook_link'] = $settings['facebook_link'];
         }
         if(! empty($settings['twitter_link'])){
             $websiteSettings['twitter_link'] = $settings['twitter_link'];
