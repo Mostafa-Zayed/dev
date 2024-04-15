@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\HasApiTokens;
+// use Laravel\Passport\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
 use Modules\Website\Entities\WebsiteReview;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -325,5 +326,10 @@ class User extends Authenticatable
     public function websiteReview()
     {
         return $this->hasOne(WebsiteReview::class,'user_id','id');
+    }
+
+    public function devices()
+    {
+        return $this->morphMany(Device::class, 'morph');
     }
 }

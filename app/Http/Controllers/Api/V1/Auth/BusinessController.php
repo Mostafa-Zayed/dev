@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Services\BusinessService;
 use App\Services\UserService;
 use App\traits\LogException;
+use App\Traits\ResponseTrait;
 use App\Utils\BusinessUtil;
 use App\Utils\RestaurantUtil;
 use App\Utils\ModuleUtil;
@@ -16,9 +17,11 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
 class BusinessController extends Controller
 {
     use LogException;
+    use ResponseTrait;
     /*
     |--------------------------------------------------------------------------
     | BusinessController
@@ -68,7 +71,16 @@ class BusinessController extends Controller
     }
     public function login(Login $request)
     {
-        return response()->json(['test' => 'test']);
+        $user = $this->userService->getUserByEmail($request->email);
+        if(! $user){
+            return $this->failMsg(__('auth.failed'));
+        }
+        if ((!Hash::check($request->password, $user->password) && $request->email == $user->email && $request->email == $user->username)) {
+            return $this->failMsg(__('auth.failed'));
+        }
+        return $this->successData([
+            'token' => $user->createToken(request()->device_type)->plainTextToken,
+            'user' => $user]);
     }
 
     public function register(Register $request)

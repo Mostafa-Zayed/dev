@@ -42,7 +42,7 @@
     <!-- Template style -->
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     @endif
-    
+
     <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/rtl/toastr.min.css')}}">
     <!--[if lt IE 9]>
@@ -62,19 +62,19 @@
     <!-- /preloader -->
 
     <!--Start Header Area-->
-@include('website::includes.header')
+
     <!-- //End Header Area-->
 
     <div class="page-header">
         <div class="container">
             <div class="title-box">
-                <h1 class="title">About Us </h1>
+                <h1 class="title">@lang('lang_v1.about_us')</h1>
                 <div class="breadcrumb">
                     <span>
-                        <a title="Homepage" href="index.php"><i class="ti ti-home"></i>&nbsp;&nbsp;Home</a>
+                        <a title="Homepage" href="{{url('/')}}"><i class="ti ti-home"></i>&nbsp;&nbsp; @lang('lang_v1.home')</a>
                     </span>
                     <span class="bread-sep">&nbsp; | &nbsp;</span>
-                    <span> About Us</span>
+                    <span> @lang('lang_v1.about_us')</span>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <section id="how-it-work" class="section-block">
+    <!-- <section id="how-it-work" class="section-block">
         <div class="container">
             <div class="section-header">
                 <h2>How it work</h2>
@@ -124,7 +124,7 @@
 
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Start Features Section -->
     <section id="AppFeatures" class="section-block features-style3">
         <div class="bubbles-animate">
@@ -144,7 +144,7 @@
                             Efficiently syndicate flexible content via cost effective initiatives completely leverage vertical quality.<br>
                             Turn your mobile visitors into your best customers.
                         </p>
-                        <div class="btn-read-more"><a class="btn theme-btn" href="#">Get Started Now</a></div>
+                        <div class="btn-read-more"><a class="btn theme-btn" href="{{route('business.getRegister')}}">Get Started Now</a></div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -203,99 +203,6 @@
 
     </section>
     <!-- End Features Section -->
-
-    <!-- Start Faqs Section -->
-    <section id="faqs" class="section-block" data-scroll-index="6">
-        <div class="container">
-            <div class="section-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan <br>
-                    nisi Ut ut felis congue nisl hendrerit commodo.
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="img-box">
-                        <img src="{{asset('website/images/faq2.png')}}" class="img-fluid" alt="IMG" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="accordion" id="accordionExample">
-                        <!-- Start Faq item -->
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        What is the best features and services we deiver?
-                                    </button>
-                                </h2>
-                            </div>
-
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti cupiditate ipsum, dolorum voluptatum esse error?
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Faq item -->
-
-                        <!-- Start Faq item -->
-                        <div class="card">
-                            <div class="card-header" id="headingTwo">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Why this app important to me?
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti cupiditate ipsum, dolorum voluptatum esse error?
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Faq item -->
-
-                        <!-- Start Faq item -->
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        how may I take part in and purchase this Software?
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti cupiditate ipsum, dolorum voluptatum esse error?
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Faq item -->
-
-                        <!-- Start Faq item -->
-                        <div class="card">
-                            <div class="card-header" id="headingFour">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        What are the objectives of this Software?
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore omnis quaerat nostrum, pariatur ipsam sunt accusamus enim necessitatibus est fugiat, assumenda dolorem, deleniti corrupti cupiditate ipsum, dolorum voluptatum esse error?
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Faq item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Faqs Section -->
 
     <!-- Start Footer Area -->
     @include('website::includes.footer')

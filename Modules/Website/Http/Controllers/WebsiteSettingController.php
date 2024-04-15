@@ -26,6 +26,7 @@ class WebsiteSettingController extends Controller
     public function index()
     {
         $settings = WebsiteSetting::first();
+        // dd($settings);
         return view('website::settings.index',['settings' => $settings ?? []]);
     }
 

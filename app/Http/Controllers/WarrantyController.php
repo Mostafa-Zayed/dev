@@ -29,8 +29,7 @@ class WarrantyController extends Controller
     {
         if (request()->ajax()) {
             try {
-                $warranties = $this->warrantyService->getAllForBusiness();
-                return Datatables::of($warranties)
+                return Datatables::of($this->warrantyService->getAllForBusiness())
                     ->addColumn(
                         'action',
                         '<button data-href="{{action(\'App\Http\Controllers\WarrantyController@edit\', [$id])}}" class="btn btn-xs btn-primary btn-modal" data-container=".view_modal"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>'

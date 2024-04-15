@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'name' => 'Store'
+    'name' => 'Store',
+    'module_version' => '1.0',
 ];

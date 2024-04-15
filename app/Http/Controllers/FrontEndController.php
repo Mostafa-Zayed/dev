@@ -92,7 +92,10 @@ class FrontEndController extends Controller
 
     public function faqs()
     {
-        return view('faqs');
+        $questions = WebsiteQuestion::get();
+        $faqsImage = WebsiteSetting::select('section_questions_image')->first();
+        
+        return view('faqs',['questions' => $questions,'faqsImage' => $faqsImage]);
     }
 
     public function blog()

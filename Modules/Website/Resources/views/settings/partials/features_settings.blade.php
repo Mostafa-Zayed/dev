@@ -23,7 +23,7 @@
             <div class="form-group">
                 {!! Form::label('',__('website::lang.link') . ' : *') !!}
                 {!! Form::text("section_features_link",!empty($settings) && isset($settings->section_feature_link) ? $settings->section_feature_link : null, ['class' => 'form-control',
-                'placeholder' => __('website::lang.title_' . $lang)]); !!}
+                'placeholder' => __('website::lang.link')]); !!}
             </div>
         </div>
         <div class="col-sm-12">
@@ -52,6 +52,9 @@
                 </div>
                 <p class="help-block"><i> سيتم استبدال الصورة السابق (إن وجد)</i></p>
             </div>
+        </div>
+        <div class="thumbnail">
+            <img src="{{$settings->section_features_image}}" />
         </div>
     </div>
 </div>

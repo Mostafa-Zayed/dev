@@ -16,11 +16,15 @@ class Store extends FormRequest
         return [
             'name' => ['nullable','array'],
             'name.*' => ['nullable','max:255'],
+            'job'  => ['required','array'],
+            'job.*' => ['required','string'],
+            'rate'  => ['required','in:1,2,3,4,5'],
             'description' => ['required','array'],
             'description.*' => ['required','string'],
-            'status' => ['sometimes','in:0,1'],
-            'is_home' => ['sometimes','in:0,1'],
-            'user_id' => ['required','exists:users,id']
+            'status' => ['nullable','in:0,1'],
+            'is_home' => ['nullable','in:0,1'],
+            'user_id' => ['nullable','exists:users,id'],
+            'image'  => ['required','image']
         ];
     }
 

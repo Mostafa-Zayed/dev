@@ -2,9 +2,7 @@
     <section class="header-top  py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="try-freee">
-                <a href="#">
-                    جرب الان مجانا
-                </a>
+                <a href="{{route('business.getRegister')}}">@lang('lang_v1.try_free')</a>
             </div>
             <div class="d-flex position-relative">
                 <li class="nav-itme">

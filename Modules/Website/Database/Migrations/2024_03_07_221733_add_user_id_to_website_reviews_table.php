@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('website_reviews', function (Blueprint $table) {
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }

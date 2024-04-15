@@ -31,7 +31,7 @@
                     <h4 class="footer-title">{{ __('lang_v1.useful_links') }}</h4>
                     <ul class="footer-links">
                         <li><a href="{{ url('/') }}">{{ __('lang_v1.home') }}</a></li>
-                        <li><a href="{{ route('about') }}">{{ __('lang_v1.about') }}</a></li>
+                        <li><a href="{{ route('about') }}">{{ __('lang_v1.about_us') }}</a></li>
                         <li><a href="{{ route('contact') }}">{{ __('lang_v1.contact') }}</a></li>
                         <li><a href="{{ route('reviews') }}">{{ __('lang_v1.reviews') }}</a></li>
                         <li><a href="{{ route('faqs') }}">{{ __('lang_v1.faqs') }}</a></li>

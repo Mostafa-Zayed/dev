@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'rate' => 'Rating',
+    'job_ar' => 'Job Arabic',
+    'job_en' => 'Job English',
+    'add_review' => 'Add Review',
+    'link' => 'Link',
     'facebook_link' => 'Facebook Page Link',
     'twitter_link' => 'Twitter Page Link',
     'instagram_link' => 'Instagram Page Link',

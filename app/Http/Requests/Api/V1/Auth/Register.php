@@ -27,12 +27,14 @@ class Register extends FormRequest
     {
         return [
             'accept_conditions' => ['required', 'in:on', 'max:255'],
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'contact_no' => ['required', 'numeric'],
-            'first_name' => ['required', 'string', 'max:255', 'min:3'],
+            'name' => ['required','string','regex:/^[A-Za-z\s]*$/i','min:3','max:255'],
+            'contact_no' => ['required', 'numeric','digits_between:3,15','regex:/^[0-9]*$/i'],
+            'first_name' => ['required', 'string', 'max:255', 'min:3','regex:/^[A-Za-z\s]*$/i'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'max:255', 'min:8', 'confirmed'],
-            'currency_id' => ['required', 'exists:currencies,id'],
+            'currency_id' => ['required', 'integer','exists:currencies,id'],
+            'package' => ['nullable','exists:packages,id'],
+            'language' => ['nullable']
 
         ];
     }

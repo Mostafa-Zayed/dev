@@ -58,9 +58,6 @@
     </div>
     <!-- /preloader -->
 
-    <!--Start Header Area-->
-@include('website::includes.header')
-    <!-- //End Header Area-->
 
     <div class="page-header">
         <div class="container">

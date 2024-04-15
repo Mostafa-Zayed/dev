@@ -2,6 +2,7 @@
 
 namespace Modules\Website\Http\Controllers;
 
+use App\Traits\UploadTrait;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -11,6 +12,7 @@ use App\User;
 
 class WebsiteReviewController extends Controller
 {
+    use UploadTrait;
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -38,7 +40,11 @@ class WebsiteReviewController extends Controller
     public function store(Store $request)
     {
         try {
+            // dd($request->validated());
             WebsiteReview::create($request->validated());
+            if($request->hasFile('image')){ 
+                $this->uploadeImage($request->image,'reviews');
+            }
             return view('website::reviews.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);

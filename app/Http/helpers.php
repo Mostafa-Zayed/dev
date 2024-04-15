@@ -128,14 +128,14 @@ if (!function_exists('str_ordinal')) {
         }
     }
 
-    if(! function_exists('isAllowRegister')){
+    if (!function_exists('isAllowRegister')) {
         function isAllowRegister()
         {
             return config('constants.allow_registration');
         }
     }
 
-    if( ! function_exists('isHasPermission')) {
+    if (!function_exists('isHasPermission')) {
         function isHasPermission($permissions)
         {
             return auth()->user()->can($permissions);
@@ -146,6 +146,15 @@ if (!function_exists('str_ordinal')) {
 if (!function_exists('defaultLang')) {
     function defaultLang()
     {
-      return 'ar';
+        return 'ar';
     }
-  }
+}
+
+if(!function_exists('extractColumns')){
+    function extractColumns($columns)
+    {
+        if(is_array($columns)){
+            return rtrim(implode(",",$columns),',');
+        }
+    }
+}

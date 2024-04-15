@@ -1,21 +1,21 @@
 <div class="pos-tab-content active">
     <div class="row">
         @foreach (languages() as $lang)
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
-                    {!! Form::text("section_questions_title[$lang]",! empty($settings) && isset($settings->getTranslations('section_questions_title')[$lang]) ? $settings->getTranslations('section_questions_title')[$lang] : null, ['class' => 'form-control',
-                    'placeholder' => __('website::lang.title_' . $lang)]); !!}
-                </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                {!! Form::label('',__('website::lang.title_' . $lang) . ' : *') !!}
+                {!! Form::text("section_questions_title[$lang]",! empty($settings) && isset($settings->getTranslations('section_questions_title')[$lang]) ? $settings->getTranslations('section_questions_title')[$lang] : null, ['class' => 'form-control',
+                'placeholder' => __('website::lang.title_' . $lang)]); !!}
             </div>
+        </div>
         @endforeach
         @foreach (languages() as $lang)
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {!! Form::label("section_features_description_$lang", __('website::lang.description_' . $lang) . ':') !!}
-                    {!! Form::textarea("section_questions_description[$lang]", ! empty($settings) && isset($settings->getTranslations('section_questions_description')[$lang]) ? $settings->getTranslations('section_questions_description')[$lang] : null, ['class' => 'form-control','id' => "section_questions_description_$lang"]); !!}
-                </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                {!! Form::label("section_features_description_$lang", __('website::lang.description_' . $lang) . ':') !!}
+                {!! Form::textarea("section_questions_description[$lang]", ! empty($settings) && isset($settings->getTranslations('section_questions_description')[$lang]) ? $settings->getTranslations('section_questions_description')[$lang] : null, ['class' => 'form-control','id' => "section_questions_description_$lang"]); !!}
             </div>
+        </div>
         @endforeach
         <div class="col-sm-12">
             <div class="form-group">
@@ -44,5 +44,9 @@
                 <p class="help-block"><i> سيتم استبدال الصورة السابق (إن وجد)</i></p>
             </div>
         </div>
+        <div class="thumbnail">
+            <img src="{{$settings->section_questions_image}}" />
+        </div>
+
     </div>
 </div>

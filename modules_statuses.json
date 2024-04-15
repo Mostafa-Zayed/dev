@@ -21,5 +21,6 @@
     "Jumia": true,
     "Hms": true,
     "Shipment": true,
-    "Store": true
+    "Store": true,
+    "MobileApp": true
 }

@@ -26,8 +26,10 @@ class Login extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required','email','exists:users,email','exists:users,username','unique:users,username','unique:users,email'],
-            'password' => ['required','min:6','max:255','string']
+            'email' => ['required','email','max:255'],
+            'password' => ['required','min:6','max:255','string'],
+            'device_id'    => 'required|max:250',
+            'device_type'  => 'required|in:ios,android,web',
         ];
     }
 }

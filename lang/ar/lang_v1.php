@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'contact_us' => 'تواصل معنا',
+    'about_us' => 'من نحن',
+    'try_free' => 'جرب الان مجانا',
     'subscribe_success' => 'تم الاشتراك بنجاح',
     'subscribe' => 'اشترك',
     'view_all_reviews' => 'مشاهدة كل الأراء',

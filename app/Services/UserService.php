@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class UserService
 {
     public $userRepository;
-
+    
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
@@ -30,5 +30,10 @@ class UserService
             'password'   => Hash::make($userData['password']),
             'language' => 'ar',
         ]);
+    }
+
+    public function getUserByEmail(string $email)
+    {
+        return $this->userRepository->getUserByEmail($email);
     }
 }

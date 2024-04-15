@@ -53,4 +53,6 @@ class MysqlRepository extends BusinessRepository
         }
         return $query->count();
     }
+
+    // public function get
 }

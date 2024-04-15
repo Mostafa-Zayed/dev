@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'contact_us' => 'Contact Us',
+    'about_us' => 'About Us',
+    'try_free' => 'Try Now Free',
     'subscribe_success' => 'Subscribed Succefulley',
     'subscribe' => 'Subscribe',
     'view_all_reviews' => 'View all reviews' ,
@@ -12,7 +15,7 @@ return [
     'meta_description' => 'A specialized Ecommerce platform to manage your business professionally',
     'start_now' => 'Get Start' ,
     'contact' => 'Contact',
-    'faqs' => 'Faqs',
+    'faqs' => 'Frequently Asked Questions',
     'reviews' => 'Reviews',
     'pricing' => 'Pricing',
     'screenshots' => 'screenshots',
