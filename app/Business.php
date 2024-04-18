@@ -140,4 +140,9 @@ class Business extends Model
         }
         return 'default.png';
     }
+
+    public function languages(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Language::class,'business_language','business_id','language_id','id','id');
+    }
 }

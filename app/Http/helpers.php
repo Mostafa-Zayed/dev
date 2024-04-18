@@ -1,5 +1,8 @@
 <?php
 
+use App\Business;
+use Illuminate\Support\Facades\DB;
+
 /**
  * boots pos.
  */
@@ -156,5 +159,13 @@ if(!function_exists('extractColumns')){
         if(is_array($columns)){
             return rtrim(implode(",",$columns),',');
         }
+    }
+}
+
+if (!function_exists('get_all_active_language')) {
+    function get_all_active_language(int $businessId)
+    {
+        $ids = DB::table('business_language')->where('business_id','=',$businessId)->where('status','=',1)->pluck('language_id')->toArray();
+        return DB::table('languages')->whereIn('id',$ids)->get();
     }
 }

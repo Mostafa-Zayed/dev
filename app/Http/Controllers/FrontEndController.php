@@ -53,6 +53,7 @@ class FrontEndController extends Controller
             }
         }
         $features = WebsiteFeature::where('status', '1')->where('is_home', 1)->get();
+
         return view('welcome', [
             'template' => $websiteDemo,
             'settings' => $websiteSettings,

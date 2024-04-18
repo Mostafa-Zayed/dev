@@ -129,7 +129,7 @@
                             <h4>Office Location</h4>
                             <div class="contact-block-side">
                                 <i class="flaticon-route"></i>
-                                 @if(! empty($settings))
+                                @if(! empty($settings))
                                 {!! $settings->getTranslations('location_address')[app()->getLocale()] !!}
                                 @endif
                             </div>

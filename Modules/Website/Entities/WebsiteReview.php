@@ -37,7 +37,7 @@ class WebsiteReview extends Model
     {
         if (null != $value && is_file($value)) {
             isset($this->attributes['image']) ? $this->deleteFile($this->attributes['image'], self::IMAGEPATH) : '';
-            $this->attributes['image'] = $this->uploadeImage($value, 'partners');
+            $this->attributes['image'] = $this->uploadeImage($value,self::IMAGEPATH);
         }
     }
 

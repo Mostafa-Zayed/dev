@@ -2,6 +2,7 @@
 
 namespace Modules\Website\Http\Controllers;
 
+use App\Traits\LogException;
 use App\Traits\UploadTrait;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -9,16 +10,28 @@ use Illuminate\Routing\Controller;
 use Modules\Website\Entities\WebsiteReview;
 use Modules\Website\Http\Requests\Reviews\Store;
 use App\User;
-
+use Yajra\DataTables\Facades\DataTables;
 class WebsiteReviewController extends Controller
 {
-    use UploadTrait;
+    use UploadTrait,LogException;
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
+        if (request()->ajax()){
+            return DataTables::of(WebsiteReview::get())
+                ->addColumn(
+                    'action',
+                    function ($row) {
+                        $html = '<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteReviewController::class, 'edit'], [$row->id]) . '" class="btn btn-xs btn-primary edit_question_button"><i class="glyphicon glyphicon-edit"></i>' . __('messages.edit') . '</button>';
+                        $html .= '&nbsp;<button data-href="' . action([\Modules\Website\Http\Controllers\WebsiteReviewController::class, 'destroy'], [$row->id]) . '" class="btn btn-xs btn-danger delete_question_button"><i class="glyphicon glyphicon-trash"></i> ' . __('messages.delete') . '</button>';
+                        return $html;
+                    }
+                )
+                ->make(true);
+        }
         return view('website::reviews.index');
     }
 
@@ -40,11 +53,7 @@ class WebsiteReviewController extends Controller
     public function store(Store $request)
     {
         try {
-            // dd($request->validated());
             WebsiteReview::create($request->validated());
-            if($request->hasFile('image')){ 
-                $this->uploadeImage($request->image,'reviews');
-            }
             return view('website::reviews.index');
         } catch (\Exception $exception){
             $this->logMethodException($exception);

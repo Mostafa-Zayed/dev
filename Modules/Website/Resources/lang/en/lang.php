@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'job' => 'Job',
     'rate' => 'Rating',
     'job_ar' => 'Job Arabic',
     'job_en' => 'Job English',

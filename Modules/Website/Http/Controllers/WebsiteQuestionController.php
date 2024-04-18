@@ -24,8 +24,8 @@ class WebsiteQuestionController extends Controller
     public function index()
     {
         if (request()->ajax()){
-            $questions = WebsiteQuestion::get();
-            return DataTables::of($questions)
+            // $questions = WebsiteQuestion::get();
+            return DataTables::of(WebsiteQuestion::get())
                 ->addColumn(
                     'action',
                     function ($row) {

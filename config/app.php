@@ -183,6 +183,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Brokenice\LaravelMysqlPartition\PartitionServiceProvider::class,
 
         /*
          * Application Service Providers...
