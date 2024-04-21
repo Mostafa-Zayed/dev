@@ -513,13 +513,19 @@ ul.list-checked li i {
     );
     background-size: 200% auto;
 }
-.site-logo a {
+/* .site-logo a {
     color: #fff;
 }
 .site-logo img {
     height: 70px;
     width: 170px;
     object-fit: cover;
+} */
+.site-logo a{
+    color: #fff;
+}
+.site-logo img{
+    height: 28px;
 }
 .navbar-nav li {
     padding: 15px;
