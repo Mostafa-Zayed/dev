@@ -18,6 +18,7 @@
         "aloha/twilio": "^4.0",
         "automattic/woocommerce": "^3.0",
         "barryvdh/laravel-dompdf": "^2.0",
+        "biscolab/laravel-recaptcha": "^6.1",
         "brokenice/laravel-mysql-partition": "^1.2",
         "composer/semver": "^3.0",
         "consoletvs/charts": "^6.5",

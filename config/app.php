@@ -184,6 +184,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Brokenice\LaravelMysqlPartition\PartitionServiceProvider::class,
+        Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -224,5 +225,6 @@ return [
         'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,
         'Menu' => Nwidart\Menus\Facades\Menu::class,
+        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
     ])->toArray(),
 ];

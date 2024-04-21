@@ -504,7 +504,7 @@ ul.list-checked li i {
 .navbar-expand-md .navbar-nav {
     margin-right: auto;
 }
-/* .header-area.sticky .navbar {
+.header-area.sticky .navbar {
     background-image: linear-gradient(
         to right,
         rgba(144, 30, 193, 0.9) 0%,
@@ -512,7 +512,7 @@ ul.list-checked li i {
         rgba(144, 30, 193, 0.9) 100%
     );
     background-size: 200% auto;
-} */
+}
 .site-logo a {
     color: #fff;
 }
@@ -614,13 +614,16 @@ ul.list-checked li i {
 .home-demo3 .navbar-nav li a {
     color: #212529;
 }
-.home-demo3 .header-area.sticky .navbar {
+/* .home-demo3 .header-area.sticky .navbar {
     background-image: linear-gradient(
         to right,
         rgba(250, 238, 254, 0.9) 0%,
         rgba(231, 225, 254, 0.9) 51%,
         rgba(213, 212, 213, 0.9) 100%
     );
+} */
+.home-demo3 .header-area.sticky .navbar {
+    background-image: linear-gradient(to right, rgba(250, 238, 254, 0.9) 0%, rgba(231, 225, 254, 0.9) 51%, rgba(213, 212, 213, 0.9) 100%);
 }
 /* ============================================================================= 
 #5. Home Start Page
@@ -1131,15 +1134,14 @@ ul.list-checked li i {
     margin-bottom: 8px;
 }
 /************ 6.2 Features style-2 *******************/
-.features-style2 .img-box {
+.features-style2 .img-box{
     text-align: center;
 }
-.features-style2 .feature-block {
+.features-style2 .feature-block{
     background: #fff;
-    box-shadow: 0px 0px 29px 6px rgb(110 114 121 / 31%);
+    box-shadow: 0px 0px 29px 6px rgba(154, 161, 171, 0.18);
     text-align: right;
     margin-bottom: 50px;
-    height: 165px;
 }
 .features-style2 .feature-block .feature-icon {
     float: right;
@@ -1148,7 +1150,7 @@ ul.list-checked li i {
 .features-style2 .feature-block .feature-content {
     padding-right: 85px;
 }
-.features-style2 .feature-block .feature-content h3 {
+.features-style2 .feature-block .feature-content h3{
     margin-bottom: 7px;
 }
 .features-style2 .feature-block .feature-content p {
@@ -3175,7 +3177,7 @@ footer p {
 .review_nav span {
     transform: rotate(180deg);
 }
-
+/* 
 #AppFeatures {
     position: relative;
     background-color: #eef2ff;
@@ -3183,7 +3185,7 @@ footer p {
 #AppFeatures .container {
     position: relative;
     z-index: 1;
-}
+} */
 .img-box {
     position: absolute;
     width: 100%;

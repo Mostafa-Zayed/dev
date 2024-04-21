@@ -50,8 +50,9 @@
 </div>
 
 
-    <div class="img-box">
+    {{-- <div class="img-box">
         <img src="@if (!empty($settings->section_features_image)) {{ $settings->section_features_image }} @endif"
             class="img-fluid" alt="Img" />
     </div>
+    --}}
 </section>

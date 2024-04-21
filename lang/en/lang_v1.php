@@ -15,7 +15,7 @@ return [
     'meta_description' => 'A specialized Ecommerce platform to manage your business professionally',
     'start_now' => 'Get Start' ,
     'contact' => 'Contact',
-    'faqs' => 'Frequently Asked Questions',
+    'faqs' => 'Faqs',
     'reviews' => 'Reviews',
     'pricing' => 'Pricing',
     'screenshots' => 'screenshots',
