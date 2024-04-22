@@ -59,7 +59,7 @@ class AdminSidebarMenu
                         }
                     },
                     ['icon' => 'fa fas fa-users']
-                )->order(10);
+                )->order(15);
             }
 
             //Contacts dropdown
@@ -190,7 +190,7 @@ class AdminSidebarMenu
                         );
                     },
                     ['icon' => 'fa fas fa-cubes', 'id' => 'tour_step5']
-                )->order(20);
+                )->order(10);
             }
 
             //Purchase dropdown
@@ -653,7 +653,7 @@ class AdminSidebarMenu
                         }
                     },
                     ['icon' => 'fa fas fa-chart-bar', 'id' => 'tour_step8']
-                )->order(55);
+                )->order(50);
             }
 
             //Backup menu
@@ -763,7 +763,7 @@ class AdminSidebarMenu
                         }
                     },
                     ['icon' => 'fa fas fa-cog', 'id' => 'tour_step3']
-                )->order(85);
+                )->order(5);
             }
         });
 

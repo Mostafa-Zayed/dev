@@ -173,7 +173,7 @@ class DataController extends Controller
                             __('repair::lang.repair'),
                             ['icon' => 'fa fas fa-wrench', 'active' => request()->segment(1) == 'repair', 'style' => 'background-color:'.$background_color]
                         )
-                ->order(24);
+                ->order(85);
             });
         }
     }
