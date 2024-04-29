@@ -376,6 +376,7 @@ class BusinessController extends Controller
      */
     public function postBusinessSettings(Request $request)
     {
+        // dd($request->all());
         if (!auth()->user()->can('business_settings.access')) {
             abort(403, 'Unauthorized action.');
         }
@@ -446,7 +447,7 @@ class BusinessController extends Controller
             if (!empty($logo_name)) {
                 $business_details['logo'] = $logo_name;
             }
-
+            // dd($business_details);
             $checkboxes = [
                 'enable_editing_product_from_purchase',
                 'enable_inline_tax',
@@ -466,7 +467,7 @@ class BusinessController extends Controller
             } else {
                 unset($business_details['logo']);
             }
-
+            // dd($business_details);
             //System settings
             $shortcuts = $request->input('shortcuts');
             $business_details['keyboard_shortcuts'] = json_encode($shortcuts);

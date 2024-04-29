@@ -11,7 +11,7 @@
     <meta name="description" content="App Landing page, RTL Version, Marwa El-Manawy, Application">
     <meta name="author" content="ERP TEC - https://dev.erptec.net" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" href="{{asset('favicon.png')}}" type="image/gif" sizes="32x32">
     @if (getLanguage() == 'ar')
         <link rel="stylesheet" href="{{ asset('front/rtl/css/fontawesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('front/rtl/css/themify-icons.css') }}">

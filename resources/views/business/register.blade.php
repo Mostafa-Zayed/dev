@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="App Landing page, RTL Version, Marwa El-Manawy, Application">
     <meta name="author" content="ERP TEC - https://dev.erptec.net/" />
-    <link rel="icon" href="favicon.png">
+    <link rel="icon" href="{{asset('favicon.png')}}" type="image/gif" sizes="32x32">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

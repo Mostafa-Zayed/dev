@@ -133,13 +133,13 @@ class Business extends Model
         return $address;
     }
 
-    public function setLogoAttribute($value) {
-        if (null != $value && is_file($value) ) {
-            isset($this->attributes['logo']) ? $this->deleteFile($this->attributes['logo'] , static::IMAGEPATH) : '';
-            $this->attributes['logo'] = $this->erpUploadFile($value, static::IMAGEPATH);
-        }
-        return 'default.png';
-    }
+    // public function setLogoAttribute($value) {
+    //     if (null != $value && is_file($value) ) {
+    //         isset($this->attributes['logo']) ? $this->deleteFile($this->attributes['logo'] , static::IMAGEPATH) : '';
+    //         $this->attributes['logo'] = $this->erpUploadFile($value, static::IMAGEPATH);
+    //     }
+    //     return 'default.png';
+    // }
 
     public function languages(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
