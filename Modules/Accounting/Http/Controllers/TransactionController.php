@@ -85,7 +85,7 @@ class TransactionController extends Controller
                         $html = '' ;
 
                         if (auth()->user()->can("sell.view") || auth()->user()->can("direct_sell.view") || auth()->user()->can("view_own_sell_only")) {
-                            $html .= '<a href="#" data-href="' . action("SellController@show", [$row->id]) . '" class="btn-modal btn btn-info btn-xs" data-container=".view_modal"><i class="fas fa-eye" aria-hidden="true"></i> ' . __("messages.view") . '</a>';
+                            $html .= '<a href="#" data-href="' . route("selling.show", [$row->id]) . '" class="btn-modal btn btn-info btn-xs" data-container=".view_modal"><i class="fas fa-eye" aria-hidden="true"></i> ' . __("messages.view") . '</a>';
                         }
 
                         if(auth()->user()->can('accounting.map_transactions')) {
@@ -295,7 +295,7 @@ class TransactionController extends Controller
                     $html = $row->ref_no;
                     if ($row->type == 'sell') {
                         $html = '<button type="button" class="btn btn-link btn-modal"
-                                data-href="' . action('SellController@show', [$row->transaction_id]) .'" data-container=".view_modal">' . $row->invoice_no . '</button>';
+                                data-href="' . route('selling.show', [$row->transaction_id]) .'" data-container=".view_modal">' . $row->invoice_no . '</button>';
                     } elseif ($row->type == 'purchase') {
                         $html = '<button type="button" class="btn btn-link btn-modal"
                                 data-href="' . action('PurchaseController@show', [$row->transaction_id]) .'" data-container=".view_modal">' . $row->ref_no . '</button>';
